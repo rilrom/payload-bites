@@ -1,0 +1,5 @@
+# Payload bites
+
+Collection of various bited-sized Payload v3 plugins and tools.
+
+- [Image search](packages/image-search/) - search for images in Payload using image providers such as Unsplash and Pexels.

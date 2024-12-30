@@ -1,0 +1,24 @@
+{
+  "extends": "@payload-bites/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@payload-config": ["src/payload/payload.config.ts"],
+      "@payload-bites/image-search": [
+        "../../packages/image-search/src/index.ts"
+      ],
+      "@payload-bites/image-search/client": [
+        "../../packages/image-search/src/exports/client.ts"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "next.config.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
