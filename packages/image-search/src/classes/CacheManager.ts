@@ -1,14 +1,34 @@
 export class CacheManager {
   exists(query: string) {
-    return this.get(query) ? true : false;
+    const data = this.get(query);
+
+    return data !== null;
   }
 
   get(query: string) {
-    const data = sessionStorage.getItem(query);
-    return data ? JSON.parse(data) : null;
+    const itemStr = localStorage.getItem(query);
+
+    if (!itemStr) {
+      return null;
+    }
+
+    const item = JSON.parse(itemStr);
+
+    if (item.expiry && new Date().getTime() > item.expiry) {
+      localStorage.removeItem(query);
+
+      return null;
+    }
+
+    return item.value;
   }
 
-  set(query: string, data: unknown) {
-    return sessionStorage.setItem(query, JSON.stringify(data));
+  set(query: string, data: unknown, ttl?: number): void {
+    const item = {
+      value: data,
+      expiry: ttl ? new Date().getTime() + ttl : null,
+    };
+
+    localStorage.setItem(query, JSON.stringify(item));
   }
 }
