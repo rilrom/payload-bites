@@ -172,8 +172,14 @@ export const SearchImages = (props: SearchImagesProps) => {
                   <button
                     className={`${baseClass}__button`}
                     onClick={() => onSelect(data.urls.original)}
+                    style={{ backgroundColor: data.color }}
                   >
-                    <img src={data.urls.view} alt={data.alt} />
+                    <img
+                      src={data.urls.view}
+                      alt={data.alt}
+                      width={data.width}
+                      height={data.height}
+                    />
                   </button>
                   <a
                     href={data.urls.download}

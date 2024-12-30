@@ -3,6 +3,9 @@ import { Provider } from "./Provider.js";
 interface UnsplashResult {
   id: string;
   alt_description: string;
+  width: number;
+  height: number;
+  color: string;
   urls: {
     thumb: string;
     full: string;
@@ -61,6 +64,9 @@ export class Unsplash extends Provider {
     return data.map((image) => ({
       id: image.id,
       alt: image.alt_description || "",
+      width: image.width,
+      height: image.height,
+      color: image.color,
       urls: {
         view: image.urls?.thumb,
         original: image.urls?.full,

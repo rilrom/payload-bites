@@ -3,6 +3,9 @@ import { Provider } from "./Provider.js";
 interface PexelsResult {
   id: string;
   alt: string;
+  width: number;
+  height: number;
+  avg_color: string;
   url: string;
   src: {
     medium: string;
@@ -55,6 +58,9 @@ export class Pexels extends Provider {
     return data.map((image) => ({
       id: image.id,
       alt: image.alt || "",
+      width: image.width,
+      height: image.height,
+      color: image.avg_color,
       urls: {
         view: image.src.medium,
         original: image.src.original,

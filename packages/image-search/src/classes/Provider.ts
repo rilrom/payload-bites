@@ -1,6 +1,9 @@
 export interface ProviderResult {
   id: string;
   alt: string;
+  width: number;
+  height: number;
+  color: string;
   urls: {
     view: string;
     original: string;
