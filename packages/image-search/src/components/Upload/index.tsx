@@ -37,7 +37,7 @@ import { SearchImages } from "../SearchImages/index.js";
 const baseClass = "file-field";
 
 export const editDrawerSlug = "edit-upload";
-export const searchImageDrawerSlug = "search-image";
+export const searchImagesDrawerSlug = "search-images";
 export const sizePreviewSlug = "preview-sizes";
 
 const validate = (value: File) => {
@@ -238,7 +238,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
 
       handleFileChange(file);
 
-      closeModal(searchImageDrawerSlug);
+      closeModal(searchImagesDrawerSlug);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "handleSearchSubmit error.";
@@ -342,7 +342,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
                   <Button
                     buttonStyle="pill"
                     onClick={() => {
-                      openModal(searchImageDrawerSlug);
+                      openModal(searchImagesDrawerSlug);
                     }}
                     size="small"
                   >
@@ -430,7 +430,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
           )}
         </div>
       )}
-      <Drawer slug={searchImageDrawerSlug}>
+      <Drawer slug={searchImagesDrawerSlug}>
         <SearchImages
           apiRoutePath={apiRoutePath}
           onSelect={handleSearchSubmit}

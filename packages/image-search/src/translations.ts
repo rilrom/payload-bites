@@ -6,6 +6,8 @@ export const translations = {
       searchImages: "Search images",
       noResults: "No results",
       imageLibrary: "Image library powered by {{provider}}",
+      previewImage: "Preview image",
+      selectImage: "Select image",
     },
   },
 };

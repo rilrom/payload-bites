@@ -46,12 +46,6 @@ A provider is an online image library that allows you to view and download image
 - [Pixels](https://www.pexels.com/api/)
 - [Pixabay](https://pixabay.com/api/docs/)
 
-## Roadmap
-
-- [x] Caching.
-- [x] Pixabay provider.
-- [ ] View full-sized image with zoom functionality prior to selecting an image.
-
 ## Liability
 
 Before using any provider, ensure you have reviewed and agreed to their terms and usage policies. Contributors to this plugin are not responsible for how these images are used.

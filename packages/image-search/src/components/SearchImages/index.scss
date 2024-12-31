@@ -75,13 +75,33 @@
     padding: 0;
     cursor: pointer;
     width: 100%;
+
+    svg {
+      color: #fff;
+    }
+  }
+
+  &__topOverlay,
+  &__bottomOverlay {
+    position: absolute;
+    left: 1rem;
+    z-index: 1;
+    display: flex;
+    max-width: calc(100% - 20px - 1rem);
+  }
+
+  &__topOverlay {
+    top: 0.8rem;
+  }
+
+  &__bottomOverlay {
+    bottom: 0.8rem;
   }
 
   &__download {
-    position: absolute;
-    bottom: 0.8rem;
-    left: 1rem;
-    z-index: 1;
+    font-size: 0;
+    line-height: 1;
+    margin-right: 1rem;
 
     svg {
       pointer-events: none;
@@ -90,16 +110,12 @@
   }
 
   &__attribution {
-    position: absolute;
-    bottom: 1rem;
-    left: 3.25rem;
-    z-index: 1;
     font-size: 1.25rem;
     font-weight: 600;
+    line-height: 1;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: calc(100% - 4.25rem);
     color: #fff;
 
     &:hover {

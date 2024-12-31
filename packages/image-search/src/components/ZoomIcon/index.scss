@@ -1,0 +1,13 @@
+@import "~@payloadcms/ui/scss";
+
+@layer payload-default {
+  .icon--zoom {
+    height: $baseline;
+    width: $baseline;
+
+    .stroke {
+      stroke: currentColor;
+      stroke-width: $style-stroke-width-s;
+    }
+  }
+}

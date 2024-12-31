@@ -2,15 +2,19 @@
 
 import { useCallback, useEffect, useState } from "react";
 import {
+  Drawer,
   LinkIcon,
   Pagination,
   SearchFilter,
   Select,
   toast,
+  useModal,
   useTranslation,
 } from "@payloadcms/ui";
 import { Masonry } from "masonic";
 
+import { ZoomIcon } from "../ZoomIcon/index.js";
+import { PreviewImage } from "../PreviewImage/index.js";
 import { ProviderResult } from "../../classes/Provider.js";
 import { fetchWithCache } from "../../utils/fetchWithCache.js";
 import type {
@@ -21,6 +25,8 @@ import type {
 import "./index.scss";
 
 const baseClass = "search-images";
+
+export const previewImageDrawerSlug = "preview-image";
 
 type ProviderOption = {
   label: string;
@@ -35,6 +41,8 @@ type SearchImagesProps = {
 export const SearchImages = (props: SearchImagesProps) => {
   const { apiRoutePath, onSelect } = props;
 
+  const { openModal } = useModal();
+
   const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
 
   const [providerOptions, setProviderOptions] = useState<ProviderOption[]>([]);
@@ -45,11 +53,15 @@ export const SearchImages = (props: SearchImagesProps) => {
   const [images, setImages] = useState<ProviderResult[] | null>(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ProviderResult | null>(
+    null,
+  );
 
   const resetImages = useCallback(() => {
     setImages(null);
     setTotalPages(null);
     setCurrentPage(1);
+    setSelectedImage(null);
   }, []);
 
   const getProviderOptions = useCallback(async () => {
@@ -181,22 +193,35 @@ export const SearchImages = (props: SearchImagesProps) => {
                       height={data.height}
                     />
                   </button>
-                  <a
-                    href={data.urls.download}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${baseClass}__download`}
-                  >
-                    <LinkIcon />
-                  </a>
-                  <a
-                    href={data.attribution.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${baseClass}__attribution`}
-                  >
-                    {data.attribution.name}
-                  </a>
+                  <div className={`${baseClass}__topOverlay`}>
+                    <button
+                      className={`${baseClass}__button`}
+                      onClick={() => {
+                        setSelectedImage(data);
+                        openModal(previewImageDrawerSlug);
+                      }}
+                    >
+                      <ZoomIcon />
+                    </button>
+                  </div>
+                  <div className={`${baseClass}__bottomOverlay`}>
+                    <a
+                      className={`${baseClass}__download`}
+                      href={data.urls.download}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LinkIcon />
+                    </a>
+                    <a
+                      className={`${baseClass}__attribution`}
+                      href={data.attribution.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {data.attribution.name}
+                    </a>
+                  </div>
                 </div>
               )}
             />
@@ -226,6 +251,14 @@ export const SearchImages = (props: SearchImagesProps) => {
           </p>
         </>
       )}
+
+      <Drawer Header={null} slug={previewImageDrawerSlug}>
+        <PreviewImage
+          slug={previewImageDrawerSlug}
+          selectedImage={selectedImage}
+          onSelect={onSelect}
+        />
+      </Drawer>
     </div>
   );
 };
