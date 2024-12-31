@@ -18,6 +18,7 @@ pnpm add @payload-bites/image-search
 | ---------------- | --------------------------- | ---------------------------------------------- |
 | API_KEY_UNSPLASH | https://images.unsplash.com | The key you configured to use the Unsplash API |
 | API_KEY_PEXELS   | https://images.pexels.com   | The key you configured to use the Pexels API   |
+| API_KEY_PIXABAY  | https://pixabay.com         | The key you configured to use the Pixabay API  |
 
 > [!IMPORTANT]
 > At least one API key is required to use this plugin.
@@ -43,13 +44,12 @@ A provider is an online image library that allows you to view and download image
 
 - [Unsplash](https://unsplash.com/developers)
 - [Pixels](https://www.pexels.com/api/)
-
-More providers to come.
+- [Pixabay](https://pixabay.com/api/docs/)
 
 ## Roadmap
 
 - [x] Caching.
-- [ ] Pixabay provider.
+- [x] Pixabay provider.
 - [ ] View full-sized image with zoom functionality prior to selecting an image.
 
 ## Liability

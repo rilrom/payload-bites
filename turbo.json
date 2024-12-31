@@ -5,7 +5,8 @@
     "PAYLOAD_SECRET",
     "DATABASE_URI",
     "API_KEY_UNSPLASH",
-    "API_KEY_PEXELS"
+    "API_KEY_PEXELS",
+    "API_KEY_PIXABAY"
   ],
   "tasks": {
     "clean": {
