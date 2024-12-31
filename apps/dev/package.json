@@ -15,21 +15,21 @@
   },
   "dependencies": {
     "@payload-bites/image-search": "workspace:*",
-    "@payloadcms/db-postgres": "^3",
-    "@payloadcms/next": "^3",
+    "@payloadcms/db-postgres": "^3.12.0",
+    "@payloadcms/next": "^3.12.0",
     "cross-env": "^7.0.3",
-    "next": "^15",
-    "payload": "^3",
-    "react": "^19",
-    "react-dom": "^19",
+    "next": "^15.1.3",
+    "payload": "^3.12.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/node": "^22.5.4",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
     "typescript": "^5.7.2"
   }
 }

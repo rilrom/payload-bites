@@ -30,16 +30,16 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "masonic": "4.0.1",
-    "sonner": "1.7.1"
+    "masonic": "^4.0.1",
+    "sonner": "^1.7.1"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "react": "^19",
-    "react-dom": "^19",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
