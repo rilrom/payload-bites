@@ -36,6 +36,10 @@
     margin-top: 3rem;
     display: flex;
 
+    > div {
+      width: 100%;
+    }
+
     img {
       max-width: 100%;
       width: 100%;

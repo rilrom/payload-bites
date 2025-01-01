@@ -11,7 +11,7 @@ import {
   useModal,
   useTranslation,
 } from "@payloadcms/ui";
-import { Masonry } from "masonic";
+import { Masonry } from "react-plock";
 
 import { ZoomIcon } from "../ZoomIcon/index.js";
 import { PreviewImage } from "../PreviewImage/index.js";
@@ -177,9 +177,14 @@ export const SearchImages = (props: SearchImagesProps) => {
         <>
           <div className={`${baseClass}__results`}>
             <Masonry
-              columnGutter={16}
               items={images}
-              render={({ data }) => (
+              config={{
+                columns: [2, 3, 4, 5, 6],
+                gap: [16, 16, 16, 16, 16],
+                media: [768, 992, 1200, 1400, 1600],
+                useBalancedLayout: true,
+              }}
+              render={(data) => (
                 <div className={`${baseClass}__card`}>
                   <button
                     className={`${baseClass}__button`}

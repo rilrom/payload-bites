@@ -30,7 +30,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "masonic": "^4.0.1",
+    "react-plock": "^3.4.0",
     "sonner": "^1.7.1"
   },
   "devDependencies": {
