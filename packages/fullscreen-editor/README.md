@@ -24,3 +24,8 @@ export default buildConfig({
   ],
 });
 ```
+
+## Roadmap
+
+- [ ] Focus trap around editor in fullscreen mode.
+- [ ] Translations.
