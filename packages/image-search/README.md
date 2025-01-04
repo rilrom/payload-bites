@@ -52,3 +52,7 @@ A provider is an online image library that allows you to view and download image
 ## Liability
 
 Before using any provider, ensure you have reviewed and agreed to their terms and usage policies. Contributors to this plugin are not responsible for how these images are used.
+
+## Roadmap
+
+- [ ] Image search bulk upload (awaiting custom component implementation by Payload team).
