@@ -57,4 +57,5 @@ Before using any provider, ensure you have reviewed and agreed to their terms an
 
 ## Roadmap
 
-- [ ] Image search bulk upload (awaiting custom component implementation by Payload team).
+- [ ] Image search bulk upload (awaiting custom component implementation by Payload team - [discussion](https://github.com/payloadcms/payload/discussions/10191)).
+- [ ] Translations.
