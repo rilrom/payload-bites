@@ -1,5 +1,5 @@
 diff --git a/dist/views/Document/renderDocumentSlots.js b/dist/views/Document/renderDocumentSlots.js
-index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..9d2ba95113ce2579ce998954f92524355e483c8c 100644
+index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..66b4a9d65080305da668407c304b470e331018f7 100644
 --- a/dist/views/Document/renderDocumentSlots.js
 +++ b/dist/views/Document/renderDocumentSlots.js
 @@ -71,6 +71,13 @@ export const renderDocumentSlots = args => {
@@ -8,9 +8,9 @@ index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..9d2ba95113ce2579ce998954f9252435
    }
 +  if (collectionConfig.upload && collectionConfig?.admin?.components?.edit?.Upload) {
 +    components.Upload = RenderServerComponent({
-+      Component: collectionConfig?.admin?.components?.edit?.Upload,
++      Component: collectionConfig.admin.components.edit.Upload,
 +      importMap: req.payload.importMap,
-+      serverProps
++      serverProps,
 +    })
 +  }
    return components;
