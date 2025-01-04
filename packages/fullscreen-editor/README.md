@@ -24,8 +24,3 @@ export default buildConfig({
   ],
 });
 ```
-
-## Roadmap
-
-- [ ] Fullscreen toggle in the slash menu.
-- [ ] Focus trap around the editor when in fullscreen mode.

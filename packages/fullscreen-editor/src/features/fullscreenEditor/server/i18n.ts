@@ -2,6 +2,7 @@ import type { GenericLanguages } from "@payloadcms/translations";
 
 export const i18n: Partial<GenericLanguages> = {
   en: {
-    label: "Fullscreen",
+    group: "View",
+    label: "Toggle fullscreen",
   },
 };
