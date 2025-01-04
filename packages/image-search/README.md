@@ -7,6 +7,8 @@ Inspired by [Directus Image Scout](https://github.com/resauce-dev/directus-image
 > [!IMPORTANT]
 > This plugin won't be published until the Payload team have resolved [#9591](https://github.com/payloadcms/payload/issues/9591).
 
+https://github.com/user-attachments/assets/b99bb160-788f-4689-9e40-005a6fe0bced
+
 ## Quick start
 
 1. Install the plugin:
