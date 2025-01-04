@@ -1,0 +1,8 @@
+@import "~@payloadcms/ui/scss";
+
+.icon--fullscreen {
+  min-width: auto;
+  height: calc($baseline - 4px);
+  width: calc($baseline - 4px);
+  fill: currentColor;
+}

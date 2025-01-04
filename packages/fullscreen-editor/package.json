@@ -1,0 +1,54 @@
+{
+  "name": "@payload-bites/fullscreen-editor",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "import": "./dist/exports/client.js",
+      "types": "./dist/exports/client.d.ts",
+      "default": "./dist/exports/client.js"
+    },
+    "./rsc": {
+      "import": "./dist/exports/rsc.js",
+      "types": "./dist/exports/rsc.d.ts",
+      "default": "./dist/exports/rsc.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm clean && pnpm copyfiles && pnpm build:types && pnpm build:swc",
+    "build:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths",
+    "build:types": "tsc --outDir dist --rootDir ./src",
+    "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
+    "clean": "rm -rf dist && rm -rf tsconfig.tsbuildinfo",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@payload-bites/eslint-config": "workspace:*",
+    "@payload-bites/typescript-config": "workspace:*",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2"
+  },
+  "peerDependencies": {
+    "@payloadcms/translations": "^3",
+    "@payloadcms/ui": "^3",
+    "@payloadcms/richtext-lexical": "^3",
+    "payload": "^3",
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}

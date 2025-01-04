@@ -10,6 +10,12 @@
       ],
       "@payload-bites/image-search/client": [
         "../../packages/image-search/src/exports/client.ts"
+      ],
+      "@payload-bites/fullscreen-editor": [
+        "../../packages/fullscreen-editor/src/index.ts"
+      ],
+      "@payload-bites/fullscreen-editor/client": [
+        "../../packages/fullscreen-editor/src/exports/client.ts"
       ]
     }
   },

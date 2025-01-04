@@ -1,0 +1,62 @@
+@import "~@payloadcms/ui/scss";
+
+.fixed-toolbar {
+  top: 0;
+
+  ~ .editor-container {
+    .fixed-toolbar {
+      .fixed-toolbar__group {
+        &:nth-last-child(2) {
+          .divider {
+            display: none;
+          }
+        }
+      }
+
+      .fixed-toolbar__group-fullscreenEditor {
+        display: none;
+      }
+    }
+  }
+}
+
+.focus-mode {
+  overflow: hidden;
+
+  #nav-toggler {
+    display: none;
+  }
+
+  .template-default {
+    grid-template-columns: 1fr auto;
+  }
+
+  .template-default--open {
+    grid-template-columns: 0 auto;
+  }
+}
+
+.focused-editor {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--theme-bg);
+  overflow-y: auto;
+
+  .field-label {
+    display: none;
+  }
+
+  .rich-text-lexical__wrap {
+    padding: 1rem;
+  }
+
+  .fixed-toolbar {
+    top: 0;
+  }
+
+  .toolbar-popup__button-toggleFullscreen {
+    background-color: var(--theme-elevation-150);
+    color: var(--theme-text);
+  }
+}

@@ -14,9 +14,11 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
   },
   "dependencies": {
+    "@payload-bites/fullscreen-editor": "workspace:*",
     "@payload-bites/image-search": "workspace:*",
     "@payloadcms/db-postgres": "^3.12.0",
     "@payloadcms/next": "^3.12.0",
+    "@payloadcms/richtext-lexical": "^3.12.0",
     "cross-env": "^7.0.3",
     "next": "^15.1.3",
     "payload": "^3.12.0",
