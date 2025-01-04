@@ -1,5 +1,14 @@
 {
   "name": "payload-bites",
+  "description": "collection of various bited-sized Payload v3 plugins and tools",
+  "author": "Riley Langbein <rilrom2@hotmail.com>",
+  "repository": "https://github.com/rilrom/payload-bites",
+  "bugs": "https://github.com/rilrom/payload-bites/issues",
+  "homepage": "https://github.com/rilrom/payload-bites#readme",
+  "keywords": [
+    "payload",
+    "payload-plugin"
+  ],
   "private": true,
   "scripts": {
     "dev": "turbo dev",

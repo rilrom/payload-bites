@@ -1,8 +1,17 @@
 {
   "name": "@payload-bites/image-search",
-  "version": "0.1.0",
+  "description": "search for images in Payload using various online image providers",
+  "version": "1.0.0",
+  "author": "Riley Langbein <rilrom2@hotmail.com>",
+  "repository": "https://github.com/rilrom/payload-bites",
+  "bugs": "https://github.com/rilrom/payload-bites/issues",
+  "homepage": "https://github.com/rilrom/payload-bites/packages/image-search#readme",
+  "keywords": [
+    "payload",
+    "payload-plugin"
+  ],
   "type": "module",
-  "private": true,
+  "private": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
