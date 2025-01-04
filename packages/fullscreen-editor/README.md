@@ -27,6 +27,5 @@ export default buildConfig({
 
 ## Roadmap
 
-- [ ] Replace using CSS to hide the fullscreen toggle button in sub editors with the isEnabled prop.
 - [ ] Fullscreen toggle in the slash menu.
 - [ ] Focus trap around the editor when in fullscreen mode.

@@ -1,25 +1,5 @@
 @import "~@payloadcms/ui/scss";
 
-.fixed-toolbar {
-  top: 0;
-
-  ~ .editor-container {
-    .fixed-toolbar {
-      .fixed-toolbar__group {
-        &:nth-last-child(2) {
-          .divider {
-            display: none;
-          }
-        }
-      }
-
-      .fixed-toolbar__group-fullscreenEditor {
-        display: none;
-      }
-    }
-  }
-}
-
 .focus-mode {
   overflow: hidden;
 
@@ -53,9 +33,11 @@
 
   .fixed-toolbar {
     top: 0;
+    transform: none;
   }
 
-  .toolbar-popup__button-toggleFullscreen {
+  // Workaround for not being able to use the active prop
+  .toolbar-popup__button-toggleFullscreen:not(.disabled) {
     background-color: var(--theme-elevation-150);
     color: var(--theme-text);
   }
