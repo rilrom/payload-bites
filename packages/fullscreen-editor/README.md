@@ -12,18 +12,22 @@ https://github.com/user-attachments/assets/fc130871-d148-48df-900d-fb1b5060bb3e
 pnpm add @payload-bites/fullscreen-editor
 ```
 
-3. Add the plugin to your `payload.config.ts`:
+3. Add the feature to your lexical editor in `payload.config.ts`:
 
 ```ts
-/// ....
-import { fullscreenEditorPlugin } from "@payload-bites/fullscreen-editor";
+// ...
+import { FullscreenEditorFeature } from "@payload-bites/fullscreen-editor";
 
 export default buildConfig({
   // ...
-  plugins: [
-    // ...
-    fullscreenEditorPlugin(),
-  ],
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      // ...
+      FixedToolbarFeature(), // optional
+      FullscreenEditorFeature(),
+    ],
+  }),
 });
 ```
 
