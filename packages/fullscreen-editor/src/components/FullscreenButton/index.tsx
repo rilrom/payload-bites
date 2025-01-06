@@ -2,6 +2,7 @@ import { LexicalEditor } from "@payloadcms/richtext-lexical/lexical";
 import { useEditorConfigContext } from "@payloadcms/richtext-lexical/client";
 
 import { FullscreenIcon } from "../FullscreenIcon/index.js";
+import { toggleFullscreen } from "../../utils/toggleFullscreen.js";
 
 interface FullscreenButtonProps {
   editor: LexicalEditor;
@@ -12,31 +13,20 @@ export const FullscreenButton = (props: FullscreenButtonProps) => {
 
   const editorConfigContext = useEditorConfigContext();
 
+  const isDisabled = editorConfigContext.parentEditor.uuid;
+
   const handleClick = () => {
-    if (editorConfigContext.parentEditor.uuid) {
+    if (isDisabled) {
       return;
     }
 
-    const body = document.body;
-    const root = editor.getRootElement();
-    const defaultTemplate = body.querySelector(".template-default");
-    const richTextField = root?.closest(".rich-text-lexical");
-
-    if (body.classList.contains("focus-mode")) {
-      defaultTemplate?.setAttribute("style", "transition: none;");
-      body.classList.remove("focus-mode");
-      richTextField?.classList.remove("focused-editor");
-      setTimeout(() => defaultTemplate?.removeAttribute("style"), 150);
-    } else {
-      body.classList.add("focus-mode");
-      richTextField?.classList.add("focused-editor");
-    }
+    toggleFullscreen({ editor });
   };
 
   return (
     <button
       type="button"
-      className={`toolbar-popup__button toolbar-popup__button-toggleFullscreen${editorConfigContext.parentEditor.uuid ? " disabled" : ""}`}
+      className={`toolbar-popup__button toolbar-popup__button-toggleFullscreen${isDisabled ? " disabled" : ""}`}
       onClick={handleClick}
     >
       <FullscreenIcon />
