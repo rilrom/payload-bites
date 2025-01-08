@@ -1,5 +1,5 @@
 diff --git a/dist/views/Document/renderDocumentSlots.js b/dist/views/Document/renderDocumentSlots.js
-index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..66b4a9d65080305da668407c304b470e331018f7 100644
+index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..e11d3fd947418fa06915c01229c24531ea166446 100644
 --- a/dist/views/Document/renderDocumentSlots.js
 +++ b/dist/views/Document/renderDocumentSlots.js
 @@ -71,6 +71,13 @@ export const renderDocumentSlots = args => {
@@ -11,7 +11,7 @@ index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..66b4a9d65080305da668407c304b470e
 +      Component: collectionConfig.admin.components.edit.Upload,
 +      importMap: req.payload.importMap,
 +      serverProps,
-+    })
++    });
 +  }
    return components;
  };

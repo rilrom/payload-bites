@@ -4,19 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@payload-config": ["src/payload/payload.config.ts"],
-      "@payload-bites/image-search": [
-        "../../packages/image-search/src/index.ts"
-      ],
-      "@payload-bites/image-search/client": [
-        "../../packages/image-search/src/exports/client.ts"
-      ],
-      "@payload-bites/fullscreen-editor": [
-        "../../packages/fullscreen-editor/src/index.ts"
-      ],
-      "@payload-bites/fullscreen-editor/client": [
-        "../../packages/fullscreen-editor/src/exports/client.ts"
-      ]
+      "@payload-config": ["src/payload/payload.config.ts"]
     }
   },
   "include": [
