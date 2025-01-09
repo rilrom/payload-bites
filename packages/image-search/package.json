@@ -8,6 +8,7 @@
   "homepage": "https://github.com/rilrom/payload-bites/blob/main/packages/image-search#readme",
   "keywords": [
     "payload",
+    "payloadcms",
     "payload-plugin"
   ],
   "type": "module",

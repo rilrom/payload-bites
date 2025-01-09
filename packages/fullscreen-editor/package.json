@@ -8,6 +8,7 @@
   "homepage": "https://github.com/rilrom/payload-bites/blob/main/packages/fullscreen-editor#readme",
   "keywords": [
     "payload",
+    "payloadcms",
     "payload-plugin"
   ],
   "type": "module",
