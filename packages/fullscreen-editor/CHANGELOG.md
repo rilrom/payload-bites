@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.1.1
+
+### Patch Changes
+
+- chore: update keywords ([70a1806](https://github.com/rilrom/payload-bites/commit/70a1806))
+
 ## 1.1.0
 
 ### Minor Changes
