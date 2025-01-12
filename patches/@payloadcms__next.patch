@@ -6,7 +6,7 @@ index a251f39546dcfb9fc566c3d7b948bc80c66a8e00..e11d3fd947418fa06915c01229c24531
        }
      }
    }
-+  if (collectionConfig.upload && collectionConfig?.admin?.components?.edit?.Upload) {
++  if (collectionConfig?.upload && collectionConfig?.admin?.components?.edit?.Upload) {
 +    components.Upload = RenderServerComponent({
 +      Component: collectionConfig.admin.components.edit.Upload,
 +      importMap: req.payload.importMap,
