@@ -40,8 +40,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    footer: Footer;
+  };
+  globalsSelect: {
+    footer: FooterSelect<false> | FooterSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: "users";
@@ -77,6 +81,14 @@ export interface Post {
   id: number;
   title: string;
   richTextVariations?: (number | null) | RichTextVariation;
+  createdBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  lastModifiedBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -146,8 +158,41 @@ export interface RichTextVariation {
     };
     [k: string]: unknown;
   } | null;
+  createdBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  lastModifiedBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  createdBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  lastModifiedBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -155,6 +200,14 @@ export interface RichTextVariation {
  */
 export interface Media {
   id: number;
+  createdBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  lastModifiedBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -192,23 +245,6 @@ export interface Media {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -282,6 +318,8 @@ export interface PayloadMigration {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   richTextVariations?: T;
+  createdBy?: T;
+  lastModifiedBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -294,6 +332,8 @@ export interface RichTextVariationsSelect<T extends boolean = true> {
   richTextVariantTwo?: T;
   richTextVariantThree?: T;
   richTextVariantFour?: T;
+  createdBy?: T;
+  lastModifiedBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -302,6 +342,8 @@ export interface RichTextVariationsSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  createdBy?: T;
+  lastModifiedBy?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -353,6 +395,8 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  createdBy?: T;
+  lastModifiedBy?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -394,6 +438,50 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  title: string;
+  links?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  createdBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  lastModifiedBy?: {
+    relationTo: "users";
+    value: number | User;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  title?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  createdBy?: T;
+  lastModifiedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

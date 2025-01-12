@@ -10,7 +10,7 @@ overrides:
 
 patchedDependencies:
   '@payloadcms/next':
-    hash: mpmzaphjdso65i4cn57pjtniey
+    hash: ielvwbirkvhkf5y5pgoq37hvdu
     path: patches/@payloadcms__next.patch
 
 importers:
@@ -38,6 +38,9 @@ importers:
 
   apps/dev:
     dependencies:
+      '@payload-bites/audit-fields':
+        specifier: workspace:*
+        version: link:../../packages/audit-fields
       '@payload-bites/fullscreen-editor':
         specifier: workspace:*
         version: link:../../packages/fullscreen-editor
@@ -49,10 +52,10 @@ importers:
         version: 3.15.1(@types/react@19.0.3)(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react@19.0.0)
       '@payloadcms/next':
         specifier: ^3.15.1
-        version: 3.15.1(patch_hash=mpmzaphjdso65i4cn57pjtniey)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
+        version: 3.15.1(patch_hash=ielvwbirkvhkf5y5pgoq37hvdu)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
       '@payloadcms/richtext-lexical':
         specifier: ^3.15.1
-        version: 3.15.1(ocplj3n4jwdjgmrv2nslstccea)
+        version: 3.15.1(jsv2qlr2vdnxqic2ozri6yn45y)
       '@payloadcms/translations':
         specifier: ^3.15.1
         version: 3.15.1
@@ -90,6 +93,46 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.2
         version: 19.0.2(@types/react@19.0.3)
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.2
+
+  packages/audit-fields:
+    dependencies:
+      '@payloadcms/translations':
+        specifier: ^3
+        version: 3.15.1
+      '@payloadcms/ui':
+        specifier: ^3
+        version: 3.15.1(@types/react@19.0.3)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
+      payload:
+        specifier: ^3
+        version: 3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
+      react-plock:
+        specifier: ^3.4.0
+        version: 3.4.0(react@19.0.0)
+      sonner:
+        specifier: ^1.7.1
+        version: 1.7.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.0.3
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.0.2(@types/react@19.0.3)
+      react:
+        specifier: ^19
+        version: 19.0.0
+      react-dom:
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -137,7 +180,7 @@ importers:
     dependencies:
       '@payloadcms/richtext-lexical':
         specifier: ^3
-        version: 3.15.1(ocplj3n4jwdjgmrv2nslstccea)
+        version: 3.15.1(jsv2qlr2vdnxqic2ozri6yn45y)
       '@payloadcms/translations':
         specifier: ^3
         version: 3.15.1
@@ -3596,7 +3639,7 @@ packages:
   ts-essentials@10.0.3:
     resolution: {integrity: sha512-/FrVAZ76JLTWxJOERk04fm8hYENDo0PWSP3YLQKxevLwWtxemGcl5JJEzN4iqfDlRve0ckyfFaOBu4xbNH/wZw==}
     peerDependencies:
-      typescript: 5.6.3
+      typescript: '>=4.5.0'
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -4771,7 +4814,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@payloadcms/next@3.15.1(patch_hash=mpmzaphjdso65i4cn57pjtniey)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)':
+  '@payloadcms/next@3.15.1(patch_hash=ielvwbirkvhkf5y5pgoq37hvdu)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)':
     dependencies:
       '@dnd-kit/core': 6.0.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@payloadcms/graphql': 3.15.1(graphql@16.10.0)(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(typescript@5.7.2)
@@ -4799,7 +4842,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@payloadcms/richtext-lexical@3.15.1(ocplj3n4jwdjgmrv2nslstccea)':
+  '@payloadcms/richtext-lexical@3.15.1(jsv2qlr2vdnxqic2ozri6yn45y)':
     dependencies:
       '@faceless-ui/modal': 3.0.0-beta.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@faceless-ui/scroll-info': 2.0.0-beta.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -4813,7 +4856,7 @@ snapshots:
       '@lexical/selection': 0.20.0
       '@lexical/table': 0.20.0
       '@lexical/utils': 0.20.0
-      '@payloadcms/next': 3.15.1(patch_hash=mpmzaphjdso65i4cn57pjtniey)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
+      '@payloadcms/next': 3.15.1(patch_hash=ielvwbirkvhkf5y5pgoq37hvdu)(@types/react@19.0.3)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
       '@payloadcms/translations': 3.15.1
       '@payloadcms/ui': 3.15.1(@types/react@19.0.3)(monaco-editor@0.52.2)(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
       '@types/uuid': 10.0.0
