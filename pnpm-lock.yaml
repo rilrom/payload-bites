@@ -108,12 +108,6 @@ importers:
       payload:
         specifier: ^3
         version: 3.15.1(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.2)
-      react-plock:
-        specifier: ^3.4.0
-        version: 3.4.0(react@19.0.0)
-      sonner:
-        specifier: ^1.7.1
-        version: 1.7.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@payload-bites/eslint-config':
         specifier: workspace:*
