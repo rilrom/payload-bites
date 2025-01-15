@@ -28,7 +28,7 @@
   background-color: var(--theme-bg);
   overflow-y: auto;
 
-  .field-label {
+  > .field-label {
     display: none;
   }
 
