@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.1.2
+
+### Patch Changes
+
+- fix: show nested block field labels ([475f051](https://github.com/rilrom/payload-bites/commit/475f051))
+
 ## 1.1.1
 
 ### Patch Changes
