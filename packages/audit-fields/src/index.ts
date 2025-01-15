@@ -71,7 +71,7 @@ export const auditFieldsPlugin =
     });
 
     config.globals = (config.globals || []).map((global) => {
-      if (mergedOptions.excludedCollections?.includes(global.slug)) {
+      if (mergedOptions.excludedGlobals?.includes(global.slug)) {
         return global;
       }
 
