@@ -1,7 +1,7 @@
 {
   "name": "@payload-bites/audit-fields",
   "description": "add createdBy and lastModifiedBy fields to collections and globals",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Riley Langbein <rilrom2@hotmail.com>",
   "repository": "https://github.com/rilrom/payload-bites",
   "bugs": "https://github.com/rilrom/payload-bites/issues",

@@ -1,5 +1,11 @@
 # @payload-bites/audit-fields
 
+## 1.0.2
+
+### Patch Changes
+
+- fix: correctly exclude globals ([fc3c2a4](https://github.com/rilrom/payload-bites/commit/fc3c2a4))
+
 ## 1.0.1
 
 ### Patch Changes
