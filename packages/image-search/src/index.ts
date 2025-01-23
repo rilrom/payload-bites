@@ -1,6 +1,7 @@
 import type { Config } from "payload";
 
 import { translations } from "./translations.js";
+import { deepMerge } from "./utils/deepMerge.js";
 import { providers } from "./endpoints/providers.js";
 
 export type ImageSearchPluginOptions = {
@@ -26,8 +27,7 @@ export const imageSearchPlugin =
     config.i18n = {
       ...(config.i18n || {}),
       translations: {
-        ...(config.i18n?.translations || {}),
-        ...translations,
+        ...deepMerge(translations, config.i18n?.translations),
       },
     };
 
