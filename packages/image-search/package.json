@@ -40,8 +40,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "react-plock": "^3.4.0",
-    "sonner": "^1.7.1"
+    "react-plock": "^3.4.0"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",

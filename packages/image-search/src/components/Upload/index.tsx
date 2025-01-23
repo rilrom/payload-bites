@@ -8,7 +8,6 @@ import type {
 
 import { isImage } from "payload/shared";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 
 import {
   FieldError,
@@ -29,6 +28,7 @@ import {
   EditUpload,
   FileDetails,
   PreviewSizes,
+  toast,
 } from "@payloadcms/ui";
 
 import "./index.scss";
