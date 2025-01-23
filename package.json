@@ -29,11 +29,6 @@
     "react": "^19",
     "react-dom": "^19"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "@payloadcms/next": "patches/@payloadcms__next.patch"
-    }
-  },
   "engines": {
     "node": "^20"
   },
