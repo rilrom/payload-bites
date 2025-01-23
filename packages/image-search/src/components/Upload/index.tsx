@@ -64,7 +64,9 @@ export const UploadActions = ({
   const { t } = useTranslation();
 
   const fileTypeIsAdjustable =
-    isImage(mimeType) && mimeType !== "image/svg+xml";
+    isImage(mimeType) &&
+    mimeType !== "image/svg+xml" &&
+    mimeType !== "image/jxl";
 
   if (!fileTypeIsAdjustable && (!customActions || customActions.length === 0)) {
     return null;
@@ -107,7 +109,8 @@ export type UploadProps = {
   readonly initialState?: FormState;
   readonly onChange?: (file?: File) => void;
   readonly uploadConfig: SanitizedCollectionConfig["upload"];
-  readonly apiRoutePath: string;
+  readonly serverURL: string;
+  readonly api: string;
 };
 
 export const Upload: React.FC<UploadProps> = (props) => {
@@ -117,13 +120,15 @@ export const Upload: React.FC<UploadProps> = (props) => {
     initialState,
     onChange,
     uploadConfig,
-    apiRoutePath,
+    serverURL,
+    api,
   } = props;
 
   const { t } = useTranslation();
   const { setModified } = useForm();
   const { resetUploadEdits, updateUploadEdits, uploadEdits } = useUploadEdits();
-  const { docPermissions, savedDocumentData } = useDocumentInfo();
+  const { id, docPermissions, savedDocumentData, setUploadStatus } =
+    useDocumentInfo();
   const isFormSubmitting = useFormProcessing();
   const { errorMessage, setValue, showError, value } = useField<File>({
     path: "file",
@@ -140,6 +145,10 @@ export const Upload: React.FC<UploadProps> = (props) => {
 
   const urlInputRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const useServerSideFetch =
+    typeof uploadConfig?.pasteURL === "object" &&
+    uploadConfig.pasteURL.allowList?.length > 0;
 
   const handleFileChange = useCallback(
     (newFile?: File) => {
@@ -203,47 +212,71 @@ export const Upload: React.FC<UploadProps> = (props) => {
     [setModified, updateUploadEdits],
   );
 
-  const handleUrlSubmit = async () => {
-    if (fileUrl) {
-      try {
-        const response = await fetch(fileUrl);
-        const data = await response.blob();
+  const handleUrlSubmit = async (url?: string) => {
+    if ((!fileUrl && !url) || uploadConfig?.pasteURL === false) {
+      return;
+    }
 
-        // Extract the file name from the URL
-        const fileName = fileUrl.split("/").pop() || "File";
+    const finalUrl = url || fileUrl;
 
-        // Create a new File object from the Blob data
-        const file = new File([data], fileName, { type: data.type });
-        handleFileChange(file);
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message : "handleUrlSubmit error.";
-        toast.error(message);
+    setUploadStatus?.("uploading");
+
+    try {
+      // Attempt client-side fetch
+      const clientResponse = await fetch(finalUrl);
+
+      if (!clientResponse.ok) {
+        throw new Error(`Fetch failed with status: ${clientResponse.status}`);
       }
+
+      const blob = await clientResponse.blob();
+      const fileName = decodeURIComponent(finalUrl.split("/").pop() || "");
+      const file = new File([blob], fileName, { type: blob.type });
+
+      handleFileChange(file);
+      setUploadStatus?.("idle");
+
+      return; // Exit if client-side fetch succeeds
+    } catch {
+      if (!useServerSideFetch) {
+        // If server-side fetch is not enabled, show client-side error
+        toast.error("Failed to fetch the file.");
+        setUploadStatus?.("failed");
+
+        return;
+      }
+    }
+    // Attempt server-side fetch if client-side fetch fails and useServerSideFetch is true
+    try {
+      const pasteURL = `/${collectionSlug}/paste-url${id ? `/${id}?` : "?"}src=${encodeURIComponent(finalUrl)}`;
+      const serverResponse = await fetch(`${serverURL}${api}${pasteURL}`);
+
+      if (!serverResponse.ok) {
+        throw new Error(`Fetch failed with status: ${serverResponse.status}`);
+      }
+
+      const blob = await serverResponse.blob();
+      const fileName = decodeURIComponent(finalUrl.split("/").pop() || "");
+      const file = new File([blob], fileName, { type: blob.type });
+
+      handleFileChange(file);
+      setUploadStatus?.("idle");
+    } catch {
+      toast.error("The provided URL is not allowed.");
+      setUploadStatus?.("failed");
     }
   };
 
   const handleSearchSubmit = async (url: string) => {
-    try {
-      setFileUrl(url);
-
-      const response = await fetch(url);
-      const data = await response.blob();
-
-      // Extract the file name from the URL
-      const fileName = url.split("/").pop() || "File";
-
-      // Create a new File object from the Blob data
-      const file = new File([data], fileName, { type: data.type });
-
-      handleFileChange(file);
-
-      closeModal(searchImagesDrawerSlug);
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "handleSearchSubmit error.";
-      toast.error(message);
+    if (!url || uploadConfig?.pasteURL === false) {
+      return;
     }
+
+    setFileUrl(url);
+
+    await handleUrlSubmit(url);
+
+    closeModal(searchImagesDrawerSlug);
   };
 
   useEffect(() => {
@@ -294,7 +327,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
           enableAdjustments={showCrop || showFocalPoint}
           handleRemove={canRemoveUpload ? handleFileRemoval : undefined}
           hasImageSizes={hasImageSizes}
-          imageCacheTag={savedDocumentData.updatedAt}
+          imageCacheTag={uploadConfig?.cacheTags && savedDocumentData.updatedAt}
           uploadConfig={uploadConfig}
         />
       )}
@@ -328,26 +361,30 @@ export const Upload: React.FC<UploadProps> = (props) => {
                     ref={inputRef}
                     type="file"
                   />
-                  |
-                  <Button
-                    buttonStyle="pill"
-                    onClick={() => {
-                      setShowUrlInput(true);
-                    }}
-                    size="small"
-                  >
-                    {t("upload:pasteURL")}
-                  </Button>
-                  |
-                  <Button
-                    buttonStyle="pill"
-                    onClick={() => {
-                      openModal(searchImagesDrawerSlug);
-                    }}
-                    size="small"
-                  >
-                    Search images
-                  </Button>
+                  {uploadConfig?.pasteURL !== false && (
+                    <>
+                      |
+                      <Button
+                        buttonStyle="pill"
+                        onClick={() => {
+                          setShowUrlInput(true);
+                        }}
+                        size="small"
+                      >
+                        {t("upload:pasteURL")}
+                      </Button>
+                      |
+                      <Button
+                        buttonStyle="pill"
+                        onClick={() => {
+                          openModal(searchImagesDrawerSlug);
+                        }}
+                        size="small"
+                      >
+                        Search images
+                      </Button>
+                    </>
+                  )}
                 </div>
 
                 <p className={`${baseClass}__dragAndDropText`}>
@@ -432,7 +469,8 @@ export const Upload: React.FC<UploadProps> = (props) => {
       )}
       <Drawer slug={searchImagesDrawerSlug}>
         <SearchImages
-          apiRoutePath={apiRoutePath}
+          serverURL={serverURL}
+          api={api}
           onSelect={handleSearchSubmit}
         />
       </Drawer>

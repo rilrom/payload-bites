@@ -19,7 +19,8 @@ export const CustomUpload = () => {
       collectionSlug={collectionConfig.slug}
       initialState={initialState}
       uploadConfig={collectionConfig.upload}
-      apiRoutePath={config.routes.api}
+      serverURL={config.serverURL}
+      api={config.routes.api}
     />
   );
 };

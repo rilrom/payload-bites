@@ -34,12 +34,13 @@ type ProviderOption = {
 };
 
 type SearchImagesProps = {
-  apiRoutePath: string;
+  serverURL: string;
+  api: string;
   onSelect: (value: string) => void;
 };
 
 export const SearchImages = (props: SearchImagesProps) => {
-  const { apiRoutePath, onSelect } = props;
+  const { serverURL, api, onSelect } = props;
 
   const { openModal } = useModal();
 
@@ -66,7 +67,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 
   const getProviderOptions = useCallback(async () => {
     try {
-      const data = await fetchWithCache(`${apiRoutePath}/providers`);
+      const data = await fetchWithCache(`${serverURL}${api}/providers`);
 
       const providers = data.map((provider: { name: string; key: string }) => ({
         label: provider.name,
@@ -78,7 +79,7 @@ export const SearchImages = (props: SearchImagesProps) => {
     } catch {
       toast.error("Unable to fetch providers");
     }
-  }, [apiRoutePath]);
+  }, [serverURL, api]);
 
   const getFeaturedPhotos = useCallback(async () => {
     try {
@@ -86,7 +87,7 @@ export const SearchImages = (props: SearchImagesProps) => {
       resetImages();
 
       const data = await fetchWithCache(
-        `${apiRoutePath}/providers/${selectedProvider?.value}/featured`,
+        `${serverURL}${api}/providers/${selectedProvider?.value}/featured`,
       );
 
       setImages(data.images);
@@ -96,7 +97,7 @@ export const SearchImages = (props: SearchImagesProps) => {
     } finally {
       setLoading(false);
     }
-  }, [apiRoutePath, resetImages, selectedProvider?.value]);
+  }, [serverURL, api, resetImages, selectedProvider?.value]);
 
   const getPhotos = useCallback(
     async (query: string, page = 1) => {
@@ -105,7 +106,7 @@ export const SearchImages = (props: SearchImagesProps) => {
         resetImages();
 
         const data = await fetchWithCache(
-          `${apiRoutePath}/providers/${selectedProvider?.value}/search?query=${query}&page=${page}`,
+          `${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${query}&page=${page}`,
         );
 
         setImages(data.images);
@@ -118,7 +119,7 @@ export const SearchImages = (props: SearchImagesProps) => {
         setLoading(false);
       }
     },
-    [apiRoutePath, resetImages, selectedProvider?.value],
+    [serverURL, api, resetImages, selectedProvider?.value],
   );
 
   const handleSearchFilterChange = useCallback((search: string) => {
