@@ -53,9 +53,9 @@
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "@payloadcms/translations": "^3",
-    "@payloadcms/ui": "^3",
-    "payload": "^3",
+    "@payloadcms/translations": "^3.19.0",
+    "@payloadcms/ui": "^3.19.0",
+    "payload": "^3.19.0",
     "react": "^19",
     "react-dom": "^19"
   }
