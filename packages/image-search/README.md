@@ -5,7 +5,7 @@ Search for images from the comfort of your own CMS using various image providers
 Inspired by [Directus Image Scout](https://github.com/resauce-dev/directus-image-scout).
 
 > [!IMPORTANT]
-> This plugin won't be published until the Payload team have resolved [#9591](https://github.com/payloadcms/payload/issues/9591).
+> This plugin requires Payload v3.19.0 or greater. Earlier versions do not have access to the `CustomUpload` component.
 
 https://github.com/user-attachments/assets/b99bb160-788f-4689-9e40-005a6fe0bced
 
