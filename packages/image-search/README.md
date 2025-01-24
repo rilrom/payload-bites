@@ -59,3 +59,4 @@ Before using any provider, ensure you have reviewed and agreed to their terms an
 
 - [ ] Image search bulk upload (awaiting custom component implementation by Payload team - [discussion](https://github.com/payloadcms/payload/discussions/10191)).
 - [ ] Translations.
+- [ ] Custom access control for provider endpoints.
