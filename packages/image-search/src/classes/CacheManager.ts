@@ -1,4 +1,10 @@
+const VERSION = "v1.0.0";
+
 export class CacheManager {
+  private getVersionedKey(query: string) {
+    return `${VERSION}${query}`;
+  }
+
   exists(query: string) {
     const data = this.get(query);
 
@@ -6,7 +12,9 @@ export class CacheManager {
   }
 
   get(query: string) {
-    const itemStr = localStorage.getItem(query);
+    const versionedKey = this.getVersionedKey(query);
+
+    const itemStr = localStorage.getItem(versionedKey);
 
     if (!itemStr) {
       return null;
@@ -15,7 +23,7 @@ export class CacheManager {
     const item = JSON.parse(itemStr);
 
     if (item.expiry && new Date().getTime() > item.expiry) {
-      localStorage.removeItem(query);
+      localStorage.removeItem(versionedKey);
 
       return null;
     }
@@ -24,11 +32,13 @@ export class CacheManager {
   }
 
   set(query: string, data: unknown, ttl?: number): void {
+    const versionedKey = this.getVersionedKey(query);
+
     const item = {
       value: data,
       expiry: ttl ? new Date().getTime() + ttl : null,
     };
 
-    localStorage.setItem(query, JSON.stringify(item));
+    localStorage.setItem(versionedKey, JSON.stringify(item));
   }
 }
