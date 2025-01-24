@@ -81,4 +81,35 @@ export const providers: Endpoint[] = [
       return Response.json({ data });
     },
   },
+  {
+    path: "/providers/:provider/track-download",
+    method: "get",
+    handler: async (req) => {
+      if (!req.user) {
+        return Response.json({ error: "Forbidden" }, { status: 403 });
+      }
+
+      const provider = ProviderManager.getProvider(
+        req.routeParams?.provider as string | undefined,
+      );
+
+      if (!provider) {
+        return Response.json(
+          { error: "Provider is not supported" },
+          { status: 404 },
+        );
+      }
+
+      if (!provider.isConfigured) {
+        return Response.json(
+          { error: "Provider has not been configured correctly" },
+          { status: 500 },
+        );
+      }
+
+      const data = await provider.trackDownload(req.query.url as string);
+
+      return Response.json({ data });
+    },
+  },
 ];

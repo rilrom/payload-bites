@@ -138,6 +138,23 @@ export const SearchImages = (props: SearchImagesProps) => {
     }
   }, [getFeaturedPhotos, getPhotos, value]);
 
+  const handleSelect = async (url: string, download?: string) => {
+    onSelect(url);
+
+    if (!download) {
+      return;
+    }
+
+    // We don't want this to prevent users from continuing if this request fails
+    try {
+      await fetch(
+        `${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${download}`,
+      );
+    } catch {
+      return null;
+    }
+  };
+
   useEffect(() => {
     if (!selectedProvider) {
       getProviderOptions();
@@ -189,7 +206,12 @@ export const SearchImages = (props: SearchImagesProps) => {
                 <div className={`${baseClass}__card`}>
                   <button
                     className={`${baseClass}__button`}
-                    onClick={() => onSelect(data.urls.original)}
+                    onClick={() =>
+                      handleSelect(
+                        data.urls.original,
+                        data.urls?.downloadLocation,
+                      )
+                    }
                     style={{ backgroundColor: data.color }}
                   >
                     <img
@@ -262,7 +284,7 @@ export const SearchImages = (props: SearchImagesProps) => {
         <PreviewImage
           slug={previewImageDrawerSlug}
           selectedImage={selectedImage}
-          onSelect={onSelect}
+          onSelect={handleSelect}
         />
       </Drawer>
     </div>

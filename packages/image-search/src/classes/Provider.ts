@@ -8,6 +8,7 @@ export interface ProviderResult {
     view: string;
     original: string;
     download: string;
+    downloadLocation?: string;
   };
   attribution: {
     name: string;
@@ -61,6 +62,11 @@ export class Provider {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async getSearch(query: string, page: number) {
     return {};
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async trackDownload(url: string) {
+    return null;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

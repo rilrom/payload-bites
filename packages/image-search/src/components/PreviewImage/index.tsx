@@ -15,7 +15,7 @@ const baseClass = "preview-image";
 type PreviewImageProps = {
   slug: string;
   selectedImage: ProviderResult | null;
-  onSelect: (value: string) => void;
+  onSelect: (url: string, download?: string) => void;
 };
 
 export const PreviewImage = (props: PreviewImageProps) => {
@@ -46,7 +46,12 @@ export const PreviewImage = (props: PreviewImageProps) => {
             aria-label={t("imageSearch:selectImage")}
             buttonStyle="primary"
             className={`${baseClass}__select`}
-            onClick={() => onSelect(selectedImage.urls.original)}
+            onClick={() =>
+              onSelect(
+                selectedImage.urls.original,
+                selectedImage.urls?.downloadLocation,
+              )
+            }
           >
             {t("imageSearch:selectImage")}
           </Button>

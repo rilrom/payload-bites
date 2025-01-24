@@ -1,5 +1,8 @@
 import { Provider } from "./Provider.js";
 
+const REFERRAL_PARAMS =
+  "utm_source=payload-bites-image-search&utm_medium=referral";
+
 interface UnsplashResult {
   id: string;
   alt_description: string;
@@ -12,6 +15,7 @@ interface UnsplashResult {
   };
   links: {
     download: string;
+    download_location: string;
   };
   user: {
     name: string;
@@ -60,6 +64,14 @@ export class Unsplash extends Provider {
     };
   }
 
+  async trackDownload(url: string) {
+    const downloadUrl = new URL(url);
+
+    await this.fetch("GET", `${downloadUrl.pathname}${downloadUrl.search}`);
+
+    return null;
+  }
+
   formatResults(data: UnsplashResult[]) {
     return data.map((image) => ({
       id: image.id,
@@ -70,11 +82,12 @@ export class Unsplash extends Provider {
       urls: {
         view: image.urls?.thumb,
         original: image.urls?.full,
-        download: image.links?.download,
+        download: `${image.links?.download}?${REFERRAL_PARAMS}`,
+        downloadLocation: `${image.links.download_location}&${REFERRAL_PARAMS}`,
       },
       attribution: {
         name: image.user?.name,
-        link: image.user?.links?.html,
+        link: `${image.user?.links?.html}?${REFERRAL_PARAMS}`,
       },
     }));
   }
