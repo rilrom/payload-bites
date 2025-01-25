@@ -1,4 +1,4 @@
-const VERSION = "v1.1.0";
+const VERSION = "v1.2.0";
 
 export class CacheManager {
   private getVersionedKey(query: string) {

@@ -1,5 +1,12 @@
 # @payload-bites/image-search
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: custom provider access control ([0372a42](https://github.com/rilrom/payload-bites/commit/0372a42))
+- feat: add error translations ([df6a892](https://github.com/rilrom/payload-bites/commit/df6a892))
+
 ## 1.1.0
 
 ### Minor Changes
