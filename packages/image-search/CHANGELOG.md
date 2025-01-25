@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 1.2.1
+
+### Patch Changes
+
+- chore: andd defaults and options to readme ([9230a9e](https://github.com/rilrom/payload-bites/commit/9230a9e))
+
 ## 1.2.0
 
 ### Minor Changes
