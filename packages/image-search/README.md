@@ -38,10 +38,20 @@ export default buildConfig({
   // ...
   plugins: [
     // ...
-    imageSearchPlugin(),
+    imageSearchPlugin({
+      // ...
+    }),
   ],
 });
 ```
+
+## Defaults
+
+For defaults, refer to [defaults.ts](./src/defaults.ts).
+
+## Options
+
+For options, refer to [types.ts](./src/types.ts).
 
 ## Providers
 
