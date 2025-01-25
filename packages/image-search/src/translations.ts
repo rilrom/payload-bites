@@ -8,6 +8,8 @@ export const translations = {
       imageLibrary: "Image library powered by {{provider}}",
       previewImage: "Preview image",
       selectImage: "Select image",
+      providerNotSupported: "Provider is not supported.",
+      providerNotConfigured: "Provider has not been configured correctly.",
     },
   },
 };

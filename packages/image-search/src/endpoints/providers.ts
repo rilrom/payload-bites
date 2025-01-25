@@ -44,14 +44,20 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { data: null, error: "Provider is not supported" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotSupported" as any),
+          },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { data: null, error: "Provider has not been configured correctly" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotConfigured" as any),
+          },
           { status: 500 },
         );
       }
@@ -82,14 +88,20 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { data: null, error: "Provider is not supported" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotSupported" as any),
+          },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { data: null, error: "Provider has not been configured correctly" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotConfigured" as any),
+          },
           { status: 500 },
         );
       }
@@ -123,14 +135,20 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { data: null, error: "Provider is not supported" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotSupported" as any),
+          },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { data: null, error: "Provider has not been configured correctly" },
+          {
+            data: null,
+            error: req.t("imageSearch:providerNotConfigured" as any),
+          },
           { status: 500 },
         );
       }
