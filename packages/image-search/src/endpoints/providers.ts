@@ -7,21 +7,35 @@ export const providers: Endpoint[] = [
     path: "/providers",
     method: "get",
     handler: async (req) => {
-      if (!req.user) {
-        return Response.json({ error: "Forbidden" }, { status: 403 });
+      const access = await req.payload?.config?.custom?.providerAccess?.({
+        req,
+      });
+
+      if (!access) {
+        return Response.json(
+          { data: null, error: req.t("error:notAllowedToPerformAction") },
+          { status: 403 },
+        );
       }
 
       const providers = ProviderManager.getProviders();
 
-      return Response.json({ data: providers });
+      return Response.json({ data: providers, error: null });
     },
   },
   {
     path: "/providers/:provider/featured",
     method: "get",
     handler: async (req) => {
-      if (!req.user) {
-        return Response.json({ error: "Forbidden" }, { status: 403 });
+      const access = await req.payload?.config?.custom?.providerAccess?.({
+        req,
+      });
+
+      if (!access) {
+        return Response.json(
+          { data: null, error: req.t("error:notAllowedToPerformAction") },
+          { status: 403 },
+        );
       }
 
       const provider = ProviderManager.getProvider(
@@ -30,29 +44,36 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { error: "Provider is not supported" },
+          { data: null, error: "Provider is not supported" },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { error: "Provider has not been configured correctly" },
+          { data: null, error: "Provider has not been configured correctly" },
           { status: 500 },
         );
       }
 
       const data = await provider.getFeatured();
 
-      return Response.json({ data });
+      return Response.json({ data, error: null });
     },
   },
   {
     path: "/providers/:provider/search",
     method: "get",
     handler: async (req) => {
-      if (!req.user) {
-        return Response.json({ error: "Forbidden" }, { status: 403 });
+      const access = await req.payload?.config?.custom?.providerAccess?.({
+        req,
+      });
+
+      if (!access) {
+        return Response.json(
+          { data: null, error: req.t("error:notAllowedToPerformAction") },
+          { status: 403 },
+        );
       }
 
       const provider = ProviderManager.getProvider(
@@ -61,14 +82,14 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { error: "Provider is not supported" },
+          { data: null, error: "Provider is not supported" },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { error: "Provider has not been configured correctly" },
+          { data: null, error: "Provider has not been configured correctly" },
           { status: 500 },
         );
       }
@@ -78,15 +99,22 @@ export const providers: Endpoint[] = [
         req.query.page as number,
       );
 
-      return Response.json({ data });
+      return Response.json({ data, error: null });
     },
   },
   {
     path: "/providers/:provider/track-download",
     method: "get",
     handler: async (req) => {
-      if (!req.user) {
-        return Response.json({ error: "Forbidden" }, { status: 403 });
+      const access = await req.payload?.config?.custom?.providerAccess?.({
+        req,
+      });
+
+      if (!access) {
+        return Response.json(
+          { data: null, error: req.t("error:notAllowedToPerformAction") },
+          { status: 403 },
+        );
       }
 
       const provider = ProviderManager.getProvider(
@@ -95,21 +123,21 @@ export const providers: Endpoint[] = [
 
       if (!provider) {
         return Response.json(
-          { error: "Provider is not supported" },
+          { data: null, error: "Provider is not supported" },
           { status: 404 },
         );
       }
 
       if (!provider.isConfigured) {
         return Response.json(
-          { error: "Provider has not been configured correctly" },
+          { data: null, error: "Provider has not been configured correctly" },
           { status: 500 },
         );
       }
 
       const data = await provider.trackDownload(req.query.url as string);
 
-      return Response.json({ data });
+      return Response.json({ data, error: null });
     },
   },
 ];

@@ -58,6 +58,10 @@ export const SearchImages = (props: SearchImagesProps) => {
     null,
   );
 
+  const addDefaultError = useCallback(() => {
+    toast.error(t("error:unknown"));
+  }, [t]);
+
   const resetImages = useCallback(() => {
     setImages(null);
     setTotalPages(null);
@@ -67,37 +71,49 @@ export const SearchImages = (props: SearchImagesProps) => {
 
   const getProviderOptions = useCallback(async () => {
     try {
-      const data = await fetchWithCache(`${serverURL}${api}/providers`);
+      const json = await fetchWithCache(`${serverURL}${api}/providers`);
 
-      const providers = data.map((provider: { name: string; key: string }) => ({
-        label: provider.name,
-        value: provider.key.toLowerCase(),
-      }));
+      if (json.error) {
+        setLoading(false);
+        return toast.error(json.error);
+      }
+
+      const providers = json.data.map(
+        (provider: { name: string; key: string }) => ({
+          label: provider.name,
+          value: provider.key.toLowerCase(),
+        }),
+      );
 
       setProviderOptions(providers);
       setSelectedProvider(providers[0]);
     } catch {
-      toast.error("Unable to fetch providers");
+      setLoading(false);
+      addDefaultError();
     }
-  }, [serverURL, api]);
+  }, [serverURL, api, addDefaultError]);
 
   const getFeaturedPhotos = useCallback(async () => {
     try {
       setLoading(true);
       resetImages();
 
-      const data = await fetchWithCache(
+      const json = await fetchWithCache(
         `${serverURL}${api}/providers/${selectedProvider?.value}/featured`,
       );
 
-      setImages(data.images);
+      if (json.error) {
+        return toast.error(json.error);
+      }
+
+      setImages(json.data.images);
     } catch {
-      toast.error("Unable to fetch featured images");
+      addDefaultError();
       resetImages();
     } finally {
       setLoading(false);
     }
-  }, [serverURL, api, resetImages, selectedProvider?.value]);
+  }, [resetImages, serverURL, api, selectedProvider?.value, addDefaultError]);
 
   const getPhotos = useCallback(
     async (query: string, page = 1) => {
@@ -105,21 +121,25 @@ export const SearchImages = (props: SearchImagesProps) => {
         setLoading(true);
         resetImages();
 
-        const data = await fetchWithCache(
+        const json = await fetchWithCache(
           `${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${query}&page=${page}`,
         );
 
-        setImages(data.images);
-        setTotalPages(data.totalPages);
+        if (json.error) {
+          return toast.error(json.error);
+        }
+
+        setImages(json.data.images);
+        setTotalPages(json.data.totalPages);
         setCurrentPage(page);
       } catch {
-        toast.error("Unable to fetch images");
+        addDefaultError();
         resetImages();
       } finally {
         setLoading(false);
       }
     },
-    [serverURL, api, resetImages, selectedProvider?.value],
+    [resetImages, serverURL, api, selectedProvider?.value, addDefaultError],
   );
 
   const handleSearchFilterChange = useCallback((search: string) => {

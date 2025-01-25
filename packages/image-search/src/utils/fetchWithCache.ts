@@ -12,8 +12,8 @@ export const fetchWithCache = async (queryPath: string) => {
 
   if (response.status < 400) {
     const expiry = 24 * 60 * 60 * 1000; // 24 hours
-    cache.set(queryPath, json.data, expiry);
+    cache.set(queryPath, json, expiry);
   }
 
-  return json.data;
+  return json;
 };
