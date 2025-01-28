@@ -1,14 +1,7 @@
 "use client";
 
-import type {
-  FormState,
-  SanitizedCollectionConfig,
-  UploadEdits,
-} from "payload";
-
-import { isImage } from "payload/shared";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-
+import { isImage } from "payload/shared";
 import {
   FieldError,
   fieldBaseClass,
@@ -30,9 +23,19 @@ import {
   PreviewSizes,
   toast,
 } from "@payloadcms/ui";
+import type {
+  FormState,
+  SanitizedCollectionConfig,
+  UploadEdits,
+} from "payload";
+
+import { SearchImages } from "../SearchImages/index.js";
+import type {
+  TranslationsKeys,
+  TranslationsObject,
+} from "../../translations.js";
 
 import "./index.scss";
-import { SearchImages } from "../SearchImages/index.js";
 
 const baseClass = "file-field";
 
@@ -124,7 +127,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
     api,
   } = props;
 
-  const { t } = useTranslation();
+  const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
   const { setModified } = useForm();
   const { resetUploadEdits, updateUploadEdits, uploadEdits } = useUploadEdits();
   const { id, docPermissions, savedDocumentData, setUploadStatus } =
@@ -381,7 +384,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
                         }}
                         size="small"
                       >
-                        Search images
+                        {t("imageSearch:searchImages")}
                       </Button>
                     </>
                   )}
