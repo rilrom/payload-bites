@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: add translations ([e0a2795](https://github.com/rilrom/payload-bites/commit/e0a2795))
+
 ## 1.1.2
 
 ### Patch Changes
