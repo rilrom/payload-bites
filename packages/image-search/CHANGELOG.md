@@ -1,10 +1,16 @@
 # @payload-bites/image-search
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: add translations ([131bcf2](https://github.com/rilrom/payload-bites/commit/131bcf2))
+
 ## 1.2.1
 
 ### Patch Changes
 
-- chore: andd defaults and options to readme ([9230a9e](https://github.com/rilrom/payload-bites/commit/9230a9e))
+- chore: add defaults and options to readme ([9230a9e](https://github.com/rilrom/payload-bites/commit/9230a9e))
 
 ## 1.2.0
 
