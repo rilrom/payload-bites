@@ -42,7 +42,7 @@
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
     "clean": "rm -rf dist && rm -rf tsconfig.tsbuildinfo",
     "lint": "eslint .",
-    "check-types": "tsc --noEmit"
+    "tsc": "tsc --noEmit"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",

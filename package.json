@@ -13,8 +13,11 @@
   "private": true,
   "scripts": {
     "dev": "turbo dev",
-    "build": "turbo build --filter \"@payload-bites/*\"",
-    "lint": "turbo lint --filter \"@payload-bites/*\"",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "tsc": "turbo tsc",
+    "generate:types": "turbo generate:types",
+    "generate:importmap": "turbo generate:importmap",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\""
   },
   "devDependencies": {
