@@ -44,7 +44,6 @@ next-env.d.ts
 /media
 
 # Playwright
-node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
