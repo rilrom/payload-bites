@@ -16,22 +16,22 @@
   },
   "dependencies": {
     "@payload-bites/fullscreen-editor": "workspace:*",
-    "@payloadcms/db-postgres": "^3.19.0",
-    "@payloadcms/next": "^3.19.0",
-    "@payloadcms/richtext-lexical": "^3.19.0",
-    "@payloadcms/translations": "^3.19.0",
+    "@payloadcms/db-postgres": "^3.22.0",
+    "@payloadcms/next": "^3.22.0",
+    "@payloadcms/richtext-lexical": "^3.22.0",
+    "@payloadcms/translations": "^3.22.0",
     "cross-env": "^7.0.3",
     "next": "^15.1.6",
-    "payload": "^3.19.0",
+    "payload": "^3.22.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/node": "^22.10.5",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "typescript": "^5.7.2"
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "typescript": "^5.7.3"
   }
 }
