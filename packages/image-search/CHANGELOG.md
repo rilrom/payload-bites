@@ -1,5 +1,13 @@
 # @payload-bites/image-search
 
+## 1.4.0
+
+### Minor Changes
+
+- feat: only flush CacheManager when needed ([3621cd8](https://github.com/rilrom/payload-bites/commit/3621cd8))
+- feat: update upload component to v3.22.0 ([012e307](https://github.com/rilrom/payload-bites/commit/012e307))
+- feat: upgrade dependencies ([7d68f22](https://github.com/rilrom/payload-bites/commit/7d68f22))
+
 ## 1.3.0
 
 ### Minor Changes
