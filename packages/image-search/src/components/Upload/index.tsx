@@ -319,6 +319,8 @@ export const Upload: React.FC<UploadProps> = (props) => {
 
   const acceptMimeTypes = uploadConfig.mimeTypes?.join(", ");
 
+  const imageCacheTag = uploadConfig?.cacheTags && savedDocumentData?.updatedAt;
+
   return (
     <div className={[fieldBaseClass, baseClass].filter(Boolean).join(" ")}>
       <FieldError message={errorMessage} showError={showError} />
@@ -330,7 +332,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
           enableAdjustments={showCrop || showFocalPoint}
           handleRemove={canRemoveUpload ? handleFileRemoval : undefined}
           hasImageSizes={hasImageSizes}
-          imageCacheTag={uploadConfig?.cacheTags && savedDocumentData.updatedAt}
+          imageCacheTag={imageCacheTag}
           uploadConfig={uploadConfig}
         />
       )}
@@ -483,7 +485,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
             <EditUpload
               fileName={value?.name || savedDocumentData?.filename}
               fileSrc={savedDocumentData?.url || fileSrc}
-              imageCacheTag={savedDocumentData?.updatedAt}
+              imageCacheTag={imageCacheTag}
               initialCrop={uploadEdits?.crop ?? undefined}
               initialFocalPoint={{
                 x:
@@ -507,7 +509,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
         >
           <PreviewSizes
             doc={savedDocumentData}
-            imageCacheTag={savedDocumentData.updatedAt}
+            imageCacheTag={imageCacheTag}
             uploadConfig={uploadConfig}
           />
         </Drawer>
