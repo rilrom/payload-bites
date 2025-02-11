@@ -5,6 +5,8 @@ Never lose your Payload documents again, soft delete is here to save the day.
 > [!IMPORTANT]
 > This plugin is in beta and is subject to BREAKING CHANGES. It is not yet recommended to use this in a production environment.
 
+https://github.com/user-attachments/assets/e8263a98-cb5b-447d-a6c5-b200091408c9
+
 ## Quick start
 
 1. Install the plugin:
