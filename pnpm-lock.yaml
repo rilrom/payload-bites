@@ -190,6 +190,55 @@ importers:
         specifier: ^5.7.3
         version: 5.7.3
 
+  apps/soft-delete:
+    dependencies:
+      '@payload-bites/soft-delete':
+        specifier: workspace:*
+        version: link:../../packages/soft-delete
+      '@payloadcms/db-postgres':
+        specifier: ^3.22.0
+        version: 3.22.0(@types/react@19.0.8)(payload@3.22.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(react@19.0.0)
+      '@payloadcms/next':
+        specifier: ^3.22.0
+        version: 3.22.0(@types/react@19.0.8)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.6(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.22.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+      '@payloadcms/translations':
+        specifier: ^3.22.0
+        version: 3.22.0
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      next:
+        specifier: ^15.1.6
+        version: 15.1.6(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4)
+      payload:
+        specifier: ^3.22.0
+        version: 3.22.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+      react:
+        specifier: ^19
+        version: 19.0.0
+      react-dom:
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^22.13.1
+        version: 22.13.1
+      '@types/react':
+        specifier: ^19.0.8
+        version: 19.0.8
+      '@types/react-dom':
+        specifier: ^19.0.3
+        version: 19.0.3(@types/react@19.0.8)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+
   packages/audit-fields:
     dependencies:
       '@payloadcms/translations':
@@ -335,6 +384,46 @@ importers:
         version: 19.0.0(react@19.0.0)
       typescript:
         specifier: ^5.7.3
+        version: 5.7.3
+
+  packages/soft-delete:
+    dependencies:
+      '@payloadcms/translations':
+        specifier: ^3
+        version: 3.22.0
+      '@payloadcms/ui':
+        specifier: ^3
+        version: 3.22.0(@types/react@19.0.8)(monaco-editor@0.52.2)(next@15.1.6(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.22.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+      next:
+        specifier: ^15
+        version: 15.1.6(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4)
+      payload:
+        specifier: ^3
+        version: 3.22.0(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
+      qs-esm:
+        specifier: ^7
+        version: 7.0.2
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.0.8
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.0.3(@types/react@19.0.8)
+      react:
+        specifier: ^19
+        version: 19.0.0
+      react-dom:
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
+      typescript:
+        specifier: ^5.7.2
         version: 5.7.3
 
   packages/typescript-config: {}
