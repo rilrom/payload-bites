@@ -1,13 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
+import { useSelection } from "@payloadcms/ui";
 
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 
 export const ToggleButton = () => {
   const { showSoftDeleted, toggleSoftDelete } = useSoftDelete();
+  const selection = useSelection();
 
   const handleClick = () => {
+    if (selection.count >= 1) {
+      selection.toggleAll(false);
+    }
+
     if (showSoftDeleted) {
       toggleSoftDelete(false);
     } else {
