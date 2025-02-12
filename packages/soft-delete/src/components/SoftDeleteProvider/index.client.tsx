@@ -46,7 +46,7 @@ export const SoftDeleteProviderClient = (
 
       router.refresh();
     },
-    [setCookie, deleteCookie, setShowSoftDeleted],
+    [setCookie, deleteCookie, setShowSoftDeleted, router],
   );
 
   return (
