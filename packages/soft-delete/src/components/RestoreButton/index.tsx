@@ -7,6 +7,7 @@ import {
   toast,
   useConfig,
   useDocumentInfo,
+  useFormFields,
   useTranslation,
 } from "@payloadcms/ui";
 import { formatAdminURL } from "@payloadcms/ui/shared";
@@ -27,6 +28,8 @@ export const RestoreButton = () => {
   const router = useRouter();
   const { showSoftDeleted } = useSoftDelete();
 
+  const deletedAt = useFormFields(([fields]) => fields.deletedAt);
+
   const collectionConfig = getEntityConfig({
     collectionSlug,
   }) as ClientCollectionConfig;
@@ -42,6 +45,7 @@ export const RestoreButton = () => {
         body: JSON.stringify({
           collection: collectionSlug,
           ids: [id],
+          deletedAt: deletedAt?.value,
         }),
       });
 
@@ -78,7 +82,9 @@ export const RestoreButton = () => {
   // Places the restore button in the popup list if available.
   // If it's not available (e.g. create access control is set to false), it will be placed where the popup list usually is as a pill.
   useEffect(() => {
-    if (!showSoftDeleted) {
+    const isEditScreen = document.querySelector(".collection-edit--is-editing");
+
+    if (!showSoftDeleted || !isEditScreen) {
       return;
     }
 

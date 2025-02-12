@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation.js";
 import { getTranslation } from "@payloadcms/translations";
 import {
@@ -33,6 +33,7 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
   const router = useRouter();
   const { clearRouteCache } = useRouteCache();
   const { showSoftDeleted } = useSoftDelete();
+  const [allowClick, setAllowClick] = useState(false);
 
   const collectionConfig = getEntityConfig({
     collectionSlug,
@@ -44,6 +45,10 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
 
   const handleClick = async () => {
     try {
+      if (!allowClick) {
+        return;
+      }
+
       const selectionArray = [...selection.selected.keys()].filter((key) =>
         selection.selected.get(key),
       );
@@ -113,6 +118,8 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
   // Places the soft delete button alongside the list actions
   useEffect(() => {
     if (showSoftDeleted) {
+      setAllowClick(false);
+
       return;
     }
 
@@ -126,6 +133,8 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
 
     if (listControlsButtonsWrap && bulkSoftDeleteButton) {
       listControlsButtonsWrap.prepend(bulkSoftDeleteButton);
+
+      setAllowClick(true);
     }
   }, [showSoftDeleted]);
 

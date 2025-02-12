@@ -1,9 +1,9 @@
-import type { CollectionConfig, Config } from "payload";
+import type { AccessArgs, CollectionConfig, Config } from "payload";
 
 import { endpoints } from "./endpoints/index.js";
 import { deepMerge } from "./utils/deepMerge.js";
 import { getSoftDeleteCookie } from "./utils/getSoftDeleteCookie.js";
-import { defaultAccessControl, defaultPluginOptions } from "./defaults.js";
+import { defaultPluginOptions } from "./defaults.js";
 import { translations } from "./translations.js";
 import type { SoftDeletePluginOptions } from "./types.js";
 
@@ -128,9 +128,7 @@ export const softDeletePlugin =
         ...modifiedCollection.access,
         delete: () => false,
         update: (args) => {
-          const softDeleteCookie = getSoftDeleteCookie(args.req.headers);
-
-          if (softDeleteCookie === "true" || args?.data?.deletedAt) {
+          if (args?.data?.deletedAt) {
             return false;
           }
 
@@ -140,15 +138,36 @@ export const softDeletePlugin =
 
       modifiedCollection.custom = {
         access: {
-          softDeleteAccess:
-            mergedOptions.access[modifiedCollection.slug]?.softDeleteAccess ||
-            defaultAccessControl,
-          hardDeleteAccess:
-            mergedOptions.access[modifiedCollection.slug]?.hardDeleteAccess ||
-            defaultAccessControl,
-          restoreAccess:
-            mergedOptions.access[modifiedCollection.slug]?.restoreAccess ||
-            defaultAccessControl,
+          softDeleteAccess: (args: AccessArgs) => {
+            if (args?.data?.deletedAt) {
+              return false;
+            }
+
+            return (
+              mergedOptions.access[modifiedCollection.slug]?.softDeleteAccess ??
+              Boolean(args.req.user)
+            );
+          },
+          hardDeleteAccess: (args: AccessArgs) => {
+            if (args?.data?.deletedAt === null) {
+              return false;
+            }
+
+            return (
+              mergedOptions.access[modifiedCollection.slug]?.hardDeleteAccess ??
+              Boolean(args.req.user)
+            );
+          },
+          restoreAccess: (args: AccessArgs) => {
+            if (args?.data?.deletedAt === null) {
+              return false;
+            }
+
+            return (
+              mergedOptions.access[modifiedCollection.slug]?.restoreAccess ??
+              Boolean(args.req.user)
+            );
+          },
         },
       };
 

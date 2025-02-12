@@ -7,6 +7,7 @@ import {
   toast,
   useConfig,
   useDocumentInfo,
+  useFormFields,
   useTranslation,
 } from "@payloadcms/ui";
 import { formatAdminURL } from "@payloadcms/ui/shared";
@@ -27,6 +28,8 @@ export const SoftDeleteButton = () => {
   const router = useRouter();
   const { showSoftDeleted } = useSoftDelete();
 
+  const deletedAt = useFormFields(([fields]) => fields.deletedAt);
+
   const collectionConfig = getEntityConfig({
     collectionSlug,
   }) as ClientCollectionConfig;
@@ -42,6 +45,7 @@ export const SoftDeleteButton = () => {
         body: JSON.stringify({
           collection: collectionSlug,
           ids: [id],
+          deletedAt: deletedAt?.value,
         }),
       });
 
