@@ -71,7 +71,9 @@ export const SearchImages = (props: SearchImagesProps) => {
 
   const getProviderOptions = useCallback(async () => {
     try {
-      const json = await fetchWithCache(`${serverURL}${api}/providers`);
+      const response = await fetch(`${serverURL}${api}/providers`);
+
+      const json = await response.json();
 
       if (json.error) {
         setLoading(false);
