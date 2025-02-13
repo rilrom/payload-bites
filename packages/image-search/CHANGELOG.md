@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 1.4.1
+
+### Patch Changes
+
+- fix: prevent caching of providers endpoint ([26b94b2](https://github.com/rilrom/payload-bites/commit/26b94b2))
+
 ## 1.4.0
 
 ### Minor Changes
