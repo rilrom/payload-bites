@@ -18,6 +18,7 @@ export const endpoints: Endpoint[] = [
 
       const response = await req.payload.update({
         collection: data?.["collection"],
+        draft: true,
         where: {
           id: {
             in: data?.["ids"],
@@ -73,6 +74,7 @@ export const endpoints: Endpoint[] = [
 
       const response = await req.payload.update({
         collection: data?.["collection"],
+        draft: true,
         where: {
           id: {
             in: data?.["ids"],

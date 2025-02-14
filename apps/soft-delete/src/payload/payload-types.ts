@@ -12,6 +12,7 @@ export interface Config {
   };
   collections: {
     collections: Collection;
+    "collection-with-drafts": CollectionWithDraft;
     users: User;
     "payload-locked-documents": PayloadLockedDocument;
     "payload-preferences": PayloadPreference;
@@ -20,6 +21,9 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     collections: CollectionsSelect<false> | CollectionsSelect<true>;
+    "collection-with-drafts":
+      | CollectionWithDraftsSelect<false>
+      | CollectionWithDraftsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     "payload-locked-documents":
       | PayloadLockedDocumentsSelect<false>
@@ -83,6 +87,25 @@ export interface Collection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-with-drafts".
+ */
+export interface CollectionWithDraft {
+  id: number;
+  text: string;
+  array?:
+    | {
+        key?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  deletedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ("draft" | "published") | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -108,6 +131,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "collections";
         value: number | Collection;
+      } | null)
+    | ({
+        relationTo: "collection-with-drafts";
+        value: number | CollectionWithDraft;
       } | null)
     | ({
         relationTo: "users";
@@ -171,6 +198,24 @@ export interface CollectionsSelect<T extends boolean = true> {
   deletedAt?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-with-drafts_select".
+ */
+export interface CollectionWithDraftsSelect<T extends boolean = true> {
+  text?: T;
+  array?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  deletedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

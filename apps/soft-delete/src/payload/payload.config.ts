@@ -8,6 +8,7 @@ import { softDeletePlugin } from "@payload-bites/soft-delete";
 
 import { Users } from "./collections/Users";
 import { Collections } from "./collections/Collections";
+import { CollectionWithDrafts } from "./collections/CollectionWithDrafts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,7 +27,7 @@ export default buildConfig({
     fallbackLanguage: "en",
     supportedLanguages: { en, es },
   },
-  collections: [Collections, Users],
+  collections: [Collections, CollectionWithDrafts, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -38,7 +39,7 @@ export default buildConfig({
   }),
   plugins: [
     softDeletePlugin({
-      collections: ["collections"],
+      collections: ["collections", "collection-with-drafts"],
     }),
   ],
   onInit: async (payload) => {
