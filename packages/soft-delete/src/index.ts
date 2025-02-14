@@ -2,7 +2,7 @@ import type { AccessArgs, CollectionConfig, Config } from "payload";
 
 import { endpoints } from "./endpoints/index.js";
 import { deepMerge } from "./utils/deepMerge.js";
-import { getSoftDeleteCookie } from "./utils/getSoftDeleteCookie.js";
+import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
 import { defaultPluginOptions } from "./defaults.js";
 import { translations } from "./translations.js";
 import type { SoftDeletePluginOptions } from "./types.js";
@@ -49,24 +49,10 @@ export const softDeletePlugin =
       };
 
       modifiedCollection.admin = {
-        ...modifiedCollection.admin,
-        baseListFilter: (args) => {
-          const softDeleteCookie = getSoftDeleteCookie(args.req.headers);
-
-          if (softDeleteCookie === "true") {
-            return {
-              deletedAt: {
-                exists: true,
-              },
-            };
-          }
-
-          return {
-            deletedAt: {
-              equals: null,
-            },
-          };
-        },
+        ...modifiedCollection?.admin,
+        baseListFilter: combinedBaseListFilter(
+          modifiedCollection?.admin?.baseListFilter,
+        ),
         components: {
           ...(modifiedCollection.admin?.components || {}),
           beforeList: ["@payload-bites/soft-delete/client#ToggleButton"],
