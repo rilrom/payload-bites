@@ -1,5 +1,12 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- fix: merge baseListFilter ([b9160c1](https://github.com/rilrom/payload-bites/commit/b9160c1))
+- fix: allow drafts to be soft deleted and restored ([e1dd9b5](https://github.com/rilrom/payload-bites/commit/e1dd9b5))
+
 ## 1.0.0-beta.2
 
 ### Patch Changes
