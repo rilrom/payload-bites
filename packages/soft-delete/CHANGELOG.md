@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.5
+
+### Minor Changes
+
+- feat: add translations ([f1b9972](https://github.com/rilrom/payload-bites/commit/f1b9972))
+
 ## 1.0.0-beta.4
 
 ### Minor Changes
