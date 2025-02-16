@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSelection } from "@payloadcms/ui";
+import { useSelection, useTranslation } from "@payloadcms/ui";
 
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
+import { TranslationsKeys, TranslationsObject } from "../../translations.js";
 
 export const ToggleButton = () => {
   const { showSoftDeleted, toggleSoftDelete } = useSoftDelete();
   const selection = useSelection();
+  const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
 
-  const handleClick = () => {
+  const handleToggle = () => {
     if (selection.count >= 1) {
       selection.toggleAll(false);
     }
@@ -37,15 +39,19 @@ export const ToggleButton = () => {
     }
   }, []);
 
+  const label = t("softDelete:viewDocuments", {
+    type: t(showSoftDeleted ? "softDelete:active" : "softDelete:deleted"),
+  });
+
   return (
     <button
       type="button"
       id="toggle-button"
       className="btn btn--icon-style-without-border btn--size-small btn--withoutPopup btn--style-pill btn--withoutPopup"
       style={{ display: "none" }}
-      onClick={handleClick}
+      onClick={handleToggle}
     >
-      {`View ${showSoftDeleted ? "Active" : "Deleted"} Documents`}
+      {label}
     </button>
   );
 };

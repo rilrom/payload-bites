@@ -53,4 +53,4 @@ For options, refer to [types.ts](./src/types.ts).
 - [ ] Enable/disable hard delete functionality per collection.
 - [ ] Schedule automatic deletion after certain number of days.
 - [ ] Documentation (including API examples).
-- [ ] Translations.
+- [x] Translations.
