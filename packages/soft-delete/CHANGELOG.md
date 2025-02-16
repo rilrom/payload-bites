@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.4
+
+### Minor Changes
+
+- feat: add modals to hard delete ([e1092fa](https://github.com/rilrom/payload-bites/commit/e1092fa))
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
