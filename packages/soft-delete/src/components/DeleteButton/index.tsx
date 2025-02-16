@@ -1,13 +1,19 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation.js";
 import {
+  Button,
+  Modal,
   Pill,
   toast,
+  Translation,
   useConfig,
   useDocumentInfo,
+  useEditDepth,
+  useForm,
   useFormFields,
+  useModal,
   useTranslation,
 } from "@payloadcms/ui";
 import { formatAdminURL } from "@payloadcms/ui/shared";
@@ -20,26 +26,52 @@ import type {
   TranslationsObject,
 } from "../../translations.js";
 
+// This can be found at ui/src/elements/Drawer
+const DRAWER_Z_BASE = 100;
+
+const baseClass = "delete-document";
+
 export const DeleteButton = () => {
   const { id, collectionSlug, title } = useDocumentInfo();
-
+  const { setModified } = useForm();
   const { config, getEntityConfig } = useConfig();
   const { i18n, t } = useTranslation<TranslationsObject, TranslationsKeys>();
   const router = useRouter();
   const { showSoftDeleted } = useSoftDelete();
-
+  const [deleting, setDeleting] = useState(false);
+  const { closeModal, openModal } = useModal();
+  const editDepth = useEditDepth();
   const deletedAt = useFormFields(([fields]) => fields.deletedAt);
+
+  const modalSlug = `delete-${id}`;
 
   const collectionConfig = getEntityConfig({
     collectionSlug,
   }) as ClientCollectionConfig;
 
-  const addDefaultError = useCallback(() => {
-    toast.error(t("error:deletingTitle", { title }));
-  }, [t, title]);
+  const singular = collectionConfig.labels.singular;
 
-  const handleClick = async () => {
+  const addDefaultError = useCallback(() => {
+    setDeleting(false);
+    closeModal(modalSlug);
+    toast.error(t("error:deletingTitle", { title }));
+  }, [t, title, closeModal, modalSlug]);
+
+  const handleOpen = () => {
+    setDeleting(false);
+    openModal(modalSlug);
+  };
+
+  const handleCancel = () => {
+    setDeleting(false);
+    closeModal(modalSlug);
+  };
+
+  const handleDelete = async () => {
     try {
+      setDeleting(true);
+      setModified(false);
+
       const response = await fetch(`${config.routes.api}/hard-delete`, {
         method: "DELETE",
         body: JSON.stringify({
@@ -51,10 +83,13 @@ export const DeleteButton = () => {
 
       const json = await response.json();
 
+      setDeleting(false);
+      closeModal(modalSlug);
+
       if (response.status < 400) {
         toast.success(
           t("general:titleDeleted", {
-            label: getTranslation(collectionConfig.labels.singular, i18n),
+            label: getTranslation(singular, i18n),
             title,
           }) || json.message,
         );
@@ -124,9 +159,9 @@ export const DeleteButton = () => {
         id="delete-button-list"
         className="popup-button-list__button"
         style={{ display: "none" }}
-        onClick={handleClick}
+        onClick={handleOpen}
       >
-        Delete
+        {t("general:delete")}
       </button>
       <div
         id="delete-button-pill"
@@ -134,8 +169,46 @@ export const DeleteButton = () => {
           display: "none",
         }}
       >
-        <Pill onClick={handleClick}>Delete</Pill>
+        <Pill onClick={handleOpen}>{t("general:delete")}</Pill>
       </div>
+      <Modal
+        className={baseClass}
+        slug={modalSlug}
+        style={{
+          zIndex: DRAWER_Z_BASE + editDepth,
+        }}
+      >
+        <div className={`${baseClass}__wrapper`}>
+          <div className={`${baseClass}__content`}>
+            <h1>{t("general:confirmDeletion")}</h1>
+            <p>
+              <Translation
+                elements={{
+                  "1": ({ children }) => <strong>{children}</strong>,
+                }}
+                i18nKey="general:aboutToDelete"
+                t={t as any}
+                variables={{
+                  label: getTranslation(collectionConfig.labels.singular, i18n),
+                  title,
+                }}
+              />
+            </p>
+          </div>
+          <div className={`${baseClass}__controls`}>
+            <Button
+              onClick={deleting ? undefined : handleCancel}
+              size="large"
+              buttonStyle="secondary"
+            >
+              {t("general:cancel")}
+            </Button>
+            <Button onClick={deleting ? undefined : handleDelete} size="large">
+              {deleting ? t("general:deleting") : t("general:confirm")}
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

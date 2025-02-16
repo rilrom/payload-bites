@@ -38,7 +38,7 @@ export const RestoreButton = () => {
     toast.error(t("softDelete:restoringTitle", { title }));
   }, [t, title]);
 
-  const handleClick = async () => {
+  const handleRestore = async () => {
     try {
       const response = await fetch(`${config.routes.api}/restore`, {
         method: "POST",
@@ -124,9 +124,9 @@ export const RestoreButton = () => {
         id="restore-button-list"
         className="popup-button-list__button"
         style={{ display: "none" }}
-        onClick={handleClick}
+        onClick={handleRestore}
       >
-        Restore
+        {t("softDelete:restore")}
       </button>
       <div
         id="restore-button-pill"
@@ -134,7 +134,7 @@ export const RestoreButton = () => {
           display: "none",
         }}
       >
-        <Pill onClick={handleClick}>Restore</Pill>
+        <Pill onClick={handleRestore}>{t("softDelete:restore")}</Pill>
       </div>
     </>
   );

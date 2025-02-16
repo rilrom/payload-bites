@@ -43,7 +43,7 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
     toast.error(t("error:unknown"));
   }, [t]);
 
-  const handleClick = async () => {
+  const handleRestore = async () => {
     try {
       if (!allowClick) {
         return;
@@ -143,7 +143,7 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
         display: showSoftDeleted && selection.count ? "inherit" : "none",
       }}
     >
-      <Pill onClick={handleClick}>Restore</Pill>
+      <Pill onClick={handleRestore}>{t("softDelete:restore")}</Pill>
     </div>
   );
 };

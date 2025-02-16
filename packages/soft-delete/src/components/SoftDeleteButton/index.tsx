@@ -38,7 +38,7 @@ export const SoftDeleteButton = () => {
     toast.error(t("softDelete:deletingTitle", { title }));
   }, [t, title]);
 
-  const handleClick = async () => {
+  const handleSoftDelete = async () => {
     try {
       const response = await fetch(`${config.routes.api}/soft-delete`, {
         method: "POST",
@@ -129,9 +129,9 @@ export const SoftDeleteButton = () => {
         id="soft-delete-button-list"
         className="popup-button-list__button"
         style={{ display: "none" }}
-        onClick={handleClick}
+        onClick={handleSoftDelete}
       >
-        Soft Delete
+        {t("softDelete:softDelete")}
       </button>
       <div
         id="soft-delete-button-pill"
@@ -139,7 +139,7 @@ export const SoftDeleteButton = () => {
           display: "none",
         }}
       >
-        <Pill onClick={handleClick}>Soft Delete</Pill>
+        <Pill onClick={handleSoftDelete}>{t("softDelete:softDelete")}</Pill>
       </div>
     </>
   );

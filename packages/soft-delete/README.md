@@ -48,7 +48,7 @@ For options, refer to [types.ts](./src/types.ts).
 
 ## Roadmap
 
-- [ ] Add modal to hard delete.
+- [x] Add modal to hard delete.
 - [ ] Enable/disable restore functionality per collection.
 - [ ] Enable/disable hard delete functionality per collection.
 - [ ] Schedule automatic deletion after certain number of days.

@@ -12,6 +12,8 @@ export const translations = {
         "There was an error while soft deleting {{title}}. Please check your connection and try again.",
       restoringTitle:
         "There was an error while restoring {{title}}. Please check your connection and try again.",
+      restore: "Restore",
+      softDelete: "Soft Delete",
     },
   },
 };
