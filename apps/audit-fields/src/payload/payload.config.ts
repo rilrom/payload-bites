@@ -40,27 +40,38 @@ export default buildConfig({
   }),
   plugins: [auditFieldsPlugin()],
   onInit: async (payload) => {
-    const user = await payload.create({
+    const response = await payload.find({
       collection: "users",
-      data: {
-        email: process.env.TEST_USER!,
-        password: process.env.TEST_PASS!,
+      where: {
+        email: {
+          equals: process.env.TEST_USER!,
+        },
       },
     });
 
-    await payload.update({
-      collection: "users",
-      id: user.id,
-      data: {
-        createdBy: {
-          relationTo: "users",
-          value: user.id,
+    if (response?.docs?.length === 0) {
+      const user = await payload.create({
+        collection: "users",
+        data: {
+          email: process.env.TEST_USER!,
+          password: process.env.TEST_PASS!,
         },
-        lastModifiedBy: {
-          relationTo: "users",
-          value: user.id,
+      });
+
+      await payload.update({
+        collection: "users",
+        id: user.id,
+        data: {
+          createdBy: {
+            relationTo: "users",
+            value: user.id,
+          },
+          lastModifiedBy: {
+            relationTo: "users",
+            value: user.id,
+          },
         },
-      },
-    });
+      });
+    }
   },
 });

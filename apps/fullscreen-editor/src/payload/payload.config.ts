@@ -53,12 +53,23 @@ export default buildConfig({
     ],
   }),
   onInit: async (payload) => {
-    await payload.create({
+    const response = await payload.find({
       collection: "users",
-      data: {
-        email: process.env.TEST_USER!,
-        password: process.env.TEST_PASS!,
+      where: {
+        email: {
+          equals: process.env.TEST_USER!,
+        },
       },
     });
+
+    if (response?.docs?.length === 0) {
+      await payload.create({
+        collection: "users",
+        data: {
+          email: process.env.TEST_USER!,
+          password: process.env.TEST_PASS!,
+        },
+      });
+    }
   },
 });
