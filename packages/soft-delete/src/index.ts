@@ -130,8 +130,9 @@ export const softDeletePlugin =
             }
 
             return (
-              mergedOptions.access[modifiedCollection.slug]?.softDeleteAccess ??
-              Boolean(args.req.user)
+              mergedOptions.access[modifiedCollection.slug]?.softDeleteAccess?.(
+                args,
+              ) ?? Boolean(args.req.user)
             );
           },
           hardDeleteAccess: (args: AccessArgs) => {
@@ -140,8 +141,9 @@ export const softDeletePlugin =
             }
 
             return (
-              mergedOptions.access[modifiedCollection.slug]?.hardDeleteAccess ??
-              Boolean(args.req.user)
+              mergedOptions.access[modifiedCollection.slug]?.hardDeleteAccess?.(
+                args,
+              ) ?? Boolean(args.req.user)
             );
           },
           restoreAccess: (args: AccessArgs) => {
@@ -150,8 +152,9 @@ export const softDeletePlugin =
             }
 
             return (
-              mergedOptions.access[modifiedCollection.slug]?.restoreAccess ??
-              Boolean(args.req.user)
+              mergedOptions.access[modifiedCollection.slug]?.restoreAccess?.(
+                args,
+              ) ?? Boolean(args.req.user)
             );
           },
         },
