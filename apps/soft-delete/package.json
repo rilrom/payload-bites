@@ -16,21 +16,21 @@
   },
   "dependencies": {
     "@payload-bites/soft-delete": "workspace:*",
-    "@payloadcms/db-postgres": "^3.22.0",
-    "@payloadcms/next": "^3.22.0",
-    "@payloadcms/translations": "^3.22.0",
+    "@payloadcms/db-postgres": "^3.24.0",
+    "@payloadcms/next": "^3.24.0",
+    "@payloadcms/translations": "^3.24.0",
     "cross-env": "^7.0.3",
-    "next": "^15.1.6",
-    "payload": "^3.22.0",
+    "next": "^15.1.7",
+    "payload": "^3.24.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/node": "^22.13.1",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
     "typescript": "^5.7.3"
   }
 }
