@@ -22,10 +22,11 @@ import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 
 interface BulkRestoreButtonProps {
   collectionSlug: string;
+  enabled: boolean;
 }
 
 export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
-  const { collectionSlug } = props;
+  const { collectionSlug, enabled } = props;
 
   const { config, getEntityConfig } = useConfig();
   const { i18n, t } = useTranslation<TranslationsObject, TranslationsKeys>();
@@ -33,7 +34,7 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
   const router = useRouter();
   const { clearRouteCache } = useRouteCache();
   const { showSoftDeleted } = useSoftDelete();
-  const [allowClick, setAllowClick] = useState(false);
+  const [allowRestore, setAllowRestore] = useState(false);
 
   const collectionConfig = getEntityConfig({
     collectionSlug,
@@ -45,7 +46,7 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
 
   const handleRestore = async () => {
     try {
-      if (!allowClick) {
+      if (!enabled || !allowRestore) {
         return;
       }
 
@@ -117,8 +118,8 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
 
   // Places the restore button alongside the list actions
   useEffect(() => {
-    if (!showSoftDeleted) {
-      setAllowClick(false);
+    if (!enabled || !showSoftDeleted) {
+      setAllowRestore(false);
 
       return;
     }
@@ -132,9 +133,13 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
     if (listControlsButtonsWrap && bulkRestoreButton) {
       listControlsButtonsWrap.prepend(bulkRestoreButton);
 
-      setAllowClick(true);
+      setAllowRestore(true);
     }
-  }, [showSoftDeleted]);
+  }, [enabled, showSoftDeleted]);
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <div

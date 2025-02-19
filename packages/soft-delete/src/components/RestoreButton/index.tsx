@@ -12,7 +12,7 @@ import {
 } from "@payloadcms/ui";
 import { formatAdminURL } from "@payloadcms/ui/shared";
 import { getTranslation } from "@payloadcms/translations";
-import type { ClientCollectionConfig } from "payload";
+import type { ClientCollectionConfig, Field } from "payload";
 
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 import type {
@@ -20,7 +20,13 @@ import type {
   TranslationsObject,
 } from "../../translations.js";
 
-export const RestoreButton = () => {
+interface RestoreButtonProps {
+  field: Field;
+}
+
+export const RestoreButton = (props: RestoreButtonProps) => {
+  const { field } = props;
+
   const { id, collectionSlug, title } = useDocumentInfo();
 
   const { config, getEntityConfig } = useConfig();
@@ -29,6 +35,8 @@ export const RestoreButton = () => {
   const { showSoftDeleted } = useSoftDelete();
 
   const deletedAt = useFormFields(([fields]) => fields.deletedAt);
+
+  const enabled = field.admin?.custom?.enabled;
 
   const collectionConfig = getEntityConfig({
     collectionSlug,
@@ -40,6 +48,10 @@ export const RestoreButton = () => {
 
   const handleRestore = async () => {
     try {
+      if (!enabled) {
+        return;
+      }
+
       const response = await fetch(`${config.routes.api}/restore`, {
         method: "POST",
         body: JSON.stringify({
@@ -84,7 +96,7 @@ export const RestoreButton = () => {
   useEffect(() => {
     const isEditScreen = document.querySelector(".collection-edit--is-editing");
 
-    if (!showSoftDeleted || !isEditScreen) {
+    if (!enabled || !showSoftDeleted || !isEditScreen) {
       return;
     }
 
@@ -115,7 +127,11 @@ export const RestoreButton = () => {
         restoreButtonList.style.display = "inherit";
       }
     }
-  }, [showSoftDeleted]);
+  }, [enabled, showSoftDeleted]);
+
+  if (!enabled) {
+    return;
+  }
 
   return (
     <>

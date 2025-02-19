@@ -9,28 +9,40 @@ export type SoftDeletePluginOptions = {
   /**
    * Collections where soft delete should be applied.
    */
-  collections?: CollectionSlug[];
-
-  /**
-   * Access control for each enabled collection.
-   */
-  access?: {
+  collections: {
     [key in CollectionSlug]?: {
-      /** Function that determines soft delete access for the collection.
-       * @example
-       * softDeleteAccess: ({ req: { user } }) => user.role === "admin"
+      /**
+       * Enable or disable hard delete for the collection.
+       *
+       * @default true
+       */
+      enableHardDelete?: boolean;
+
+      /**
+       * Enable or disable restore for the collection.
+       *
+       * @default true
+       */
+      enableRestore?: boolean;
+
+      /**
+       * Function that determines soft delete access for the collection.
+       *
+       * @example softDeleteAccess: ({ req: { user } }) => user.role === "admin"
        */
       softDeleteAccess?: Access;
 
-      /** Function that determines hard delete access for the collection.
-       * @example
-       * hardDeleteAccess: ({ req: { user } }) => user.role === "admin"
+      /**
+       * Function that determines hard delete access for the collection.
+       *
+       * @example hardDeleteAccess: ({ req: { user } }) => user.role === "admin"
        */
       hardDeleteAccess?: Access;
 
-      /** Function that determines restore access for the collection.
-       * @example
-       * restoreAccess: ({ req: { user } }) => user.role === "admin"
+      /**
+       * Function that determines restore access for the collection.
+       *
+       * @example restoreAccess: ({ req: { user } }) => user.role === "admin"
        */
       restoreAccess?: Access;
     };

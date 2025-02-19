@@ -27,10 +27,11 @@ const baseClass = "delete-documents";
 
 interface BulkDeleteButtonProps {
   collectionSlug: string;
+  enabled: boolean;
 }
 
 export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
-  const { collectionSlug } = props;
+  const { collectionSlug, enabled } = props;
 
   const { config, getEntityConfig } = useConfig();
   const { i18n, t } = useTranslation<TranslationsObject, TranslationsKeys>();
@@ -69,7 +70,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
   const handleDelete = async () => {
     try {
-      if (!allowDelete) {
+      if (!enabled || !allowDelete) {
         return;
       }
 
@@ -143,7 +144,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
   // Places the bulk delete button alongside the list actions
   useEffect(() => {
-    if (!showSoftDeleted) {
+    if (!enabled || !showSoftDeleted) {
       setAllowDelete(false);
 
       return;
@@ -160,7 +161,11 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
       setAllowDelete(true);
     }
-  }, [showSoftDeleted]);
+  }, [enabled, showSoftDeleted]);
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <>

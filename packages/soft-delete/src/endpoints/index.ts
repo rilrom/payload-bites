@@ -10,7 +10,7 @@ export const endpoints: Endpoint[] = [
 
       const access = await req.payload.collections?.[
         data?.["collection"]
-      ]?.config?.custom?.access?.softDeleteAccess?.({ req, data });
+      ]?.config?.custom?.softDelete?.softDeleteAccess?.({ req, data });
 
       if (!access) {
         throw new Forbidden();
@@ -38,11 +38,15 @@ export const endpoints: Endpoint[] = [
     handler: async (req) => {
       const data = await req.json?.();
 
+      const enabled =
+        req.payload.collections?.[data?.["collection"]]?.config?.custom
+          ?.softDelete?.enableHardDelete;
+
       const access = await req.payload.collections?.[
         data?.["collection"]
-      ]?.config?.custom?.access?.hardDeleteAccess?.({ req, data });
+      ]?.config?.custom?.softDelete?.hardDeleteAccess?.({ req, data });
 
-      if (!access) {
+      if (!enabled || !access) {
         throw new Forbidden();
       }
 
@@ -64,11 +68,15 @@ export const endpoints: Endpoint[] = [
     handler: async (req) => {
       const data = await req.json?.();
 
+      const enabled =
+        req.payload.collections?.[data?.["collection"]]?.config?.custom
+          ?.softDelete?.enableRestore;
+
       const access = await req.payload.collections?.[
         data?.["collection"]
-      ]?.config?.custom?.access?.restoreAccess?.({ req, data });
+      ]?.config?.custom?.softDelete?.restoreAccess?.({ req, data });
 
-      if (!access) {
+      if (!enabled || !access) {
         throw new Forbidden();
       }
 

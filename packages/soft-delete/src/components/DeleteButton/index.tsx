@@ -18,7 +18,7 @@ import {
 } from "@payloadcms/ui";
 import { formatAdminURL } from "@payloadcms/ui/shared";
 import { getTranslation } from "@payloadcms/translations";
-import type { ClientCollectionConfig } from "payload";
+import type { ClientCollectionConfig, Field } from "payload";
 
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 import type {
@@ -31,7 +31,12 @@ const DRAWER_Z_BASE = 100;
 
 const baseClass = "delete-document";
 
-export const DeleteButton = () => {
+interface DeleteButtonProps {
+  field: Field;
+}
+
+export const DeleteButton = (props: DeleteButtonProps) => {
+  const { field } = props;
   const { id, collectionSlug, title } = useDocumentInfo();
   const { setModified } = useForm();
   const { config, getEntityConfig } = useConfig();
@@ -42,6 +47,8 @@ export const DeleteButton = () => {
   const { closeModal, openModal } = useModal();
   const editDepth = useEditDepth();
   const deletedAt = useFormFields(([fields]) => fields.deletedAt);
+
+  const enabled = field.admin?.custom?.enabled;
 
   const modalSlug = `delete-${id}`;
 
@@ -58,17 +65,29 @@ export const DeleteButton = () => {
   }, [t, title, closeModal, modalSlug]);
 
   const handleOpen = () => {
+    if (!enabled) {
+      return;
+    }
+
     setDeleting(false);
     openModal(modalSlug);
   };
 
   const handleCancel = () => {
+    if (!enabled) {
+      return;
+    }
+
     setDeleting(false);
     closeModal(modalSlug);
   };
 
   const handleDelete = async () => {
     try {
+      if (!enabled) {
+        return;
+      }
+
       setDeleting(true);
       setModified(false);
 
@@ -119,7 +138,7 @@ export const DeleteButton = () => {
   useEffect(() => {
     const isEditScreen = document.querySelector(".collection-edit--is-editing");
 
-    if (!showSoftDeleted || !isEditScreen) {
+    if (!enabled || !showSoftDeleted || !isEditScreen) {
       return;
     }
 
@@ -150,7 +169,11 @@ export const DeleteButton = () => {
         deleteButtonList.style.display = "inherit";
       }
     }
-  }, [showSoftDeleted]);
+  }, [enabled, showSoftDeleted]);
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <>

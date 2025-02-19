@@ -3,14 +3,14 @@ import type { AccessArgs, CollectionConfig, Config } from "payload";
 import { endpoints } from "./endpoints/index.js";
 import { deepMerge } from "./utils/deepMerge.js";
 import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
-import { defaultPluginOptions } from "./defaults.js";
+import { defaultAccessControl, defaultPluginOptions } from "./defaults.js";
 import { translations } from "./translations.js";
 import type { SoftDeletePluginOptions } from "./types.js";
 
 export const softDeletePlugin =
   (pluginOptions?: SoftDeletePluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: Required<SoftDeletePluginOptions> = Object.assign(
+    const mergedOptions: SoftDeletePluginOptions = Object.assign(
       defaultPluginOptions,
       pluginOptions,
     );
@@ -40,13 +40,18 @@ export const softDeletePlugin =
     };
 
     config.collections = (config.collections || []).map((collection) => {
-      if (!mergedOptions.collections.includes(collection.slug)) {
+      if (!Object.keys(mergedOptions.collections).includes(collection.slug)) {
         return collection;
       }
 
       const modifiedCollection: CollectionConfig = {
         ...collection,
       };
+
+      const enableHardDelete =
+        mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
+      const enableRestore =
+        mergedOptions.collections?.[collection.slug]?.enableRestore ?? true;
 
       modifiedCollection.admin = {
         ...modifiedCollection?.admin,
@@ -58,8 +63,18 @@ export const softDeletePlugin =
           beforeList: ["@payload-bites/soft-delete/client#ToggleButton"],
           beforeListTable: [
             "@payload-bites/soft-delete/client#BulkSoftDeleteButton",
-            "@payload-bites/soft-delete/client#BulkDeleteButton",
-            "@payload-bites/soft-delete/client#BulkRestoreButton",
+            {
+              path: "@payload-bites/soft-delete/client#BulkDeleteButton",
+              clientProps: {
+                enabled: enableHardDelete,
+              },
+            },
+            {
+              path: "@payload-bites/soft-delete/client#BulkRestoreButton",
+              clientProps: {
+                enabled: enableRestore,
+              },
+            },
           ],
         },
       };
@@ -84,6 +99,9 @@ export const softDeletePlugin =
             components: {
               Field: "@payload-bites/soft-delete/client#RestoreButton",
             },
+            custom: {
+              enabled: enableRestore,
+            },
           },
         },
         {
@@ -106,6 +124,9 @@ export const softDeletePlugin =
             components: {
               Field: "@payload-bites/soft-delete/client#DeleteButton",
             },
+            custom: {
+              enabled: enableHardDelete,
+            },
           },
         },
       ];
@@ -123,16 +144,19 @@ export const softDeletePlugin =
       };
 
       modifiedCollection.custom = {
-        access: {
+        ...modifiedCollection.custom,
+        softDelete: {
+          enableHardDelete,
+          enableRestore,
           softDeleteAccess: (args: AccessArgs) => {
             if (args?.data?.deletedAt) {
               return false;
             }
 
             return (
-              mergedOptions.access[modifiedCollection.slug]?.softDeleteAccess?.(
+              mergedOptions.collections?.[collection.slug]?.softDeleteAccess?.(
                 args,
-              ) ?? Boolean(args.req.user)
+              ) ?? defaultAccessControl(args)
             );
           },
           hardDeleteAccess: (args: AccessArgs) => {
@@ -140,10 +164,14 @@ export const softDeletePlugin =
               return false;
             }
 
+            if (enableHardDelete === false) {
+              return false;
+            }
+
             return (
-              mergedOptions.access[modifiedCollection.slug]?.hardDeleteAccess?.(
+              mergedOptions.collections?.[collection.slug]?.hardDeleteAccess?.(
                 args,
-              ) ?? Boolean(args.req.user)
+              ) ?? defaultAccessControl(args)
             );
           },
           restoreAccess: (args: AccessArgs) => {
@@ -151,10 +179,14 @@ export const softDeletePlugin =
               return false;
             }
 
+            if (enableRestore === false) {
+              return false;
+            }
+
             return (
-              mergedOptions.access[modifiedCollection.slug]?.restoreAccess?.(
+              mergedOptions.collections?.[collection.slug]?.restoreAccess?.(
                 args,
-              ) ?? Boolean(args.req.user)
+              ) ?? defaultAccessControl(args)
             );
           },
         },

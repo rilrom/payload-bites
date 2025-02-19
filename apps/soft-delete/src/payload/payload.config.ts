@@ -39,7 +39,10 @@ export default buildConfig({
   }),
   plugins: [
     softDeletePlugin({
-      collections: ["collections", "collection-with-drafts"],
+      collections: {
+        collections: {},
+        "collection-with-drafts": {},
+      },
     }),
   ],
   onInit: async (payload) => {

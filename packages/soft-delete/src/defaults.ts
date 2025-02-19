@@ -1,7 +1,10 @@
+import type { Access } from "payload";
+
 import type { SoftDeletePluginOptions } from "./types.js";
 
-export const defaultPluginOptions: Required<SoftDeletePluginOptions> = {
+export const defaultPluginOptions: SoftDeletePluginOptions = {
   enabled: true,
-  collections: [],
-  access: {},
+  collections: {},
 };
+
+export const defaultAccessControl: Access = (args) => Boolean(args.req.user);
