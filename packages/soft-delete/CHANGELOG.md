@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.7
+
+### Patch Changes
+
+- fix: update setup in README ([083d157](https://github.com/rilrom/payload-bites/commit/083d157))
+
 ## 1.0.0-beta.6
 
 ### Minor Changes
