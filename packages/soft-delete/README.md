@@ -26,12 +26,14 @@ export default buildConfig({
   plugins: [
     // ...
     softDeletePlugin({
-      // ...
-      collections: [
-        // add your collection slugs here
-      ],
-      access: {
-        // add custom access controls per collection here
+      collections: {
+        posts: {},
+        "posts-with-drafts": {
+          // ...
+          enableRestore: false,
+          enableHardDelete: false,
+          softDeleteAccess: (args) => args.req.user.role === "admin",
+        },
       },
     }),
   ],
