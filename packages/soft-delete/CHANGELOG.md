@@ -1,5 +1,32 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.6
+
+### Minor Changes
+
+- feat: enable or disable hard delete and restore ([e392111](https://github.com/rilrom/payload-bites/commit/e392111))
+
+#### BREAKING CHANGES
+
+New plugin config structure
+
+```
+softDeletePlugin({
+  collections: {
+    posts: {},
+    "posts-with-drafts": {
+      enableRestore: false,
+      enableHardDelete: false,
+      softDeleteAccess: (args) => args.req.user.role === "admin",
+    },
+  },
+}),
+```
+
+### Patch Changes
+
+- fix: custom access control ([ab89c57](https://github.com/rilrom/payload-bites/commit/ab89c57))
+
 ## 1.0.0-beta.5
 
 ### Minor Changes

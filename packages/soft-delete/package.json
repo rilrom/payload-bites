@@ -1,7 +1,7 @@
 {
   "name": "@payload-bites/soft-delete",
   "description": "never lose your payload documents again",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "author": "Riley Langbein <rilrom2@hotmail.com>",
   "repository": "https://github.com/rilrom/payload-bites",
   "bugs": "https://github.com/rilrom/payload-bites/issues",
