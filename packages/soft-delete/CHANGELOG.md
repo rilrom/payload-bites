@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.8
+
+### Minor Changes
+
+- feat: upgrade dependencies ([3547e33](https://github.com/rilrom/payload-bites/commit/3547e33))
+
 ## 1.0.0-beta.7
 
 ### Patch Changes
