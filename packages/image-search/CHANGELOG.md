@@ -1,5 +1,19 @@
 # @payload-bites/image-search
 
+## 2.0.0
+
+### Major Changes
+
+- major: update upload component ([3986151](https://github.com/rilrom/payload-bites/commit/3986151))
+
+#### BREAKING CHANGES
+
+Payload v3.24.0 or greater is required to use v2.x of the image search plugin.
+
+### Minor Changes
+
+- feat: upgrade dependencies ([3547e33](https://github.com/rilrom/payload-bites/commit/3547e33))
+
 ## 1.4.1
 
 ### Patch Changes
