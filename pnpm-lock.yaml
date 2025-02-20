@@ -352,13 +352,13 @@ importers:
   packages/image-search:
     dependencies:
       '@payloadcms/translations':
-        specifier: ^3.19.0
+        specifier: ^3.24.0
         version: 3.24.0
       '@payloadcms/ui':
-        specifier: ^3.19.0
+        specifier: ^3.24.0
         version: 3.24.0(@types/react@19.0.10)(monaco-editor@0.52.2)(next@15.1.7(@playwright/test@1.50.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.24.0(graphql@16.10.0)(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)
       payload:
-        specifier: ^3.19.0
+        specifier: ^3.24.0
         version: 3.24.0(graphql@16.10.0)(typescript@5.7.3)
       react-plock:
         specifier: ^3.4.0
