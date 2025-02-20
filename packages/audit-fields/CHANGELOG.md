@@ -1,5 +1,11 @@
 # @payload-bites/audit-fields
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: upgrade dependencies ([3547e33](https://github.com/rilrom/payload-bites/commit/3547e33))
+
 ## 1.1.0
 
 ### Minor Changes
