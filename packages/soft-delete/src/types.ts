@@ -1,8 +1,25 @@
-import { Access, CollectionSlug } from "payload";
+import { CollectionSlug, PayloadRequest } from "payload";
+
+export type SoftDeletePluginAccessArgsData = Record<string, any> & {
+  collection: CollectionSlug;
+  ids: string[];
+  deletedAt?: Date | null;
+};
+
+export type SoftDeletePluginAccessArgs = {
+  data: SoftDeletePluginAccessArgsData;
+  req: PayloadRequest;
+};
+
+export type SoftDeletePluginAccess = (
+  args: SoftDeletePluginAccessArgs,
+) => Promise<boolean>;
 
 export type SoftDeletePluginOptions = {
   /**
-   * Enables or disables the plugin. Defaults to true.
+   * Enables or disables the plugin.
+   *
+   * @default true
    */
   enabled?: boolean;
 
@@ -30,21 +47,21 @@ export type SoftDeletePluginOptions = {
        *
        * @example softDeleteAccess: ({ req: { user } }) => user.role === "admin"
        */
-      softDeleteAccess?: Access;
+      softDeleteAccess?: SoftDeletePluginAccess;
 
       /**
        * Function that determines hard delete access for the collection.
        *
        * @example hardDeleteAccess: ({ req: { user } }) => user.role === "admin"
        */
-      hardDeleteAccess?: Access;
+      hardDeleteAccess?: SoftDeletePluginAccess;
 
       /**
        * Function that determines restore access for the collection.
        *
        * @example restoreAccess: ({ req: { user } }) => user.role === "admin"
        */
-      restoreAccess?: Access;
+      restoreAccess?: SoftDeletePluginAccess;
     };
   };
 };

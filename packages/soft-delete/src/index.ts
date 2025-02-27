@@ -1,11 +1,14 @@
-import type { AccessArgs, CollectionConfig, Config } from "payload";
+import { combineQueries, type CollectionConfig, type Config } from "payload";
 
 import { endpoints } from "./endpoints/index.js";
 import { deepMerge } from "./utils/deepMerge.js";
 import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
-import { defaultAccessControl, defaultPluginOptions } from "./defaults.js";
+import { defaultPluginOptions } from "./defaults.js";
 import { translations } from "./translations.js";
-import type { SoftDeletePluginOptions } from "./types.js";
+import {
+  type SoftDeletePluginAccessArgs,
+  type SoftDeletePluginOptions,
+} from "./types.js";
 
 export const softDeletePlugin =
   (pluginOptions?: SoftDeletePluginOptions) =>
@@ -134,12 +137,19 @@ export const softDeletePlugin =
       modifiedCollection.access = {
         ...modifiedCollection.access,
         delete: () => false,
-        update: (args) => {
-          if (args?.data?.deletedAt) {
-            return false;
-          }
+        update: async (args) => {
+          const deletedAtQuery = {
+            deletedAt: {
+              exists: false,
+            },
+          };
 
-          return collection.access?.update?.(args) ?? Boolean(args.req.user);
+          const access = await collection.access?.update?.(args);
+
+          return combineQueries(
+            deletedAtQuery,
+            access ?? Boolean(args.req.user),
+          );
         },
       };
 
@@ -148,46 +158,49 @@ export const softDeletePlugin =
         softDelete: {
           enableHardDelete,
           enableRestore,
-          softDeleteAccess: (args: AccessArgs) => {
+          softDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
             if (args?.data?.deletedAt) {
               return false;
             }
 
-            return (
-              mergedOptions.collections?.[collection.slug]?.softDeleteAccess?.(
-                args,
-              ) ?? defaultAccessControl(args)
-            );
-          },
-          hardDeleteAccess: (args: AccessArgs) => {
-            if (args?.data?.deletedAt === null) {
-              return false;
-            }
+            const access =
+              await mergedOptions.collections?.[
+                collection.slug
+              ]?.softDeleteAccess?.(args);
 
+            return access ?? Boolean(args.req.user);
+          },
+          hardDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
             if (enableHardDelete === false) {
               return false;
             }
 
-            return (
-              mergedOptions.collections?.[collection.slug]?.hardDeleteAccess?.(
-                args,
-              ) ?? defaultAccessControl(args)
-            );
-          },
-          restoreAccess: (args: AccessArgs) => {
             if (args?.data?.deletedAt === null) {
               return false;
             }
 
+            const access =
+              await mergedOptions.collections?.[
+                collection.slug
+              ]?.hardDeleteAccess?.(args);
+
+            return access ?? Boolean(args.req.user);
+          },
+          restoreAccess: async (args: SoftDeletePluginAccessArgs) => {
             if (enableRestore === false) {
               return false;
             }
 
-            return (
-              mergedOptions.collections?.[collection.slug]?.restoreAccess?.(
-                args,
-              ) ?? defaultAccessControl(args)
-            );
+            if (args?.data?.deletedAt === null) {
+              return false;
+            }
+
+            const access =
+              await mergedOptions.collections?.[
+                collection.slug
+              ]?.restoreAccess?.(args);
+
+            return access ?? Boolean(args.req.user);
           },
         },
       };
