@@ -1,5 +1,16 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.9
+
+### Minor Changes
+
+- feat: improve access control ([2bf2b6a](https://github.com/rilrom/payload-bites/commit/2bf2b6a))
+- feat: replace custom modal with ConfirmationModal ([b74a2bc](https://github.com/rilrom/payload-bites/commit/b74a2bc))
+
+#### BREAKING CHANGES
+
+Payload v3.24.0 or greater is required to use v1.x of the soft delete plugin.
+
 ## 1.0.0-beta.8
 
 ### Minor Changes
