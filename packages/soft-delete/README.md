@@ -7,6 +7,13 @@ Never lose your Payload documents again, soft delete is here to save the day.
 
 https://github.com/user-attachments/assets/e8263a98-cb5b-447d-a6c5-b200091408c9
 
+## Compatibility table
+
+| Payload version    | Soft delete version |
+| ------------------ | ------------------- |
+| v3.23.0 or earlier | Incompatible        |
+| v3.24.0 or later   | v1.x                |
+
 ## Quick start
 
 1. Install the plugin:

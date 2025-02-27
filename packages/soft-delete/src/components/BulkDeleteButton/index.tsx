@@ -4,8 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation.js";
 import { getTranslation } from "@payloadcms/translations";
 import {
-  Button,
-  Modal,
+  ConfirmationModal,
   Pill,
   toast,
   useConfig,
@@ -22,8 +21,6 @@ import type {
   TranslationsObject,
 } from "../../translations.js";
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
-
-const baseClass = "delete-documents";
 
 interface BulkDeleteButtonProps {
   collectionSlug: string;
@@ -64,13 +61,17 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
   };
 
   const handleCancel = () => {
+    if (deleting) {
+      return;
+    }
+
     setDeleting(false);
     closeModal(modalSlug);
   };
 
   const handleDelete = async () => {
     try {
-      if (!enabled || !allowDelete) {
+      if (!enabled || !allowDelete || deleting) {
         return;
       }
 
@@ -125,7 +126,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
         clearRouteCache();
 
-        return null;
+        return;
       }
 
       if (json.errors) {
@@ -177,40 +178,17 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
       >
         <Pill onClick={handleOpen}>{t("general:delete")}</Pill>
       </div>
-      <Modal className={baseClass} slug={modalSlug}>
-        <div className={`${baseClass}__wrapper`}>
-          <div className={`${baseClass}__content`}>
-            <h1>{t("general:confirmDeletion")}</h1>
-            <p>
-              {t("general:aboutToDeleteCount", {
-                count: selection.count,
-                label: getTranslation(
-                  selection.count > 1 ? plural : singular,
-                  i18n,
-                ),
-              })}
-            </p>
-          </div>
-          <div className={`${baseClass}__controls`}>
-            <Button
-              buttonStyle="secondary"
-              id="confirm-cancel"
-              onClick={deleting ? undefined : handleCancel}
-              size="large"
-              type="button"
-            >
-              {t("general:cancel")}
-            </Button>
-            <Button
-              id="confirm-delete"
-              onClick={deleting ? undefined : handleDelete}
-              size="large"
-            >
-              {deleting ? t("general:deleting") : t("general:confirm")}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      <ConfirmationModal
+        body={t("general:aboutToDeleteCount", {
+          count: selection.count,
+          label: getTranslation(selection.count > 1 ? plural : singular, i18n),
+        })}
+        confirmingLabel={t("general:deleting")}
+        heading={t("general:confirmDeletion")}
+        modalSlug={modalSlug}
+        onCancel={handleCancel}
+        onConfirm={handleDelete}
+      />
     </>
   );
 };

@@ -3,14 +3,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation.js";
 import {
-  Button,
-  Modal,
+  ConfirmationModal,
   Pill,
   toast,
   Translation,
   useConfig,
   useDocumentInfo,
-  useEditDepth,
   useForm,
   useFormFields,
   useModal,
@@ -26,11 +24,6 @@ import type {
   TranslationsObject,
 } from "../../translations.js";
 
-// This can be found at ui/src/elements/Drawer
-const DRAWER_Z_BASE = 100;
-
-const baseClass = "delete-document";
-
 interface DeleteButtonProps {
   field: Field;
 }
@@ -45,7 +38,6 @@ export const DeleteButton = (props: DeleteButtonProps) => {
   const { showSoftDeleted } = useSoftDelete();
   const [deleting, setDeleting] = useState(false);
   const { closeModal, openModal } = useModal();
-  const editDepth = useEditDepth();
   const deletedAt = useFormFields(([fields]) => fields.deletedAt);
 
   const enabled = field.admin?.custom?.enabled;
@@ -74,7 +66,7 @@ export const DeleteButton = (props: DeleteButtonProps) => {
   };
 
   const handleCancel = () => {
-    if (!enabled) {
+    if (!enabled || deleting) {
       return;
     }
 
@@ -84,7 +76,7 @@ export const DeleteButton = (props: DeleteButtonProps) => {
 
   const handleDelete = async () => {
     try {
-      if (!enabled) {
+      if (!enabled || deleting) {
         return;
       }
 
@@ -127,7 +119,7 @@ export const DeleteButton = (props: DeleteButtonProps) => {
         addDefaultError();
       }
 
-      return false;
+      return;
     } catch {
       return addDefaultError();
     }
@@ -194,44 +186,26 @@ export const DeleteButton = (props: DeleteButtonProps) => {
       >
         <Pill onClick={handleOpen}>{t("general:delete")}</Pill>
       </div>
-      <Modal
-        className={baseClass}
-        slug={modalSlug}
-        style={{
-          zIndex: DRAWER_Z_BASE + editDepth,
-        }}
-      >
-        <div className={`${baseClass}__wrapper`}>
-          <div className={`${baseClass}__content`}>
-            <h1>{t("general:confirmDeletion")}</h1>
-            <p>
-              <Translation
-                elements={{
-                  "1": ({ children }) => <strong>{children}</strong>,
-                }}
-                i18nKey="general:aboutToDelete"
-                t={t as any}
-                variables={{
-                  label: getTranslation(collectionConfig.labels.singular, i18n),
-                  title,
-                }}
-              />
-            </p>
-          </div>
-          <div className={`${baseClass}__controls`}>
-            <Button
-              onClick={deleting ? undefined : handleCancel}
-              size="large"
-              buttonStyle="secondary"
-            >
-              {t("general:cancel")}
-            </Button>
-            <Button onClick={deleting ? undefined : handleDelete} size="large">
-              {deleting ? t("general:deleting") : t("general:confirm")}
-            </Button>
-          </div>
-        </div>
-      </Modal>
+      <ConfirmationModal
+        body={
+          <Translation
+            elements={{
+              "1": ({ children }) => <strong>{children}</strong>,
+            }}
+            i18nKey="general:aboutToDelete"
+            t={t as any}
+            variables={{
+              label: getTranslation(collectionConfig.labels.singular, i18n),
+              title,
+            }}
+          />
+        }
+        confirmingLabel={t("general:deleting")}
+        heading={t("general:confirmDeletion")}
+        modalSlug={modalSlug}
+        onCancel={handleCancel}
+        onConfirm={handleDelete}
+      />
     </>
   );
 };
