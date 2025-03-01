@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.10
+
+### Minor Changes
+
+- feat: add visual indicator to collection title ([685b079](https://github.com/rilrom/payload-bites/commit/685b079))
+
 ## 1.0.0-beta.9
 
 ### Minor Changes
