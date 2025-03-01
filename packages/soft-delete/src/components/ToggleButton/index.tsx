@@ -39,9 +39,23 @@ export const ToggleButton = () => {
     }
   }, []);
 
-  const label = t("softDelete:viewDocuments", {
-    type: t(showSoftDeleted ? "softDelete:active" : "softDelete:deleted"),
-  });
+  // Provides a visual indicator that you are viewing soft deleted documents
+  useEffect(() => {
+    const title = document.querySelector(".list-header h1");
+
+    if (!title) {
+      return;
+    }
+
+    const existingSpan = title.querySelector("span");
+    existingSpan?.remove();
+
+    if (showSoftDeleted) {
+      const span = document.createElement("span");
+      span.textContent = ` - ${t("softDelete:deleted")}`;
+      title.appendChild(span);
+    }
+  }, [showSoftDeleted, t]);
 
   return (
     <button
@@ -51,7 +65,7 @@ export const ToggleButton = () => {
       style={{ display: "none" }}
       onClick={handleToggle}
     >
-      {label}
+      {t("softDelete:toggleDeleted")}
     </button>
   );
 };
