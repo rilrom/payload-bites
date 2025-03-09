@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0
+
+### Major Changes
+
+- feat: soft delete release
+
 ## 1.0.0-beta.11
 
 ### Patch Changes
