@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.5.2",
-    "@swc/core": "^1.11.5",
+    "@swc/core": "^1.11.8",
     "copyfiles": "^2.4.1",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },
