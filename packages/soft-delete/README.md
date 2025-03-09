@@ -25,7 +25,7 @@ pnpm add @payload-bites/soft-delete
 2. Add the plugin to your `payload.config.ts`:
 
 ```ts
-/// ....
+// ...
 import { softDeletePlugin } from "@payload-bites/soft-delete";
 
 export default buildConfig({
@@ -55,11 +55,66 @@ For defaults, refer to [defaults.ts](./src/defaults.ts).
 
 For options, refer to [types.ts](./src/types.ts).
 
+## Querying
+
+You can retrieve active or soft deleted documents by checking for the existence of the `deletedAt` field.
+
+### Local API
+
+```ts
+const result = await payload.find({
+  collection: "posts",
+  where: {
+    deletedAt: {
+      exists: false,
+    },
+  },
+});
+```
+
+### REST API
+
+```ts
+import { stringify } from "qs-esm";
+import type { Where } from "payload";
+
+const query: Where = {
+  deletedAt: {
+    exists: false,
+  },
+};
+
+const getPosts = async () => {
+  const stringifiedQuery = stringify(
+    {
+      where: query,
+    },
+    { addQueryPrefix: true },
+  );
+
+  const response = await fetch(
+    `http://localhost:3000/api/posts${stringifiedQuery}`,
+  );
+};
+```
+
+### GraphQL API
+
+```ts
+query {
+  Posts(where: { deletedAt: { exists: false } }) {
+    docs {
+      title
+    }
+  }
+}
+```
+
 ## Roadmap
 
 - [x] Add modal to hard delete.
 - [x] Enable/disable restore functionality per collection.
 - [x] Enable/disable hard delete functionality per collection.
 - [ ] Schedule automatic deletion after certain number of days.
-- [ ] Documentation (including API examples).
+- [x] Documentation (including API examples).
 - [x] Translations.
