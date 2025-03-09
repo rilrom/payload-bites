@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.0-beta.11
+
+### Patch Changes
+
+- chore: add documentation ([c2249d9](https://github.com/rilrom/payload-bites/commit/c2249d9))
+
 ## 1.0.0-beta.10
 
 ### Minor Changes
