@@ -23,6 +23,7 @@
   "devDependencies": {
     "@swc/cli": "^0.5.2",
     "@swc/core": "^1.11.8",
+    "chokidar": "^4.0.3",
     "copyfiles": "^2.4.1",
     "prettier": "^3.5.3",
     "turbo": "^2.4.4",
