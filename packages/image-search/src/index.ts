@@ -40,6 +40,7 @@ export const imageSearchPlugin =
           components: {
             ...(collection.admin?.components || {}),
             edit: {
+              ...(collection.admin?.components?.edit || {}),
               Upload: "@payload-bites/image-search/client#CustomUpload",
             },
           },
