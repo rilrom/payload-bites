@@ -63,8 +63,12 @@ export const softDeletePlugin =
         ),
         components: {
           ...(modifiedCollection.admin?.components || {}),
-          beforeList: ["@payload-bites/soft-delete/client#ToggleButton"],
+          beforeList: [
+            ...(modifiedCollection.admin?.components?.beforeList || []),
+            "@payload-bites/soft-delete/client#ToggleButton",
+          ],
           beforeListTable: [
+            ...(modifiedCollection.admin?.components?.beforeListTable || []),
             "@payload-bites/soft-delete/client#BulkSoftDeleteButton",
             {
               path: "@payload-bites/soft-delete/client#BulkDeleteButton",
