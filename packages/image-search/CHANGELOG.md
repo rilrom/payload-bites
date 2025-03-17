@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 2.0.1
+
+### Patch Changes
+
+- fix: allow other custom components to flow through ([ada3f19](https://github.com/rilrom/payload-bites/commit/ada3f19))
+
 ## 2.0.0
 
 ### Major Changes
