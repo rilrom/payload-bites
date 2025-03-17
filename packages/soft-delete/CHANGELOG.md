@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.1
+
+### Patch Changes
+
+- fix: allow other custom components to flow through ([47fda4f](https://github.com/rilrom/payload-bites/commit/47fda4f))
+
 ## 1.0.0
 
 ### Major Changes
