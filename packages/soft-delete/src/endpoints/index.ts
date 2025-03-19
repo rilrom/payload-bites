@@ -16,18 +16,29 @@ export const endpoints: Endpoint[] = [
         throw new Forbidden();
       }
 
-      const response = await req.payload.update({
-        collection: data?.["collection"],
-        draft: true,
-        where: {
-          id: {
-            in: data?.["ids"],
+      let response;
+
+      if (data?.["id"]) {
+        response = await req.payload.update({
+          collection: data?.["collection"],
+          id: data["id"],
+          data: {
+            deletedAt: new Date(),
           },
-        },
-        data: {
-          deletedAt: new Date(),
-        },
-      });
+        });
+      } else if (data?.["ids"]) {
+        response = await req.payload.update({
+          collection: data?.["collection"],
+          where: {
+            id: {
+              in: data["ids"],
+            },
+          },
+          data: {
+            deletedAt: new Date(),
+          },
+        });
+      }
 
       return Response.json(response);
     },
@@ -50,14 +61,23 @@ export const endpoints: Endpoint[] = [
         throw new Forbidden();
       }
 
-      const response = await req.payload.delete({
-        collection: data?.["collection"],
-        where: {
-          id: {
-            in: data?.["ids"],
+      let response;
+
+      if (data?.["id"]) {
+        response = await req.payload.delete({
+          collection: data?.["collection"],
+          id: data["id"],
+        });
+      } else if (data?.["ids"]) {
+        response = await req.payload.delete({
+          collection: data?.["collection"],
+          where: {
+            id: {
+              in: data["ids"],
+            },
           },
-        },
-      });
+        });
+      }
 
       return Response.json(response);
     },
@@ -80,18 +100,29 @@ export const endpoints: Endpoint[] = [
         throw new Forbidden();
       }
 
-      const response = await req.payload.update({
-        collection: data?.["collection"],
-        draft: true,
-        where: {
-          id: {
-            in: data?.["ids"],
+      let response;
+
+      if (data?.["id"]) {
+        response = await req.payload.update({
+          collection: data?.["collection"],
+          id: data["id"],
+          data: {
+            deletedAt: null,
           },
-        },
-        data: {
-          deletedAt: null,
-        },
-      });
+        });
+      } else if (data?.["ids"]) {
+        response = await req.payload.update({
+          collection: data?.["collection"],
+          where: {
+            id: {
+              in: data["ids"],
+            },
+          },
+          data: {
+            deletedAt: null,
+          },
+        });
+      }
 
       return Response.json(response);
     },

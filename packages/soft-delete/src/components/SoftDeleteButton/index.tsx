@@ -44,7 +44,7 @@ export const SoftDeleteButton = () => {
         method: "POST",
         body: JSON.stringify({
           collection: collectionSlug,
-          ids: [id],
+          id,
           deletedAt: deletedAt?.value,
         }),
       });

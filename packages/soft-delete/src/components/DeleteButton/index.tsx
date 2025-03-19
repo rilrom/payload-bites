@@ -87,7 +87,7 @@ export const DeleteButton = (props: DeleteButtonProps) => {
         method: "DELETE",
         body: JSON.stringify({
           collection: collectionSlug,
-          ids: [id],
+          id,
           deletedAt: deletedAt?.value,
         }),
       });

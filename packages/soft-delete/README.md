@@ -107,6 +107,10 @@ query {
 }
 ```
 
+## Caveats
+
+- It is currently not possible to soft delete a draft document that has invalid fields (e.g. required) unless the document has a previously valid published version or you resolve the invalid fields.
+
 ## Roadmap
 
 - [x] Add modal to hard delete.

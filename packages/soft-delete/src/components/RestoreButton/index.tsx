@@ -56,7 +56,7 @@ export const RestoreButton = (props: RestoreButtonProps) => {
         method: "POST",
         body: JSON.stringify({
           collection: collectionSlug,
-          ids: [id],
+          id,
           deletedAt: deletedAt?.value,
         }),
       });
