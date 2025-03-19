@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.2
+
+### Patch Changes
+
+- fix: collections with restored drafts not editable ([b55235c](https://github.com/rilrom/payload-bites/commit/b55235c))
+
 ## 1.0.1
 
 ### Patch Changes
