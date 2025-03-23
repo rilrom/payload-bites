@@ -23,7 +23,7 @@ export default buildConfig({
     activityLogPlugin({
       // ...
       access: {
-        read: (args) => args.req.user.role === "admin"
+        read: (args) => args.req.user.role === "admin",
       },
       collections: {
         posts: {},

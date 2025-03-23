@@ -1,22 +1,9 @@
-import {
-  type Access,
-  type CollectionSlug,
-  type GlobalSlug,
-  type PayloadRequest,
-} from "payload";
+import { type Access, type CollectionSlug, type GlobalSlug } from "payload";
 
 export type ActivityLogPluginSharedLoggingOptions = {
   enableIpAddressLogging: boolean;
   enableDeviceInfoLogging: boolean;
 };
-
-export type ActivityLogPluginAccessArgs = {
-  req: PayloadRequest;
-};
-
-export type ActivityLogPluginAccess = (
-  args: ActivityLogPluginAccessArgs,
-) => boolean | Promise<boolean>;
 
 export type ActivityLogPluginOptions = {
   /**
@@ -30,21 +17,21 @@ export type ActivityLogPluginOptions = {
     /**
      * Function that determines read access for the activity log collection.
      *
-     * @example readAccess: ({ req: { user } }) => user.role === "admin"
+     * @example read: ({ req: { user } }) => user.role === "admin"
      */
     read?: Access;
 
     /**
      * Function that determines update access for the activity log collection.
      *
-     * @example updateAccess: ({ req: { user } }) => user.role === "admin"
+     * @example update: ({ req: { user } }) => user.role === "admin"
      */
     update?: Access;
 
     /**
      * Function that determines delete access for the activity log collection.
      *
-     * @example deleteAccess: ({ req: { user } }) => user.role === "admin"
+     * @example delete: ({ req: { user } }) => user.role === "admin"
      */
     delete?: Access;
   };
