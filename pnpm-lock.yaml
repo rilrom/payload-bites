@@ -34,6 +34,55 @@ importers:
         specifier: ^5.8.2
         version: 5.8.2
 
+  apps/activity-log:
+    dependencies:
+      '@payload-bites/activity-log':
+        specifier: workspace:*
+        version: link:../../packages/activity-log
+      '@payloadcms/db-postgres':
+        specifier: 3.29.0
+        version: 3.29.0(@types/react@19.0.12)(payload@3.29.0(graphql@16.10.0)(typescript@5.8.2))(react@19.0.0)
+      '@payloadcms/next':
+        specifier: 3.29.0
+        version: 3.29.0(@types/react@19.0.12)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.2.3(@playwright/test@1.51.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.29.0(graphql@16.10.0)(typescript@5.8.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)
+      '@payloadcms/translations':
+        specifier: 3.29.0
+        version: 3.29.0
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      next:
+        specifier: ^15.2.3
+        version: 15.2.3(@playwright/test@1.51.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4)
+      payload:
+        specifier: 3.29.0
+        version: 3.29.0(graphql@16.10.0)(typescript@5.8.2)
+      react:
+        specifier: ^19
+        version: 19.0.0
+      react-dom:
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.13.10
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.0.12
+      '@types/react-dom':
+        specifier: ^19.0.4
+        version: 19.0.4(@types/react@19.0.12)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.8.2
+
   apps/audit-fields:
     dependencies:
       '@payload-bites/audit-fields':
@@ -238,6 +287,40 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.12)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.8.2
+
+  packages/activity-log:
+    dependencies:
+      '@payloadcms/translations':
+        specifier: ^3
+        version: 3.29.0
+      '@payloadcms/ui':
+        specifier: ^3
+        version: 3.29.0(@types/react@19.0.12)(monaco-editor@0.52.2)(next@15.2.3(@playwright/test@1.51.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.77.4))(payload@3.29.0(graphql@16.10.0)(typescript@5.8.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)
+      payload:
+        specifier: ^3
+        version: 3.29.0(graphql@16.10.0)(typescript@5.8.2)
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.0.12
+      '@types/react-dom':
+        specifier: ^19.0.4
+        version: 19.0.4(@types/react@19.0.12)
+      react:
+        specifier: ^19
+        version: 19.0.0
+      react-dom:
+        specifier: ^19
+        version: 19.0.0(react@19.0.0)
       typescript:
         specifier: ^5.7.3
         version: 5.8.2
