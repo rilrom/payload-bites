@@ -6,3 +6,4 @@ Collection of various bited-sized Payload v3 plugins and tools.
 - [Fullscreen editor](packages/fullscreen-editor/) - provides a fullscreen mode for the lexical rich text editor.
 - [Audit fields](packages/audit-fields/) - add createdBy and lastModifiedBy audit fields to collections and globals.
 - [Soft delete](packages/soft-delete/) - never lose your Payload documents again.
+- [Activity log](packages/activity-log/) - keep an eye on everything happening in your cms.
