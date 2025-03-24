@@ -27,6 +27,10 @@ export default buildConfig({
     fallbackLanguage: "en",
     supportedLanguages: { en, es },
   },
+  localization: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+  },
   collections: [Collections, CollectionWithDrafts, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

@@ -94,13 +94,15 @@ export const RestoreButton = (props: RestoreButtonProps) => {
   // Places the restore button in the popup list if available.
   // If it's not available (e.g. create access control is set to false), it will be placed where the popup list usually is as a pill.
   useEffect(() => {
-    const isEditScreen = document.querySelector(".collection-edit--is-editing");
+    const editScreen = document.querySelector(
+      ".collection-edit.collection-edit--is-editin",
+    );
 
-    if (!enabled || !showSoftDeleted || !isEditScreen) {
+    if (!enabled || !showSoftDeleted || !editScreen) {
       return;
     }
 
-    const docControlsControlsWrapper = document.querySelector(
+    const docControlsControlsWrapper = editScreen.querySelector(
       ".doc-controls__controls-wrapper",
     );
 
@@ -117,7 +119,7 @@ export const RestoreButton = (props: RestoreButtonProps) => {
         restoreButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList = document.querySelector(".popup-button-list");
+      const popupButtonList = editScreen.querySelector(".popup-button-list");
 
       const restoreButtonList = document.getElementById("restore-button-list");
 

@@ -82,14 +82,16 @@ export const SoftDeleteButton = () => {
   // Places the soft delete button in the popup list if available.
   // If it's not available (e.g. create access control is set to false), it will be placed where the popup list usually is as a pill.
   useEffect(() => {
-    const isEditScreen = document.querySelector(".collection-edit--is-editing");
+    const editScreen = document.querySelector(
+      ".collection-edit.collection-edit--is-editing",
+    );
 
     // If we're viewing a soft deleted document or we're on the create screen, we don't want the soft delete button to show
-    if (showSoftDeleted || !isEditScreen) {
+    if (showSoftDeleted || !editScreen) {
       return;
     }
 
-    const docControlsControlsWrapper = document.querySelector(
+    const docControlsControlsWrapper = editScreen.querySelector(
       ".doc-controls__controls-wrapper",
     );
 
@@ -108,7 +110,7 @@ export const SoftDeleteButton = () => {
         softDeleteButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList = document.querySelector(".popup-button-list");
+      const popupButtonList = editScreen.querySelector(".popup-button-list");
 
       const softDeleteButtonList = document.getElementById(
         "soft-delete-button-list",

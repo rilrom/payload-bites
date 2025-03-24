@@ -10,6 +10,7 @@ export const CollectionWithDrafts: CollectionConfig = {
       name: "text",
       type: "text",
       required: true,
+      localized: true,
     },
     {
       name: "array",
