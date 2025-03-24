@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 1.0.3
+
+### Patch Changes
+
+- fix: incorrect placement of edit action buttons ([bad1e24](https://github.com/rilrom/payload-bites/commit/bad1e24))
+
 ## 1.0.2
 
 ### Patch Changes
