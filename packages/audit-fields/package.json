@@ -40,15 +40,14 @@
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "@payloadcms/translations": "^3",
-    "@payloadcms/ui": "^3",
+    "next": "^15.2.3",
     "payload": "^3",
     "react": "^19",
     "react-dom": "^19"
