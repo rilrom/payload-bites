@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 2.0.2
+
+### Patch Changes
+
+- chore: upgrade dependencies ([b85b4fa](https://github.com/rilrom/payload-bites/commit/b85b4fa))
+
 ## 2.0.1
 
 ### Patch Changes
