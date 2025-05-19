@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.4.1
+
+### Patch Changes
+
+- chore: upgrade dependencies ([b85b4fa](https://github.com/rilrom/payload-bites/commit/b85b4fa))
+
 ## 1.4.0
 
 ### Minor Changes
