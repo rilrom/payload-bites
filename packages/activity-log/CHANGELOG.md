@@ -1,5 +1,11 @@
 # @payload-bites/activity-log
 
+## 1.0.3
+
+### Patch Changes
+
+- chore: upgrade dependencies ([bdd26e8](https://github.com/rilrom/payload-bites/commit/bdd26e8))
+
 ## 1.0.2
 
 ### Patch Changes
