@@ -1,5 +1,19 @@
 # @payload-bites/soft-delete
 
+## 2.0.0
+
+### Major Changes
+
+- major: adjust toggle button placement ([99b99d7](https://github.com/rilrom/payload-bites/commit/99b99d7))
+
+#### BREAKING CHANGES
+
+Payload v3.39.0 or greater is required to use v2.x of the soft delete plugin.
+
+### Patch Changes
+
+- chore: upgrade dependencies ([bdd26e8](https://github.com/rilrom/payload-bites/commit/bdd26e8))
+
 ## 1.0.4
 
 ### Patch Changes

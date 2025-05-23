@@ -9,7 +9,8 @@ https://github.com/user-attachments/assets/e8263a98-cb5b-447d-a6c5-b200091408c9
 | Payload version    | Soft delete version |
 | ------------------ | ------------------- |
 | v3.23.0 or earlier | Incompatible        |
-| v3.24.0 or later   | v1.x                |
+| v3.24.0 to 3.38.0  | v1.x                |
+| v3.39.0 or later   | v2.x                |
 
 ## Quick start
 
