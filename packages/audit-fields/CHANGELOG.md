@@ -1,5 +1,11 @@
 # @payload-bites/audit-fields
 
+## 1.2.2
+
+### Patch Changes
+
+- chore: upgrade dependencies ([bdd26e8](https://github.com/rilrom/payload-bites/commit/bdd26e8))
+
 ## 1.2.1
 
 ### Patch Changes
