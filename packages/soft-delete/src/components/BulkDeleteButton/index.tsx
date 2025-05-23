@@ -176,7 +176,9 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
           display: showSoftDeleted && selection.count ? "inherit" : "none",
         }}
       >
-        <Pill onClick={handleOpen}>{t("general:delete")}</Pill>
+        <Pill onClick={handleOpen} size="small">
+          {t("general:delete")}
+        </Pill>
       </div>
       <ConfirmationModal
         body={t("general:aboutToDeleteCount", {

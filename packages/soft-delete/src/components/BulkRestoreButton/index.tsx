@@ -148,7 +148,9 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
         display: showSoftDeleted && selection.count ? "inherit" : "none",
       }}
     >
-      <Pill onClick={handleRestore}>{t("softDelete:restore")}</Pill>
+      <Pill onClick={handleRestore} size="small">
+        {t("softDelete:restore")}
+      </Pill>
     </div>
   );
 };

@@ -25,16 +25,33 @@ export const ToggleButton = () => {
 
   // Moves the toggle button near the heading
   useEffect(() => {
-    const listHeader = document.querySelector(".list-header");
-    const collectionListSubheader = document.querySelector(
-      ".collection-list__sub-header",
+    const titleActions = document.querySelector(
+      ".list-header__title-and-actions",
     );
-
+    const createNewButton = document.querySelector(
+      ".list-header__title-actions a",
+    );
     const toggleButton = document.getElementById("toggle-button");
 
-    if (listHeader && collectionListSubheader && toggleButton) {
-      listHeader.insertBefore(toggleButton, collectionListSubheader);
+    // Create access is true
+    if (
+      titleActions &&
+      createNewButton &&
+      toggleButton &&
+      createNewButton.parentNode
+    ) {
+      createNewButton.parentNode.insertBefore(
+        toggleButton,
+        createNewButton.nextSibling,
+      );
+      toggleButton.style.display = "inherit";
 
+      return;
+    }
+
+    // Create access is false
+    if (titleActions && toggleButton) {
+      titleActions.appendChild(toggleButton);
       toggleButton.style.display = "inherit";
     }
   }, []);

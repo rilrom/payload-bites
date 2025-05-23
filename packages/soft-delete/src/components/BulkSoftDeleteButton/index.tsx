@@ -145,7 +145,9 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
         display: !showSoftDeleted && selection.count ? "inherit" : "none",
       }}
     >
-      <Pill onClick={handleSoftDelete}>{t("softDelete:softDelete")}</Pill>
+      <Pill onClick={handleSoftDelete} size="small">
+        {t("softDelete:softDelete")}
+      </Pill>
     </div>
   );
 };

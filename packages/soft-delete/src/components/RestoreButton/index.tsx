@@ -152,7 +152,9 @@ export const RestoreButton = (props: RestoreButtonProps) => {
           display: "none",
         }}
       >
-        <Pill onClick={handleRestore}>{t("softDelete:restore")}</Pill>
+        <Pill onClick={handleRestore} size="small">
+          {t("softDelete:restore")}
+        </Pill>
       </div>
     </>
   );
