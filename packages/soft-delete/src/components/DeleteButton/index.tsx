@@ -153,7 +153,8 @@ export const DeleteButton = (props: DeleteButtonProps) => {
         deleteButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList = editScreen.querySelector(".popup-button-list");
+      const popupButtonList =
+        docControlsPopup.querySelector(".popup-button-list");
 
       const deleteButtonList = document.getElementById("delete-button-list");
 

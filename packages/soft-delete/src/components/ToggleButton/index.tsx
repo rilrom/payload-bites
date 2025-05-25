@@ -29,7 +29,7 @@ export const ToggleButton = () => {
       ".list-header__title-and-actions",
     );
     const createNewButton = document.querySelector(
-      ".list-header__title-actions a",
+      ".list-header__title-actions .list-create-new-doc__create-new-button",
     );
     const toggleButton = document.getElementById("toggle-button");
 

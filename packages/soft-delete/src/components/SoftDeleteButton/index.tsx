@@ -110,7 +110,8 @@ export const SoftDeleteButton = () => {
         softDeleteButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList = editScreen.querySelector(".popup-button-list");
+      const popupButtonList =
+        docControlsPopup.querySelector(".popup-button-list");
 
       const softDeleteButtonList = document.getElementById(
         "soft-delete-button-list",

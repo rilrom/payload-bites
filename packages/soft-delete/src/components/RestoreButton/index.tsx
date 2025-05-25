@@ -119,7 +119,8 @@ export const RestoreButton = (props: RestoreButtonProps) => {
         restoreButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList = editScreen.querySelector(".popup-button-list");
+      const popupButtonList =
+        docControlsPopup.querySelector(".popup-button-list");
 
       const restoreButtonList = document.getElementById("restore-button-list");
 
