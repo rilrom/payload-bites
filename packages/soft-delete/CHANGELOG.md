@@ -1,5 +1,12 @@
 # @payload-bites/soft-delete
 
+## 2.0.1
+
+### Patch Changes
+
+- fix: improve selector specificity ([9cd2177](https://github.com/rilrom/payload-bites/commit/9cd2177))
+- fix: incorrect button size ([233618f](https://github.com/rilrom/payload-bites/commit/233618f))
+
 ## 2.0.0
 
 ### Major Changes
