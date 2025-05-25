@@ -187,9 +187,7 @@ export const DeleteButton = (props: DeleteButtonProps) => {
           display: "none",
         }}
       >
-        <Pill onClick={handleOpen} size="small">
-          {t("general:delete")}
-        </Pill>
+        <Pill onClick={handleOpen}>{t("general:delete")}</Pill>
       </div>
       <ConfirmationModal
         body={

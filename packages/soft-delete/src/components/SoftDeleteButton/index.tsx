@@ -142,9 +142,7 @@ export const SoftDeleteButton = () => {
           display: "none",
         }}
       >
-        <Pill onClick={handleSoftDelete} size="small">
-          {t("softDelete:softDelete")}
-        </Pill>
+        <Pill onClick={handleSoftDelete}>{t("softDelete:softDelete")}</Pill>
       </div>
     </>
   );
