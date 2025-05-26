@@ -1,6 +1,7 @@
 import { RestoreButton as RestoreButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
 import { SoftDeleteButton as SoftDeleteButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
 import { DeleteButton as DeleteButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
+import { VisibilityChecker as VisibilityChecker_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
 import { ToggleButton as ToggleButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
 import { BulkSoftDeleteButton as BulkSoftDeleteButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
 import { BulkDeleteButton as BulkDeleteButton_dbef22401404dda2caddfae892201948 } from "@payload-bites/soft-delete/client";
@@ -14,6 +15,8 @@ export const importMap = {
     SoftDeleteButton_dbef22401404dda2caddfae892201948,
   "@payload-bites/soft-delete/client#DeleteButton":
     DeleteButton_dbef22401404dda2caddfae892201948,
+  "@payload-bites/soft-delete/client#VisibilityChecker":
+    VisibilityChecker_dbef22401404dda2caddfae892201948,
   "@payload-bites/soft-delete/client#ToggleButton":
     ToggleButton_dbef22401404dda2caddfae892201948,
   "@payload-bites/soft-delete/client#BulkSoftDeleteButton":

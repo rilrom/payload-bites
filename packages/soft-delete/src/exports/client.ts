@@ -5,3 +5,4 @@ export { BulkSoftDeleteButton } from "../components/BulkSoftDeleteButton/index.j
 export { BulkDeleteButton } from "../components/BulkDeleteButton/index.js";
 export { BulkRestoreButton } from "../components/BulkRestoreButton/index.js";
 export { ToggleButton } from "../components/ToggleButton/index.js";
+export { VisibilityChecker } from "../components/VisibilityChecker/index.js";

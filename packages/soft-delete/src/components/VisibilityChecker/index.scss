@@ -1,0 +1,9 @@
+@layer payload-default {
+  [data-soft-delete-enabled="true"] {
+    [data-soft-delete-collection="true"] {
+      .list-create-new-doc__create-new-button, .collection-list__no-results a, #copy-locale-data__button, #action-create, #action-duplicate {
+        display: none;
+      }
+    }
+  }
+}

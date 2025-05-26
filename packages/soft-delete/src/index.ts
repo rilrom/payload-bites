@@ -51,6 +51,8 @@ export const softDeletePlugin =
         ...collection,
       };
 
+      const enabledCollections = Object.keys(mergedOptions.collections || {});
+
       const enableHardDelete =
         mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
       const enableRestore =
@@ -80,6 +82,12 @@ export const softDeletePlugin =
               path: "@payload-bites/soft-delete/client#BulkRestoreButton",
               clientProps: {
                 enabled: enableRestore,
+              },
+            },
+            {
+              path: "@payload-bites/soft-delete/client#VisibilityChecker",
+              clientProps: {
+                enabledCollections,
               },
             },
           ],
@@ -133,6 +141,21 @@ export const softDeletePlugin =
             },
             custom: {
               enabled: enableHardDelete,
+            },
+          },
+        },
+        {
+          name: "visibilityChecker",
+          type: "ui",
+          admin: {
+            disableBulkEdit: true,
+            disableListColumn: true,
+            components: {
+              Field: "@payload-bites/soft-delete/client#VisibilityChecker",
+            },
+            custom: {
+              collectionSlug: collection.slug,
+              enabledCollections,
             },
           },
         },

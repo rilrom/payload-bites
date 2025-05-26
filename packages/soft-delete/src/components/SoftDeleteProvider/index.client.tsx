@@ -50,14 +50,16 @@ export const SoftDeleteProviderClient = (
   );
 
   return (
-    <SoftDeleteContext.Provider
-      value={{
-        toggleSoftDelete,
-        showSoftDeleted,
-      }}
-    >
-      {children}
-    </SoftDeleteContext.Provider>
+    <span data-soft-delete-enabled={showSoftDeleted}>
+      <SoftDeleteContext.Provider
+        value={{
+          toggleSoftDelete,
+          showSoftDeleted,
+        }}
+      >
+        {children}
+      </SoftDeleteContext.Provider>
+    </span>
   );
 };
 
