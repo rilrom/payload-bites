@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: hide buttons in soft delete mode ([b35ddf2](https://github.com/rilrom/payload-bites/commit/b35ddf2))
+
 ## 2.0.2
 
 ### Patch Changes
