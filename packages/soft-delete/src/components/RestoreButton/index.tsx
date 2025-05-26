@@ -95,7 +95,7 @@ export const RestoreButton = (props: RestoreButtonProps) => {
   // If it's not available (e.g. create access control is set to false), it will be placed where the popup list usually is as a pill.
   useEffect(() => {
     const editScreen = document.querySelector(
-      ".collection-edit.collection-edit--is-editin",
+      ".collection-edit.collection-edit--is-editing",
     );
 
     if (!enabled || !showSoftDeleted || !editScreen) {
