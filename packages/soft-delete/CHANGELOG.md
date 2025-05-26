@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 2.0.2
+
+### Patch Changes
+
+- fix: missing restore button ([8372222](https://github.com/rilrom/payload-bites/commit/8372222))
+
 ## 2.0.1
 
 ### Patch Changes
