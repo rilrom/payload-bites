@@ -491,16 +491,16 @@ importers:
   packages/soft-delete:
     dependencies:
       '@payloadcms/translations':
-        specifier: ^3.24.0
+        specifier: ^3.39.0
         version: 3.39.1
       '@payloadcms/ui':
-        specifier: ^3.24.0
+        specifier: ^3.39.0
         version: 3.39.1(@types/react@19.1.5)(monaco-editor@0.52.2)(next@15.3.2(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       next:
         specifier: ^15.2.3
         version: 15.3.2(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4)
       payload:
-        specifier: ^3.24.0
+        specifier: ^3.39.0
         version: 3.39.1(graphql@16.11.0)(typescript@5.8.3)
       qs-esm:
         specifier: ^7
