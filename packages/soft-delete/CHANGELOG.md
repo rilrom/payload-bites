@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 2.1.1
+
+### Patch Changes
+
+- fix: incorrect peer dependencies ([f240759](https://github.com/rilrom/payload-bites/commit/f240759))
+
 ## 2.1.0
 
 ### Minor Changes
