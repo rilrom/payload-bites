@@ -2,7 +2,7 @@
 
 Never lose your Payload documents again, soft delete is here to save the day.
 
-https://github.com/user-attachments/assets/e8263a98-cb5b-447d-a6c5-b200091408c9
+https://github.com/user-attachments/assets/4d7334d1-d7f2-4ab7-9421-0c84dfcf38cb
 
 ## Compatibility table
 
