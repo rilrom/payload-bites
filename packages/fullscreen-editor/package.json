@@ -1,7 +1,7 @@
 {
   "name": "@payload-bites/fullscreen-editor",
   "description": "fullscreen mode for the lexical rich text editor",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": "Riley Langbein <rilrom2@hotmail.com>",
   "repository": "https://github.com/rilrom/payload-bites",
   "bugs": "https://github.com/rilrom/payload-bites/issues",
