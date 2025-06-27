@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 2.1.2
+
+### Patch Changes
+
+- chore: upgrade dependencies ([6e0fffd](https://github.com/rilrom/payload-bites/commit/6e0fffd))
+
 ## 2.1.1
 
 ### Patch Changes
