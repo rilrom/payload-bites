@@ -22,11 +22,11 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.5.2",
-    "@swc/core": "^1.11.29",
+    "@swc/core": "^1.12.7",
     "chokidar": "^3.6.0",
     "copyfiles": "^2.4.1",
-    "prettier": "^3.5.3",
-    "turbo": "^2.5.3",
+    "prettier": "^3.6.1",
+    "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "resolutions": {

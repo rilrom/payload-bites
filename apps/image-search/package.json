@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@payload-bites/image-search": "workspace:*",
-    "@payloadcms/db-postgres": "3.39.1",
-    "@payloadcms/next": "3.39.1",
-    "@payloadcms/translations": "3.39.1",
-    "@payloadcms/ui": "3.39.1",
+    "@payloadcms/db-postgres": "3.43.0",
+    "@payloadcms/next": "3.43.0",
+    "@payloadcms/translations": "3.43.0",
+    "@payloadcms/ui": "3.43.0",
     "cross-env": "^7.0.3",
-    "next": "^15.3.2",
-    "payload": "3.39.1",
+    "next": "^15.3.4",
+    "payload": "3.43.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sharp": "^0.33.5"
@@ -30,9 +30,9 @@
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
-    "@types/node": "^22.13.4",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
+    "@types/node": "^22.15.33",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "typescript": "^5.8.3"
   }
 }
