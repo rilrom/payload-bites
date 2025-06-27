@@ -1,7 +1,7 @@
 {
   "name": "@payload-bites/image-search",
   "description": "search for images in Payload using various online image providers",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "author": "Riley Langbein <rilrom2@hotmail.com>",
   "repository": "https://github.com/rilrom/payload-bites",
   "bugs": "https://github.com/rilrom/payload-bites/issues",
@@ -55,10 +55,10 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@payloadcms/translations": "^3.24.0",
-    "@payloadcms/ui": "^3.24.0",
+    "@payloadcms/translations": "^3.43.0",
+    "@payloadcms/ui": "^3.43.0",
     "next": "^15.2.3",
-    "payload": "^3.24.0",
+    "payload": "^3.43.0",
     "react": "^19",
     "react-dom": "^19"
   }

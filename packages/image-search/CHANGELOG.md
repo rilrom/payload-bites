@@ -1,5 +1,15 @@
 # @payload-bites/image-search
 
+## 3.0.0
+
+### Major Changes
+
+- major: switch to upload controls custom component ([19e51e3](https://github.com/rilrom/payload-bites/commit/19e51e3))
+
+#### BREAKING CHANGES
+
+Payload v3.43.0 or greater is required to use v3.x of the image search plugin.
+
 ## 2.0.3
 
 ### Patch Changes

@@ -10,7 +10,8 @@ https://github.com/user-attachments/assets/b99bb160-788f-4689-9e40-005a6fe0bced
 | ------------------ | -------------------- |
 | v3.18.0 or earlier | Incompatible         |
 | v3.19.0 to v3.23.0 | v1.x                 |
-| v3.24.0 or later   | v2.x                 |
+| v3.24.0 or v3.42.0 | v2.x                 |
+| v3.43.0 or later   | v3.x                 |
 
 ## Quick start
 
