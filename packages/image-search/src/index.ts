@@ -33,15 +33,27 @@ export const imageSearchPlugin =
     };
 
     config.collections = (config.collections || []).map((collection) => {
+      const upload = collection.upload;
+
+      if (!upload) {
+        return collection;
+      }
+
+      const uploadObj =
+        upload === true ? {} : typeof upload === "object" ? upload : undefined;
+
       const modifiedCollection = {
         ...collection,
-        admin: {
-          ...(collection.admin || {}),
-          components: {
-            ...(collection.admin?.components || {}),
-            edit: {
-              ...(collection.admin?.components?.edit || {}),
-              Upload: "@payload-bites/image-search/client#CustomUpload",
+        upload: {
+          ...(uploadObj || {}),
+          admin: {
+            ...(uploadObj?.admin || {}),
+            components: {
+              ...(uploadObj?.admin?.components || {}),
+              controls: [
+                ...(uploadObj?.admin?.components?.controls || []),
+                "@payload-bites/image-search/client#ImageSearch",
+              ],
             },
           },
         },

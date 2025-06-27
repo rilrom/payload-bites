@@ -1,1 +1,1 @@
-export { CustomUpload } from "../components/CustomUpload/index.js";
+export { ImageSearch } from "../components/ImageSearch/index.js";
