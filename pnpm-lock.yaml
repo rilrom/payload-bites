@@ -451,16 +451,16 @@ importers:
   packages/image-search:
     dependencies:
       '@payloadcms/translations':
-        specifier: ^3.24.0
+        specifier: ^3.43.0
         version: 3.43.0
       '@payloadcms/ui':
-        specifier: ^3.24.0
+        specifier: ^3.43.0
         version: 3.43.0(@types/react@19.1.8)(monaco-editor@0.52.2)(next@15.3.4(@playwright/test@1.53.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.43.0(graphql@16.11.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       next:
         specifier: ^15.2.3
         version: 15.3.4(@playwright/test@1.53.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4)
       payload:
-        specifier: ^3.24.0
+        specifier: ^3.43.0
         version: 3.43.0(graphql@16.11.0)(typescript@5.8.3)
       react-plock:
         specifier: ^3.5.1
