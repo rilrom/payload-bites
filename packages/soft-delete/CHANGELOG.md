@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 2.1.3
+
+### Patch Changes
+
+- fix: unnecessary rerenders ([9257790](https://github.com/rilrom/payload-bites/commit/9257790))
+
 ## 2.1.2
 
 ### Patch Changes
