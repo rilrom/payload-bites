@@ -14,28 +14,31 @@ interface VisibilityCheckerProps {
 }
 
 export const VisibilityChecker = (props: VisibilityCheckerProps) => {
-  const listEnabledCollections = props.enabledCollections || [];
-  const editEnabledCollections =
-    props.field?.admin?.custom?.enabledCollections || [];
-
-  const listCollectionSlug = props.collectionSlug;
-  const editCollectionSlug = props.field?.admin?.custom?.collectionSlug;
-
   useEffect(() => {
+    const listEnabledCollections = props.enabledCollections || [];
+    const listCollectionSlug = props.collectionSlug;
+
     const listView = document.querySelector(".collection-list");
 
     if (listView && listEnabledCollections.includes(listCollectionSlug)) {
       listView.setAttribute("data-soft-delete-collection", "true");
     }
-  }, [listCollectionSlug, listEnabledCollections]);
+  }, [props.collectionSlug, props.enabledCollections]);
 
   useEffect(() => {
+    const editEnabledCollections =
+      props.field?.admin?.custom?.enabledCollections || [];
+    const editCollectionSlug = props.field?.admin?.custom?.collectionSlug;
+
     const editView = document.querySelector(".collection-edit");
 
     if (editView && editEnabledCollections.includes(editCollectionSlug)) {
       editView.setAttribute("data-soft-delete-collection", "true");
     }
-  }, [editCollectionSlug, editEnabledCollections]);
+  }, [
+    props.field?.admin?.custom?.collectionSlug,
+    props.field?.admin?.custom?.enabledCollections,
+  ]);
 
   useEffect(() => {
     const editScreen = document.querySelector<HTMLElement>(
