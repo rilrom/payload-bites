@@ -71,10 +71,10 @@ For options, refer to [types.ts](./src/types.ts).
 
 ## Roadmap
 
-- [] Inline editing and unlinking of broken links.
-- [] Scanning progress indicator.
-- [] Scheduled scanning.
-- [] Multitenancy.
-- [] Custom broken links collection config.
-- [] Custom linkinator config.
-- [] Documentation.
+- [ ] Inline editing and unlinking of broken links.
+- [ ] Scanning progress indicator.
+- [ ] Scheduled scanning.
+- [ ] Multitenancy.
+- [ ] Custom broken links collection config.
+- [ ] Custom linkinator config.
+- [ ] Documentation.
