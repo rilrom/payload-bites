@@ -5,6 +5,8 @@ Broken links are a thing of the past. Protect your SEO by staying on top of your
 > [!IMPORTANT]
 > This plugin is in beta and is subject to BREAKING CHANGES. It is not yet recommended to use this in a production environment.
 
+https://github.com/user-attachments/assets/f4d33101-c7c5-445a-9aaa-b05e10254102
+
 ## Quick start
 
 1. Install the plugin:
