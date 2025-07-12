@@ -1,0 +1,72 @@
+{
+  "name": "@payload-bites/broken-link-checker",
+  "description": "broken links are a thing of the past",
+  "version": "1.0.0-beta.1",
+  "author": "Riley Langbein <rilrom2@hotmail.com>",
+  "repository": "https://github.com/rilrom/payload-bites",
+  "bugs": "https://github.com/rilrom/payload-bites/issues",
+  "homepage": "https://github.com/rilrom/payload-bites/blob/main/packages/broken-link-checker#readme",
+  "keywords": [
+    "payload",
+    "payloadcms",
+    "payload-plugin"
+  ],
+  "type": "module",
+  "private": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "import": "./dist/exports/client.js",
+      "types": "./dist/exports/client.d.ts",
+      "default": "./dist/exports/client.js"
+    },
+    "./utilities": {
+      "import": "./dist/exports/utilities.js",
+      "types": "./dist/exports/utilities.d.ts",
+      "default": "./dist/exports/utilities.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm clean && pnpm copyfiles && pnpm build:types && pnpm build:swc",
+    "build:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths",
+    "build:types": "tsc --outDir dist --rootDir ./src",
+    "dev": "pnpm clean && pnpm copyfiles && pnpm dev:types && pnpm dev:swc",
+    "dev:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths --watch",
+    "dev:types": "tsc --outDir dist --rootDir ./src --watch",
+    "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
+    "clean": "rm -rf dist && rm -rf tsconfig.tsbuildinfo",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "linkinator": "^6.1.2"
+  },
+  "devDependencies": {
+    "@payload-bites/eslint-config": "workspace:*",
+    "@payload-bites/typescript-config": "workspace:*",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@payloadcms/next": "^3.43.0",
+    "@payloadcms/translations": "^3.43.0",
+    "@payloadcms/ui": "^3.43.0",
+    "next": "^15.2.3",
+    "payload": "^3.43.0",
+    "qs-esm": "^7",
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}

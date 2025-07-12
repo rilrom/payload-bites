@@ -1,0 +1,39 @@
+{
+  "name": "broken-link-checker",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "tsc": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint --max-warnings 0",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
+  },
+  "dependencies": {
+    "@payload-bites/broken-link-checker": "workspace:*",
+    "@payloadcms/db-postgres": "3.43.0",
+    "@payloadcms/next": "3.43.0",
+    "@payloadcms/plugin-nested-docs": "^3.44.0",
+    "@payloadcms/richtext-lexical": "3.43.0",
+    "@payloadcms/translations": "3.43.0",
+    "@payloadcms/ui": "3.43.0",
+    "cross-env": "^7.0.3",
+    "next": "^15.3.4",
+    "payload": "3.43.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@payload-bites/eslint-config": "workspace:*",
+    "@payload-bites/typescript-config": "workspace:*",
+    "@types/node": "^22.15.33",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "typescript": "^5.8.3"
+  }
+}
