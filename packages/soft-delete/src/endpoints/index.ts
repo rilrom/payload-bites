@@ -25,6 +25,7 @@ export const endpoints: Endpoint[] = [
           data: {
             deletedAt: new Date(),
           },
+          req: req
         });
       } else if (data?.["ids"]) {
         response = await req.payload.update({
@@ -37,6 +38,7 @@ export const endpoints: Endpoint[] = [
           data: {
             deletedAt: new Date(),
           },
+           req: req
         });
       }
 
