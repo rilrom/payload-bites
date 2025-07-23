@@ -69,6 +69,7 @@ export const endpoints: Endpoint[] = [
         response = await req.payload.delete({
           collection: data?.["collection"],
           id: data["id"],
+          req: req
         });
       } else if (data?.["ids"]) {
         response = await req.payload.delete({
@@ -78,6 +79,7 @@ export const endpoints: Endpoint[] = [
               in: data["ids"],
             },
           },
+          req: req
         });
       }
 
@@ -111,6 +113,7 @@ export const endpoints: Endpoint[] = [
           data: {
             deletedAt: null,
           },
+          req: req
         });
       } else if (data?.["ids"]) {
         response = await req.payload.update({
@@ -123,6 +126,7 @@ export const endpoints: Endpoint[] = [
           data: {
             deletedAt: null,
           },
+          req : req
         });
       }
 
