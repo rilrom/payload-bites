@@ -1,4 +1,4 @@
-import { type Access, type CollectionSlug, type GlobalSlug } from "payload";
+import { type CollectionAdminOptions, type Access, type CollectionSlug, type GlobalSlug } from "payload";
 
 export type ActivityLogPluginSharedLoggingOptions = {
   enableIpAddressLogging: boolean;
@@ -12,6 +12,18 @@ export type ActivityLogPluginOptions = {
    * @default true
    */
   enabled?: boolean;
+
+  /**
+   * Admin options for the activity log collection.
+   * Only the `group` property from `CollectionAdminOptions` is used for now.
+   *
+   * @example
+   * admin: {
+   *   group: "Administration",
+   * }
+   *
+   */
+  admin?: Pick<CollectionAdminOptions, "group">;
 
   access?: {
     /**
