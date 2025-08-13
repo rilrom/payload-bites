@@ -46,6 +46,7 @@ export const activityLogPlugin =
         ...activityLog,
         ...(mergedOptions.admin?.group && {
           admin: {
+            ...activityLog.admin,
             group: mergedOptions.admin.group,
           },
         }),
