@@ -26,7 +26,7 @@ export const Collections: CollectionConfig = {
   versions: {
     drafts: {
       autosave: {
-          interval: 100,
+        interval: 100,
       },
     },
   },

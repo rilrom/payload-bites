@@ -20,8 +20,14 @@ export const afterChangeCollectionActivityLog = (
       return args.doc;
     }
 
-    if (args.operation === "update" && (!options.enableUpdateLogging || (args.req.query.draft && args.req.query.autosave && !options.enableDraftAutosaveLogging))) {
-        return args.doc;
+    if (
+      args.operation === "update" &&
+      (!options.enableUpdateLogging ||
+        (args.req.query.draft &&
+          args.req.query.autosave &&
+          !options.enableDraftAutosaveLogging))
+    ) {
+      return args.doc;
     }
 
     try {

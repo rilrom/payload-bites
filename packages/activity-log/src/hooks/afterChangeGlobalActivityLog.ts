@@ -14,7 +14,11 @@ export const afterChangeGlobalActivityLog = (
       return args.doc;
     }
 
-    if (args.req.query.draft && args.req.query.autosave && !options.enableDraftAutosaveLogging) {
+    if (
+      args.req.query.draft &&
+      args.req.query.autosave &&
+      !options.enableDraftAutosaveLogging
+    ) {
       return args.doc;
     }
 

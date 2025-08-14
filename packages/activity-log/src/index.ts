@@ -90,7 +90,8 @@ export const activityLogPlugin =
       const enableDeviceInfoLogging =
         mergedCollectionOptions?.enableDeviceInfoLogging ??
         defaultDeviceInfoLogging;
-      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ??
+      const enableDraftAutosaveLogging =
+        mergedOptions.enableDraftAutosaveLogging ??
         defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedCollection.hooks = {
@@ -135,7 +136,8 @@ export const activityLogPlugin =
       const enableDeviceInfoLogging =
         mergedGlobalOptions?.enableDeviceInfoLogging ??
         defaultDeviceInfoLogging;
-      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ??
+      const enableDraftAutosaveLogging =
+        mergedOptions.enableDraftAutosaveLogging ??
         defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedGlobal.hooks = {
