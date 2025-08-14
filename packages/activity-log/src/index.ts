@@ -90,6 +90,8 @@ export const activityLogPlugin =
       const enableDeviceInfoLogging =
         mergedCollectionOptions?.enableDeviceInfoLogging ??
         defaultDeviceInfoLogging;
+      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ??
+        defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedCollection.hooks = {
         ...(modifiedCollection.hooks || {}),
@@ -100,6 +102,7 @@ export const activityLogPlugin =
             enableUpdateLogging,
             enableIpAddressLogging,
             enableDeviceInfoLogging,
+            enableDraftAutosaveLogging,
           }),
         ],
         afterDelete: [
@@ -132,6 +135,8 @@ export const activityLogPlugin =
       const enableDeviceInfoLogging =
         mergedGlobalOptions?.enableDeviceInfoLogging ??
         defaultDeviceInfoLogging;
+      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ??
+        defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedGlobal.hooks = {
         ...(modifiedGlobal.hooks || {}),
@@ -140,6 +145,7 @@ export const activityLogPlugin =
           afterChangeGlobalActivityLog({
             enableIpAddressLogging,
             enableDeviceInfoLogging,
+            enableDraftAutosaveLogging,
           }),
         ],
       };

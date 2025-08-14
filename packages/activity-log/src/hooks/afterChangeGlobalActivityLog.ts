@@ -2,11 +2,19 @@ import { type GlobalAfterChangeHook } from "payload";
 import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
 import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
 
+interface Options extends ActivityLogPluginSharedLoggingOptions {
+  enableDraftAutosaveLogging: boolean;
+}
+
 export const afterChangeGlobalActivityLog = (
-  options: ActivityLogPluginSharedLoggingOptions,
+  options: Options,
 ): GlobalAfterChangeHook => {
   return async (args) => {
     if (args.req.payloadAPI === "local") {
+      return args.doc;
+    }
+
+    if (args.req.query.draft && args.req.query.autosave && !options.enableDraftAutosaveLogging) {
       return args.doc;
     }
 

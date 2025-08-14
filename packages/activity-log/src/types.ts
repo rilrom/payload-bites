@@ -13,6 +13,13 @@ export type ActivityLogPluginOptions = {
    */
   enabled?: boolean;
 
+  /**
+   * Enables or disables draft autosave logging.
+   *
+   * @default true
+   */
+  enableDraftAutosaveLogging?: boolean;
+
   access?: {
     /**
      * Function that determines read access for the activity log collection.
