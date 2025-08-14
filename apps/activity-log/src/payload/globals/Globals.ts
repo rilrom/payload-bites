@@ -23,4 +23,11 @@ export const Globals: GlobalConfig = {
       ],
     },
   ],
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+  },
 };
