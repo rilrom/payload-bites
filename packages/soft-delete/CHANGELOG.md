@@ -1,5 +1,19 @@
 # @payload-bites/soft-delete
 
+## 2.2.0
+
+### Minor Changes
+
+- feat: add req to endpoints ([d4529d2](https://github.com/rilrom/payload-bites/commit/d4529d2))
+
+### Patch Changes
+
+- chore: upgrade dependencies ([f6dad0e](https://github.com/rilrom/payload-bites/commit/f6dad0e))
+
+### Contributors
+
+- Muhammad Fahmi Hidayah ([@fahmihidayah](https://github.com/fahmihidayah))
+
 ## 2.1.3
 
 ### Patch Changes
