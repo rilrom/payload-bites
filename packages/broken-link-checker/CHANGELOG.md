@@ -4,6 +4,7 @@
 
 ### Patch Changes
 
+- fix: formatting ([bc30832](https://github.com/rilrom/payload-bites/commit/bc30832))
 - chore: upgrade dependencies ([f6dad0e](https://github.com/rilrom/payload-bites/commit/f6dad0e))
 
 ## 1.0.0-beta.1
