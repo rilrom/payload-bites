@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-feat: add enableDraftAutosaveLogging to plugin options ([cc226f5](https://github.com/rilrom/payload-bites/commit/cc226f5))
+- feat: add enableDraftAutosaveLogging to plugin options ([cc226f5](https://github.com/rilrom/payload-bites/commit/cc226f5))
 
 ### Patch Changes
 
