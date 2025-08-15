@@ -125,7 +125,7 @@ export const BulkRestoreButton = (props: BulkRestoreButtonProps) => {
     }
 
     const listControlsButtonsWrap = document.querySelector(
-      ".list-controls .list-controls__buttons-wrap",
+      ".list-controls .list-controls__buttons",
     );
 
     const bulkRestoreButton = document.getElementById("bulk-restore-button");

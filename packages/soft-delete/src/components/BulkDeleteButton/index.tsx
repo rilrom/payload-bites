@@ -152,7 +152,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
     }
 
     const listControlsButtonsWrap = document.querySelector(
-      ".list-controls .list-controls__buttons-wrap",
+      ".list-controls .list-controls__buttons",
     );
 
     const bulkDeleteButton = document.getElementById("bulk-delete-button");
