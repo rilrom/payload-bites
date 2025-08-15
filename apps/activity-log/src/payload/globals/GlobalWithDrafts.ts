@@ -1,7 +1,7 @@
 import type { GlobalConfig } from "payload";
 
-export const Globals: GlobalConfig = {
-  slug: "globals",
+export const GlobalWithDrafts: GlobalConfig = {
+  slug: "global-with-drafts",
   fields: [
     {
       name: "text",
@@ -23,4 +23,11 @@ export const Globals: GlobalConfig = {
       ],
     },
   ],
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+  },
 };

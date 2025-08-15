@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     collections: Collection;
+    "collection-with-drafts": CollectionWithDraft;
     users: User;
     "activity-log": ActivityLog;
     "payload-locked-documents": PayloadLockedDocument;
@@ -77,6 +78,9 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     collections: CollectionsSelect<false> | CollectionsSelect<true>;
+    "collection-with-drafts":
+      | CollectionWithDraftsSelect<false>
+      | CollectionWithDraftsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     "activity-log": ActivityLogSelect<false> | ActivityLogSelect<true>;
     "payload-locked-documents":
@@ -94,9 +98,13 @@ export interface Config {
   };
   globals: {
     globals: Global;
+    "global-with-drafts": GlobalWithDraft;
   };
   globalsSelect: {
     globals: GlobalsSelect<false> | GlobalsSelect<true>;
+    "global-with-drafts":
+      | GlobalWithDraftsSelect<false>
+      | GlobalWithDraftsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -130,6 +138,23 @@ export interface UserAuthOperations {
  * via the `definition` "collections".
  */
 export interface Collection {
+  id: number;
+  text: string;
+  array?:
+    | {
+        key?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-with-drafts".
+ */
+export interface CollectionWithDraft {
   id: number;
   text: string;
   array?:
@@ -206,6 +231,10 @@ export interface PayloadLockedDocument {
         value: number | Collection;
       } | null)
     | ({
+        relationTo: "collection-with-drafts";
+        value: number | CollectionWithDraft;
+      } | null)
+    | ({
         relationTo: "users";
         value: number | User;
       } | null)
@@ -260,6 +289,22 @@ export interface PayloadMigration {
  * via the `definition` "collections_select".
  */
 export interface CollectionsSelect<T extends boolean = true> {
+  text?: T;
+  array?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collection-with-drafts_select".
+ */
+export interface CollectionWithDraftsSelect<T extends boolean = true> {
   text?: T;
   array?:
     | T
@@ -355,6 +400,23 @@ export interface Global {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-with-drafts".
+ */
+export interface GlobalWithDraft {
+  id: number;
+  text: string;
+  array?:
+    | {
+        key?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   _status?: ("draft" | "published") | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -364,6 +426,23 @@ export interface Global {
  * via the `definition` "globals_select".
  */
 export interface GlobalsSelect<T extends boolean = true> {
+  text?: T;
+  array?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "global-with-drafts_select".
+ */
+export interface GlobalWithDraftsSelect<T extends boolean = true> {
   text?: T;
   array?:
     | T

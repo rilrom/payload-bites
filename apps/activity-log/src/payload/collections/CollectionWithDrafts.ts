@@ -1,12 +1,20 @@
-import type { GlobalConfig } from "payload";
+import type { CollectionConfig } from "payload";
 
-export const Globals: GlobalConfig = {
-  slug: "globals",
+export const CollectionWithDrafts: CollectionConfig = {
+  slug: "collection-with-drafts",
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 100,
+      },
+    },
+  },
   fields: [
     {
       name: "text",
       type: "text",
       required: true,
+      localized: true,
     },
     {
       name: "array",
