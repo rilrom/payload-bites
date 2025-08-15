@@ -2,6 +2,9 @@
 
 Never lose your Payload documents again, soft delete is here to save the day.
 
+> [!IMPORTANT]
+> This plugin has been moved to maintenance mode due the release of the [trash](https://payloadcms.com/docs/trash/overview) feature. From v3.49.0 onwards, I recommend using the implementation in the core product instead.
+
 https://github.com/user-attachments/assets/4d7334d1-d7f2-4ab7-9421-0c84dfcf38cb
 
 ## Compatibility table
