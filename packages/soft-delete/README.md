@@ -13,7 +13,8 @@ https://github.com/user-attachments/assets/4d7334d1-d7f2-4ab7-9421-0c84dfcf38cb
 | ------------------ | ------------------- |
 | v3.23.0 or earlier | Incompatible        |
 | v3.24.0 to 3.38.0  | v1.x                |
-| v3.39.0 or later   | v2.x                |
+| v3.39.0 to 3.50.0  | v2.x                |
+| v3.51.0 or later   | v3.x                |
 
 ## Quick start
 
