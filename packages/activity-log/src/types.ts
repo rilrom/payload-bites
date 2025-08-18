@@ -24,6 +24,13 @@ export type ActivityLogPluginOptions = {
    *
    */
   admin?: Pick<CollectionAdminOptions, "group">;
+  
+  /**
+   * Enables or disables draft autosave logging.
+   *
+   * @default true
+   */
+  enableDraftAutosaveLogging?: boolean;
 
   access?: {
     /**

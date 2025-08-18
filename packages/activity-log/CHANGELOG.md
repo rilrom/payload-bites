@@ -1,5 +1,20 @@
 # @payload-bites/activity-log
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: add enableDraftAutosaveLogging to plugin options ([cc226f5](https://github.com/rilrom/payload-bites/commit/cc226f5))
+
+### Patch Changes
+
+- chore: upgrade dependencies ([f6dad0e](https://github.com/rilrom/payload-bites/commit/f6dad0e))
+- chore: add separate draft collections ([81e0417](https://github.com/rilrom/payload-bites/commit/81e0417))
+
+### Contributors
+
+- Florian Quiblier ([@fofoy](https://github.com/fofoy))
+
 ## 1.0.4
 
 ### Patch Changes

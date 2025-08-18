@@ -1,5 +1,33 @@
 # @payload-bites/soft-delete
 
+## 3.0.0
+
+### Major Changes
+
+- major: update name in bulk query selector ([0c6d4dd](https://github.com/rilrom/payload-bites/commit/0c6d4dd))
+
+#### BREAKING CHANGES
+
+Payload v3.51.0 or greater is required to use v3.x of the soft delete plugin.
+
+### Patch Changes
+
+- chore: add maintenace mode messaging ([7be43fe](https://github.com/rilrom/payload-bites/commit/7be43fe))
+
+## 2.2.0
+
+### Minor Changes
+
+- feat: add req to endpoints ([d4529d2](https://github.com/rilrom/payload-bites/commit/d4529d2))
+
+### Patch Changes
+
+- chore: upgrade dependencies ([f6dad0e](https://github.com/rilrom/payload-bites/commit/f6dad0e))
+
+### Contributors
+
+- Muhammad Fahmi Hidayah ([@fahmihidayah](https://github.com/fahmihidayah))
+
 ## 2.1.3
 
 ### Patch Changes

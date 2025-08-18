@@ -124,7 +124,7 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
     }
 
     const listControlsButtonsWrap = document.querySelector(
-      ".list-controls .list-controls__buttons-wrap",
+      ".list-controls .list-controls__buttons",
     );
 
     const bulkSoftDeleteButton = document.getElementById(

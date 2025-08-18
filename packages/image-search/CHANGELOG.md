@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 3.0.1
+
+### Patch Changes
+
+- chore: upgrade dependencies ([f6dad0e](https://github.com/rilrom/payload-bites/commit/f6dad0e))
+
 ## 3.0.0
 
 ### Major Changes

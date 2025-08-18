@@ -5,6 +5,7 @@ import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
 interface Options extends ActivityLogPluginSharedLoggingOptions {
   enableCreateLogging: boolean;
   enableUpdateLogging: boolean;
+  enableDraftAutosaveLogging: boolean;
 }
 
 export const afterChangeCollectionActivityLog = (
@@ -19,7 +20,13 @@ export const afterChangeCollectionActivityLog = (
       return args.doc;
     }
 
-    if (args.operation === "update" && !options.enableUpdateLogging) {
+    if (
+      args.operation === "update" &&
+      (!options.enableUpdateLogging ||
+        (args.req.query.draft &&
+          args.req.query.autosave &&
+          !options.enableDraftAutosaveLogging))
+    ) {
       return args.doc;
     }
 

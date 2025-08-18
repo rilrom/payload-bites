@@ -8,7 +8,9 @@ import { activityLogPlugin } from "@payload-bites/activity-log";
 
 import { Users } from "./collections/Users";
 import { Collections } from "./collections/Collections";
+import { CollectionWithDrafts } from "./collections/CollectionWithDrafts";
 import { Globals } from "./globals/Globals";
+import { GlobalWithDrafts } from "./globals/GlobalWithDrafts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -27,8 +29,8 @@ export default buildConfig({
     fallbackLanguage: "en",
     supportedLanguages: { en, es },
   },
-  collections: [Collections, Users],
-  globals: [Globals],
+  collections: [Collections, CollectionWithDrafts, Users],
+  globals: [Globals, GlobalWithDrafts],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -40,11 +42,14 @@ export default buildConfig({
   }),
   plugins: [
     activityLogPlugin({
+      enableDraftAutosaveLogging: false,
       collections: {
         collections: {},
+        "collection-with-drafts": {},
       },
       globals: {
         globals: {},
+        "global-with-drafts": {},
       },
     }),
   ],
