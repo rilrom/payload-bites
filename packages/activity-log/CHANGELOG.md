@@ -1,5 +1,15 @@
 # @payload-bites/activity-log
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: add admin.group option ([123347d](https://github.com/rilrom/payload-bites/commit/123347d))
+
+### Contributors
+
+- Florian Quiblier ([@fofoy](https://github.com/fofoy))
+
 ## 1.1.0
 
 ### Minor Changes
