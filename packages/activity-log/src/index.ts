@@ -44,6 +44,12 @@ export const activityLogPlugin =
       ...(config.collections || []),
       {
         ...activityLog,
+        ...(mergedOptions.admin?.group && {
+          admin: {
+            ...activityLog.admin,
+            group: mergedOptions.admin.group,
+          },
+        }),
         access: {
           create: () => false,
           read: (args) =>
