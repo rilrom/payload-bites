@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSelection, useTranslation } from "@payloadcms/ui";
+import { useEffect } from "react";
 
-import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 import { TranslationsKeys, TranslationsObject } from "../../translations.js";
+import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 
 export const ToggleButton = () => {
   const { showSoftDeleted, toggleSoftDelete } = useSoftDelete();
@@ -25,25 +25,15 @@ export const ToggleButton = () => {
 
   // Moves the toggle button near the heading
   useEffect(() => {
-    const titleActions = document.querySelector(
-      ".list-header__title-and-actions",
-    );
+    const titleActions = document.querySelector(".list-header__title-and-actions");
     const createNewButton = document.querySelector(
       ".list-header__title-actions .list-create-new-doc__create-new-button",
     );
     const toggleButton = document.getElementById("toggle-button");
 
     // Create access is true
-    if (
-      titleActions &&
-      createNewButton &&
-      toggleButton &&
-      createNewButton.parentNode
-    ) {
-      createNewButton.parentNode.insertBefore(
-        toggleButton,
-        createNewButton.nextSibling,
-      );
+    if (titleActions && createNewButton && toggleButton && createNewButton.parentNode) {
+      createNewButton.parentNode.insertBefore(toggleButton, createNewButton.nextSibling);
       toggleButton.style.display = "inherit";
 
       return;

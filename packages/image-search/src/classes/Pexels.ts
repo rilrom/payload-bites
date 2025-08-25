@@ -29,10 +29,7 @@ export class Pexels extends Provider {
   }
 
   async getFeatured() {
-    const data = await this.fetch(
-      "GET",
-      `/v1/curated?per_page=${this.getFetchLimit()}`,
-    );
+    const data = await this.fetch("GET", `/v1/curated?per_page=${this.getFetchLimit()}`);
 
     return {
       images: this.formatResults(data.photos),
@@ -42,10 +39,7 @@ export class Pexels extends Provider {
   }
 
   async getSearch(query: string, page: number) {
-    const data = await this.fetch(
-      "GET",
-      `/v1/search?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`,
-    );
+    const data = await this.fetch("GET", `/v1/search?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`);
 
     return {
       images: this.formatResults(data.photos),

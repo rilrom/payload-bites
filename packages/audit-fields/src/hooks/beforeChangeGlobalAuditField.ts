@@ -1,11 +1,7 @@
 import type { GlobalBeforeChangeHook } from "payload";
 
 export const beforeChangeGlobalAuditField =
-  (
-    createdByFieldName: string,
-    lastModifiedByFieldName: string,
-    userSlug: string,
-  ): GlobalBeforeChangeHook =>
+  (createdByFieldName: string, lastModifiedByFieldName: string, userSlug: string): GlobalBeforeChangeHook =>
   async (args) => {
     if (!args.req.user) {
       return args.data;

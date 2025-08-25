@@ -13,15 +13,11 @@ export const toggleFullscreen = ({
   const root = editor?.getRootElement();
   const richTextLexical = getLastMatchingAncestor(root, ".rich-text-lexical");
   const drawerContent = root?.closest(".drawer__content");
-  const drawerContentChildren = drawerContent?.querySelector(
-    ".drawer__content-children",
-  );
+  const drawerContentChildren = drawerContent?.querySelector(".drawer__content-children");
 
   const enableFullscreen = () => {
     // If in a drawer, we want to use the scroll value of the drawer not the window
-    const scrollPosition = drawerContentChildren
-      ? drawerContentChildren.scrollTop
-      : window.scrollY;
+    const scrollPosition = drawerContentChildren ? drawerContentChildren.scrollTop : window.scrollY;
 
     if (!isNaN(scrollPosition)) {
       body.setAttribute("data-position", scrollPosition.toString());
@@ -58,14 +54,8 @@ export const toggleFullscreen = ({
     const originalDrawerStyles = drawerContent?.getAttribute("data-width");
 
     if (originalDrawerStyles) {
-      drawerContent?.setAttribute(
-        "style",
-        `${originalDrawerStyles}))); transition: none;`,
-      );
-      setTimeout(
-        () => drawerContent?.setAttribute("style", originalDrawerStyles),
-        150,
-      );
+      drawerContent?.setAttribute("style", `${originalDrawerStyles}))); transition: none;`);
+      setTimeout(() => drawerContent?.setAttribute("style", originalDrawerStyles), 150);
     }
 
     const scrollPosition = body.getAttribute("data-position");

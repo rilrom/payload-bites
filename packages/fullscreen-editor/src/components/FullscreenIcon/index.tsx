@@ -1,12 +1,7 @@
 import "./index.scss";
 
 export const FullscreenIcon = () => (
-  <svg
-    className="icon icon--fullscreen"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    fill="none"
-  >
+  <svg className="icon icon--fullscreen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
     <g>
       <path d="M5,12c-0.6,0-1-0.4-1-1V5c0-0.6,0.4-1,1-1h6c0.6,0,1,0.4,1,1s-0.4,1-1,1H6v5C6,11.6,5.6,12,5,12z" />
     </g>

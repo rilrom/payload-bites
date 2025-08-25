@@ -25,10 +25,7 @@ export class Pixabay extends Provider {
   }
 
   async getFeatured() {
-    const data = await this.fetch(
-      "GET",
-      `/api?key=${this.getApiKey()}&per_page=${this.getFetchLimit()}`,
-    );
+    const data = await this.fetch("GET", `/api?key=${this.getApiKey()}&per_page=${this.getFetchLimit()}`);
 
     return {
       images: this.formatResults(data.hits),

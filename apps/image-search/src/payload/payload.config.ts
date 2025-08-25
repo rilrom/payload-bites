@@ -1,14 +1,14 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import sharp from "sharp";
-import { buildConfig } from "payload";
+import { imageSearchPlugin } from "@payload-bites/image-search";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
-import { imageSearchPlugin } from "@payload-bites/image-search";
+import path from "path";
+import { buildConfig } from "payload";
+import sharp from "sharp";
+import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
+import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

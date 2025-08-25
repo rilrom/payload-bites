@@ -1,7 +1,7 @@
 import type { Field } from "payload";
 
-import { resolveValue } from "../utils/resolveValue.js";
 import type { AuditFieldLabel, AuditFieldsPluginOptions } from "../types.js";
+import { resolveValue } from "../utils/resolveValue.js";
 
 interface AuditFieldParams {
   usersSlug: string;

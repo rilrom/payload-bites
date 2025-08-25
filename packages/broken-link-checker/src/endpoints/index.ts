@@ -1,6 +1,7 @@
-import { Forbidden } from "payload";
-import type { Endpoint } from "payload";
 import { LinkChecker } from "linkinator";
+import type { Endpoint } from "payload";
+import { Forbidden } from "payload";
+
 import { BROKEN_LINKS_COLLECTION_SLUG } from "../constants.js";
 import { BrokenLinkCheckerResolvedUrl } from "../types.js";
 
@@ -11,19 +12,15 @@ export const endpoints: Endpoint[] = [
     handler: async (req) => {
       const data = await req.json?.();
 
-      const access =
-        await req.payload?.config?.custom?.brokenLinkChecker?.scanLinksAccess?.(
-          { req, data },
-        );
+      const access = await req.payload?.config?.custom?.brokenLinkChecker?.scanLinksAccess?.({ req, data });
 
       if (!access) {
         throw new Forbidden();
       }
 
-      const urls =
-        (await req.payload?.config?.custom?.brokenLinkChecker?.resolvedUrls?.({
-          req,
-        })) as BrokenLinkCheckerResolvedUrl[];
+      const urls = (await req.payload?.config?.custom?.brokenLinkChecker?.resolvedUrls?.({
+        req,
+      })) as BrokenLinkCheckerResolvedUrl[];
 
       const checker = new LinkChecker();
 
@@ -35,9 +32,7 @@ export const endpoints: Endpoint[] = [
 
       const brokenResults = results.links.filter((r) => r.state === "BROKEN");
 
-      const notSkippedResults = results.links.filter(
-        (r) => r.state !== "SKIPPED",
-      );
+      const notSkippedResults = results.links.filter((r) => r.state !== "SKIPPED");
 
       const formattedResults = brokenResults.map((link) => {
         const urlObj = urls.find((r) => r.url === link.parent);

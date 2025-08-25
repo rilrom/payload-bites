@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 
-import type { Page } from "@/payload/payload-types";
-
 import { ContentBlock } from "@/app/_components/ContentBlock";
+import type { Page } from "@/payload/payload-types";
 
 const blockComponents = {
   content: ContentBlock,

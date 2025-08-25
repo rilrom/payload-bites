@@ -1,21 +1,16 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import { buildConfig } from "payload";
+import { brokenLinkCheckerPlugin } from "@payload-bites/broken-link-checker";
+import { resolveNestedDocUrls } from "@payload-bites/broken-link-checker/utilities";
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs";
+import { FixedToolbarFeature, HeadingFeature, InlineToolbarFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
-import { brokenLinkCheckerPlugin } from "@payload-bites/broken-link-checker";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
 import { Pages } from "./collections/Pages";
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from "@payloadcms/richtext-lexical";
-import { resolveNestedDocUrls } from "@payload-bites/broken-link-checker/utilities";
-import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs";
+import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

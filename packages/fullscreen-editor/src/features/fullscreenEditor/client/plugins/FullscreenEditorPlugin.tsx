@@ -1,8 +1,8 @@
 "use client";
 
-import type { PluginComponent } from "@payloadcms/richtext-lexical";
-
 import "./index.scss";
+
+import type { PluginComponent } from "@payloadcms/richtext-lexical";
 
 export const FullscreenEditorPlugin: PluginComponent = () => {
   return null;

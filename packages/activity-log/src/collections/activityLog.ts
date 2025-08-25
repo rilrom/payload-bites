@@ -1,16 +1,11 @@
 import { type CollectionConfig } from "payload";
+
 import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
 
 export const activityLog: CollectionConfig = {
   slug: ACTIVITY_LOG_COLLECTION_SLUG,
   admin: {
-    defaultColumns: [
-      "timestamp",
-      "user",
-      "operation",
-      "resource",
-      "documentId",
-    ],
+    defaultColumns: ["timestamp", "user", "operation", "resource", "documentId"],
     disableCopyToLocale: true,
     enableRichTextLink: false,
     enableRichTextRelationship: false,

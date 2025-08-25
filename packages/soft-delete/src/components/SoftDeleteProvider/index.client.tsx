@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useState } from "react";
 import { useRouter } from "next/navigation.js";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 interface SoftDeleteContext {
   toggleSoftDelete: (value: boolean) => void;
@@ -15,9 +15,7 @@ interface SoftDeleteProviderClientProps {
 
 const SoftDeleteContext = createContext<SoftDeleteContext | null>(null);
 
-export const SoftDeleteProviderClient = (
-  props: SoftDeleteProviderClientProps,
-) => {
+export const SoftDeleteProviderClient = (props: SoftDeleteProviderClientProps) => {
   const { children, softDelete } = props;
 
   const router = useRouter();
@@ -30,8 +28,7 @@ export const SoftDeleteProviderClient = (
   }, []);
 
   const deleteCookie = useCallback(() => {
-    document.cookie =
-      "payload-soft-delete=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    document.cookie = "payload-soft-delete=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
   }, []);
 
   const toggleSoftDelete = useCallback(

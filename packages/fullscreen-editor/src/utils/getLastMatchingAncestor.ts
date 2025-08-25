@@ -1,7 +1,4 @@
-export const getLastMatchingAncestor = (
-  element?: HTMLElement | null,
-  selector?: string,
-): HTMLElement | null => {
+export const getLastMatchingAncestor = (element?: HTMLElement | null, selector?: string): HTMLElement | null => {
   let lastMatchingAncestor = null;
   let currentElement = element?.parentElement;
 

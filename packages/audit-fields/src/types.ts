@@ -6,10 +6,7 @@ import { CollectionSlug, GlobalSlug } from "payload";
  * 2. An object mapping locales to localized labels e.g. { en: 'Created by', it: 'Creato da' }.
  * 3. A function that takes the collection/global slug and returns a label or localized labels.
  */
-export type AuditFieldLabel =
-  | string
-  | Record<string, string>
-  | ((slug: string) => string | Record<string, string>);
+export type AuditFieldLabel = string | Record<string, string> | ((slug: string) => string | Record<string, string>);
 
 export type AuditFieldsPluginOptions = {
   /**

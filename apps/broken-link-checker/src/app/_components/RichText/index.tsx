@@ -1,9 +1,4 @@
-import {
-  DefaultNodeTypes,
-  SerializedBlockNode,
-  SerializedLinkNode,
-  type DefaultTypedEditorState,
-} from "@payloadcms/richtext-lexical";
+import { DefaultNodeTypes, type DefaultTypedEditorState, SerializedLinkNode } from "@payloadcms/richtext-lexical";
 import {
   JSXConvertersFunction,
   LinkJSXConverter,
@@ -24,9 +19,7 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   return `/${slug}`;
 };
 
-const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
-  defaultConverters,
-}) => ({
+const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) => ({
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
 });

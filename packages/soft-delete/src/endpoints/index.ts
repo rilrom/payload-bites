@@ -1,5 +1,5 @@
-import { Forbidden } from "payload";
 import type { Endpoint } from "payload";
+import { Forbidden } from "payload";
 
 export const endpoints: Endpoint[] = [
   {
@@ -53,9 +53,7 @@ export const endpoints: Endpoint[] = [
     handler: async (req) => {
       const data = await req.json?.();
 
-      const enabled =
-        req.payload.collections?.[data?.["collection"]]?.config?.custom
-          ?.softDelete?.enableHardDelete;
+      const enabled = req.payload.collections?.[data?.["collection"]]?.config?.custom?.softDelete?.enableHardDelete;
 
       const access = await req.payload.collections?.[
         data?.["collection"]
@@ -94,13 +92,11 @@ export const endpoints: Endpoint[] = [
     handler: async (req) => {
       const data = await req.json?.();
 
-      const enabled =
-        req.payload.collections?.[data?.["collection"]]?.config?.custom
-          ?.softDelete?.enableRestore;
+      const enabled = req.payload.collections?.[data?.["collection"]]?.config?.custom?.softDelete?.enableRestore;
 
-      const access = await req.payload.collections?.[
-        data?.["collection"]
-      ]?.config?.custom?.softDelete?.restoreAccess?.({ req, data });
+      const access = await req.payload.collections?.[data?.["collection"]]?.config?.custom?.softDelete?.restoreAccess?.(
+        { req, data },
+      );
 
       if (!enabled || !access) {
         throw new Forbidden();

@@ -1,18 +1,15 @@
 import type { Config } from "payload";
 
-import { beforeChangeGlobalAuditField } from "./hooks/beforeChangeGlobalAuditField.js";
-import { beforeChangeCollectionAuditField } from "./hooks/beforeChangeCollectionAuditField.js";
-import { auditField } from "./fields/auditField.js";
 import { defaultPluginOptions } from "./defaults.js";
+import { auditField } from "./fields/auditField.js";
+import { beforeChangeCollectionAuditField } from "./hooks/beforeChangeCollectionAuditField.js";
+import { beforeChangeGlobalAuditField } from "./hooks/beforeChangeGlobalAuditField.js";
 import type { AuditFieldsPluginOptions } from "./types.js";
 
 export const auditFieldsPlugin =
   (pluginOptions?: AuditFieldsPluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: Required<AuditFieldsPluginOptions> = Object.assign(
-      defaultPluginOptions,
-      pluginOptions,
-    );
+    const mergedOptions: Required<AuditFieldsPluginOptions> = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 

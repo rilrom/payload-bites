@@ -1,13 +1,13 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import { buildConfig } from "payload";
+import { auditFieldsPlugin } from "@payload-bites/audit-fields";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
-import { auditFieldsPlugin } from "@payload-bites/audit-fields";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
 import { Collections } from "./collections/Collections";
+import { Users } from "./collections/Users";
 import { Globals } from "./globals/Globals";
 
 const filename = fileURLToPath(import.meta.url);

@@ -1,7 +1,5 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation.js";
 import { getTranslation } from "@payloadcms/translations";
 import {
   ConfirmationModal,
@@ -13,13 +11,12 @@ import {
   useSelection,
   useTranslation,
 } from "@payloadcms/ui";
-import * as qs from "qs-esm";
+import { useRouter } from "next/navigation.js";
 import type { ClientCollectionConfig } from "payload";
+import * as qs from "qs-esm";
+import { useCallback, useEffect, useState } from "react";
 
-import type {
-  TranslationsKeys,
-  TranslationsObject,
-} from "../../translations.js";
+import type { TranslationsKeys, TranslationsObject } from "../../translations.js";
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 
 interface BulkDeleteButtonProps {
@@ -77,9 +74,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
       setDeleting(true);
 
-      const selectionArray = [...selection.selected.keys()].filter((key) =>
-        selection.selected.get(key),
-      );
+      const selectionArray = [...selection.selected.keys()].filter((key) => selection.selected.get(key));
 
       const response = await fetch(`${config.routes.api}/hard-delete`, {
         method: "DELETE",
@@ -107,9 +102,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
         if (json?.errors.length > 0) {
           toast.error(json.message, {
-            description: json.errors
-              .map((error: any) => error.message)
-              .join("\n"),
+            description: json.errors.map((error: any) => error.message).join("\n"),
           });
         }
 
@@ -131,9 +124,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
 
       if (json.errors) {
         toast.error(json.message, {
-          description: json.errors
-            .map((error: any) => error.message)
-            .join("\n"),
+          description: json.errors.map((error: any) => error.message).join("\n"),
         });
       } else {
         addDefaultError();
@@ -151,9 +142,7 @@ export const BulkDeleteButton = (props: BulkDeleteButtonProps) => {
       return;
     }
 
-    const listControlsButtonsWrap = document.querySelector(
-      ".list-controls .list-controls__buttons",
-    );
+    const listControlsButtonsWrap = document.querySelector(".list-controls .list-controls__buttons");
 
     const bulkDeleteButton = document.getElementById("bulk-delete-button");
 

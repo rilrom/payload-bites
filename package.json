@@ -18,7 +18,7 @@
     "tsc": "turbo tsc",
     "generate:types": "turbo generate:types",
     "generate:importmap": "turbo generate:importmap",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
     "@swc/cli": "^0.5.2",

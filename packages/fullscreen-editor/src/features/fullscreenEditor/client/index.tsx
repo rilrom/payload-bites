@@ -1,14 +1,14 @@
 "use client";
 
-import { createClientFeature } from "@payloadcms/richtext-lexical/client";
 import type { ToolbarGroup } from "@payloadcms/richtext-lexical";
+import { createClientFeature } from "@payloadcms/richtext-lexical/client";
 
-import { toolbarFullscreenEditorGroupWithItems } from "./toolbarFullscreenEditorGroup.js";
-import { slashMenuViewGroupWithItems } from "./slashMenuViewGroupWithItems.js";
-import { FullscreenEditorPlugin } from "./plugins/FullscreenEditorPlugin.js";
 import { FullscreenButton } from "../../../components/FullscreenButton/index.js";
 import { FullscreenIcon } from "../../../components/FullscreenIcon/index.js";
 import { toggleFullscreen } from "../../../utils/toggleFullscreen.js";
+import { FullscreenEditorPlugin } from "./plugins/FullscreenEditorPlugin.js";
+import { slashMenuViewGroupWithItems } from "./slashMenuViewGroupWithItems.js";
+import { toolbarFullscreenEditorGroupWithItems } from "./toolbarFullscreenEditorGroup.js";
 
 const slashMenuGroups = [
   slashMenuViewGroupWithItems([

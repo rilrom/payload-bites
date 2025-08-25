@@ -1,24 +1,14 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
-import { useRouter } from "next/navigation.js";
-import {
-  Pill,
-  toast,
-  useConfig,
-  useDocumentInfo,
-  useFormFields,
-  useTranslation,
-} from "@payloadcms/ui";
-import { formatAdminURL } from "@payloadcms/ui/shared";
 import { getTranslation } from "@payloadcms/translations";
+import { Pill, toast, useConfig, useDocumentInfo, useFormFields, useTranslation } from "@payloadcms/ui";
+import { formatAdminURL } from "@payloadcms/ui/shared";
+import { useRouter } from "next/navigation.js";
 import type { ClientCollectionConfig, Field } from "payload";
+import { useCallback, useEffect } from "react";
 
+import type { TranslationsKeys, TranslationsObject } from "../../translations.js";
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
-import type {
-  TranslationsKeys,
-  TranslationsObject,
-} from "../../translations.js";
 
 interface RestoreButtonProps {
   field: Field;
@@ -94,21 +84,15 @@ export const RestoreButton = (props: RestoreButtonProps) => {
   // Places the restore button in the popup list if available.
   // If it's not available (e.g. create access control is set to false), it will be placed where the popup list usually is as a pill.
   useEffect(() => {
-    const editScreen = document.querySelector(
-      ".collection-edit.collection-edit--is-editing",
-    );
+    const editScreen = document.querySelector(".collection-edit.collection-edit--is-editing");
 
     if (!enabled || !showSoftDeleted || !editScreen) {
       return;
     }
 
-    const docControlsControlsWrapper = editScreen.querySelector(
-      ".doc-controls__controls-wrapper",
-    );
+    const docControlsControlsWrapper = editScreen.querySelector(".doc-controls__controls-wrapper");
 
-    const docControlsPopup = docControlsControlsWrapper?.querySelector(
-      ".doc-controls__popup",
-    );
+    const docControlsPopup = docControlsControlsWrapper?.querySelector(".doc-controls__popup");
 
     if (!docControlsPopup) {
       const restoreButtonPill = document.getElementById("restore-button-pill");
@@ -119,8 +103,7 @@ export const RestoreButton = (props: RestoreButtonProps) => {
         restoreButtonPill.style.display = "inherit";
       }
     } else {
-      const popupButtonList =
-        docControlsPopup.querySelector(".popup-button-list");
+      const popupButtonList = docControlsPopup.querySelector(".popup-button-list");
 
       const restoreButtonList = document.getElementById("restore-button-list");
 

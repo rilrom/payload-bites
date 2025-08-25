@@ -1,5 +1,6 @@
-import { getPayload } from "@/app/_utils/getPayload";
 import { cache } from "react";
+
+import { getPayload } from "@/app/_utils/getPayload";
 
 export const fetchPageBySlug = cache(async (slug?: string) => {
   const payload = await getPayload();

@@ -1,5 +1,7 @@
 import { type CollectionConfig, type Config, type GlobalConfig } from "payload";
 
+import { activityLog } from "./collections/activityLog.js";
+import { ACTIVITY_LOG_COLLECTION_SLUG } from "./constants.js";
 import {
   defaultAuthCollection,
   defaultCreateLogging,
@@ -9,20 +11,15 @@ import {
   defaultPluginOptions,
   defaultUpdateLogging,
 } from "./defaults.js";
-import { type ActivityLogPluginOptions } from "./types.js";
-import { activityLog } from "./collections/activityLog.js";
 import { afterChangeCollectionActivityLog } from "./hooks/afterChangeCollectionActivityLog.js";
-import { afterDeleteCollectionActivityLog } from "./hooks/afterDeleteCollectionActivityLog.js";
 import { afterChangeGlobalActivityLog } from "./hooks/afterChangeGlobalActivityLog.js";
-import { ACTIVITY_LOG_COLLECTION_SLUG } from "./constants.js";
+import { afterDeleteCollectionActivityLog } from "./hooks/afterDeleteCollectionActivityLog.js";
+import { type ActivityLogPluginOptions } from "./types.js";
 
 export const activityLogPlugin =
   (pluginOptions?: ActivityLogPluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: Required<ActivityLogPluginOptions> = Object.assign(
-      defaultPluginOptions,
-      pluginOptions,
-    );
+    const mergedOptions: Required<ActivityLogPluginOptions> = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 
@@ -30,14 +27,8 @@ export const activityLogPlugin =
       return config;
     }
 
-    if (
-      config.collections?.find(
-        (collection) => collection.slug === ACTIVITY_LOG_COLLECTION_SLUG,
-      )
-    ) {
-      throw new Error(
-        "[activity-log]: The activity log collection already exists.",
-      );
+    if (config.collections?.find((collection) => collection.slug === ACTIVITY_LOG_COLLECTION_SLUG)) {
+      throw new Error("[activity-log]: The activity log collection already exists.");
     }
 
     config.collections = [
@@ -52,8 +43,7 @@ export const activityLogPlugin =
         }),
         access: {
           create: () => false,
-          read: (args) =>
-            mergedOptions.access?.read?.(args) ?? Boolean(args.req.user),
+          read: (args) => mergedOptions.access?.read?.(args) ?? Boolean(args.req.user),
           update: (args) => mergedOptions.access?.update?.(args) ?? false,
           delete: (args) => mergedOptions.access?.delete?.(args) ?? false,
         },
@@ -81,24 +71,15 @@ export const activityLogPlugin =
         ...collection,
       };
 
-      const mergedCollectionOptions =
-        mergedOptions.collections[modifiedCollection.slug];
+      const mergedCollectionOptions = mergedOptions.collections[modifiedCollection.slug];
 
-      const enableCreateLogging =
-        mergedCollectionOptions?.enableCreateLogging ?? defaultCreateLogging;
-      const enableUpdateLogging =
-        mergedCollectionOptions?.enableUpdateLogging ?? defaultUpdateLogging;
-      const enableDeleteLogging =
-        mergedCollectionOptions?.enableDeleteLogging ?? defaultDeleteLogging;
-      const enableIpAddressLogging =
-        mergedCollectionOptions?.enableIpAddressLogging ??
-        defaultIpAddressLogging;
-      const enableDeviceInfoLogging =
-        mergedCollectionOptions?.enableDeviceInfoLogging ??
-        defaultDeviceInfoLogging;
+      const enableCreateLogging = mergedCollectionOptions?.enableCreateLogging ?? defaultCreateLogging;
+      const enableUpdateLogging = mergedCollectionOptions?.enableUpdateLogging ?? defaultUpdateLogging;
+      const enableDeleteLogging = mergedCollectionOptions?.enableDeleteLogging ?? defaultDeleteLogging;
+      const enableIpAddressLogging = mergedCollectionOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
+      const enableDeviceInfoLogging = mergedCollectionOptions?.enableDeviceInfoLogging ?? defaultDeviceInfoLogging;
       const enableDraftAutosaveLogging =
-        mergedOptions.enableDraftAutosaveLogging ??
-        defaultPluginOptions?.enableDraftAutosaveLogging;
+        mergedOptions.enableDraftAutosaveLogging ?? defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedCollection.hooks = {
         ...(modifiedCollection.hooks || {}),
@@ -134,17 +115,12 @@ export const activityLogPlugin =
         ...global,
       };
 
-      const mergedGlobalOptions =
-        mergedOptions.collections[modifiedGlobal.slug];
+      const mergedGlobalOptions = mergedOptions.collections[modifiedGlobal.slug];
 
-      const enableIpAddressLogging =
-        mergedGlobalOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
-      const enableDeviceInfoLogging =
-        mergedGlobalOptions?.enableDeviceInfoLogging ??
-        defaultDeviceInfoLogging;
+      const enableIpAddressLogging = mergedGlobalOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
+      const enableDeviceInfoLogging = mergedGlobalOptions?.enableDeviceInfoLogging ?? defaultDeviceInfoLogging;
       const enableDraftAutosaveLogging =
-        mergedOptions.enableDraftAutosaveLogging ??
-        defaultPluginOptions?.enableDraftAutosaveLogging;
+        mergedOptions.enableDraftAutosaveLogging ?? defaultPluginOptions?.enableDraftAutosaveLogging;
 
       modifiedGlobal.hooks = {
         ...(modifiedGlobal.hooks || {}),

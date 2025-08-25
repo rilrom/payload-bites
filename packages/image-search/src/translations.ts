@@ -130,8 +130,7 @@ export const translations = {
       previewImage: "Aperçu de l'image",
       selectImage: "Sélectionner l'image",
       providerNotSupported: "Le fournisseur n'est pas pris en charge.",
-      providerNotConfigured:
-        "Le fournisseur n'a pas été correctement configuré.",
+      providerNotConfigured: "Le fournisseur n'a pas été correctement configuré.",
     },
   },
   he: {

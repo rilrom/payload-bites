@@ -1,6 +1,7 @@
 import { type CollectionAfterChangeHook } from "payload";
-import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
+
 import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
+import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
 
 interface Options extends ActivityLogPluginSharedLoggingOptions {
   enableCreateLogging: boolean;
@@ -8,9 +9,7 @@ interface Options extends ActivityLogPluginSharedLoggingOptions {
   enableDraftAutosaveLogging: boolean;
 }
 
-export const afterChangeCollectionActivityLog = (
-  options: Options,
-): CollectionAfterChangeHook => {
+export const afterChangeCollectionActivityLog = (options: Options): CollectionAfterChangeHook => {
   return async (args) => {
     if (args.req.payloadAPI === "local") {
       return args.doc;
@@ -23,9 +22,7 @@ export const afterChangeCollectionActivityLog = (
     if (
       args.operation === "update" &&
       (!options.enableUpdateLogging ||
-        (args.req.query.draft &&
-          args.req.query.autosave &&
-          !options.enableDraftAutosaveLogging))
+        (args.req.query.draft && args.req.query.autosave && !options.enableDraftAutosaveLogging))
     ) {
       return args.doc;
     }
@@ -39,12 +36,8 @@ export const afterChangeCollectionActivityLog = (
             value: args.req.user?.id,
             relationTo: args.req.user?.collection,
           },
-          ipAddress: options.enableIpAddressLogging
-            ? args.req.headers.get("x-forwarded-for")
-            : undefined,
-          deviceInfo: options.enableDeviceInfoLogging
-            ? args.req.headers.get("user-agent")
-            : undefined,
+          ipAddress: options.enableIpAddressLogging ? args.req.headers.get("x-forwarded-for") : undefined,
+          deviceInfo: options.enableDeviceInfoLogging ? args.req.headers.get("user-agent") : undefined,
           locale: args.req.locale,
           resource: args.collection.slug,
           documentId: args.doc.id,

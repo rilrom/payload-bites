@@ -1,18 +1,15 @@
 import type { Config } from "payload";
 
-import { translations } from "./translations.js";
-import { deepMerge } from "./utils/deepMerge.js";
-import { providers } from "./endpoints/providers.js";
 import { defaultPluginOptions } from "./defaults.js";
+import { providers } from "./endpoints/providers.js";
+import { translations } from "./translations.js";
 import type { ImageSearchPluginOptions } from "./types.js";
+import { deepMerge } from "./utils/deepMerge.js";
 
 export const imageSearchPlugin =
   (pluginOptions: ImageSearchPluginOptions = {}) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: Required<ImageSearchPluginOptions> = Object.assign(
-      defaultPluginOptions,
-      pluginOptions,
-    );
+    const mergedOptions: Required<ImageSearchPluginOptions> = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 
@@ -39,8 +36,7 @@ export const imageSearchPlugin =
         return collection;
       }
 
-      const uploadObj =
-        upload === true ? {} : typeof upload === "object" ? upload : undefined;
+      const uploadObj = upload === true ? {} : typeof upload === "object" ? upload : undefined;
 
       const modifiedCollection = {
         ...collection,

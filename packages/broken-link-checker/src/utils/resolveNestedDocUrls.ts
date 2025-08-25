@@ -1,4 +1,5 @@
-import type { PayloadRequest, JsonObject, CollectionSlug } from "payload";
+import type { CollectionSlug, JsonObject, PayloadRequest } from "payload";
+
 import { BrokenLinkCheckerResolvedUrl } from "../types.js";
 
 type NestedDoc = {
@@ -69,9 +70,7 @@ export const resolveNestedDocUrls = async ({
     if (docs.length < batchSize) {
       hasMore = false;
     } else {
-      cursor = docs[docs.length - 1]?.[
-        cursorFieldName as keyof NestedDoc
-      ] as string;
+      cursor = docs[docs.length - 1]?.[cursorFieldName as keyof NestedDoc] as string;
     }
   }
 
@@ -87,10 +86,7 @@ export const resolveNestedDocUrls = async ({
         segments.unshift(slug);
       }
 
-      const parent = current[parentFieldName as keyof NestedDoc] as
-        | string
-        | JsonObject
-        | undefined;
+      const parent = current[parentFieldName as keyof NestedDoc] as string | JsonObject | undefined;
 
       const parentId = typeof parent === "string" ? parent : parent?.id;
 

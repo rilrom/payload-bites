@@ -1,11 +1,11 @@
 "use client";
 
+import "./index.scss";
+
 import { type Field } from "payload";
 import { useEffect } from "react";
 
 import { areAllDirectElementsHidden } from "../../utils/areAllDirectElementsHidden.js";
-
-import "./index.scss";
 
 interface VisibilityCheckerProps {
   collectionSlug: string;
@@ -26,8 +26,7 @@ export const VisibilityChecker = (props: VisibilityCheckerProps) => {
   }, [props.collectionSlug, props.enabledCollections]);
 
   useEffect(() => {
-    const editEnabledCollections =
-      props.field?.admin?.custom?.enabledCollections || [];
+    const editEnabledCollections = props.field?.admin?.custom?.enabledCollections || [];
     const editCollectionSlug = props.field?.admin?.custom?.collectionSlug;
 
     const editView = document.querySelector(".collection-edit");
@@ -35,39 +34,28 @@ export const VisibilityChecker = (props: VisibilityCheckerProps) => {
     if (editView && editEnabledCollections.includes(editCollectionSlug)) {
       editView.setAttribute("data-soft-delete-collection", "true");
     }
-  }, [
-    props.field?.admin?.custom?.collectionSlug,
-    props.field?.admin?.custom?.enabledCollections,
-  ]);
+  }, [props.field?.admin?.custom?.collectionSlug, props.field?.admin?.custom?.enabledCollections]);
 
   useEffect(() => {
-    const editScreen = document.querySelector<HTMLElement>(
-      ".collection-edit.collection-edit--is-editing",
-    );
+    const editScreen = document.querySelector<HTMLElement>(".collection-edit.collection-edit--is-editing");
 
     if (!editScreen) {
       return;
     }
 
-    const docControlsControlsWrapper = editScreen.querySelector<HTMLElement>(
-      ".doc-controls__controls-wrapper",
-    );
+    const docControlsControlsWrapper = editScreen.querySelector<HTMLElement>(".doc-controls__controls-wrapper");
 
     if (!docControlsControlsWrapper) {
       return;
     }
 
-    const docControlsPopup =
-      docControlsControlsWrapper.querySelector<HTMLElement>(
-        ".doc-controls__popup",
-      );
+    const docControlsPopup = docControlsControlsWrapper.querySelector<HTMLElement>(".doc-controls__popup");
 
     if (!docControlsPopup) {
       return;
     }
 
-    const popupButtonList =
-      docControlsPopup.querySelector<HTMLElement>(".popup-button-list");
+    const popupButtonList = docControlsPopup.querySelector<HTMLElement>(".popup-button-list");
 
     if (!popupButtonList) {
       return;

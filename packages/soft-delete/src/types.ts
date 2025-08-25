@@ -11,9 +11,7 @@ export type SoftDeletePluginAccessArgs = {
   req: PayloadRequest;
 };
 
-export type SoftDeletePluginAccess = (
-  args: SoftDeletePluginAccessArgs,
-) => Promise<boolean>;
+export type SoftDeletePluginAccess = (args: SoftDeletePluginAccessArgs) => Promise<boolean>;
 
 export type SoftDeletePluginOptions = {
   /**

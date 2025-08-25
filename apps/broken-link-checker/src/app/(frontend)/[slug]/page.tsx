@@ -1,8 +1,10 @@
-import React from "react";
-import { getPayload } from "@/app/_utils/getPayload";
-import { fetchPageBySlug } from "./utils";
 import { notFound } from "next/navigation";
+import React from "react";
+
 import { RenderBlocks } from "@/app/_components/RenderBlocks";
+import { getPayload } from "@/app/_utils/getPayload";
+
+import { fetchPageBySlug } from "./utils";
 
 interface PageProps {
   params: Promise<{

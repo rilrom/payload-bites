@@ -1,24 +1,19 @@
 import { type GlobalAfterChangeHook } from "payload";
-import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
+
 import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
+import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
 
 interface Options extends ActivityLogPluginSharedLoggingOptions {
   enableDraftAutosaveLogging: boolean;
 }
 
-export const afterChangeGlobalActivityLog = (
-  options: Options,
-): GlobalAfterChangeHook => {
+export const afterChangeGlobalActivityLog = (options: Options): GlobalAfterChangeHook => {
   return async (args) => {
     if (args.req.payloadAPI === "local") {
       return args.doc;
     }
 
-    if (
-      args.req.query.draft &&
-      args.req.query.autosave &&
-      !options.enableDraftAutosaveLogging
-    ) {
+    if (args.req.query.draft && args.req.query.autosave && !options.enableDraftAutosaveLogging) {
       return args.doc;
     }
 
@@ -31,12 +26,8 @@ export const afterChangeGlobalActivityLog = (
             value: args.req.user?.id,
             relationTo: args.req.user?.collection,
           },
-          ipAddress: options.enableIpAddressLogging
-            ? args.req.headers.get("x-forwarded-for")
-            : undefined,
-          deviceInfo: options.enableDeviceInfoLogging
-            ? args.req.headers.get("user-agent")
-            : undefined,
+          ipAddress: options.enableIpAddressLogging ? args.req.headers.get("x-forwarded-for") : undefined,
+          deviceInfo: options.enableDeviceInfoLogging ? args.req.headers.get("user-agent") : undefined,
           locale: args.req.locale,
           resource: args.global.slug,
           documentId: args.doc.id,

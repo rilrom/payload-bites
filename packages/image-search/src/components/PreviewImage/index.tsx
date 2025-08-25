@@ -1,14 +1,11 @@
 "use client";
 
+import "./index.scss";
+
 import { Button, useModal, useTranslation } from "@payloadcms/ui";
 
 import type { ProviderResult } from "../../classes/Provider.js";
-import type {
-  TranslationsKeys,
-  TranslationsObject,
-} from "../../translations.js";
-
-import "./index.scss";
+import type { TranslationsKeys, TranslationsObject } from "../../translations.js";
 
 const baseClass = "preview-image";
 
@@ -46,12 +43,7 @@ export const PreviewImage = (props: PreviewImageProps) => {
             aria-label={t("imageSearch:selectImage")}
             buttonStyle="primary"
             className={`${baseClass}__select`}
-            onClick={() =>
-              onSelect(
-                selectedImage.urls.original,
-                selectedImage.urls?.downloadLocation,
-              )
-            }
+            onClick={() => onSelect(selectedImage.urls.original, selectedImage.urls?.downloadLocation)}
           >
             {t("imageSearch:selectImage")}
           </Button>

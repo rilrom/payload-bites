@@ -1,13 +1,8 @@
 "use client";
 
+import { Button, toast, useConfig, useRouteCache, useTranslation } from "@payloadcms/ui";
 import { useCallback } from "react";
-import {
-  Button,
-  toast,
-  useConfig,
-  useRouteCache,
-  useTranslation,
-} from "@payloadcms/ui";
+
 import { TranslationsKeys, TranslationsObject } from "../../translations.js";
 
 export const ScanLinksButton = () => {
@@ -48,7 +43,5 @@ export const ScanLinksButton = () => {
     }
   };
 
-  return (
-    <Button onClick={handleScan}>{t("brokenLinkChecker:scanLinks")}</Button>
-  );
+  return <Button onClick={handleScan}>{t("brokenLinkChecker:scanLinks")}</Button>;
 };

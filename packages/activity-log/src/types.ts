@@ -1,9 +1,4 @@
-import {
-  type CollectionAdminOptions,
-  type Access,
-  type CollectionSlug,
-  type GlobalSlug,
-} from "payload";
+import { type Access, type CollectionAdminOptions, type CollectionSlug, type GlobalSlug } from "payload";
 
 export type ActivityLogPluginSharedLoggingOptions = {
   enableIpAddressLogging: boolean;

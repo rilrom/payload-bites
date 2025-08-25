@@ -1,14 +1,12 @@
 import { Pexels } from "./Pexels.js";
-import { Unsplash } from "./Unsplash.js";
 import { Pixabay } from "./Pixabay.js";
+import { Unsplash } from "./Unsplash.js";
 
 export class ProviderManager {
   static getProviders() {
     const providers = [Unsplash, Pexels, Pixabay];
 
-    return providers
-      .map((Provider) => new Provider())
-      .filter((provider) => provider.isConfigured);
+    return providers.map((Provider) => new Provider()).filter((provider) => provider.isConfigured);
   }
 
   static getProvider(providerName?: string) {

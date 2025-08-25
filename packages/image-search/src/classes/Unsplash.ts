@@ -1,7 +1,6 @@
 import { Provider } from "./Provider.js";
 
-const REFERRAL_PARAMS =
-  "utm_source=payload-bites-image-search&utm_medium=referral";
+const REFERRAL_PARAMS = "utm_source=payload-bites-image-search&utm_medium=referral";
 
 interface UnsplashResult {
   id: string;
@@ -39,10 +38,7 @@ export class Unsplash extends Provider {
   }
 
   async getFeatured() {
-    const data = await this.fetch(
-      "GET",
-      `/photos/random?featured=true&count=${this.getFetchLimit()}`,
-    );
+    const data = await this.fetch("GET", `/photos/random?featured=true&count=${this.getFetchLimit()}`);
 
     return {
       images: this.formatResults(data),
@@ -52,10 +48,7 @@ export class Unsplash extends Provider {
   }
 
   async getSearch(query: string, page: number) {
-    const data = await this.fetch(
-      "GET",
-      `/search/photos?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`,
-    );
+    const data = await this.fetch("GET", `/search/photos?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`);
 
     return {
       images: this.formatResults(data.results),

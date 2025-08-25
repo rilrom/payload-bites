@@ -1,19 +1,15 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import { buildConfig } from "payload";
+import { FullscreenEditorFeature } from "@payload-bites/fullscreen-editor";
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  lexicalEditor,
-} from "@payloadcms/richtext-lexical";
+import { BlocksFeature, FixedToolbarFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
-import { FullscreenEditorFeature } from "@payload-bites/fullscreen-editor";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
-import { Collections } from "./collections/Collections";
 import { Block } from "./blocks/Block";
+import { Collections } from "./collections/Collections";
+import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

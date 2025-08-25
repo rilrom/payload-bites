@@ -1,22 +1,16 @@
-import { combineQueries, type CollectionConfig, type Config } from "payload";
+import { type CollectionConfig, combineQueries, type Config } from "payload";
 
-import { endpoints } from "./endpoints/index.js";
-import { deepMerge } from "./utils/deepMerge.js";
-import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
 import { defaultPluginOptions } from "./defaults.js";
+import { endpoints } from "./endpoints/index.js";
 import { translations } from "./translations.js";
-import {
-  type SoftDeletePluginAccessArgs,
-  type SoftDeletePluginOptions,
-} from "./types.js";
+import { type SoftDeletePluginAccessArgs, type SoftDeletePluginOptions } from "./types.js";
+import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
+import { deepMerge } from "./utils/deepMerge.js";
 
 export const softDeletePlugin =
   (pluginOptions?: SoftDeletePluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: SoftDeletePluginOptions = Object.assign(
-      defaultPluginOptions,
-      pluginOptions,
-    );
+    const mergedOptions: SoftDeletePluginOptions = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 
@@ -53,16 +47,12 @@ export const softDeletePlugin =
 
       const enabledCollections = Object.keys(mergedOptions.collections || {});
 
-      const enableHardDelete =
-        mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
-      const enableRestore =
-        mergedOptions.collections?.[collection.slug]?.enableRestore ?? true;
+      const enableHardDelete = mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
+      const enableRestore = mergedOptions.collections?.[collection.slug]?.enableRestore ?? true;
 
       modifiedCollection.admin = {
         ...modifiedCollection?.admin,
-        baseListFilter: combinedBaseListFilter(
-          modifiedCollection?.admin?.baseListFilter,
-        ),
+        baseListFilter: combinedBaseListFilter(modifiedCollection?.admin?.baseListFilter),
         components: {
           ...(modifiedCollection.admin?.components || {}),
           beforeList: [
@@ -173,10 +163,7 @@ export const softDeletePlugin =
 
           const access = await collection.access?.update?.(args);
 
-          return combineQueries(
-            deletedAtQuery,
-            access ?? Boolean(args.req.user),
-          );
+          return combineQueries(deletedAtQuery, access ?? Boolean(args.req.user));
         },
       };
 
@@ -190,10 +177,7 @@ export const softDeletePlugin =
               return false;
             }
 
-            const access =
-              await mergedOptions.collections?.[
-                collection.slug
-              ]?.softDeleteAccess?.(args);
+            const access = await mergedOptions.collections?.[collection.slug]?.softDeleteAccess?.(args);
 
             return access ?? Boolean(args.req.user);
           },
@@ -206,10 +190,7 @@ export const softDeletePlugin =
               return false;
             }
 
-            const access =
-              await mergedOptions.collections?.[
-                collection.slug
-              ]?.hardDeleteAccess?.(args);
+            const access = await mergedOptions.collections?.[collection.slug]?.hardDeleteAccess?.(args);
 
             return access ?? Boolean(args.req.user);
           },
@@ -222,10 +203,7 @@ export const softDeletePlugin =
               return false;
             }
 
-            const access =
-              await mergedOptions.collections?.[
-                collection.slug
-              ]?.restoreAccess?.(args);
+            const access = await mergedOptions.collections?.[collection.slug]?.restoreAccess?.(args);
 
             return access ?? Boolean(args.req.user);
           },

@@ -78,20 +78,12 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     collections: CollectionsSelect<false> | CollectionsSelect<true>;
-    "collection-with-drafts":
-      | CollectionWithDraftsSelect<false>
-      | CollectionWithDraftsSelect<true>;
+    "collection-with-drafts": CollectionWithDraftsSelect<false> | CollectionWithDraftsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     "activity-log": ActivityLogSelect<false> | ActivityLogSelect<true>;
-    "payload-locked-documents":
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
-    "payload-preferences":
-      | PayloadPreferencesSelect<false>
-      | PayloadPreferencesSelect<true>;
-    "payload-migrations":
-      | PayloadMigrationsSelect<false>
-      | PayloadMigrationsSelect<true>;
+    "payload-locked-documents": PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -102,9 +94,7 @@ export interface Config {
   };
   globalsSelect: {
     globals: GlobalsSelect<false> | GlobalsSelect<true>;
-    "global-with-drafts":
-      | GlobalWithDraftsSelect<false>
-      | GlobalWithDraftsSelect<true>;
+    "global-with-drafts": GlobalWithDraftsSelect<false> | GlobalWithDraftsSelect<true>;
   };
   locale: null;
   user: User & {

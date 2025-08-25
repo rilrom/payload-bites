@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+
 import { Content } from "../blocks/Content";
 
 export const Pages: CollectionConfig = {

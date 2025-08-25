@@ -1,7 +1,7 @@
 import { LexicalEditor } from "@payloadcms/richtext-lexical/lexical";
 
-import { FullscreenIcon } from "../FullscreenIcon/index.js";
 import { toggleFullscreen } from "../../utils/toggleFullscreen.js";
+import { FullscreenIcon } from "../FullscreenIcon/index.js";
 
 interface FullscreenButtonProps {
   editor: LexicalEditor;

@@ -1,13 +1,8 @@
 "use client";
 
-import type {
-  ToolbarGroup,
-  ToolbarGroupItem,
-} from "@payloadcms/richtext-lexical";
+import type { ToolbarGroup, ToolbarGroupItem } from "@payloadcms/richtext-lexical";
 
-export const toolbarFullscreenEditorGroupWithItems = (
-  items: ToolbarGroupItem[],
-): ToolbarGroup => {
+export const toolbarFullscreenEditorGroupWithItems = (items: ToolbarGroupItem[]): ToolbarGroup => {
   return {
     type: "buttons",
     items,

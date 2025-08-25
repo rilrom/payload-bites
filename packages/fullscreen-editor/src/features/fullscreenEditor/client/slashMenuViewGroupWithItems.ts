@@ -1,11 +1,6 @@
-import type {
-  SlashMenuGroup,
-  SlashMenuItem,
-} from "@payloadcms/richtext-lexical";
+import type { SlashMenuGroup, SlashMenuItem } from "@payloadcms/richtext-lexical";
 
-export function slashMenuViewGroupWithItems(
-  items: SlashMenuItem[],
-): SlashMenuGroup {
+export function slashMenuViewGroupWithItems(items: SlashMenuItem[]): SlashMenuGroup {
   return {
     items,
     key: "view",

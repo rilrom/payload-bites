@@ -1,4 +1,4 @@
-import { Endpoint } from "payload";
+import { type Endpoint } from "payload";
 
 import { ProviderManager } from "../classes/ProviderManager.js";
 
@@ -12,10 +12,7 @@ export const providers: Endpoint[] = [
       });
 
       if (!access) {
-        return Response.json(
-          { data: null, error: req.t("error:notAllowedToPerformAction") },
-          { status: 403 },
-        );
+        return Response.json({ data: null, error: req.t("error:notAllowedToPerformAction") }, { status: 403 });
       }
 
       const providers = ProviderManager.getProviders();
@@ -32,15 +29,10 @@ export const providers: Endpoint[] = [
       });
 
       if (!access) {
-        return Response.json(
-          { data: null, error: req.t("error:notAllowedToPerformAction") },
-          { status: 403 },
-        );
+        return Response.json({ data: null, error: req.t("error:notAllowedToPerformAction") }, { status: 403 });
       }
 
-      const provider = ProviderManager.getProvider(
-        req.routeParams?.provider as string | undefined,
-      );
+      const provider = ProviderManager.getProvider(req.routeParams?.provider as string | undefined);
 
       if (!provider) {
         return Response.json(
@@ -76,15 +68,10 @@ export const providers: Endpoint[] = [
       });
 
       if (!access) {
-        return Response.json(
-          { data: null, error: req.t("error:notAllowedToPerformAction") },
-          { status: 403 },
-        );
+        return Response.json({ data: null, error: req.t("error:notAllowedToPerformAction") }, { status: 403 });
       }
 
-      const provider = ProviderManager.getProvider(
-        req.routeParams?.provider as string | undefined,
-      );
+      const provider = ProviderManager.getProvider(req.routeParams?.provider as string | undefined);
 
       if (!provider) {
         return Response.json(
@@ -106,10 +93,7 @@ export const providers: Endpoint[] = [
         );
       }
 
-      const data = await provider.getSearch(
-        req.query.query as string,
-        req.query.page as number,
-      );
+      const data = await provider.getSearch(req.query.query as string, req.query.page as number);
 
       return Response.json({ data, error: null });
     },
@@ -123,15 +107,10 @@ export const providers: Endpoint[] = [
       });
 
       if (!access) {
-        return Response.json(
-          { data: null, error: req.t("error:notAllowedToPerformAction") },
-          { status: 403 },
-        );
+        return Response.json({ data: null, error: req.t("error:notAllowedToPerformAction") }, { status: 403 });
       }
 
-      const provider = ProviderManager.getProvider(
-        req.routeParams?.provider as string | undefined,
-      );
+      const provider = ProviderManager.getProvider(req.routeParams?.provider as string | undefined);
 
       if (!provider) {
         return Response.json(

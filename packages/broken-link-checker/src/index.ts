@@ -1,20 +1,17 @@
-import { PayloadRequest, type Config } from "payload";
+import { type Config, PayloadRequest } from "payload";
 
-import { deepMerge } from "./utils/deepMerge.js";
+import { brokenLinks } from "./collections/brokenLinks.js";
+import { BROKEN_LINKS_COLLECTION_SLUG } from "./constants.js";
 import { defaultPluginOptions } from "./defaults.js";
+import { endpoints } from "./endpoints/index.js";
 import { translations } from "./translations.js";
 import { type BrokenLinkCheckerPluginOptions } from "./types.js";
-import { BROKEN_LINKS_COLLECTION_SLUG } from "./constants.js";
-import { endpoints } from "./endpoints/index.js";
-import { brokenLinks } from "./collections/brokenLinks.js";
+import { deepMerge } from "./utils/deepMerge.js";
 
 export const brokenLinkCheckerPlugin =
   (pluginOptions?: BrokenLinkCheckerPluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: BrokenLinkCheckerPluginOptions = Object.assign(
-      defaultPluginOptions,
-      pluginOptions,
-    );
+    const mergedOptions: BrokenLinkCheckerPluginOptions = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 
@@ -22,14 +19,8 @@ export const brokenLinkCheckerPlugin =
       return config;
     }
 
-    if (
-      config.collections?.find(
-        (collection) => collection.slug === BROKEN_LINKS_COLLECTION_SLUG,
-      )
-    ) {
-      throw new Error(
-        "[broken-link-checker]: The broken links collection already exists.",
-      );
+    if (config.collections?.find((collection) => collection.slug === BROKEN_LINKS_COLLECTION_SLUG)) {
+      throw new Error("[broken-link-checker]: The broken links collection already exists.");
     }
 
     config.custom = {
@@ -57,8 +48,7 @@ export const brokenLinkCheckerPlugin =
         ...brokenLinks,
         access: {
           ...(brokenLinks.access || {}),
-          read: (args) =>
-            mergedOptions.brokenLinksAccess?.(args) ?? Boolean(args.req.user),
+          read: (args) => mergedOptions.brokenLinksAccess?.(args) ?? Boolean(args.req.user),
         },
       },
     ];

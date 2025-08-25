@@ -1,23 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation.js";
 import { getTranslation } from "@payloadcms/translations";
-import {
-  Pill,
-  toast,
-  useConfig,
-  useRouteCache,
-  useSelection,
-  useTranslation,
-} from "@payloadcms/ui";
-import * as qs from "qs-esm";
+import { Pill, toast, useConfig, useRouteCache, useSelection, useTranslation } from "@payloadcms/ui";
+import { useRouter } from "next/navigation.js";
 import type { ClientCollectionConfig } from "payload";
+import * as qs from "qs-esm";
+import { useCallback, useEffect, useState } from "react";
 
-import type {
-  TranslationsKeys,
-  TranslationsObject,
-} from "../../translations.js";
+import type { TranslationsKeys, TranslationsObject } from "../../translations.js";
 import { useSoftDelete } from "../SoftDeleteProvider/index.client.js";
 
 interface BulkSoftDeleteButtonProps {
@@ -49,9 +39,7 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
         return;
       }
 
-      const selectionArray = [...selection.selected.keys()].filter((key) =>
-        selection.selected.get(key),
-      );
+      const selectionArray = [...selection.selected.keys()].filter((key) => selection.selected.get(key));
 
       const response = await fetch(`${config.routes.api}/soft-delete`, {
         method: "POST",
@@ -79,9 +67,7 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
 
         if (json?.errors.length > 0) {
           toast.error(json.message, {
-            description: json.errors
-              .map((error: any) => error.message)
-              .join("\n"),
+            description: json.errors.map((error: any) => error.message).join("\n"),
           });
         }
 
@@ -103,9 +89,7 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
 
       if (json.errors) {
         toast.error(json.message, {
-          description: json.errors
-            .map((error: any) => error.message)
-            .join("\n"),
+          description: json.errors.map((error: any) => error.message).join("\n"),
         });
       } else {
         addDefaultError();
@@ -123,13 +107,9 @@ export const BulkSoftDeleteButton = (props: BulkSoftDeleteButtonProps) => {
       return;
     }
 
-    const listControlsButtonsWrap = document.querySelector(
-      ".list-controls .list-controls__buttons",
-    );
+    const listControlsButtonsWrap = document.querySelector(".list-controls .list-controls__buttons");
 
-    const bulkSoftDeleteButton = document.getElementById(
-      "bulk-soft-delete-button",
-    );
+    const bulkSoftDeleteButton = document.getElementById("bulk-soft-delete-button");
 
     if (listControlsButtonsWrap && bulkSoftDeleteButton) {
       listControlsButtonsWrap.prepend(bulkSoftDeleteButton);

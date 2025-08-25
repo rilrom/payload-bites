@@ -1,14 +1,14 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import { buildConfig } from "payload";
+import { activityLogPlugin } from "@payload-bites/activity-log";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
-import { activityLogPlugin } from "@payload-bites/activity-log";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
 
-import { Users } from "./collections/Users";
 import { Collections } from "./collections/Collections";
 import { CollectionWithDrafts } from "./collections/CollectionWithDrafts";
+import { Users } from "./collections/Users";
 import { Globals } from "./globals/Globals";
 import { GlobalWithDrafts } from "./globals/GlobalWithDrafts";
 

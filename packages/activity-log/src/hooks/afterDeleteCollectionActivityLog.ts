@@ -1,14 +1,13 @@
 import { type CollectionAfterDeleteHook } from "payload";
-import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
+
 import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
+import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
 
 interface Options extends ActivityLogPluginSharedLoggingOptions {
   enableDeleteLogging: boolean;
 }
 
-export const afterDeleteCollectionActivityLog = (
-  options: Options,
-): CollectionAfterDeleteHook => {
+export const afterDeleteCollectionActivityLog = (options: Options): CollectionAfterDeleteHook => {
   return async (args) => {
     if (args.req.payloadAPI === "local") {
       return args.doc;
@@ -27,12 +26,8 @@ export const afterDeleteCollectionActivityLog = (
             value: args.req.user?.id,
             relationTo: args.req.user?.collection,
           },
-          ipAddress: options.enableIpAddressLogging
-            ? args.req.headers.get("x-forwarded-for")
-            : undefined,
-          deviceInfo: options.enableDeviceInfoLogging
-            ? args.req.headers.get("user-agent")
-            : undefined,
+          ipAddress: options.enableIpAddressLogging ? args.req.headers.get("x-forwarded-for") : undefined,
+          deviceInfo: options.enableDeviceInfoLogging ? args.req.headers.get("user-agent") : undefined,
           locale: args.req.locale,
           resource: args.collection.slug,
           documentId: args.doc.id,

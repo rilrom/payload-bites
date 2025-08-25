@@ -1,28 +1,16 @@
 "use client";
 
+import "./index.scss";
+
+import { Drawer, LinkIcon, Pagination, SearchFilter, Select, toast, useModal, useTranslation } from "@payloadcms/ui";
 import { useCallback, useEffect, useState } from "react";
-import {
-  Drawer,
-  LinkIcon,
-  Pagination,
-  SearchFilter,
-  Select,
-  toast,
-  useModal,
-  useTranslation,
-} from "@payloadcms/ui";
 import { Masonry } from "react-plock";
 
-import { ZoomIcon } from "../ZoomIcon/index.js";
-import { PreviewImage } from "../PreviewImage/index.js";
 import { ProviderResult } from "../../classes/Provider.js";
+import type { TranslationsKeys, TranslationsObject } from "../../translations.js";
 import { fetchWithCache } from "../../utils/fetchWithCache.js";
-import type {
-  TranslationsKeys,
-  TranslationsObject,
-} from "../../translations.js";
-
-import "./index.scss";
+import { PreviewImage } from "../PreviewImage/index.js";
+import { ZoomIcon } from "../ZoomIcon/index.js";
 
 const baseClass = "search-images";
 
@@ -47,16 +35,13 @@ export const SearchImages = (props: SearchImagesProps) => {
   const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
 
   const [providerOptions, setProviderOptions] = useState<ProviderOption[]>([]);
-  const [selectedProvider, setSelectedProvider] =
-    useState<ProviderOption | null>(null);
+  const [selectedProvider, setSelectedProvider] = useState<ProviderOption | null>(null);
   const [loading, setLoading] = useState(true);
   const [value, setValue] = useState("");
   const [images, setImages] = useState<ProviderResult[] | null>(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<number | null>(null);
-  const [selectedImage, setSelectedImage] = useState<ProviderResult | null>(
-    null,
-  );
+  const [selectedImage, setSelectedImage] = useState<ProviderResult | null>(null);
 
   const addDefaultError = useCallback(() => {
     toast.error(t("error:unknown"));
@@ -80,12 +65,10 @@ export const SearchImages = (props: SearchImagesProps) => {
         return toast.error(json.error);
       }
 
-      const providers = json.data.map(
-        (provider: { name: string; key: string }) => ({
-          label: provider.name,
-          value: provider.key.toLowerCase(),
-        }),
-      );
+      const providers = json.data.map((provider: { name: string; key: string }) => ({
+        label: provider.name,
+        value: provider.key.toLowerCase(),
+      }));
 
       setProviderOptions(providers);
       setSelectedProvider(providers[0]);
@@ -100,9 +83,7 @@ export const SearchImages = (props: SearchImagesProps) => {
       setLoading(true);
       resetImages();
 
-      const json = await fetchWithCache(
-        `${serverURL}${api}/providers/${selectedProvider?.value}/featured`,
-      );
+      const json = await fetchWithCache(`${serverURL}${api}/providers/${selectedProvider?.value}/featured`);
 
       if (json.error) {
         return toast.error(json.error);
@@ -169,9 +150,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 
     // We don't want this to prevent users from continuing if this request fails
     try {
-      await fetch(
-        `${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${download}`,
-      );
+      await fetch(`${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${download}`);
     } catch {
       return null;
     }
@@ -203,14 +182,10 @@ export const SearchImages = (props: SearchImagesProps) => {
         />
       </div>
 
-      {loading && (
-        <div className={`${baseClass}__loading`}>{t("general:loading")}...</div>
-      )}
+      {loading && <div className={`${baseClass}__loading`}>{t("general:loading")}...</div>}
 
       {!loading && images?.length === 0 && (
-        <div className={`${baseClass}__noResults`}>
-          {t("imageSearch:noResults")}
-        </div>
+        <div className={`${baseClass}__noResults`}>{t("imageSearch:noResults")}</div>
       )}
 
       {!loading && images && images?.length > 0 && (
@@ -228,20 +203,10 @@ export const SearchImages = (props: SearchImagesProps) => {
                 <div className={`${baseClass}__card`}>
                   <button
                     className={`${baseClass}__button`}
-                    onClick={() =>
-                      handleSelect(
-                        data.urls.original,
-                        data.urls?.downloadLocation,
-                      )
-                    }
+                    onClick={() => handleSelect(data.urls.original, data.urls?.downloadLocation)}
                     style={{ backgroundColor: data.color }}
                   >
-                    <img
-                      src={data.urls.view}
-                      alt={data.alt}
-                      width={data.width}
-                      height={data.height}
-                    />
+                    <img src={data.urls.view} alt={data.alt} width={data.width} height={data.height} />
                   </button>
                   <div className={`${baseClass}__topOverlay`}>
                     <button
@@ -282,9 +247,7 @@ export const SearchImages = (props: SearchImagesProps) => {
               <Pagination
                 hasNextPage={currentPage < totalPages}
                 hasPrevPage={currentPage > 1}
-                nextPage={
-                  currentPage < totalPages ? currentPage + 1 : undefined
-                }
+                nextPage={currentPage < totalPages ? currentPage + 1 : undefined}
                 numberOfNeighbors={3}
                 page={currentPage}
                 prevPage={currentPage > 1 ? currentPage - 1 : undefined}
@@ -303,11 +266,7 @@ export const SearchImages = (props: SearchImagesProps) => {
       )}
 
       <Drawer Header={null} slug={previewImageDrawerSlug}>
-        <PreviewImage
-          slug={previewImageDrawerSlug}
-          selectedImage={selectedImage}
-          onSelect={handleSelect}
-        />
+        <PreviewImage slug={previewImageDrawerSlug} selectedImage={selectedImage} onSelect={handleSelect} />
       </Drawer>
     </div>
   );

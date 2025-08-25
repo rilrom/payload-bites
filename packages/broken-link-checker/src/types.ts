@@ -1,4 +1,4 @@
-import { type CollectionSlug, type Access, PayloadRequest } from "payload";
+import { type Access, type CollectionSlug, PayloadRequest } from "payload";
 
 export type BrokenLinkCheckerResolvedUrl = {
   url: string;
@@ -33,9 +33,7 @@ export type BrokenLinkCheckerPluginOptions = {
     [key in CollectionSlug]?: {
       resolvedUrls:
         | BrokenLinkCheckerResolvedUrl[]
-        | ((args: {
-            req: PayloadRequest;
-          }) => Promise<BrokenLinkCheckerResolvedUrl[]>);
+        | ((args: { req: PayloadRequest }) => Promise<BrokenLinkCheckerResolvedUrl[]>);
     };
   };
 };

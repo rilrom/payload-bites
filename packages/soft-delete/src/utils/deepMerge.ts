@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-nocheck - this was copied from the payload codebase which also used ts-nocheck
 
 /**
  * Simple object check.
