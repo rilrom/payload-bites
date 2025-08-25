@@ -1,4 +1,4 @@
-import { type Access, type CollectionAdminOptions, type CollectionSlug, type GlobalSlug } from "payload";
+import { type Access, type CollectionAdminOptions, type CollectionSlug, type GlobalSlug, type Labels } from "payload";
 
 export type ActivityLogPluginSharedLoggingOptions = {
   enableIpAddressLogging: boolean;
@@ -24,6 +24,13 @@ export type ActivityLogPluginOptions = {
    *
    */
   admin?: Pick<CollectionAdminOptions, "group">;
+
+  /**
+   * Labels for the activity log collection.
+   *
+   * @default undefined
+   */
+  labels?: Labels;
 
   /**
    * Enables or disables draft autosave logging.
