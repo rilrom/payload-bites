@@ -41,6 +41,7 @@ export const activityLogPlugin =
             group: mergedOptions.admin.group,
           },
         }),
+        labels: mergedOptions.labels ?? undefined,
         access: {
           create: () => false,
           read: (args) => mergedOptions.access?.read?.(args) ?? Boolean(args.req.user),
