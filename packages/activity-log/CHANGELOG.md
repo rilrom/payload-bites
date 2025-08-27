@@ -1,5 +1,11 @@
 # @payload-bites/activity-log
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: add overrideActivityLogCollection ([292b14e](https://github.com/rilrom/payload-bites/commit/292b14e))
+
 ## 1.2.0
 
 ### Minor Changes
