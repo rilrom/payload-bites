@@ -1,15 +1,16 @@
 import { type ActivityLogPluginOptions } from "./types.js";
 
-export const defaultPluginOptions: Required<ActivityLogPluginOptions> = {
+export const defaultPluginOptions: ActivityLogPluginOptions = {
   enabled: true,
   admin: {},
-  enableDraftAutosaveLogging: true,
   access: {},
   collections: {},
   globals: {},
 };
 
 export const defaultAuthCollection = "users";
+
+export const defaultDraftAutosaveLogging = true;
 
 export const defaultCreateLogging = true;
 

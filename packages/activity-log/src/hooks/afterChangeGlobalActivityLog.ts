@@ -1,6 +1,5 @@
 import { type GlobalAfterChangeHook } from "payload";
 
-import { ACTIVITY_LOG_COLLECTION_SLUG } from "../constants.js";
 import { type ActivityLogPluginSharedLoggingOptions } from "../types.js";
 
 interface Options extends ActivityLogPluginSharedLoggingOptions {
@@ -19,7 +18,7 @@ export const afterChangeGlobalActivityLog = (options: Options): GlobalAfterChang
 
     try {
       await args.req.payload.create({
-        collection: ACTIVITY_LOG_COLLECTION_SLUG,
+        collection: options.activityLogSlug,
         data: {
           operation: "update",
           user: {

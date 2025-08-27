@@ -1,12 +1,11 @@
 import { type CollectionConfig, type Config, type GlobalConfig } from "payload";
 
-import { activityLog } from "./collections/activityLog.js";
-import { ACTIVITY_LOG_COLLECTION_SLUG } from "./constants.js";
+import { getActivityLogCollection } from "./collections/getActivityLogCollection.js";
 import {
-  defaultAuthCollection,
   defaultCreateLogging,
   defaultDeleteLogging,
   defaultDeviceInfoLogging,
+  defaultDraftAutosaveLogging,
   defaultIpAddressLogging,
   defaultPluginOptions,
   defaultUpdateLogging,
@@ -19,7 +18,7 @@ import { type ActivityLogPluginOptions } from "./types.js";
 export const activityLogPlugin =
   (pluginOptions?: ActivityLogPluginOptions) =>
   (incomingConfig: Config): Config => {
-    const mergedOptions: Required<ActivityLogPluginOptions> = Object.assign(defaultPluginOptions, pluginOptions);
+    const mergedOptions: ActivityLogPluginOptions = Object.assign(defaultPluginOptions, pluginOptions);
 
     const config = { ...incomingConfig };
 
@@ -27,42 +26,9 @@ export const activityLogPlugin =
       return config;
     }
 
-    if (config.collections?.find((collection) => collection.slug === ACTIVITY_LOG_COLLECTION_SLUG)) {
-      throw new Error("[activity-log]: The activity log collection already exists.");
-    }
+    const activityLogCollection = getActivityLogCollection({ config, pluginOptions: mergedOptions });
 
-    config.collections = [
-      ...(config.collections || []),
-      {
-        ...activityLog,
-        ...(mergedOptions.admin?.group && {
-          admin: {
-            ...activityLog.admin,
-            group: mergedOptions.admin.group,
-          },
-        }),
-        access: {
-          create: () => false,
-          read: (args) => mergedOptions.access?.read?.(args) ?? Boolean(args.req.user),
-          update: (args) => mergedOptions.access?.update?.(args) ?? false,
-          delete: (args) => mergedOptions.access?.delete?.(args) ?? false,
-        },
-        fields: [
-          {
-            name: "user",
-            type: "relationship",
-            relationTo: [config.admin?.user || defaultAuthCollection],
-            admin: {
-              allowCreate: false,
-              allowEdit: false,
-            },
-          },
-          ...activityLog.fields,
-        ],
-      },
-    ];
-
-    config.collections = (config.collections || []).map((collection) => {
+    config.collections = [...(config.collections || []), activityLogCollection].map((collection) => {
       if (!Object.keys(mergedOptions.collections).includes(collection.slug)) {
         return collection;
       }
@@ -78,14 +44,14 @@ export const activityLogPlugin =
       const enableDeleteLogging = mergedCollectionOptions?.enableDeleteLogging ?? defaultDeleteLogging;
       const enableIpAddressLogging = mergedCollectionOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
       const enableDeviceInfoLogging = mergedCollectionOptions?.enableDeviceInfoLogging ?? defaultDeviceInfoLogging;
-      const enableDraftAutosaveLogging =
-        mergedOptions.enableDraftAutosaveLogging ?? defaultPluginOptions?.enableDraftAutosaveLogging;
+      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ?? defaultDraftAutosaveLogging;
 
       modifiedCollection.hooks = {
         ...(modifiedCollection.hooks || {}),
         afterChange: [
           ...(modifiedCollection.hooks?.afterChange || []),
           afterChangeCollectionActivityLog({
+            activityLogSlug: activityLogCollection.slug,
             enableCreateLogging,
             enableUpdateLogging,
             enableIpAddressLogging,
@@ -96,6 +62,7 @@ export const activityLogPlugin =
         afterDelete: [
           ...(modifiedCollection.hooks?.afterDelete || []),
           afterDeleteCollectionActivityLog({
+            activityLogSlug: activityLogCollection.slug,
             enableDeleteLogging,
             enableIpAddressLogging,
             enableDeviceInfoLogging,
@@ -119,14 +86,14 @@ export const activityLogPlugin =
 
       const enableIpAddressLogging = mergedGlobalOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
       const enableDeviceInfoLogging = mergedGlobalOptions?.enableDeviceInfoLogging ?? defaultDeviceInfoLogging;
-      const enableDraftAutosaveLogging =
-        mergedOptions.enableDraftAutosaveLogging ?? defaultPluginOptions?.enableDraftAutosaveLogging;
+      const enableDraftAutosaveLogging = mergedOptions.enableDraftAutosaveLogging ?? defaultDraftAutosaveLogging;
 
       modifiedGlobal.hooks = {
         ...(modifiedGlobal.hooks || {}),
         afterChange: [
           ...(modifiedGlobal.hooks?.afterChange || []),
           afterChangeGlobalActivityLog({
+            activityLogSlug: activityLogCollection.slug,
             enableIpAddressLogging,
             enableDeviceInfoLogging,
             enableDraftAutosaveLogging,

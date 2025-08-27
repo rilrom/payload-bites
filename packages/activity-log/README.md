@@ -13,22 +13,14 @@ pnpm add @payload-bites/activity-log
 2. Add the plugin to your `payload.config.ts`:
 
 ```ts
-// ...
 import { activityLogPlugin } from "@payload-bites/activity-log";
 
 export default buildConfig({
-  // ...
   plugins: [
-    // ...
     activityLogPlugin({
-      // ...
-      access: {
-        read: (args) => args.req.user.role === "admin",
-      },
       collections: {
         posts: {},
         pages: {
-          // ...
           enableUpdateLogging: false,
           enableIpAddressLogging: false,
           enableDeviceInfoLogging: false,
@@ -37,6 +29,19 @@ export default buildConfig({
       globals: {
         footer: {},
       },
+      enableDraftAutosaveLogging: false,
+      overrideActivityLogCollection: (collection) => ({
+        ...collection,
+        access: {
+          ...collection?.access,
+          update: () => true,
+          create: () => true,
+        },
+        admin: {
+          ...collection?.admin,
+          group: "Reporting",
+        },
+      }),
     }),
   ],
 });

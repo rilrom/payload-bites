@@ -1,6 +1,13 @@
-import { type Access, type CollectionAdminOptions, type CollectionSlug, type GlobalSlug } from "payload";
+import {
+  type Access,
+  type CollectionAdminOptions,
+  type CollectionConfig,
+  type CollectionSlug,
+  type GlobalSlug,
+} from "payload";
 
 export type ActivityLogPluginSharedLoggingOptions = {
+  activityLogSlug: string;
   enableIpAddressLogging: boolean;
   enableDeviceInfoLogging: boolean;
 };
@@ -14,8 +21,29 @@ export type ActivityLogPluginOptions = {
   enabled?: boolean;
 
   /**
+   * This function takes the default activity log collection configured in the plugin and allows you to override it by modifying and returning it.
+   *
+   * @example
+   * overrideActivityLogCollection: (collection) => ({
+   *   ...collection,
+   *   access: {
+   *     ...collection?.access,
+   *     update: () => true,
+   *     create: () => true,
+   *   },
+   *   admin: {
+   *     ...collection?.admin,
+   *     group: "Reporting",
+   *   },
+   * }),
+   */
+  overrideActivityLogCollection?: (collection: CollectionConfig) => CollectionConfig;
+
+  /**
    * Admin options for the activity log collection.
    * Only the `group` property from `CollectionAdminOptions` is used for now.
+   *
+   * @deprecated use overrideActivityLogCollection instead
    *
    * @example
    * admin: {
@@ -32,9 +60,14 @@ export type ActivityLogPluginOptions = {
    */
   enableDraftAutosaveLogging?: boolean;
 
+  /**
+   * @deprecated use overrideActivityLogCollection instead
+   */
   access?: {
     /**
      * Function that determines read access for the activity log collection.
+     *
+     * @deprecated use overrideActivityLogCollection instead
      *
      * @example read: ({ req: { user } }) => user.role === "admin"
      */
@@ -43,12 +76,16 @@ export type ActivityLogPluginOptions = {
     /**
      * Function that determines update access for the activity log collection.
      *
+     * @deprecated use overrideActivityLogCollection instead
+     *
      * @example update: ({ req: { user } }) => user.role === "admin"
      */
     update?: Access;
 
     /**
      * Function that determines delete access for the activity log collection.
+     *
+     * @deprecated use overrideActivityLogCollection instead
      *
      * @example delete: ({ req: { user } }) => user.role === "admin"
      */
