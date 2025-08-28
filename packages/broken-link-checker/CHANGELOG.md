@@ -1,5 +1,15 @@
 # @payload-bites/broken-link-checker
 
+## 1.0.0-beta.3
+
+### Minor Changes
+
+- feat: add overrideBrokenLinksCollection ([4183e83](https://github.com/rilrom/payload-bites/commit/4183e83))
+
+#### BREAKING CHANGES
+
+- Replaced `brokenLinksAccess` with `overrideBrokenLinksCollection`.
+
 ## 1.0.0-beta.2
 
 ### Patch Changes
