@@ -18,18 +18,12 @@ pnpm add @payload-bites/broken-link-checker
 2. Add the plugin to your `payload.config.ts`:
 
 ```ts
-// ...
 import { brokenLinkCheckerPlugin } from "@payload-bites/broken-link-checker";
 
 export default buildConfig({
-  // ...
   plugins: [
-    // ...
     brokenLinkCheckerPlugin({
-      scanLinksAccess: (args) => args.req.user.role === "admin",
-      brokenLinksAccess: (args) => args.req.user.role === "editor",
       collections: {
-        // ...
         pages: {
           resolvedUrls: async (args) => {
             // You do not need to use this function, use whichever approach works for your project needs.
@@ -52,10 +46,22 @@ export default buildConfig({
               id: "2",
               collection: "posts",
             },
-            // ...
           ],
         },
       },
+      scanLinksAccess: (args) => args.req.user.role === "admin",
+      overrideBrokenLinksCollection: (collection) => ({
+        ...collection,
+        access: {
+          ...collection?.access,
+          update: () => true,
+          create: () => true,
+        },
+        admin: {
+          ...collection?.admin,
+          group: "Reporting",
+        },
+      }),
     }),
   ],
 });

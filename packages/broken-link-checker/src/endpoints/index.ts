@@ -2,7 +2,6 @@ import { LinkChecker } from "linkinator";
 import type { Endpoint } from "payload";
 import { Forbidden } from "payload";
 
-import { BROKEN_LINKS_COLLECTION_SLUG } from "../constants.js";
 import { BrokenLinkCheckerResolvedUrl } from "../types.js";
 
 export const endpoints: Endpoint[] = [
@@ -53,7 +52,7 @@ export const endpoints: Endpoint[] = [
       };
 
       const doc = await req.payload.create({
-        collection: BROKEN_LINKS_COLLECTION_SLUG,
+        collection: req.payload?.config?.custom?.brokenLinkChecker?.slug,
         data: report,
       });
 
