@@ -1,5 +1,12 @@
 # @payload-bites/fullscreen-editor
 
+## 1.4.5
+
+### Patch Changes
+
+- fix: ensure live preview is hidden in focus mode ([2148358](https://github.com/rilrom/payload-bites/commit/2148358))
+- chore: add blank screen caveat ([9ff6c3a](https://github.com/rilrom/payload-bites/commit/9ff6c3a))
+
 ## 1.4.4
 
 ### Patch Changes
