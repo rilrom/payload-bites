@@ -23,6 +23,10 @@ export default buildConfig({
     autoLogin: {
       email: process.env.TEST_USER,
     },
+    livePreview: {
+      url: "http://localhost:3000",
+      collections: ["collections"],
+    },
   },
   i18n: {
     fallbackLanguage: "en",

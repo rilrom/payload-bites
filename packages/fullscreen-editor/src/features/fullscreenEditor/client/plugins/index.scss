@@ -3,8 +3,14 @@
 .focus-mode {
   overflow: hidden;
 
-  #nav-toggler {
+  #nav-toggler,
+  .live-preview-window {
     display: none;
+  }
+
+  .document-fields--force-sidebar-wrap {
+    isolation: unset;
+    display: unset;
   }
 
   .template-default {
