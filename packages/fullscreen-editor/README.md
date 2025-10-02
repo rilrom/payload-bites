@@ -31,6 +31,10 @@ export default buildConfig({
 });
 ```
 
+## Caveats
+
+- If fullscreen mode is enabled and you resize your browser screen across the 768px threshold, the rich-text field remounts which causes the ".focused-editor" class to be removed, leaving you with a blank screen. To fix this you need to either refresh the browser or remove the ".focus-mode" class from the body element using your browser dev tools.
+
 ## Roadmap
 
 - [ ] Focus trap around editor in fullscreen mode.
