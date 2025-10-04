@@ -9,17 +9,17 @@
     "./react-internal": "./react-internal.js"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^15.4.6",
-    "@typescript-eslint/eslint-plugin": "^8.39.1",
-    "@typescript-eslint/parser": "^8.39.1",
-    "eslint": "^9.33.0",
+    "@next/eslint-plugin-next": "^15.5.4",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.37.0",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-turbo": "^2.5.5",
+    "eslint-plugin-turbo": "^2.5.8",
     "globals": "^15.15.0",
     "typescript": "5.7.3",
-    "typescript-eslint": "^8.39.1"
+    "typescript-eslint": "^8.45.0"
   }
 }
