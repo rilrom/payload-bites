@@ -55,9 +55,8 @@ export default buildConfig({
   plugins: [
     nestedDocsPlugin({
       collections: ["pages"],
-      generateURL: (docs) => {
-        return docs.reduce((url, doc) => `${url}/${doc.slug}`, "");
-      },
+      generateLabel: (_, doc) => doc.title as string,
+      generateURL: (docs) => docs.reduce((url, doc) => (doc.slug === "home" ? "/" : `${url}/${doc.slug}`), ""),
     }),
     brokenLinkCheckerPlugin({
       collections: {

@@ -1,20 +1,20 @@
-import type { CollectionSlug, JsonObject, PayloadRequest } from "payload";
+import type { CollectionSlug, PayloadRequest } from "payload";
 
 import { BrokenLinkCheckerResolvedUrl } from "../types.js";
 
 type NestedDoc = {
   id: string;
-  slug?: string;
-  parent?: string | JsonObject;
   createdAt: string;
+  [key: string]: unknown;
 };
 
 type ResolveNestedDocUrlsArgs = {
   req: PayloadRequest;
   collection: CollectionSlug;
-  slugFieldName?: string;
-  parentFieldName?: string;
-  cursorFieldName?: string;
+  /**
+   * Should be supplied if using an alternative field name for the nested docs plugin 'breadcrumbs' field in the collection.
+   */
+  breadcrumbsFieldName?: string;
   baseUrl?: string;
   batchSize?: number;
 };
@@ -22,9 +22,7 @@ type ResolveNestedDocUrlsArgs = {
 export const resolveNestedDocUrls = async ({
   req,
   collection,
-  slugFieldName = "slug",
-  parentFieldName = "parent",
-  cursorFieldName = "createdAt",
+  breadcrumbsFieldName = "breadcrumbs",
   baseUrl,
   batchSize = 100,
 }: ResolveNestedDocUrlsArgs): Promise<BrokenLinkCheckerResolvedUrl[]> => {
@@ -34,7 +32,7 @@ export const resolveNestedDocUrls = async ({
     );
   }
 
-  const docMap: Record<string, NestedDoc> = {};
+  const cursorFieldName = "createdAt";
 
   const allDocs: NestedDoc[] = [];
 
@@ -43,7 +41,7 @@ export const resolveNestedDocUrls = async ({
   let hasMore = true;
 
   while (hasMore) {
-    const res = await req.payload.find({
+    const response = await req.payload.find({
       collection,
       limit: batchSize,
       depth: 0,
@@ -59,42 +57,38 @@ export const resolveNestedDocUrls = async ({
       user: req.user,
     });
 
-    const docs = res.docs as NestedDoc[];
-
-    for (const doc of docs) {
-      docMap[doc.id] = doc;
-    }
+    const docs = response.docs as NestedDoc[];
 
     allDocs.push(...docs);
 
     if (docs.length < batchSize) {
       hasMore = false;
     } else {
-      cursor = docs[docs.length - 1]?.[cursorFieldName as keyof NestedDoc] as string;
+      cursor = docs[docs.length - 1]?.[cursorFieldName];
     }
   }
 
+  const base = (baseUrl || req.payload.config.serverURL).replace(/\/+$/, "");
+
   const urls = allDocs.map((doc) => {
-    const segments: string[] = [];
+    const breadcrumbs = (doc?.[breadcrumbsFieldName] as { url?: string }[]) ?? [];
 
-    let current: NestedDoc | undefined = doc;
+    if (breadcrumbs.length === 0) {
+      throw new Error(
+        `[broken-link-checker]: document ${doc.id} is missing the ${breadcrumbsFieldName} field, are you sure this collection is using the nested docs plugin?`,
+      );
+    }
 
-    while (current) {
-      const slug = current[slugFieldName as keyof NestedDoc];
+    const last = breadcrumbs[breadcrumbs.length - 1];
 
-      if (typeof slug === "string") {
-        segments.unshift(slug);
-      }
+    let path = "";
 
-      const parent = current[parentFieldName as keyof NestedDoc] as string | JsonObject | undefined;
-
-      const parentId = typeof parent === "string" ? parent : parent?.id;
-
-      current = parentId ? docMap[parentId] : undefined;
+    if (last?.url) {
+      path = last.url === "/" ? "" : last.url.startsWith("/") ? last.url : `/${last.url}`;
     }
 
     return {
-      url: `${baseUrl || req.payload.config.serverURL}/${segments.join("/")}`,
+      url: `${base}${path}`,
       id: doc.id,
       collection,
     };
