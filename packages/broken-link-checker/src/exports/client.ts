@@ -1,1 +1,1 @@
-export { ScanLinksButton } from "../components/ScanLinksButton/index.js";
+export { ScanActions } from "../components/ScanActions/index.js";

@@ -1,4 +1,4 @@
-import { ScanLinksButton as ScanLinksButton_605875be6a33792a93468ba1aa5cd85b } from "@payload-bites/broken-link-checker/client";
+import { ScanActions as ScanActions_605875be6a33792a93468ba1aa5cd85b } from "@payload-bites/broken-link-checker/client";
 import { HeadingFeatureClient as HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { InlineToolbarFeatureClient as InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
@@ -59,5 +59,5 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@payload-bites/broken-link-checker/client#ScanLinksButton": ScanLinksButton_605875be6a33792a93468ba1aa5cd85b,
+  "@payload-bites/broken-link-checker/client#ScanActions": ScanActions_605875be6a33792a93468ba1aa5cd85b,
 };

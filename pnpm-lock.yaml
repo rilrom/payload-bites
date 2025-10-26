@@ -438,6 +438,9 @@ importers:
       '@payloadcms/ui':
         specifier: ^3.43.0
         version: 3.58.0(@types/react@19.2.0)(monaco-editor@0.53.0)(next@15.5.4(@playwright/test@1.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.77.4))(payload@3.58.0(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.7.3)
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       linkinator:
         specifier: 6.1.2
         version: 6.1.2

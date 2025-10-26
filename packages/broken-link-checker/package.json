@@ -48,6 +48,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "linkinator": "6.1.2"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ import { type Config, PayloadRequest } from "payload";
 import { getBrokenLinksCollection } from "./collections/getBrokenLinksCollection.js";
 import { defaultPluginOptions } from "./defaults.js";
 import { endpoints } from "./endpoints/index.js";
+import { tasks } from "./tasks/index.js";
 import { translations } from "./translations.js";
 import { type BrokenLinkCheckerPluginOptions } from "./types.js";
 import { deepMerge } from "./utils/deepMerge.js";
@@ -50,6 +51,11 @@ export const brokenLinkCheckerPlugin =
     };
 
     config.endpoints = [...(config.endpoints || []), ...endpoints];
+
+    config.jobs = {
+      ...(config.jobs || {}),
+      tasks: [...(config.jobs?.tasks || []), ...tasks],
+    };
 
     return config;
   };

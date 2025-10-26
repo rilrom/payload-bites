@@ -1,12 +1,34 @@
-import { LinkChecker } from "linkinator";
 import type { Endpoint } from "payload";
 import { Forbidden } from "payload";
 
-import { BrokenLinkCheckerResolvedUrl } from "../types.js";
-
 export const endpoints: Endpoint[] = [
   {
-    path: "/scan-links",
+    path: "/broken-link-checker/status",
+    method: "get",
+    handler: async (req) => {
+      const data = await req.json?.();
+
+      const access = await req.payload?.config?.custom?.brokenLinkChecker?.scanLinksAccess?.({ req, data });
+
+      if (!access) {
+        throw new Forbidden();
+      }
+
+      const jobResult = await req.payload.find({
+        collection: "payload-jobs",
+        where: {
+          and: [{ taskSlug: { equals: "scanLinks" } }, { processing: { equals: true } }],
+        },
+        limit: 1,
+      });
+
+      const job = jobResult.docs?.[0] ?? null;
+
+      return Response.json({ success: true, job });
+    },
+  },
+  {
+    path: "/broken-link-checker/scan",
     method: "post",
     handler: async (req) => {
       const data = await req.json?.();
@@ -17,46 +39,18 @@ export const endpoints: Endpoint[] = [
         throw new Forbidden();
       }
 
-      const urls = (await req.payload?.config?.custom?.brokenLinkChecker?.resolvedUrls?.({
+      const job = await req.payload.jobs.queue({
+        task: "scanLinks",
+        queue: "brokenLinkChecker",
+        input: undefined,
+      });
+
+      req.payload.jobs.runByID({
+        id: job.id,
         req,
-      })) as BrokenLinkCheckerResolvedUrl[];
-
-      const checker = new LinkChecker();
-
-      const results = await checker.check({
-        path: urls.map((r) => r.url),
-        recurse: true,
-        linksToSkip: ["/_next/", "mailto:", "tel:"],
       });
 
-      const brokenResults = results.links.filter((r) => r.state === "BROKEN");
-
-      const notSkippedResults = results.links.filter((r) => r.state !== "SKIPPED");
-
-      const formattedResults = brokenResults.map((link) => {
-        const urlObj = urls.find((r) => r.url === link.parent);
-
-        return {
-          sourceCollection: urlObj?.collection,
-          sourceId: urlObj?.id,
-          sourceUrl: link.parent,
-          brokenUrl: link.url,
-          statusCode: link.status,
-        };
-      });
-
-      const report = {
-        totalLinks: notSkippedResults.length,
-        totalBrokenLinks: brokenResults.length,
-        results: formattedResults,
-      };
-
-      const doc = await req.payload.create({
-        collection: req.payload?.config?.custom?.brokenLinkChecker?.slug,
-        data: report,
-      });
-
-      return Response.json({ success: true, doc });
+      return Response.json({ success: true });
     },
   },
 ];

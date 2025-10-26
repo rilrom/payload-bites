@@ -11,7 +11,7 @@ export const getBrokenLinksCollection = ({
     slug: "broken-links",
     admin: {
       components: {
-        beforeListTable: ["@payload-bites/broken-link-checker/client#ScanLinksButton"],
+        beforeListTable: ["@payload-bites/broken-link-checker/client#ScanActions"],
       },
       disableCopyToLocale: true,
       enableRichTextLink: false,

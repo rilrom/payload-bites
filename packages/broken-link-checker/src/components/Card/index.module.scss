@@ -1,0 +1,12 @@
+.card {
+  padding: 1rem;
+  background-color: var(--theme-elevation-100);
+  border: 1px solid var(--theme-elevation-150);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-height: 60px;
+}
