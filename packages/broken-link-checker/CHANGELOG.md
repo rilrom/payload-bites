@@ -1,5 +1,15 @@
 # @payload-bites/broken-link-checker
 
+## 1.0.0-beta.4
+
+### Minor Changes
+
+- feat: move link scanning to payload job ([e246950](https://github.com/rilrom/payload-bites/commit/e246950))
+
+### Patch Changes
+
+- fix: nested docs plugin compatibility ([e795124](https://github.com/rilrom/payload-bites/commit/e795124))
+
 ## 1.0.0-beta.3
 
 ### Minor Changes
