@@ -35,7 +35,7 @@ export type BrokenLinkCheckerPluginOptions = {
 
   /** Function that determines scan links access control. Only the req attribute is available.
    * @example
-   * providerAccess: ({ req: { user } }) => user.role === "admin"
+   * scanLinksAccess: ({ req: { user } }) => user.role === "admin"
    */
   scanLinksAccess?: Access;
 
