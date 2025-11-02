@@ -6,9 +6,7 @@ export const endpoints: Endpoint[] = [
     path: "/broken-link-checker/status",
     method: "get",
     handler: async (req) => {
-      const data = await req.json?.();
-
-      const access = await req.payload?.config?.custom?.brokenLinkChecker?.scanLinksAccess?.({ req, data });
+      const access = await req.payload?.config?.custom?.brokenLinkChecker?.scanLinksAccess?.({ req });
 
       if (!access) {
         throw new Forbidden();
