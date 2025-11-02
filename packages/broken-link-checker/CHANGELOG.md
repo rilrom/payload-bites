@@ -1,5 +1,15 @@
 # @payload-bites/broken-link-checker
 
+## 1.0.0-beta.5
+
+### Minor Changes
+
+- feat: override linkinator options ([1fcdbc9](https://github.com/rilrom/payload-bites/commit/1fcdbc9))
+
+### Patch Changes
+
+- fix: 500 error on status check ([846d2a6](https://github.com/rilrom/payload-bites/commit/846d2a6))
+
 ## 1.0.0-beta.4
 
 ### Minor Changes
