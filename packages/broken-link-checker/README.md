@@ -62,6 +62,13 @@ export default buildConfig({
           group: "Reporting",
         },
       }),
+      overrideLinkinatorOptions: (defaultOptions) => ({
+        ...defaultOptions,
+        concurrency: 50,
+        timeout: 5000,
+        userAgent: "Custom User Agent",
+        linksToSkip: [...defaultOptions.linksToSkip, "http://localhost:3000/blog/example-post"],
+      }),
     }),
   ],
 });
@@ -82,5 +89,5 @@ For options, refer to [types.ts](./src/types.ts).
 - [ ] Scheduled scanning.
 - [ ] Multitenancy.
 - [x] Custom broken links collection config.
-- [ ] Custom linkinator config.
+- [x] Custom linkinator config.
 - [ ] Documentation.

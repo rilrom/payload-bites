@@ -66,12 +66,13 @@ export const tasks: TaskConfig[] = [
         req,
       })) as BrokenLinkCheckerResolvedUrl[];
 
+      const linkinatorOptions = req.payload?.config?.custom?.brokenLinkChecker?.linkinatorOptions || {};
+
       const checker = new LinkChecker();
 
       const results = await checker.check({
+        ...linkinatorOptions,
         path: urls.map((r) => r.url),
-        recurse: true,
-        linksToSkip: ["/_next/", "mailto:", "tel:"],
       });
 
       const brokenResults = results.links.filter((r) => r.state === "BROKEN");

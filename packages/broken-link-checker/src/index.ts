@@ -1,7 +1,7 @@
 import { type Config, PayloadRequest } from "payload";
 
 import { getBrokenLinksCollection } from "./collections/getBrokenLinksCollection.js";
-import { defaultPluginOptions } from "./defaults.js";
+import { defaultLinkinatorOptions, defaultPluginOptions } from "./defaults.js";
 import { endpoints } from "./endpoints/index.js";
 import { tasks } from "./tasks/index.js";
 import { translations } from "./translations.js";
@@ -23,11 +23,16 @@ export const brokenLinkCheckerPlugin =
 
     config.collections = [...(config.collections || []), brokenLinksCollection];
 
+    const resolvedLinkinatorOptions = mergedOptions.overrideLinkinatorOptions
+      ? mergedOptions.overrideLinkinatorOptions(defaultLinkinatorOptions)
+      : defaultLinkinatorOptions;
+
     config.custom = {
       ...(config.custom || {}),
       brokenLinkChecker: {
         slug: brokenLinksCollection.slug,
         scanLinksAccess: mergedOptions.scanLinksAccess,
+        linkinatorOptions: resolvedLinkinatorOptions,
         resolvedUrls: (args: { req: PayloadRequest }) =>
           Promise.all(
             Object.values(mergedOptions.collections).map((collection) => {
