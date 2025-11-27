@@ -18,16 +18,17 @@
     "tsc": "turbo tsc",
     "generate:types": "turbo generate:types",
     "generate:importmap": "turbo generate:importmap",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
   },
   "devDependencies": {
-    "@swc/cli": "^0.5.2",
-    "@swc/core": "^1.13.5",
-    "chokidar": "^3.6.0",
+    "@swc/cli": "^0.7.9",
+    "@swc/core": "^1.15.3",
+    "chokidar": "^4.0.3",
     "copyfiles": "^2.4.1",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
-    "typescript": "5.7.3"
+    "prettier": "^3.7.1",
+    "turbo": "^2.6.1",
+    "typescript": "5.9.3"
   },
   "resolutions": {
     "react": "^19",
@@ -35,8 +36,8 @@
     "esbuild": "^0.25.0"
   },
   "engines": {
-    "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9.7.0"
+    "node": ">=22",
+    "pnpm": "^10.19.0"
   },
-  "packageManager": "pnpm@9.12.2"
+  "packageManager": "pnpm@10.23.0"
 }
