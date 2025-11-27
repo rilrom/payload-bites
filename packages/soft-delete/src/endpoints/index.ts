@@ -23,7 +23,6 @@ export const endpoints: Endpoint[] = [
           collection: data?.["collection"],
           id: data["id"],
           data: {
-            // @ts-expect-error payload trash feature has broken this type
             deletedAt: new Date(),
           },
           req,
@@ -37,7 +36,6 @@ export const endpoints: Endpoint[] = [
             },
           },
           data: {
-            // @ts-expect-error payload trash feature has broken this type
             deletedAt: new Date(),
           },
           req,

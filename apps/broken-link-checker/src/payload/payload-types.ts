@@ -70,6 +70,7 @@ export interface Config {
     pages: Page;
     users: User;
     "broken-links": BrokenLink;
+    "payload-kv": PayloadKv;
     "payload-jobs": PayloadJob;
     "payload-locked-documents": PayloadLockedDocument;
     "payload-preferences": PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     "broken-links": BrokenLinksSelect<false> | BrokenLinksSelect<true>;
+    "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
     "payload-jobs": PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     "payload-locked-documents": PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -88,6 +90,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
+  fallbackLocale: ("false" | "none" | "null") | false | null | ("en" | "es") | ("en" | "es")[];
   globals: {};
   globalsSelect: {};
   locale: "en" | "es";
@@ -215,6 +218,23 @@ export interface BrokenLink {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: number;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -323,10 +343,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "broken-links";
         value: number | BrokenLink;
-      } | null)
-    | ({
-        relationTo: "payload-jobs";
-        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -444,6 +460,14 @@ export interface BrokenLinksSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

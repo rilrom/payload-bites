@@ -30,10 +30,20 @@
     "turbo": "^2.6.1",
     "typescript": "5.9.3"
   },
-  "resolutions": {
-    "react": "^19",
-    "react-dom": "^19",
-    "esbuild": "^0.25.0"
+  "pnpm": {
+    "overrides": {
+      "@payloadcms/db-postgres": "3.65.0",
+      "@payloadcms/next": "3.65.0",
+      "@payloadcms/plugin-nested-docs": "3.65.0",
+      "@payloadcms/richtext-lexical": "3.65.0",
+      "@payloadcms/translations": "3.65.0",
+      "@payloadcms/ui": "3.65.0",
+      "esbuild": "^0.25.0",
+      "next": "15.4.7",
+      "payload": "3.65.0",
+      "react": "^19.2.0",
+      "react-dom": "^19.2.0"
+    }
   },
   "engines": {
     "node": ">=22",
