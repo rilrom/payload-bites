@@ -1,5 +1,15 @@
 # @payload-bites/soft-delete
 
+## 3.1.0
+
+### Minor Changes
+
+- feat!: bump minimum react and next versions ([42235cc](https://github.com/rilrom/payload-bites/commit/42235cc))
+
+#### BREAKING CHANGES
+
+- Bumped the minimum versions of react and next to address [CVE-2025-55182](https://www.cve.org/CVERecord?id=CVE-2025-55182) and [CVE-2025-66478](https://github.com/vercel/next.js/security/advisories/GHSA-9qr9-h5gf-34mp).
+
 ## 3.0.0
 
 ### Major Changes
