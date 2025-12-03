@@ -32,17 +32,17 @@
   },
   "pnpm": {
     "overrides": {
-      "@payloadcms/db-postgres": "3.65.0",
-      "@payloadcms/next": "3.65.0",
-      "@payloadcms/plugin-nested-docs": "3.65.0",
-      "@payloadcms/richtext-lexical": "3.65.0",
-      "@payloadcms/translations": "3.65.0",
-      "@payloadcms/ui": "3.65.0",
+      "@payloadcms/db-postgres": "3.66.0",
+      "@payloadcms/next": "3.66.0",
+      "@payloadcms/plugin-nested-docs": "3.66.0",
+      "@payloadcms/richtext-lexical": "3.66.0",
+      "@payloadcms/translations": "3.66.0",
+      "@payloadcms/ui": "3.66.0",
       "esbuild": "^0.25.0",
-      "next": "15.4.7",
-      "payload": "3.65.0",
-      "react": "^19.2.0",
-      "react-dom": "^19.2.0"
+      "next": "15.4.8",
+      "payload": "3.66.0",
+      "react": "^19.2.1",
+      "react-dom": "^19.2.1"
     }
   },
   "engines": {
