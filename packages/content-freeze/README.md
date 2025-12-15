@@ -2,7 +2,9 @@
 
 Make sure your team puts the tools down during critical moments. This plugin disables create, update, and delete operations across specified collections and globals when a content freeze is active.
 
-## Use Cases
+https://github.com/user-attachments/assets/0170fa47-4017-45bb-85bd-40c25040a8d8
+
+## Use cases
 
 - **Deployment freezes**: Prevent content changes during critical deployments.
 - **Marketing campaigns**: Lock content before major campaigns go live.
@@ -85,5 +87,5 @@ The plugin wraps existing access controls, so your original access rules are sti
 
 ## Roadmap
 
-- [] Translations
-- [] Scheduled publish of content freeze
+- [ ] Translations
+- [ ] Scheduled publish of content freeze
