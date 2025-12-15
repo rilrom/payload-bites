@@ -211,6 +211,58 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  apps/content-freeze:
+    dependencies:
+      '@payload-bites/content-freeze':
+        specifier: workspace:*
+        version: link:../../packages/content-freeze
+      '@payloadcms/db-postgres':
+        specifier: 3.66.0
+        version: 3.66.0(payload@3.66.0(graphql@16.11.0)(typescript@5.9.3))
+      '@payloadcms/next':
+        specifier: 3.66.0
+        version: 3.66.0(@types/react@19.2.7)(graphql@16.11.0)(monaco-editor@0.53.0)(next@15.4.8(@playwright/test@1.57.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.66.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.3)
+      '@payloadcms/translations':
+        specifier: 3.66.0
+        version: 3.66.0
+      '@payloadcms/ui':
+        specifier: 3.66.0
+        version: 3.66.0(@types/react@19.2.7)(monaco-editor@0.53.0)(next@15.4.8(@playwright/test@1.57.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.66.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.3)
+      cross-env:
+        specifier: ^10.1.0
+        version: 10.1.0
+      next:
+        specifier: 15.4.8
+        version: 15.4.8(@playwright/test@1.57.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
+      payload:
+        specifier: 3.66.0
+        version: 3.66.0(graphql@16.11.0)(typescript@5.9.3)
+      react:
+        specifier: ^19.2.1
+        version: 19.2.1
+      react-dom:
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.10.1
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   apps/fullscreen-editor:
     dependencies:
       '@payload-bites/fullscreen-editor':
@@ -467,6 +519,46 @@ importers:
       qs-esm:
         specifier: ^7
         version: 7.0.2
+    devDependencies:
+      '@payload-bites/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@payload-bites/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^19.2.7
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.7)
+      eslint:
+        specifier: ^9.39.1
+        version: 9.39.1
+      react:
+        specifier: ^19.2.1
+        version: 19.2.1
+      react-dom:
+        specifier: ^19.2.1
+        version: 19.2.1(react@19.2.1)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  packages/content-freeze:
+    dependencies:
+      '@payloadcms/translations':
+        specifier: 3.66.0
+        version: 3.66.0
+      '@payloadcms/ui':
+        specifier: 3.66.0
+        version: 3.66.0(@types/react@19.2.7)(monaco-editor@0.53.0)(next@15.4.8(@playwright/test@1.57.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.66.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.3)
+      next:
+        specifier: 15.4.8
+        version: 15.4.8(@playwright/test@1.57.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
+      payload:
+        specifier: 3.66.0
+        version: 3.66.0(graphql@16.11.0)(typescript@5.9.3)
     devDependencies:
       '@payload-bites/eslint-config':
         specifier: workspace:*
