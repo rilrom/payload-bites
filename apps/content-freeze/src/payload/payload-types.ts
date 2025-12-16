@@ -361,13 +361,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface ContentFreezeSetting {
   id: number;
   enableContentFreeze?: boolean | null;
-  /**
-   * Select collections to freeze.
-   */
   collections?: ("pages" | "posts" | "users")[] | null;
-  /**
-   * Select globals to freeze.
-   */
   globals?: string[] | null;
   message?: string | null;
   updatedAt?: string | null;
