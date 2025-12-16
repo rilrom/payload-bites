@@ -23,26 +23,26 @@
   },
   "devDependencies": {
     "@swc/cli": "^0.7.9",
-    "@swc/core": "^1.15.3",
+    "@swc/core": "^1.15.5",
     "chokidar": "^4.0.3",
     "copyfiles": "^2.4.1",
-    "prettier": "^3.7.1",
-    "turbo": "^2.6.1",
+    "prettier": "^3.7.4",
+    "turbo": "^2.6.3",
     "typescript": "5.9.3"
   },
   "pnpm": {
     "overrides": {
-      "@payloadcms/db-postgres": "3.66.0",
-      "@payloadcms/next": "3.66.0",
-      "@payloadcms/plugin-nested-docs": "3.66.0",
-      "@payloadcms/richtext-lexical": "3.66.0",
-      "@payloadcms/translations": "3.66.0",
-      "@payloadcms/ui": "3.66.0",
+      "@payloadcms/db-postgres": "3.68.5",
+      "@payloadcms/next": "3.68.5",
+      "@payloadcms/plugin-nested-docs": "3.68.5",
+      "@payloadcms/richtext-lexical": "3.68.5",
+      "@payloadcms/translations": "3.68.5",
+      "@payloadcms/ui": "3.68.5",
       "esbuild": "^0.25.0",
-      "next": "15.4.8",
-      "payload": "3.66.0",
-      "react": "^19.2.1",
-      "react-dom": "^19.2.1"
+      "next": "15.4.10",
+      "payload": "3.68.5",
+      "react": "^19.2.3",
+      "react-dom": "^19.2.3"
     }
   },
   "engines": {

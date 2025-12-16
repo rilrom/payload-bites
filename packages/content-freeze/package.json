@@ -47,15 +47,15 @@
     "@payload-bites/typescript-config": "workspace:*",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.1",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
+    "eslint": "^9.39.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "typescript": "5.9.3"
   },
   "peerDependencies": {
     "@payloadcms/translations": "^3",
     "@payloadcms/ui": "^3",
-    "next": "^15.2.6 || ^15.3.6 || ^15.4.8 || ^15.5.7",
+    "next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9",
     "payload": "^3",
     "react": "^19.0.1 || ^19.1.2 || ^19.2.1",
     "react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
