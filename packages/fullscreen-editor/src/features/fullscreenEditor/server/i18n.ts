@@ -13,6 +13,14 @@ export const i18n: Partial<GenericLanguages> = {
     group: "Изглед",
     label: "Превключване на пълен екран",
   },
+  "bn-BD": {
+    group: "দেখুন",
+    label: "পূর্ণ স্ক্রীন টগল করুন",
+  },
+  "bn-IN": {
+    group: "দেখুন",
+    label: "পূর্ণ স্ক্রীন টগল করুন",
+  },
   ca: {
     group: "Vista",
     label: "Alternar pantalla completa",
@@ -61,6 +69,14 @@ export const i18n: Partial<GenericLanguages> = {
     group: "Nézet",
     label: "Teljes képernyőre váltás",
   },
+  id: {
+    group: "Tampilan",
+    label: "Beralih ke layar penuh",
+  },
+  is: {
+    group: "Skoða",
+    label: "Skipta á heilskjá",
+  },
   it: {
     group: "Vista",
     label: "Passa a schermo intero",
@@ -72,6 +88,14 @@ export const i18n: Partial<GenericLanguages> = {
   ko: {
     group: "보기",
     label: "전체 화면 전환",
+  },
+  lt: {
+    group: "Rodymas",
+    label: "Perjungti į visą ekraną",
+  },
+  lv: {
+    group: "Skats",
+    label: "Pārslēgt pilnekrāna režīmu",
   },
   my: {
     group: "Paparan",
@@ -120,6 +144,10 @@ export const i18n: Partial<GenericLanguages> = {
   sv: {
     group: "Visning",
     label: "Byt till helskärm",
+  },
+  ta: {
+    group: "காட்சி",
+    label: "முழுத்திரைக்கு மாறு",
   },
   th: {
     group: "มุมมอง",
