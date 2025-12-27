@@ -87,5 +87,5 @@ The plugin wraps existing access controls, so your original access rules are sti
 
 ## Roadmap
 
-- [ ] Translations
-- [ ] Scheduled publish of content freeze
+- [x] Translations.
+- [ ] Scheduled publish of content freeze.
