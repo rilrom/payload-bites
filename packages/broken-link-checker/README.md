@@ -91,3 +91,4 @@ For options, refer to [types.ts](./src/types.ts).
 - [x] Custom broken links collection config.
 - [x] Custom linkinator config.
 - [ ] Documentation.
+- [x] Translations.
