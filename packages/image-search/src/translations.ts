@@ -34,6 +34,28 @@ export const translations = {
       providerNotConfigured: "Доставчикът не е конфигуриран правилно.",
     },
   },
+  bnBd: {
+    imageSearch: {
+      searchImages: "ছবি অনুসন্ধান করুন",
+      noResults: "কোনো ফলাফল নেই",
+      imageLibrary: "{{provider}} দ্বারা চালিত ছবি লাইব্রেরি",
+      previewImage: "ছবি প্রিভিউ করুন",
+      selectImage: "ছবি নির্বাচন করুন",
+      providerNotSupported: "প্রদানকারী সমর্থিত নয়।",
+      providerNotConfigured: "প্রদানকারী সঠিকভাবে কনফিগার করা হয়নি।",
+    },
+  },
+  bnIn: {
+    imageSearch: {
+      searchImages: "ছবি অনুসন্ধান করুন",
+      noResults: "কোনো ফলাফল নেই",
+      imageLibrary: "{{provider}} দ্বারা চালিত ছবি লাইব্রেরি",
+      previewImage: "ছবি প্রিভিউ করুন",
+      selectImage: "ছবি নির্বাচন করুন",
+      providerNotSupported: "প্রদানকারী সমর্থিত নয়।",
+      providerNotConfigured: "প্রদানকারী সঠিকভাবে কনফিগার করা হয়নি।",
+    },
+  },
   ca: {
     imageSearch: {
       searchImages: "Cerca d'imatges",
@@ -166,6 +188,28 @@ export const translations = {
       providerNotConfigured: "A szolgáltató nincs megfelelően konfigurálva.",
     },
   },
+  id: {
+    imageSearch: {
+      searchImages: "Cari gambar",
+      noResults: "Tidak ada hasil",
+      imageLibrary: "Perpustakaan gambar didukung oleh {{provider}}",
+      previewImage: "Pratinjau gambar",
+      selectImage: "Pilih gambar",
+      providerNotSupported: "Penyedia tidak didukung.",
+      providerNotConfigured: "Penyedia belum dikonfigurasi dengan benar.",
+    },
+  },
+  is: {
+    imageSearch: {
+      searchImages: "Leita að myndum",
+      noResults: "Engar niðurstöður",
+      imageLibrary: "Myndasafn knúið af {{provider}}",
+      previewImage: "Forskoða mynd",
+      selectImage: "Velja mynd",
+      providerNotSupported: "Þjónustuaðili er ekki studdur.",
+      providerNotConfigured: "Þjónustuaðili hefur ekki verið stilltur rétt.",
+    },
+  },
   it: {
     imageSearch: {
       searchImages: "Cerca immagini",
@@ -197,6 +241,28 @@ export const translations = {
       selectImage: "이미지 선택",
       providerNotSupported: "제공자가 지원되지 않습니다.",
       providerNotConfigured: "제공자가 올바르게 구성되지 않았습니다.",
+    },
+  },
+  lt: {
+    imageSearch: {
+      searchImages: "Ieškoti vaizdų",
+      noResults: "Rezultatų nėra",
+      imageLibrary: "Vaizdų biblioteka, teikiama {{provider}}",
+      previewImage: "Vaizdo peržiūra",
+      selectImage: "Pasirinkti vaizdą",
+      providerNotSupported: "Tiekėjas nepalaikomas.",
+      providerNotConfigured: "Tiekėjas netinkamai sukonfigūruotas.",
+    },
+  },
+  lv: {
+    imageSearch: {
+      searchImages: "Meklēt attēlus",
+      noResults: "Nav rezultātu",
+      imageLibrary: "Attēlu bibliotēka, ko nodrošina {{provider}}",
+      previewImage: "Attēla priekšskatījums",
+      selectImage: "Izvēlēties attēlu",
+      providerNotSupported: "Pakalpojumu sniedzējs netiek atbalstīts.",
+      providerNotConfigured: "Pakalpojumu sniedzējs nav pareizi konfigurēts.",
     },
   },
   my: {
@@ -340,6 +406,17 @@ export const translations = {
       selectImage: "เลือกภาพ",
       providerNotSupported: "ผู้ให้บริการไม่รองรับ.",
       providerNotConfigured: "ผู้ให้บริการไม่ได้รับการกำหนดค่าอย่างถูกต้อง.",
+    },
+  },
+  ta: {
+    imageSearch: {
+      searchImages: "படங்களைத் தேடு",
+      noResults: "முடிவுகள் இல்லை",
+      imageLibrary: "{{provider}} மூலம் இயக்கப்படும் பட நூலகம்",
+      previewImage: "படத்தை முன்னோட்டமிடு",
+      selectImage: "படத்தைத் தேர்ந்தெடு",
+      providerNotSupported: "வழங்குநர் ஆதரிக்கப்படவில்லை.",
+      providerNotConfigured: "வழங்குநர் சரியாக உள்ளமைக்கப்படவில்லை.",
     },
   },
   tr: {
