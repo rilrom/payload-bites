@@ -47,6 +47,38 @@ export const translations = {
       toggleDeleted: "Превключване На Изтритото",
     },
   },
+  bnBd: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} সফলভাবে সফট ডিলিট করা হয়েছে।",
+      titleDeleted: '{{label}} "{{title}}" সফলভাবে সফট ডিলিট করা হয়েছে।',
+      restoredCountSuccessfully: "{{count}} {{label}} সফলভাবে পুনরুদ্ধার করা হয়েছে।",
+      titleRestored: '{{label}} "{{title}}" সফলভাবে পুনরুদ্ধার করা হয়েছে।',
+      deletingTitle:
+        "{{title}} সফট ডিলিট করার সময় একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      restoringTitle:
+        "{{title}} পুনরুদ্ধার করার সময় একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      restore: "পুনরুদ্ধার",
+      softDelete: "সফট ডিলিট",
+      deleted: "মুছে ফেলা হয়েছে",
+      toggleDeleted: "মুছে ফেলা টগল করুন",
+    },
+  },
+  bnIn: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} সফলভাবে সফট ডিলিট করা হয়েছে।",
+      titleDeleted: '{{label}} "{{title}}" সফলভাবে সফট ডিলিট করা হয়েছে।',
+      restoredCountSuccessfully: "{{count}} {{label}} সফলভাবে পুনরুদ্ধার করা হয়েছে।",
+      titleRestored: '{{label}} "{{title}}" সফলভাবে পুনরুদ্ধার করা হয়েছে।',
+      deletingTitle:
+        "{{title}} সফট ডিলিট করার সময় একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      restoringTitle:
+        "{{title}} পুনরুদ্ধার করার সময় একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+      restore: "পুনরুদ্ধার",
+      softDelete: "সফট ডিলিট",
+      deleted: "মুছে ফেলা হয়েছে",
+      toggleDeleted: "মুছে ফেলা টগল করুন",
+    },
+  },
   ca: {
     softDelete: {
       deletedCountSuccessfully: "S'ha eliminat suau {{count}} {{label}} amb èxit.",
@@ -223,6 +255,36 @@ export const translations = {
       toggleDeleted: "Törölt Váltása",
     },
   },
+  id: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} berhasil dihapus sementara.",
+      titleDeleted: '{{label}} "{{title}}" berhasil dihapus sementara.',
+      restoredCountSuccessfully: "{{count}} {{label}} berhasil dipulihkan.",
+      titleRestored: '{{label}} "{{title}}" berhasil dipulihkan.',
+      deletingTitle:
+        "Terjadi kesalahan saat menghapus sementara {{title}}. Silakan periksa koneksi Anda dan coba lagi.",
+      restoringTitle: "Terjadi kesalahan saat memulihkan {{title}}. Silakan periksa koneksi Anda dan coba lagi.",
+      restore: "Pulihkan",
+      softDelete: "Hapus Sementara",
+      deleted: "Dihapus",
+      toggleDeleted: "Alihkan Dihapus",
+    },
+  },
+  is: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} var mjúkt eytt.",
+      titleDeleted: '{{label}} "{{title}}" var mjúkt eytt.',
+      restoredCountSuccessfully: "{{count}} {{label}} var endurheimt.",
+      titleRestored: '{{label}} "{{title}}" var endurheimt.',
+      deletingTitle: "Villa kom upp við að mjúkeyða {{title}}. Vinsamlegast athugaðu tenginguna þína og reyndu aftur.",
+      restoringTitle:
+        "Villa kom upp við að endurheimta {{title}}. Vinsamlegast athugaðu tenginguna þína og reyndu aftur.",
+      restore: "Endurheimta",
+      softDelete: "Mjúk eyðing",
+      deleted: "Eytt",
+      toggleDeleted: "Víxla Eyddu",
+    },
+  },
   it: {
     softDelete: {
       deletedCountSuccessfully: "Eliminazione soft di {{count}} {{label}} riuscita.",
@@ -265,6 +327,34 @@ export const translations = {
       softDelete: "소프트 삭제",
       deleted: "삭제됨",
       toggleDeleted: "삭제된 전환",
+    },
+  },
+  lt: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} sėkmingai švelniai ištrinta.",
+      titleDeleted: '{{label}} "{{title}}" sėkmingai švelniai ištrinta.',
+      restoredCountSuccessfully: "{{count}} {{label}} sėkmingai atkurta.",
+      titleRestored: '{{label}} "{{title}}" sėkmingai atkurta.',
+      deletingTitle: "Įvyko klaida švelniai trinant {{title}}. Patikrinkite ryšį ir bandykite dar kartą.",
+      restoringTitle: "Įvyko klaida atkuriant {{title}}. Patikrinkite ryšį ir bandykite dar kartą.",
+      restore: "Atkurti",
+      softDelete: "Švelnus ištrynimas",
+      deleted: "Ištrinta",
+      toggleDeleted: "Perjungti Ištrintą",
+    },
+  },
+  lv: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} veiksmīgi mīksti dzēsts.",
+      titleDeleted: '{{label}} "{{title}}" veiksmīgi mīksti dzēsts.',
+      restoredCountSuccessfully: "{{count}} {{label}} veiksmīgi atjaunots.",
+      titleRestored: '{{label}} "{{title}}" veiksmīgi atjaunots.',
+      deletingTitle: "Mīksti dzēšot {{title}}, radās kļūda. Lūdzu, pārbaudiet savienojumu un mēģiniet vēlreiz.",
+      restoringTitle: "Atjaunojot {{title}}, radās kļūda. Lūdzu, pārbaudiet savienojumu un mēģiniet vēlreiz.",
+      restore: "Atjaunot",
+      softDelete: "Mīksta dzēšana",
+      deleted: "Dzēsts",
+      toggleDeleted: "Pārslēgt Dzēsto",
     },
   },
   my: {
@@ -440,6 +530,22 @@ export const translations = {
       softDelete: "Mjukt borttagning",
       deleted: "Borttagen",
       toggleDeleted: "Bytta Raderat",
+    },
+  },
+  ta: {
+    softDelete: {
+      deletedCountSuccessfully: "{{count}} {{label}} வெற்றிகரமாக மென்மையாக நீக்கப்பட்டது.",
+      titleDeleted: '{{label}} "{{title}}" வெற்றிகரமாக மென்மையாக நீக்கப்பட்டது.',
+      restoredCountSuccessfully: "{{count}} {{label}} வெற்றிகரமாக மீட்டெடுக்கப்பட்டது.",
+      titleRestored: '{{label}} "{{title}}" வெற்றிகரமாக மீட்டெடுக்கப்பட்டது.',
+      deletingTitle:
+        "{{title}} மென்மையாக நீக்கும்போது பிழை ஏற்பட்டது. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.",
+      restoringTitle:
+        "{{title}} மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.",
+      restore: "மீட்டெடு",
+      softDelete: "மென்மையான நீக்கம்",
+      deleted: "நீக்கப்பட்டது",
+      toggleDeleted: "நீக்கப்பட்டதை மாற்று",
     },
   },
   th: {
