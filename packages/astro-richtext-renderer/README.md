@@ -1,4 +1,4 @@
-# @payload-bites/astro-richtext-renderer
+# Astro richtext renderer
 
 Render Payload CMS Lexical richtext content in Astro.
 
