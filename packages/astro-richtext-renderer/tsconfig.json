@@ -1,0 +1,5 @@
+{
+  "extends": "@payload-bites/typescript-config/astro-library.json",
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

@@ -9,3 +9,4 @@ Collection of various bite-sized Payload v3 plugins and tools.
 - [Activity log](packages/activity-log/) - keep an eye on everything happening in your cms.
 - [Broken link checker](packages/broken-link-checker/) - broken links are a thing of the past.
 - [Content freeze](packages/content-freeze/) - make sure your team puts the tools down during critical moments.
+- [Astro richtext renderer](packages/astro-richtext-renderer/) - render Payload CMS Lexical richtext content in Astro.
