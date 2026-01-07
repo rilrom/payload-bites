@@ -1,11 +1,4 @@
-// @ts-nocheck structure is correct, type is incorrect for some reason
-
-import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-
-/**
- * Sample Lexical editor state demonstrating all supported node types.
- */
-export const sampleContent: SerializedEditorState = {
+export const data = {
   root: {
     type: "root",
     format: "",
@@ -118,7 +111,7 @@ export const sampleContent: SerializedEditorState = {
         children: [
           {
             type: "text",
-            text: "Text Formatting Examples",
+            text: "Text Formatting",
             format: 0,
             mode: "normal",
             style: "",
@@ -442,11 +435,6 @@ export const sampleContent: SerializedEditorState = {
           },
         ],
       },
-      // Horizontal rule
-      {
-        type: "horizontalrule",
-        version: 1,
-      },
       // Heading 2
       {
         type: "heading",
@@ -459,6 +447,26 @@ export const sampleContent: SerializedEditorState = {
           {
             type: "text",
             text: "Text Alignment",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Left aligned paragraph
+      {
+        type: "paragraph",
+        format: "left",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        textFormat: 0,
+        children: [
+          {
+            type: "text",
+            text: "This paragraph is left aligned.",
             format: 0,
             mode: "normal",
             style: "",
@@ -519,6 +527,266 @@ export const sampleContent: SerializedEditorState = {
           {
             type: "text",
             text: "This paragraph is indented (level 1).",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Custom Blocks Section
+      {
+        type: "heading",
+        tag: "h2",
+        format: "",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        children: [
+          {
+            type: "text",
+            text: "Custom Blocks",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Code Block
+      {
+        type: "block",
+        format: "",
+        indent: 0,
+        version: 2,
+        fields: {
+          id: "code-block-1",
+          blockType: "code",
+          language: "typescript",
+          code: "const greeting = (name: string): string => {\n  return `Hello, ${name}!`;\n};\n\nconsole.log(greeting('World'));",
+        },
+      },
+      // Callout/Alert Block
+      {
+        type: "block",
+        format: "",
+        indent: 0,
+        version: 2,
+        fields: {
+          id: "callout-1",
+          blockType: "callout",
+          type: "info",
+          title: "Information",
+          content:
+            "This is an informational callout block. It can be used to highlight important information.",
+        },
+      },
+      // Warning Callout
+      {
+        type: "block",
+        format: "",
+        indent: 0,
+        version: 2,
+        fields: {
+          id: "callout-2",
+          blockType: "callout",
+          type: "warning",
+          title: "Warning",
+          content:
+            "This is a warning callout. Use it to alert users about potential issues.",
+        },
+      },
+      // Banner Block
+      {
+        type: "block",
+        format: "",
+        indent: 0,
+        version: 2,
+        fields: {
+          id: "banner-1",
+          blockType: "banner",
+          style: "gradient",
+          heading: "Featured Content",
+          description:
+            "This banner block demonstrates a more complex custom block with multiple fields.",
+          buttonText: "Learn More",
+          buttonUrl: "https://example.com",
+        },
+      },
+      // Relationship/Reference Block
+      {
+        type: "block",
+        format: "",
+        indent: 0,
+        version: 2,
+        fields: {
+          id: "relationship-1",
+          blockType: "relationshipCard",
+          relationTo: "posts",
+          value: {
+            id: "post-abc-123",
+            title: "Introduction to Payload CMS",
+            slug: "introduction-to-payload-cms",
+            excerpt:
+              "Learn how to build modern content management systems with Payload.",
+            featuredImage: {
+              url: "#",
+              alt: "Payload CMS Dashboard",
+            },
+          },
+        },
+      },
+      // Inline Blocks Section
+      {
+        type: "heading",
+        tag: "h2",
+        format: "",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        children: [
+          {
+            type: "text",
+            text: "Inline Blocks",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Paragraph with inline mention
+      {
+        type: "paragraph",
+        format: "",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        textFormat: 0,
+        children: [
+          {
+            type: "text",
+            text: "You can mention users like ",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+          {
+            type: "inlineBlock",
+            version: 2,
+            fields: {
+              id: "mention-1",
+              blockType: "mention",
+              userId: "user-123",
+              username: "johndoe",
+              displayName: "John Doe",
+            },
+          },
+          {
+            type: "text",
+            text: " inline within your text content.",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Paragraph with inline badge/label
+      {
+        type: "paragraph",
+        format: "",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        textFormat: 0,
+        children: [
+          {
+            type: "text",
+            text: "Articles can have inline labels like ",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+          {
+            type: "inlineBlock",
+            version: 2,
+            fields: {
+              id: "label-1",
+              blockType: "label",
+              text: "New",
+              color: "green",
+            },
+          },
+          {
+            type: "text",
+            text: " or ",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+          {
+            type: "inlineBlock",
+            version: 2,
+            fields: {
+              id: "label-2",
+              blockType: "label",
+              text: "Featured",
+              color: "blue",
+            },
+          },
+          {
+            type: "text",
+            text: " to highlight content.",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+        ],
+      },
+      // Paragraph with inline math/equation
+      {
+        type: "paragraph",
+        format: "",
+        indent: 0,
+        version: 1,
+        direction: "ltr",
+        textFormat: 0,
+        children: [
+          {
+            type: "text",
+            text: "Mathematical expressions can be rendered inline: ",
+            format: 0,
+            mode: "normal",
+            style: "",
+            detail: 0,
+            version: 1,
+          },
+          {
+            type: "inlineBlock",
+            version: 2,
+            fields: {
+              id: "math-1",
+              blockType: "math",
+              expression: "E = mc^2",
+              displayMode: false,
+            },
+          },
+          {
+            type: "text",
+            text: " is Einstein's famous equation.",
             format: 0,
             mode: "normal",
             style: "",

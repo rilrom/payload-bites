@@ -1,0 +1,20 @@
+---
+import type { SerializedTableNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedTableNode>;
+
+const { node, converters, config, style, RenderNode } = Astro.props;
+
+const children = node.children || [];
+---
+
+<table style={style}>
+  <tbody>
+    {
+      children.map((child) => (
+        <RenderNode node={child} converters={converters} config={config} />
+      ))
+    }
+  </tbody>
+</table>

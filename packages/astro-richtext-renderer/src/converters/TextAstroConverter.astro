@@ -1,0 +1,66 @@
+---
+import {
+  IS_BOLD,
+  IS_CODE,
+  IS_ITALIC,
+  IS_STRIKETHROUGH,
+  IS_SUBSCRIPT,
+  IS_SUPERSCRIPT,
+  IS_UNDERLINE,
+  type SerializedTextNode,
+} from "@payloadcms/richtext-lexical/lexical";
+
+interface Props {
+  node: SerializedTextNode;
+}
+
+const { node } = Astro.props;
+
+// Lexical text format bit flags
+// https://github.com/facebook/lexical/blob/main/packages/lexical/src/LexicalConstants.ts
+
+const format = node.format ?? 0;
+
+const isBold = format & IS_BOLD;
+const isItalic = format & IS_ITALIC;
+const isStrikethrough = format & IS_STRIKETHROUGH;
+const isUnderline = format & IS_UNDERLINE;
+const isCode = format & IS_CODE;
+const isSubscript = format & IS_SUBSCRIPT;
+const isSuperscript = format & IS_SUPERSCRIPT;
+
+// For recursive rendering with modified format
+const Self = Astro.self;
+---
+
+{
+  isCode ? (
+    <code>{node.text}</code>
+  ) : isSuperscript ? (
+    <sup>
+      <Self node={{ ...node, format: format ^ IS_SUPERSCRIPT }} />
+    </sup>
+  ) : isSubscript ? (
+    <sub>
+      <Self node={{ ...node, format: format ^ IS_SUBSCRIPT }} />
+    </sub>
+  ) : isUnderline ? (
+    <span style="text-decoration: underline;">
+      <Self node={{ ...node, format: format ^ IS_UNDERLINE }} />
+    </span>
+  ) : isStrikethrough ? (
+    <span style="text-decoration: line-through;">
+      <Self node={{ ...node, format: format ^ IS_STRIKETHROUGH }} />
+    </span>
+  ) : isItalic ? (
+    <em>
+      <Self node={{ ...node, format: format ^ IS_ITALIC }} />
+    </em>
+  ) : isBold ? (
+    <strong>
+      <Self node={{ ...node, format: format ^ IS_BOLD }} />
+    </strong>
+  ) : (
+    node.text
+  )
+}

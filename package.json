@@ -19,7 +19,7 @@
     "generate:types": "turbo generate:types",
     "generate:importmap": "turbo generate:importmap",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-    "clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
+    "clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -name \".astro\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
   },
   "devDependencies": {
     "@swc/cli": "^0.7.9",

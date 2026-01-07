@@ -1,0 +1,72 @@
+---
+interface Props {
+  node: {
+    fields: {
+      id: string;
+      blockType: "callout";
+      type: "info" | "warning" | "error" | "success";
+      title?: string;
+      content: string;
+    };
+  };
+}
+
+const { node } = Astro.props;
+
+const { type, title, content } = node.fields;
+---
+
+<div class={`callout callout-${type}`}>
+  <div class="callout-header">
+    {title && <strong class="callout-title">{title}</strong>}
+  </div>
+  <div class="callout-content">{content}</div>
+</div>
+
+<style>
+  .callout {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    border-left: 4px solid;
+  }
+
+  .callout-info {
+    background: #e7f3ff;
+    border-color: #2196f3;
+  }
+
+  .callout-warning {
+    background: #fff8e6;
+    border-color: #ff9800;
+  }
+
+  .callout-error {
+    background: #ffebee;
+    border-color: #f44336;
+  }
+
+  .callout-success {
+    background: #e8f5e9;
+    border-color: #4caf50;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .callout-icon {
+    font-size: 1.25rem;
+  }
+
+  .callout-title {
+    font-weight: 600;
+  }
+
+  .callout-content {
+    color: #333;
+  }
+</style>

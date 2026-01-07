@@ -1,0 +1,105 @@
+---
+interface Props {
+  node: {
+    fields: {
+      id: string;
+      blockType: "banner";
+      style?: "gradient" | "solid" | "outline";
+      heading: string;
+      description?: string;
+      buttonText?: string;
+      buttonUrl?: string;
+    };
+  };
+}
+
+const { node } = Astro.props;
+
+const {
+  style = "solid",
+  heading,
+  description,
+  buttonText,
+  buttonUrl,
+} = node.fields;
+---
+
+<div class={`banner banner-${style}`}>
+  <div class="banner-content">
+    <h3 class="banner-heading">{heading}</h3>
+    {description && <p class="banner-description">{description}</p>}
+  </div>
+  {
+    buttonText && buttonUrl && (
+      <a href={buttonUrl} class="banner-button">
+        {buttonText}
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .banner-solid {
+    background: #f0f0f0;
+  }
+
+  .banner-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .banner-outline {
+    border: 2px solid #333;
+    background: transparent;
+  }
+
+  .banner-content {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .banner-heading {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .banner-description {
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .banner-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .banner-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .banner-gradient .banner-button {
+    background: white;
+    color: #667eea;
+  }
+</style>

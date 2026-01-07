@@ -1,6 +1,6 @@
 packages:
-  - apps/*
-  - packages/*
+  - apps/**/*
+  - packages/**/*
 
 onlyBuiltDependencies:
   - '@swc/core'

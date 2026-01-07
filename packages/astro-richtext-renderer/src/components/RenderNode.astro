@@ -1,0 +1,91 @@
+---
+import type { SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
+
+import type { AstroConverter, AstroConverters, RichTextConfig } from "../types";
+
+interface Props {
+  node: SerializedLexicalNode;
+  converters: AstroConverters;
+  config: RichTextConfig;
+}
+
+const { node, converters, config } = Astro.props;
+
+let Converter: AstroConverter<any> | undefined;
+
+if (node.type === "block") {
+  const blockNode = node as SerializedLexicalNode & {
+    fields?: { blockType?: string };
+  };
+
+  Converter = converters.blocks?.[blockNode.fields?.blockType ?? ""];
+} else if (node.type === "inlineBlock") {
+  const inlineBlockNode = node as SerializedLexicalNode & {
+    fields?: { blockType?: string };
+  };
+
+  Converter =
+    converters.inlineBlocks?.[inlineBlockNode.fields?.blockType ?? ""];
+} else {
+  Converter = converters[node.type] as AstroConverter<any>;
+}
+
+if (!Converter) {
+  console.warn(
+    `[astro-richtext-renderer] No converter for node type: "${node.type}"`,
+  );
+}
+
+// Compute styles (textAlign, indent)
+const style: Record<string, string> = {};
+
+const disableTextAlign = config.disableTextAlign;
+const disableIndent = config.disableIndent;
+
+const shouldDisableTextAlign =
+  disableTextAlign === true ||
+  (Array.isArray(disableTextAlign) && disableTextAlign.includes(node.type));
+
+const shouldDisableIndent =
+  disableIndent === true ||
+  (Array.isArray(disableIndent) && disableIndent.includes(node.type));
+
+// Handle text alignment
+const nodeWithFormat = node as SerializedLexicalNode & { format?: string };
+
+if (!shouldDisableTextAlign && nodeWithFormat.format) {
+  const alignMap: Record<string, string> = {
+    center: "center",
+    end: "right",
+    justify: "justify",
+    right: "right",
+    start: "left",
+  };
+
+  if (alignMap[nodeWithFormat.format]) {
+    style.textAlign = alignMap[nodeWithFormat.format];
+  }
+}
+
+// Handle indentation
+const nodeWithIndent = node as SerializedLexicalNode & { indent?: number };
+
+if (!shouldDisableIndent && nodeWithIndent.indent && node.type !== "listitem") {
+  style.paddingInlineStart = `${Number(nodeWithIndent.indent) * 40}px`;
+}
+
+// Use Astro.self to allow recursive rendering
+const BoundRenderNode = Astro.self;
+---
+
+{
+  Converter && (
+    <Converter
+      node={node}
+      converters={converters}
+      config={config}
+      style={Object.keys(style).length ? style : undefined}
+      RenderNode={BoundRenderNode}
+    />
+  )
+}

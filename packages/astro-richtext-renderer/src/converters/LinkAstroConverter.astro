@@ -1,0 +1,34 @@
+---
+import type { SerializedLinkNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedLinkNode>;
+
+const { node, converters, config, RenderNode } = Astro.props;
+
+const rel = node.fields.newTab ? "noopener noreferrer" : undefined;
+const target = node.fields.newTab ? "_blank" : undefined;
+
+let href = node.fields.url || "";
+
+if (node.fields.linkType === "internal") {
+  if (config.internalDocToHref) {
+    href = config.internalDocToHref({ linkNode: node });
+  } else {
+    console.error(
+      `[astro-richtext-renderer] Found internal link, but internalDocToHref is not provided`,
+    );
+    href = "#";
+  }
+}
+
+const children = node.children || [];
+---
+
+<a href={href} rel={rel} target={target}>
+  {
+    children.map((child) => (
+      <RenderNode node={child} converters={converters} config={config} />
+    ))
+  }
+</a>

@@ -1,0 +1,37 @@
+---
+import type { SerializedUploadNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedUploadNode>;
+
+const { node, style } = Astro.props;
+
+// Get the upload value - can be a document object or just an ID
+const upload = node.value;
+
+// If it's just an ID, we can't render anything meaningful
+if (typeof upload === "string" || typeof upload === "number") {
+  console.warn(
+    "[astro-richtext-renderer] Upload node value is not populated. Make sure to use depth >= 1 when fetching content.",
+  );
+}
+
+// Handle populated upload document
+const doc = typeof upload === "object" ? upload : null;
+const url = doc?.url;
+const alt = doc?.alt || doc?.filename || "";
+const mimeType = doc?.mimeType || "";
+const isImage = mimeType.startsWith("image/");
+---
+
+{
+  doc &&
+    url &&
+    (isImage ? (
+      <img src={url} alt={alt} style={style} />
+    ) : (
+      <a href={url} style={style}>
+        {doc.filename}
+      </a>
+    ))
+}

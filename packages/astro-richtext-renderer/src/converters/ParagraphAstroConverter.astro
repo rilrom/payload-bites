@@ -1,0 +1,24 @@
+---
+import type { SerializedParagraphNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedParagraphNode>;
+
+const { node, converters, config, style, RenderNode } = Astro.props;
+
+const children = node.children || [];
+---
+
+{
+  children.length > 0 ? (
+    <p style={style}>
+      {children.map((child) => (
+        <RenderNode node={child} converters={converters} config={config} />
+      ))}
+    </p>
+  ) : (
+    <p style={style}>
+      <br />
+    </p>
+  )
+}

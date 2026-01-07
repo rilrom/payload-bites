@@ -1,5 +1,5 @@
 {
-  "name": "astro-richtext-renderer",
+  "name": "astro-richtext-renderer-website",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -8,19 +8,22 @@
     "build": "astro build",
     "preview": "astro preview",
     "tsc": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro}\"",
     "lint": "eslint ."
   },
   "dependencies": {
     "@payload-bites/astro-richtext-renderer": "workspace:*",
     "@payloadcms/richtext-lexical": "3.68.5",
-    "astro": "^5.10.3",
-    "payload": "3.68.5"
+    "@payloadcms/sdk": "^3.70.0",
+    "astro": "^5.10.3"
   },
   "devDependencies": {
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
     "@types/node": "^24.10.4",
     "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "5.9.3"
   }
 }

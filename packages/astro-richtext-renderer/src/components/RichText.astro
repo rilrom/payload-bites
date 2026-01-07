@@ -1,70 +1,89 @@
 ---
-import {
-  convertLexicalToHTML,
-  defaultHTMLConverters,
-  type HTMLConverters,
-  type HTMLConvertersFunction,
-} from "@payloadcms/richtext-lexical/html";
-import { type SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import type { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
+import RenderNode from "./RenderNode.astro";
+
+import AutoLinkAstroConverter from "../converters/AutoLinkAstroConverter.astro";
+import BlockQuoteAstroConverter from "../converters/BlockQuoteAstroConverter.astro";
+import HeadingAstroConverter from "../converters/HeadingAstroConverter.astro";
+import HorizontalRuleAstroConverter from "../converters/HorizontalRuleAstroConverter.astro";
+import LineBreakAstroConverter from "../converters/LineBreakAstroConverter.astro";
+import LinkAstroConverter from "../converters/LinkAstroConverter.astro";
+import ListAstroConverter from "../converters/ListAstroConverter.astro";
+import ListItemAstroConverter from "../converters/ListItemAstroConverter.astro";
+import ParagraphAstroConverter from "../converters/ParagraphAstroConverter.astro";
+import TabAstroConverter from "../converters/TabAstroConverter.astro";
+import TableAstroConverter from "../converters/TableAstroConverter.astro";
+import TableCellAstroConverter from "../converters/TableCellAstroConverter.astro";
+import TableRowAstroConverter from "../converters/TableRowAstroConverter.astro";
+import TextAstroConverter from "../converters/TextAstroConverter.astro";
+import UploadAstroConverter from "../converters/UploadAstroConverter.astro";
+
+import type {
+  AstroConverters,
+  AstroConvertersFunction,
+  RichTextConfig,
+} from "../types";
+
+const defaultAstroConverters: AstroConverters<DefaultNodeTypes> = {
+  paragraph: ParagraphAstroConverter,
+  text: TextAstroConverter,
+  heading: HeadingAstroConverter,
+  link: LinkAstroConverter,
+  autolink: AutoLinkAstroConverter,
+  list: ListAstroConverter,
+  listitem: ListItemAstroConverter,
+  quote: BlockQuoteAstroConverter,
+  horizontalrule: HorizontalRuleAstroConverter,
+  linebreak: LineBreakAstroConverter,
+  tab: TabAstroConverter,
+  table: TableAstroConverter,
+  tablerow: TableRowAstroConverter,
+  tablecell: TableCellAstroConverter,
+  upload: UploadAstroConverter,
+};
 
 type Props = {
-  /**
-   * Override class names for the container.
-   */
-  class?: string;
-  /**
-   * Custom converters to transform your nodes to HTML. Can be an object or a function that receives the default converters.
-   */
-  converters?: HTMLConverters | HTMLConvertersFunction;
-  /**
-   * Serialized editor state to render.
-   */
   data: SerializedEditorState;
-  /**
-   * If true, removes the container div wrapper.
-   */
-  disableContainer?: boolean;
-  /**
-   * If true, disables indentation globally. If an array, disables for specific node `type` values.
-   */
-  disableIndent?: boolean | string[];
-  /**
-   * If true, disables text alignment globally. If an array, disables for specific node `type` values.
-   */
-  disableTextAlign?: boolean | string[];
+  converters?: AstroConverters | AstroConvertersFunction;
+  config?: RichTextConfig;
+  class?: string;
 };
 
 const {
-  data: editorState,
+  data,
   converters,
+  config = {
+    disableContainer: false,
+    disableIndent: false,
+    disableTextAlign: false,
+  },
   class: className = "payload-richtext",
-  disableContainer = false,
-  disableIndent = false,
-  disableTextAlign = false,
 } = Astro.props;
 
-let finalConverters: HTMLConverters = {};
+let finalConverters: AstroConverters = {};
 if (converters) {
   if (typeof converters === "function") {
-    finalConverters = converters({ defaultConverters: defaultHTMLConverters });
+    finalConverters = converters({ defaultConverters: defaultAstroConverters });
   } else {
     finalConverters = converters;
   }
 } else {
-  finalConverters = defaultHTMLConverters;
+  finalConverters = defaultAstroConverters;
 }
 
-const html =
-  editorState &&
-  !Array.isArray(editorState) &&
-  typeof editorState === "object" &&
-  "root" in editorState &&
-  convertLexicalToHTML({
-    converters: finalConverters,
-    data: editorState,
-    disableIndent,
-    disableTextAlign,
-  });
+const nodes = data?.root?.children || [];
+
+const Container = config.disableContainer ? Fragment : "div";
+
+const containerProps = config.disableContainer ? {} : { class: className };
 ---
 
-{disableContainer ? <Fragment set:html={html} /> : <div class={className} set:html={html} />}
+<Container {...containerProps}>
+  {
+    nodes.map((node) => (
+      <RenderNode node={node} converters={finalConverters} config={config} />
+    ))
+  }
+</Container>

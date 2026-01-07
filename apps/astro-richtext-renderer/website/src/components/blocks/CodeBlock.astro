@@ -1,0 +1,54 @@
+---
+interface Props {
+  node: {
+    fields: {
+      id: string;
+      blockType: "code";
+      language?: string;
+      code: string;
+    };
+  };
+}
+
+const { node } = Astro.props;
+
+const { language, code } = node.fields;
+---
+
+<div class="code-block">
+  {language && <span class="code-language">{language}</span>}
+  <pre><code class={language ? `language-${language}` : undefined}>{code}</code></pre>
+</div>
+
+<style>
+  .code-block {
+    position: relative;
+    margin: 1rem 0;
+  }
+
+  .code-language {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: #888;
+    background: #1a1a1a;
+    border-radius: 0 0.375rem 0 0.375rem;
+  }
+
+  pre {
+    margin: 0;
+    padding: 1rem;
+    background: #1e1e1e;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: "Fira Code", "Monaco", "Consolas", monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #d4d4d4;
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+import type { SerializedHorizontalRuleNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedHorizontalRuleNode>;
+
+const { style } = Astro.props;
+---
+
+<hr style={style} />

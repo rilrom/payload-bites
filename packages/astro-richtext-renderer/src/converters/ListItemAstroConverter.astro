@@ -1,0 +1,18 @@
+---
+import type { SerializedListItemNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedListItemNode>;
+
+const { node, converters, config, style, RenderNode } = Astro.props;
+
+const children = node.children || [];
+---
+
+<li style={style} value={node.value}>
+  {
+    children.map((child) => (
+      <RenderNode node={child} converters={converters} config={config} />
+    ))
+  }
+</li>

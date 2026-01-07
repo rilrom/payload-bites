@@ -19,16 +19,21 @@
     ".": "./src/index.js"
   },
   "files": [
-    "src/index.js"
+    "src"
   ],
   "scripts": {
     "lint": "eslint .",
-    "check-types": "tsc --noEmit"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,astro}\"",
+    "check-types": "astro check"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
+    "astro": "^5",
     "eslint": "^9.39.2",
+    "payload": "3.68.5",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "5.9.3"
   },
   "peerDependencies": {

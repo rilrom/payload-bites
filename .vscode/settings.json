@@ -38,11 +38,6 @@
   "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.workingDirectories": [{ "mode": "auto" }],
 
-  "files.exclude": {
-    "**/dist": true,
-    "**/.next": true,
-    "**/node_modules": true
-  },
   "search.exclude": {
     "**/dist": true,
     "**/.next": true,

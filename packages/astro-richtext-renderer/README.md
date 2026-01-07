@@ -1,6 +1,6 @@
 # Astro richtext renderer
 
-Render Payload CMS Lexical richtext content in Astro.
+Render Payload CMS Lexical richtext content in Astro using native Astro components.
 
 ## Installation
 
@@ -14,68 +14,65 @@ Import the `RichText` component and pass your Lexical editor state to the `data`
 
 ```astro
 ---
-import { RichText } from '@payload-bites/astro-richtext-renderer'
-
-const content = /* your Lexical editor state */
----
-
-<article>
-  <RichText data={content} />
-</article>
-```
-
-## Options
-
-| Prop               | Required | Description                                                                                                        |
-| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `class`            | Optional | Override class names for the container.                                                                            |
-| `converters`       | Optional | Custom converters to transform nodes to HTML. Can be an object or a function that receives the default converters. |
-| `data`             | Required | Serialized editor state to render.                                                                                 |
-| `disableContainer` | Optional | If true, removes the container div wrapper.                                                                        |
-| `disableIndent`    | Optional | If true, disables indentation globally. If an array, disables for specific node `type` values.                     |
-| `disableTextAlign` | Optional | If true, disables text alignment globally. If an array, disables for specific node `type` values.                  |
-
-## Converting HTML
-
-> [!WARNING]
-> The HTML output produced by this renderer is **unescaped**. It is passed directly to Astro as raw HTML.
->
-> You **must** ensure that the Lexical content is trusted, sanitized, or otherwise validated before rendering.  
-> Rendering untrusted content without proper sanitization can result in XSS and other injection vulnerabilities.
->
-> This package intentionally does not escape HTML, as escaping would prevent valid rich content rendering.  
-> Responsibility for content safety lies with the consuming application.
-
-The `RichText` component includes built-in converters for common Lexical nodes. You can add or override converters via the `converters` prop for custom blocks, custom nodes, or any modifications you need.
-
-> [!IMPORTANT]
-> When fetching data, ensure your depth setting is high enough to fully populate Lexical nodes such as uploads. The HTML converter requires fully populated data to work correctly.
-
-### Internal Links
-
-By default, Payload doesn't know how to convert internal links to HTML, as it doesn't know what the corresponding URL of the internal link is. You'll notice that you get a "found internal link, but internalDocToHref is not provided" error in the console when you try to render content with internal links.
-
-To fix this, you need to pass the `internalDocToHref` prop to `LinkHTMLConverter`. This prop is a function that receives the link node and returns the URL of the document.
-
-```astro
----
-import type {
-  DefaultNodeTypes,
-  SerializedLinkNode,
-} from '@payloadcms/richtext-lexical'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 import { RichText } from '@payload-bites/astro-richtext-renderer'
-import {
-  type HTMLConvertersFunction,
-  LinkHTMLConverter,
-} from '@payloadcms/richtext-lexical/html'
 
 interface Props {
   data: SerializedEditorState
 }
 
-const { data } = Astro.props as Props
+const { data } = Astro.props
+---
+
+<article>
+  <RichText data={data} />
+</article>
+```
+
+## Props
+
+| Prop         | Required | Description                                                                                |
+| ------------ | -------- | ------------------------------------------------------------------------------------------ |
+| `data`       | Required | Serialized editor state to render.                                                         |
+| `converters` | Optional | Custom Astro component converters to override or extend the defaults.                      |
+| `config`     | Optional | Configuration options (see below).                                                         |
+| `class`      | Optional | CSS class for the container element. Defaults to `"payload-richtext"`.                     |
+
+### Config Options
+
+Pass configuration via the `config` prop:
+
+| Option             | Type                   | Description                                                                |
+| ------------------ | ---------------------- | -------------------------------------------------------------------------- |
+| `disableContainer` | `boolean`              | If true, removes the container div wrapper.                                |
+| `disableIndent`    | `boolean \| string[]`  | Disable indentation globally or for specific node types.                   |
+| `disableTextAlign` | `boolean \| string[]`  | Disable text alignment globally or for specific node types.                |
+| `internalDocToHref`| `function`             | Convert internal document links to href strings (see Internal Links).      |
+
+## Astro Converters
+
+The `RichText` component uses Astro components as converters. Built-in converters handle common Lexical nodes (paragraphs, headings, lists, links, etc.). You can add or override converters for custom blocks, custom nodes, or any modifications you need.
+
+> [!IMPORTANT]
+> When fetching data, ensure your depth setting is high enough to fully populate Lexical nodes such as uploads. Converters require fully populated data to work correctly.
+
+### Internal Links
+
+By default, Payload doesn't know how to convert internal links to URLs. To handle internal links, pass the `internalDocToHref` function in the `config` prop:
+
+```astro
+---
+import type { SerializedLinkNode } from '@payloadcms/richtext-lexical'
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+
+import { RichText } from '@payload-bites/astro-richtext-renderer'
+
+interface Props {
+  data: SerializedEditorState
+}
+
+const { data } = Astro.props
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { relationTo, value } = linkNode.fields.doc!
@@ -97,138 +94,149 @@ const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
       return `/${relationTo}/${slug}`
   }
 }
-
-const htmlConverters: HTMLConvertersFunction<DefaultNodeTypes> = ({
-  defaultConverters,
-}) => ({
-  ...defaultConverters,
-  ...LinkHTMLConverter({ internalDocToHref }),
-})
 ---
 
-<RichText data={data} converters={htmlConverters} />
+<RichText data={data} config={{ internalDocToHref }} />
 ```
 
 ### Lexical Blocks
 
-If your rich text includes custom Blocks or Inline Blocks, you must supply custom converters that match each block's slug. This converter is not included by default, as Payload doesn't know how to render your custom blocks.
+If your rich text includes custom Blocks or Inline Blocks, you must supply custom Astro component converters that match each block's slug. Create an Astro component for each block type and pass them via the `converters` prop.
 
-For example:
+First, create your block component:
 
 ```astro
 ---
-import type { MyInlineBlock, MyNumberBlock, MyTextBlock } from '@/payload-types'
-import type {
-  DefaultNodeTypes,
-  SerializedBlockNode,
-  SerializedInlineBlockNode,
-} from '@payloadcms/richtext-lexical'
+interface Props {
+  node: {
+    fields: {
+      id: string
+      blockType: 'myNumberBlock'
+      number: number
+    }
+  }
+}
+
+const { node } = Astro.props
+---
+
+<div class="number-block">{node.fields.number}</div>
+```
+
+Then pass them to the `RichText` component:
+
+```astro
+---
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
-import { RichText } from '@payload-bites/astro-richtext-renderer'
-import { type HTMLConvertersFunction } from '@payloadcms/richtext-lexical/html'
+import { RichText, type AstroConvertersFunction } from '@payload-bites/astro-richtext-renderer'
+
+import NumberBlock from '@/components/blocks/NumberBlock.astro'
 
 interface Props {
   data: SerializedEditorState
 }
 
-const { data } = Astro.props as Props
+const { data } = Astro.props
 
-type NodeTypes =
-  | DefaultNodeTypes
-  | SerializedBlockNode<MyNumberBlock | MyTextBlock>
-  | SerializedInlineBlockNode<MyInlineBlock>
-
-const htmlConverters: HTMLConvertersFunction<NodeTypes> = ({
-  defaultConverters,
-}) => ({
+const astroConverters: AstroConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
   blocks: {
-    myNumberBlock: ({ node }) =>
-      `<div>${node.fields.number}</div>`,
-
-    myTextBlock: ({ node }) =>
-      `<div style="background-color:red">${node.fields.text}</div>`,
+    myNumberBlock: NumberBlock,
   },
-  inlineBlocks: {
-    myInlineBlock: ({ node }) =>
-      `<span>${node.fields.text}</span>`,
-  },
-})
+});
 ---
 
-<RichText data={data} converters={htmlConverters} />
+<RichText data={data} converters={astroConverters} />
 ```
 
 ### Overriding Converters
 
-You can override any of the default HTML converters by passing your custom converter, keyed to the node type, to the `converters` prop / the `converters` function.
+You can override any of the default converters by passing your custom Astro component, keyed to the node type.
 
-Example - overriding the upload node converter to use the `Image` component from `astro:assets`:
+Each converter component receives these props via `ConverterProps<T>`:
+
+| Prop         | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| `node`       | The Lexical node data                                    |
+| `converters` | All available converters (for rendering children)        |
+| `config`     | User configuration                                       |
+| `style`      | Computed inline styles (textAlign, paddingInlineStart)   |
+| `RenderNode` | Helper component for rendering child nodes               |
+
+Example - overriding the upload node converter:
 
 ```astro
 ---
-import type {
-  DefaultNodeTypes,
-  SerializedUploadNode,
-} from '@payloadcms/richtext-lexical'
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import { type HTMLConvertersFunction } from '@payloadcms/richtext-lexical/html'
+import type { SerializedUploadNode } from '@payloadcms/richtext-lexical'
+import type { AstroConverterProps } from '@payload-bites/astro-richtext-renderer'
 
-import { RichText } from '@payload-bites/astro-richtext-renderer'
+type Props = AstroConverterProps<SerializedUploadNode>
 
-import { getImage } from 'astro:assets'
+const { node, style } = Astro.props
 
-interface Props {
-  data: SerializedEditorState
+const upload = node.value
+
+if (typeof upload !== 'object') {
+  console.warn('Upload not populated')
 }
 
-const { data } = Astro.props as Props
-
-type NodeTypes = DefaultNodeTypes
-
-const htmlConverters: HTMLConvertersFunction<NodeTypes> = ({
-  defaultConverters,
-}) => ({
-  ...defaultConverters,
-  upload: async ({ node }) => {
-    if (node.relationTo !== 'uploads') {
-      return ''
-    }
-
-    const uploadDoc = node.value
-
-    if (typeof uploadDoc !== 'object') {
-      return ''
-    }
-
-    const { alt, height, url, width } = uploadDoc
-
-    if (!url) {
-      return ''
-    }
-
-    const image = await getImage({
-      src: url,
-      width: width ?? undefined,
-      height: height ?? undefined,
-      format: 'webp',
-      loading: 'lazy',
-    })
-
-    return `
-      <img
-        src="${image.src}"
-        alt="${alt ?? ''}"
-        width="${image.attributes.width}"
-        height="${image.attributes.height}"
-        loading="lazy"
-        decoding="async"
-      />
-    `
-  },
-})
+const doc = typeof upload === 'object' ? upload : null
+const url = doc?.url
+const alt = doc?.alt || ''
 ---
 
-<RichText data={data} converters={htmlConverters} />
+{url && <img src={url} alt={alt} style={style} loading="lazy" decoding="async" />}
+```
+
+Then use it:
+
+```astro
+---
+import { RichText, AstroConvertersFunction } from '@payload-bites/astro-richtext-renderer'
+
+import CustomUpload from '@/components/converters/CustomUpload.astro'
+
+const data = /* your Lexical editor state */
+
+const astroConverters: AstroConvertersFunction = ({ defaultConverters }) => ({
+  ...defaultConverters,
+  upload: CustomUpload,
+});
+---
+
+<RichText data={data} converters={astroConverters} />
+```
+
+### Rendering Child Nodes
+
+For converters that need to render nested content (like links, lists, or custom blocks with rich text fields), use the `RenderNode` component passed as a prop:
+
+```astro
+---
+import type { AstroConverterProps } from '@payload-bites/astro-richtext-renderer'
+import type { SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
+
+interface BlockNode extends SerializedLexicalNode {
+  fields: {
+    id: string
+    blockType: 'richTextBlock'
+    title: string
+  }
+  children: SerializedLexicalNode[]
+}
+
+type Props = AstroConverterProps<BlockNode>
+
+const { node, converters, config, RenderNode } = Astro.props
+
+const children = node.children || []
+---
+
+<div class="rich-text-block">
+  <h3>{node.fields.title}</h3>
+  {children.map((child) => (
+    <RenderNode node={child} converters={converters} config={config} />
+  ))}
+</div>
 ```

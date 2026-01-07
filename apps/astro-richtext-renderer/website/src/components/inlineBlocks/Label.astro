@@ -1,0 +1,42 @@
+---
+interface Props {
+  node: {
+    fields: {
+      id: string;
+      blockType: "label";
+      text: string;
+      color?: "green" | "blue" | "red" | "yellow" | "gray";
+    };
+  };
+}
+
+const { node } = Astro.props;
+
+const { text, color = "gray" } = node.fields;
+
+const colorStyles: Record<string, { bg: string; text: string }> = {
+  green: { bg: "#dcfce7", text: "#166534" },
+  blue: { bg: "#dbeafe", text: "#1e40af" },
+  red: { bg: "#fee2e2", text: "#991b1b" },
+  yellow: { bg: "#fef9c3", text: "#854d0e" },
+  gray: { bg: "#f3f4f6", text: "#374151" },
+};
+
+const style = colorStyles[color] || colorStyles.gray;
+---
+
+<span class="label" style={`background: ${style.bg}; color: ${style.text}`}>
+  {text}
+</span>
+
+<style>
+  .label {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+</style>

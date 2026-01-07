@@ -1,0 +1,21 @@
+---
+import type { SerializedAutoLinkNode } from "@payloadcms/richtext-lexical";
+import type { AstroConverterProps } from "../types";
+
+type Props = AstroConverterProps<SerializedAutoLinkNode>;
+
+const { node, converters, config, RenderNode } = Astro.props;
+
+const rel = node.fields.newTab ? "noopener noreferrer" : undefined;
+const target = node.fields.newTab ? "_blank" : undefined;
+
+const children = node.children || [];
+---
+
+<a href={node.fields.url} rel={rel} target={target}>
+  {
+    children.map((child) => (
+      <RenderNode node={child} converters={converters} config={config} />
+    ))
+  }
+</a>

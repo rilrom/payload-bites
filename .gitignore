@@ -22,6 +22,7 @@ coverage
 .vercel
 
 # Build Outputs
+.astro/
 .next/
 out/
 build

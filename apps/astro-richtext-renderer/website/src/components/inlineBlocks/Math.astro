@@ -1,0 +1,53 @@
+---
+interface Props {
+  node: {
+    fields: {
+      id: string;
+      blockType: "math";
+      expression: string;
+      displayMode?: boolean;
+    };
+  };
+}
+
+const { node } = Astro.props;
+
+const { expression, displayMode } = node.fields;
+---
+
+{
+  displayMode ? (
+    <div class="math-block">
+      <code class="math-expression">{expression}</code>
+    </div>
+  ) : (
+    <code class="math-inline">{expression}</code>
+  )
+}
+
+<style>
+  .math-inline {
+    padding: 0.125rem 0.375rem;
+    background: #f5f5f5;
+    border-radius: 0.25rem;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    color: #333;
+  }
+
+  .math-block {
+    display: block;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #fafafa;
+    border-radius: 0.375rem;
+    text-align: center;
+  }
+
+  .math-expression {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #333;
+  }
+</style>
