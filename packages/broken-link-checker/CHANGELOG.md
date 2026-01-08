@@ -1,5 +1,12 @@
 # @payload-bites/broken-link-checker
 
+## 1.0.0-beta.8
+
+### Minor Changes
+
+- feat: replace eslint and prettier with biome and stylelint ([95e34e2](https://github.com/rilrom/payload-bites/commit/95e34e2))
+- feat: add translations ([4e31645](https://github.com/rilrom/payload-bites/commit/4e31645))
+
 ## 1.0.0-beta.7
 
 ### Minor Changes
