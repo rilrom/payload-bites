@@ -1,5 +1,12 @@
 # @payload-bites/image-search
 
+## 3.3.0
+
+### Minor Changes
+
+- feat: replace eslint and prettier with biome and stylelint ([95e34e2](https://github.com/rilrom/payload-bites/commit/95e34e2))
+- feat: add missing translations ([cf14ef2](https://github.com/rilrom/payload-bites/commit/cf14ef2))
+
 ## 3.2.0
 
 ### Minor Changes
