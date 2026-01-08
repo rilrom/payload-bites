@@ -1,5 +1,11 @@
 # @payload-bites/activity-log
 
+## 1.6.0
+
+### Minor Changes
+
+- feat: replace eslint and prettier with biome and stylelint ([95e34e2](https://github.com/rilrom/payload-bites/commit/95e34e2))
+
 ## 1.5.0
 
 ### Minor Changes
