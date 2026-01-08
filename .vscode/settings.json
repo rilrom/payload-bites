@@ -1,49 +1,39 @@
 {
   "files.autoSave": "onFocusChange",
 
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
 
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
-  "editor.formatOnPaste": true,
-  "editor.formatOnType": true,
-  "prettier.requireConfig": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "editor.defaultFormatter": "biomejs.biome",
 
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
 
-  "editor.codeActions.triggerOnFocusChange": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-
-  "eslint.enable": true,
-  "eslint.run": "onType",
-  "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "eslint.workingDirectories": [{ "mode": "auto" }],
-
   "search.exclude": {
     "**/dist": true,
     "**/.next": true,
+    "**/.astro": true,
     "**/node_modules": true
   },
-
-  "git.ignoreLimitWarning": true,
-  "git.inputValidationSubjectLength": 100
 }

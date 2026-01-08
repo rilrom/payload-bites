@@ -11,9 +11,9 @@ const upload = node.value;
 
 // If it's just an ID, we can't render anything meaningful
 if (typeof upload === "string" || typeof upload === "number") {
-  console.warn(
-    "[astro-richtext-renderer] Upload node value is not populated. Make sure to use depth >= 1 when fetching content.",
-  );
+	console.warn(
+		"[astro-richtext-renderer] Upload node value is not populated. Make sure to use depth >= 1 when fetching content.",
+	);
 }
 
 // Handle populated upload document

@@ -11,40 +11,40 @@ import { slashMenuViewGroupWithItems } from "./slashMenuViewGroupWithItems.js";
 import { toolbarFullscreenEditorGroupWithItems } from "./toolbarFullscreenEditorGroup.js";
 
 const slashMenuGroups = [
-  slashMenuViewGroupWithItems([
-    {
-      Icon: FullscreenIcon,
-      key: "toggleFullscreen",
-      keywords: ["fullscreen", "focus"],
-      label: ({ i18n }) => {
-        return i18n.t("lexical:fullscreenEditor:label");
-      },
-      onSelect: ({ editor }) => toggleFullscreen({ editor }),
-    },
-  ]),
+	slashMenuViewGroupWithItems([
+		{
+			Icon: FullscreenIcon,
+			key: "toggleFullscreen",
+			keywords: ["fullscreen", "focus"],
+			label: ({ i18n }) => {
+				return i18n.t("lexical:fullscreenEditor:label");
+			},
+			onSelect: ({ editor }) => toggleFullscreen({ editor }),
+		},
+	]),
 ];
 
 const toolbarGroups: ToolbarGroup[] = [
-  toolbarFullscreenEditorGroupWithItems([
-    {
-      Component: FullscreenButton,
-      key: "toggleFullscreen",
-      order: 1,
-    },
-  ]),
+	toolbarFullscreenEditorGroupWithItems([
+		{
+			Component: FullscreenButton,
+			key: "toggleFullscreen",
+			order: 1,
+		},
+	]),
 ];
 
 export const FullscreenEditorFeatureClient = createClientFeature({
-  plugins: [
-    {
-      Component: FullscreenEditorPlugin,
-      position: "normal",
-    },
-  ],
-  slashMenu: {
-    groups: slashMenuGroups,
-  },
-  toolbarFixed: {
-    groups: toolbarGroups,
-  },
+	plugins: [
+		{
+			Component: FullscreenEditorPlugin,
+			position: "normal",
+		},
+	],
+	slashMenu: {
+		groups: slashMenuGroups,
+	},
+	toolbarFixed: {
+		groups: toolbarGroups,
+	},
 });

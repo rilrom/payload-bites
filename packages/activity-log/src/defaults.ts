@@ -1,11 +1,11 @@
-import { type ActivityLogPluginOptions } from "./types.js";
+import type { ActivityLogPluginOptions } from "./types.js";
 
 export const defaultPluginOptions: ActivityLogPluginOptions = {
-  enabled: true,
-  admin: {},
-  access: {},
-  collections: {},
-  globals: {},
+	enabled: true,
+	admin: {},
+	access: {},
+	collections: {},
+	globals: {},
 };
 
 export const defaultAuthCollection = "users";

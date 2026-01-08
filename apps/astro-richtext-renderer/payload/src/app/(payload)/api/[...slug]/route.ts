@@ -2,7 +2,14 @@
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import "@payloadcms/next/css";
 
-import { REST_DELETE, REST_GET, REST_OPTIONS, REST_PATCH, REST_POST, REST_PUT } from "@payloadcms/next/routes";
+import {
+	REST_DELETE,
+	REST_GET,
+	REST_OPTIONS,
+	REST_PATCH,
+	REST_POST,
+	REST_PUT,
+} from "@payloadcms/next/routes";
 
 import config from "@/payload/payload.config";
 

@@ -579,8 +579,7 @@ export const data = {
           blockType: "callout",
           type: "info",
           title: "Information",
-          content:
-            "This is an informational callout block. It can be used to highlight important information.",
+          content: "This is an informational callout block. It can be used to highlight important information.",
         },
       },
       // Warning Callout
@@ -594,8 +593,7 @@ export const data = {
           blockType: "callout",
           type: "warning",
           title: "Warning",
-          content:
-            "This is a warning callout. Use it to alert users about potential issues.",
+          content: "This is a warning callout. Use it to alert users about potential issues.",
         },
       },
       // Banner Block
@@ -609,8 +607,7 @@ export const data = {
           blockType: "banner",
           style: "gradient",
           heading: "Featured Content",
-          description:
-            "This banner block demonstrates a more complex custom block with multiple fields.",
+          description: "This banner block demonstrates a more complex custom block with multiple fields.",
           buttonText: "Learn More",
           buttonUrl: "https://example.com",
         },
@@ -629,8 +626,7 @@ export const data = {
             id: "post-abc-123",
             title: "Introduction to Payload CMS",
             slug: "introduction-to-payload-cms",
-            excerpt:
-              "Learn how to build modern content management systems with Payload.",
+            excerpt: "Learn how to build modern content management systems with Payload.",
             featuredImage: {
               url: "#",
               alt: "Payload CMS Dashboard",

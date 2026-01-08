@@ -7,109 +7,112 @@ import { beforeChangeGlobalAuditField } from "./hooks/beforeChangeGlobalAuditFie
 import type { AuditFieldsPluginOptions } from "./types.js";
 
 export const auditFieldsPlugin =
-  (pluginOptions?: AuditFieldsPluginOptions) =>
-  (incomingConfig: Config): Config => {
-    const mergedOptions: Required<AuditFieldsPluginOptions> = Object.assign(defaultPluginOptions, pluginOptions);
+	(pluginOptions?: AuditFieldsPluginOptions) =>
+	(incomingConfig: Config): Config => {
+		const mergedOptions: Required<AuditFieldsPluginOptions> = Object.assign(
+			defaultPluginOptions,
+			pluginOptions,
+		);
 
-    const config = { ...incomingConfig };
+		const config = { ...incomingConfig };
 
-    if (mergedOptions.enabled === false) {
-      return config;
-    }
+		if (mergedOptions.enabled === false) {
+			return config;
+		}
 
-    const usersSlug = config.admin?.user;
+		const usersSlug = config.admin?.user;
 
-    if (!usersSlug) {
-      throw new Error("[audit-fields]: User collection is required.");
-    }
+		if (!usersSlug) {
+			throw new Error("[audit-fields]: User collection is required.");
+		}
 
-    config.collections = (config.collections || []).map((collection) => {
-      if (mergedOptions.excludedCollections.includes(collection.slug)) {
-        return collection;
-      }
+		config.collections = (config.collections || []).map((collection) => {
+			if (mergedOptions.excludedCollections.includes(collection.slug)) {
+				return collection;
+			}
 
-      const modifiedCollection = {
-        ...collection,
-      };
+			const modifiedCollection = {
+				...collection,
+			};
 
-      modifiedCollection.hooks = {
-        ...modifiedCollection.hooks,
-        beforeChange: [
-          ...(modifiedCollection.hooks?.beforeChange || []),
-          beforeChangeCollectionAuditField(
-            mergedOptions.createdByFieldName,
-            mergedOptions.lastModifiedByFieldName,
-            usersSlug,
-          ),
-        ],
-      };
+			modifiedCollection.hooks = {
+				...modifiedCollection.hooks,
+				beforeChange: [
+					...(modifiedCollection.hooks?.beforeChange || []),
+					beforeChangeCollectionAuditField(
+						mergedOptions.createdByFieldName,
+						mergedOptions.lastModifiedByFieldName,
+						usersSlug,
+					),
+				],
+			};
 
-      modifiedCollection.fields = [
-        ...modifiedCollection.fields,
-        auditField({
-          usersSlug,
-          slug: modifiedCollection.slug,
-          name: mergedOptions.createdByFieldName,
-          label: mergedOptions.createdByLabel,
-          showInSidebar: mergedOptions.showInSidebar,
-          showEmptyFields: mergedOptions.showEmptyFields,
-        }),
-        auditField({
-          usersSlug,
-          slug: modifiedCollection.slug,
-          name: mergedOptions.lastModifiedByFieldName,
-          label: mergedOptions.lastModifiedByLabel,
-          showInSidebar: mergedOptions.showInSidebar,
-          showEmptyFields: mergedOptions.showEmptyFields,
-        }),
-      ];
+			modifiedCollection.fields = [
+				...modifiedCollection.fields,
+				auditField({
+					usersSlug,
+					slug: modifiedCollection.slug,
+					name: mergedOptions.createdByFieldName,
+					label: mergedOptions.createdByLabel,
+					showInSidebar: mergedOptions.showInSidebar,
+					showEmptyFields: mergedOptions.showEmptyFields,
+				}),
+				auditField({
+					usersSlug,
+					slug: modifiedCollection.slug,
+					name: mergedOptions.lastModifiedByFieldName,
+					label: mergedOptions.lastModifiedByLabel,
+					showInSidebar: mergedOptions.showInSidebar,
+					showEmptyFields: mergedOptions.showEmptyFields,
+				}),
+			];
 
-      return modifiedCollection;
-    });
+			return modifiedCollection;
+		});
 
-    config.globals = (config.globals || []).map((global) => {
-      if (mergedOptions.excludedGlobals?.includes(global.slug)) {
-        return global;
-      }
+		config.globals = (config.globals || []).map((global) => {
+			if (mergedOptions.excludedGlobals?.includes(global.slug)) {
+				return global;
+			}
 
-      const modifiedGlobal = {
-        ...global,
-      };
+			const modifiedGlobal = {
+				...global,
+			};
 
-      modifiedGlobal.hooks = {
-        ...modifiedGlobal.hooks,
-        beforeChange: [
-          ...(modifiedGlobal.hooks?.beforeChange || []),
-          beforeChangeGlobalAuditField(
-            mergedOptions.createdByFieldName,
-            mergedOptions.lastModifiedByFieldName,
-            usersSlug,
-          ),
-        ],
-      };
+			modifiedGlobal.hooks = {
+				...modifiedGlobal.hooks,
+				beforeChange: [
+					...(modifiedGlobal.hooks?.beforeChange || []),
+					beforeChangeGlobalAuditField(
+						mergedOptions.createdByFieldName,
+						mergedOptions.lastModifiedByFieldName,
+						usersSlug,
+					),
+				],
+			};
 
-      modifiedGlobal.fields = [
-        ...modifiedGlobal.fields,
-        auditField({
-          usersSlug,
-          slug: modifiedGlobal.slug,
-          name: mergedOptions.createdByFieldName,
-          label: mergedOptions.createdByLabel,
-          showInSidebar: mergedOptions.showInSidebar,
-          showEmptyFields: mergedOptions.showEmptyFields,
-        }),
-        auditField({
-          usersSlug,
-          slug: modifiedGlobal.slug,
-          name: mergedOptions.lastModifiedByFieldName,
-          label: mergedOptions.lastModifiedByLabel,
-          showInSidebar: mergedOptions.showInSidebar,
-          showEmptyFields: mergedOptions.showEmptyFields,
-        }),
-      ];
+			modifiedGlobal.fields = [
+				...modifiedGlobal.fields,
+				auditField({
+					usersSlug,
+					slug: modifiedGlobal.slug,
+					name: mergedOptions.createdByFieldName,
+					label: mergedOptions.createdByLabel,
+					showInSidebar: mergedOptions.showInSidebar,
+					showEmptyFields: mergedOptions.showEmptyFields,
+				}),
+				auditField({
+					usersSlug,
+					slug: modifiedGlobal.slug,
+					name: mergedOptions.lastModifiedByFieldName,
+					label: mergedOptions.lastModifiedByLabel,
+					showInSidebar: mergedOptions.showInSidebar,
+					showEmptyFields: mergedOptions.showEmptyFields,
+				}),
+			];
 
-      return modifiedGlobal;
-    });
+			return modifiedGlobal;
+		});
 
-    return config;
-  };
+		return config;
+	};

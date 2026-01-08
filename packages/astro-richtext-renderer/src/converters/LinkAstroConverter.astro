@@ -12,14 +12,14 @@ const target = node.fields.newTab ? "_blank" : undefined;
 let href = node.fields.url || "";
 
 if (node.fields.linkType === "internal") {
-  if (config.internalDocToHref) {
-    href = config.internalDocToHref({ linkNode: node });
-  } else {
-    console.error(
-      `[astro-richtext-renderer] Found internal link, but internalDocToHref is not provided`,
-    );
-    href = "#";
-  }
+	if (config.internalDocToHref) {
+		href = config.internalDocToHref({ linkNode: node });
+	} else {
+		console.error(
+			`[astro-richtext-renderer] Found internal link, but internalDocToHref is not provided`,
+		);
+		href = "#";
+	}
 }
 
 const children = node.children || [];

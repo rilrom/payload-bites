@@ -6,6 +6,11 @@
  *
  * @returns The resolved value.
  */
-export const resolveValue = <T, P>(value: T | ((param: P) => T), param: P): T => {
-  return typeof value === "function" ? (value as (param: P) => T)(param) : value;
+export const resolveValue = <T, P>(
+	value: T | ((param: P) => T),
+	param: P,
+): T => {
+	return typeof value === "function"
+		? (value as (param: P) => T)(param)
+		: value;
 };

@@ -1,8 +1,8 @@
-import { DefaultNodeTypes, type DefaultTypedEditorState, SerializedLinkNode } from "@payloadcms/richtext-lexical";
+import type { DefaultNodeTypes, DefaultTypedEditorState, SerializedLinkNode } from "@payloadcms/richtext-lexical";
 import {
-  JSXConvertersFunction,
-  LinkJSXConverter,
   RichText as ConvertRichText,
+  type JSXConvertersFunction,
+  LinkJSXConverter,
 } from "@payloadcms/richtext-lexical/react";
 
 type NodeTypes = DefaultNodeTypes;

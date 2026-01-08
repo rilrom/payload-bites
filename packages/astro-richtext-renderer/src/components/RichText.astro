@@ -1,9 +1,6 @@
 ---
 import type { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-
-import RenderNode from "./RenderNode.astro";
-
 import AutoLinkAstroConverter from "../converters/AutoLinkAstroConverter.astro";
 import BlockQuoteAstroConverter from "../converters/BlockQuoteAstroConverter.astro";
 import HeadingAstroConverter from "../converters/HeadingAstroConverter.astro";
@@ -19,58 +16,58 @@ import TableCellAstroConverter from "../converters/TableCellAstroConverter.astro
 import TableRowAstroConverter from "../converters/TableRowAstroConverter.astro";
 import TextAstroConverter from "../converters/TextAstroConverter.astro";
 import UploadAstroConverter from "../converters/UploadAstroConverter.astro";
-
 import type {
-  AstroConverters,
-  AstroConvertersFunction,
-  RichTextConfig,
+	AstroConverters,
+	AstroConvertersFunction,
+	RichTextConfig,
 } from "../types";
+import RenderNode from "./RenderNode.astro";
 
 const defaultAstroConverters: AstroConverters<DefaultNodeTypes> = {
-  paragraph: ParagraphAstroConverter,
-  text: TextAstroConverter,
-  heading: HeadingAstroConverter,
-  link: LinkAstroConverter,
-  autolink: AutoLinkAstroConverter,
-  list: ListAstroConverter,
-  listitem: ListItemAstroConverter,
-  quote: BlockQuoteAstroConverter,
-  horizontalrule: HorizontalRuleAstroConverter,
-  linebreak: LineBreakAstroConverter,
-  tab: TabAstroConverter,
-  table: TableAstroConverter,
-  tablerow: TableRowAstroConverter,
-  tablecell: TableCellAstroConverter,
-  upload: UploadAstroConverter,
+	paragraph: ParagraphAstroConverter,
+	text: TextAstroConverter,
+	heading: HeadingAstroConverter,
+	link: LinkAstroConverter,
+	autolink: AutoLinkAstroConverter,
+	list: ListAstroConverter,
+	listitem: ListItemAstroConverter,
+	quote: BlockQuoteAstroConverter,
+	horizontalrule: HorizontalRuleAstroConverter,
+	linebreak: LineBreakAstroConverter,
+	tab: TabAstroConverter,
+	table: TableAstroConverter,
+	tablerow: TableRowAstroConverter,
+	tablecell: TableCellAstroConverter,
+	upload: UploadAstroConverter,
 };
 
 type Props = {
-  data: SerializedEditorState;
-  converters?: AstroConverters | AstroConvertersFunction;
-  config?: RichTextConfig;
-  class?: string;
+	data: SerializedEditorState;
+	converters?: AstroConverters | AstroConvertersFunction;
+	config?: RichTextConfig;
+	class?: string;
 };
 
 const {
-  data,
-  converters,
-  config = {
-    disableContainer: false,
-    disableIndent: false,
-    disableTextAlign: false,
-  },
-  class: className = "payload-richtext",
+	data,
+	converters,
+	config = {
+		disableContainer: false,
+		disableIndent: false,
+		disableTextAlign: false,
+	},
+	class: className = "payload-richtext",
 } = Astro.props;
 
 let finalConverters: AstroConverters = {};
 if (converters) {
-  if (typeof converters === "function") {
-    finalConverters = converters({ defaultConverters: defaultAstroConverters });
-  } else {
-    finalConverters = converters;
-  }
+	if (typeof converters === "function") {
+		finalConverters = converters({ defaultConverters: defaultAstroConverters });
+	} else {
+		finalConverters = converters;
+	}
 } else {
-  finalConverters = defaultAstroConverters;
+	finalConverters = defaultAstroConverters;
 }
 
 const nodes = data?.root?.children || [];

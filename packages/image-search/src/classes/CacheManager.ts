@@ -1,44 +1,44 @@
 const VERSION = "2";
 
 export class CacheManager {
-  private getVersionedKey(query: string) {
-    return `${VERSION}${query}`;
-  }
+	private getVersionedKey(query: string) {
+		return `${VERSION}${query}`;
+	}
 
-  exists(query: string) {
-    const data = this.get(query);
+	exists(query: string) {
+		const data = this.get(query);
 
-    return data !== null;
-  }
+		return data !== null;
+	}
 
-  get(query: string) {
-    const versionedKey = this.getVersionedKey(query);
+	get(query: string) {
+		const versionedKey = this.getVersionedKey(query);
 
-    const itemStr = localStorage.getItem(versionedKey);
+		const itemStr = localStorage.getItem(versionedKey);
 
-    if (!itemStr) {
-      return null;
-    }
+		if (!itemStr) {
+			return null;
+		}
 
-    const item = JSON.parse(itemStr);
+		const item = JSON.parse(itemStr);
 
-    if (item.expiry && new Date().getTime() > item.expiry) {
-      localStorage.removeItem(versionedKey);
+		if (item.expiry && new Date().getTime() > item.expiry) {
+			localStorage.removeItem(versionedKey);
 
-      return null;
-    }
+			return null;
+		}
 
-    return item.value;
-  }
+		return item.value;
+	}
 
-  set(query: string, data: unknown, ttl?: number): void {
-    const versionedKey = this.getVersionedKey(query);
+	set(query: string, data: unknown, ttl?: number): void {
+		const versionedKey = this.getVersionedKey(query);
 
-    const item = {
-      value: data,
-      expiry: ttl ? new Date().getTime() + ttl : null,
-    };
+		const item = {
+			value: data,
+			expiry: ttl ? new Date().getTime() + ttl : null,
+		};
 
-    localStorage.setItem(versionedKey, JSON.stringify(item));
-  }
+		localStorage.setItem(versionedKey, JSON.stringify(item));
+	}
 }

@@ -18,15 +18,16 @@
     "tsc": "turbo tsc",
     "generate:types": "turbo generate:types",
     "generate:importmap": "turbo generate:importmap",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
     "clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -name \".astro\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.5",
     "chokidar": "^4.0.3",
     "copyfiles": "^2.4.1",
-    "prettier": "^3.7.4",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard-scss": "^16.0.0",
     "turbo": "^2.6.3",
     "typescript": "5.9.3"
   },

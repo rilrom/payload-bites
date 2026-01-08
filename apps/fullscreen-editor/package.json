@@ -11,7 +11,9 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "tsc": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint --max-warnings 0",
+    "lint": "pnpm lint:biome && pnpm lint:styles",
+    "lint:biome": "biome check --write .",
+    "lint:styles": "stylelint --fix=strict \"**/*.scss\"",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
   },
   "dependencies": {
@@ -28,7 +30,6 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@payload-bites/eslint-config": "workspace:*",
     "@payload-bites/typescript-config": "workspace:*",
     "@types/node": "^24.10.4",
     "@types/react": "^19.2.7",

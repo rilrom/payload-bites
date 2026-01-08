@@ -15,13 +15,7 @@ interface Props {
 
 const { node } = Astro.props;
 
-const {
-  style = "solid",
-  heading,
-  description,
-  buttonText,
-  buttonUrl,
-} = node.fields;
+const { style = "solid", heading, description, buttonText, buttonUrl } = node.fields;
 ---
 
 <div class={`banner banner-${style}`}>

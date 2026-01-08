@@ -1,66 +1,71 @@
-import { type Config, PayloadRequest } from "payload";
+import type { Config, PayloadRequest } from "payload";
 
 import { getBrokenLinksCollection } from "./collections/getBrokenLinksCollection.js";
 import { defaultLinkinatorOptions, defaultPluginOptions } from "./defaults.js";
 import { endpoints } from "./endpoints/index.js";
 import { tasks } from "./tasks/index.js";
 import { translations } from "./translations.js";
-import { type BrokenLinkCheckerPluginOptions } from "./types.js";
+import type { BrokenLinkCheckerPluginOptions } from "./types.js";
 import { deepMerge } from "./utils/deepMerge.js";
 
 export const brokenLinkCheckerPlugin =
-  (pluginOptions?: BrokenLinkCheckerPluginOptions) =>
-  (incomingConfig: Config): Config => {
-    const mergedOptions: BrokenLinkCheckerPluginOptions = Object.assign(defaultPluginOptions, pluginOptions);
+	(pluginOptions?: BrokenLinkCheckerPluginOptions) =>
+	(incomingConfig: Config): Config => {
+		const mergedOptions: BrokenLinkCheckerPluginOptions = Object.assign(
+			defaultPluginOptions,
+			pluginOptions,
+		);
 
-    const config = { ...incomingConfig };
+		const config = { ...incomingConfig };
 
-    if (mergedOptions.enabled === false) {
-      return config;
-    }
+		if (mergedOptions.enabled === false) {
+			return config;
+		}
 
-    const brokenLinksCollection = getBrokenLinksCollection({ pluginOptions: mergedOptions });
+		const brokenLinksCollection = getBrokenLinksCollection({
+			pluginOptions: mergedOptions,
+		});
 
-    config.collections = [...(config.collections || []), brokenLinksCollection];
+		config.collections = [...(config.collections || []), brokenLinksCollection];
 
-    const resolvedLinkinatorOptions = mergedOptions.overrideLinkinatorOptions
-      ? mergedOptions.overrideLinkinatorOptions(defaultLinkinatorOptions)
-      : defaultLinkinatorOptions;
+		const resolvedLinkinatorOptions = mergedOptions.overrideLinkinatorOptions
+			? mergedOptions.overrideLinkinatorOptions(defaultLinkinatorOptions)
+			: defaultLinkinatorOptions;
 
-    config.custom = {
-      ...(config.custom || {}),
-      brokenLinkChecker: {
-        slug: brokenLinksCollection.slug,
-        scanLinksAccess: mergedOptions.scanLinksAccess,
-        linkinatorOptions: resolvedLinkinatorOptions,
-        resolvedUrls: (args: { req: PayloadRequest }) =>
-          Promise.all(
-            Object.values(mergedOptions.collections).map((collection) => {
-              const urlsOrFn = collection?.resolvedUrls;
+		config.custom = {
+			...(config.custom || {}),
+			brokenLinkChecker: {
+				slug: brokenLinksCollection.slug,
+				scanLinksAccess: mergedOptions.scanLinksAccess,
+				linkinatorOptions: resolvedLinkinatorOptions,
+				resolvedUrls: (args: { req: PayloadRequest }) =>
+					Promise.all(
+						Object.values(mergedOptions.collections).map((collection) => {
+							const urlsOrFn = collection?.resolvedUrls;
 
-              if (typeof urlsOrFn === "function") {
-                return urlsOrFn(args);
-              }
+							if (typeof urlsOrFn === "function") {
+								return urlsOrFn(args);
+							}
 
-              return Promise.resolve(urlsOrFn);
-            }),
-          ).then((arrays) => arrays.flat()),
-      },
-    };
+							return Promise.resolve(urlsOrFn);
+						}),
+					).then((arrays) => arrays.flat()),
+			},
+		};
 
-    config.i18n = {
-      ...(config.i18n || {}),
-      translations: {
-        ...deepMerge(translations, config.i18n?.translations),
-      },
-    };
+		config.i18n = {
+			...(config.i18n || {}),
+			translations: {
+				...deepMerge(translations, config.i18n?.translations),
+			},
+		};
 
-    config.endpoints = [...(config.endpoints || []), ...endpoints];
+		config.endpoints = [...(config.endpoints || []), ...endpoints];
 
-    config.jobs = {
-      ...(config.jobs || {}),
-      tasks: [...(config.jobs?.tasks || []), ...tasks],
-    };
+		config.jobs = {
+			...(config.jobs || {}),
+			tasks: [...(config.jobs?.tasks || []), ...tasks],
+		};
 
-    return config;
-  };
+		return config;
+	};

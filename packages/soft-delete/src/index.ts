@@ -1,219 +1,241 @@
-import { type CollectionConfig, combineQueries, type Config } from "payload";
+import { type CollectionConfig, type Config, combineQueries } from "payload";
 
 import { defaultPluginOptions } from "./defaults.js";
 import { endpoints } from "./endpoints/index.js";
 import { translations } from "./translations.js";
-import { type SoftDeletePluginAccessArgs, type SoftDeletePluginOptions } from "./types.js";
+import type {
+	SoftDeletePluginAccessArgs,
+	SoftDeletePluginOptions,
+} from "./types.js";
 import { combinedBaseListFilter } from "./utils/combinedBaseListFilter.js";
 import { deepMerge } from "./utils/deepMerge.js";
 
 export const softDeletePlugin =
-  (pluginOptions?: SoftDeletePluginOptions) =>
-  (incomingConfig: Config): Config => {
-    const mergedOptions: SoftDeletePluginOptions = Object.assign(defaultPluginOptions, pluginOptions);
+	(pluginOptions?: SoftDeletePluginOptions) =>
+	(incomingConfig: Config): Config => {
+		const mergedOptions: SoftDeletePluginOptions = Object.assign(
+			defaultPluginOptions,
+			pluginOptions,
+		);
 
-    const config = { ...incomingConfig };
+		const config = { ...incomingConfig };
 
-    config.admin = {
-      ...(config.admin || {}),
-      components: {
-        ...(config.admin?.components || {}),
-        providers: [
-          ...(config.admin?.components?.providers || []),
-          "@payload-bites/soft-delete/rsc#SoftDeleteProviderRsc",
-        ],
-      },
-    };
+		config.admin = {
+			...(config.admin || {}),
+			components: {
+				...(config.admin?.components || {}),
+				providers: [
+					...(config.admin?.components?.providers || []),
+					"@payload-bites/soft-delete/rsc#SoftDeleteProviderRsc",
+				],
+			},
+		};
 
-    if (mergedOptions.enabled === false) {
-      return config;
-    }
+		if (mergedOptions.enabled === false) {
+			return config;
+		}
 
-    config.i18n = {
-      ...(config.i18n || {}),
-      translations: {
-        ...deepMerge(translations, config.i18n?.translations),
-      },
-    };
+		config.i18n = {
+			...(config.i18n || {}),
+			translations: {
+				...deepMerge(translations, config.i18n?.translations),
+			},
+		};
 
-    config.collections = (config.collections || []).map((collection) => {
-      if (!Object.keys(mergedOptions.collections).includes(collection.slug)) {
-        return collection;
-      }
+		config.collections = (config.collections || []).map((collection) => {
+			if (!Object.keys(mergedOptions.collections).includes(collection.slug)) {
+				return collection;
+			}
 
-      const modifiedCollection: CollectionConfig = {
-        ...collection,
-      };
+			const modifiedCollection: CollectionConfig = {
+				...collection,
+			};
 
-      const enabledCollections = Object.keys(mergedOptions.collections || {});
+			const enabledCollections = Object.keys(mergedOptions.collections || {});
 
-      const enableHardDelete = mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
-      const enableRestore = mergedOptions.collections?.[collection.slug]?.enableRestore ?? true;
+			const enableHardDelete =
+				mergedOptions.collections?.[collection.slug]?.enableHardDelete ?? true;
+			const enableRestore =
+				mergedOptions.collections?.[collection.slug]?.enableRestore ?? true;
 
-      modifiedCollection.admin = {
-        ...modifiedCollection?.admin,
-        baseListFilter: combinedBaseListFilter(modifiedCollection?.admin?.baseListFilter),
-        components: {
-          ...(modifiedCollection.admin?.components || {}),
-          beforeList: [
-            ...(modifiedCollection.admin?.components?.beforeList || []),
-            "@payload-bites/soft-delete/client#ToggleButton",
-          ],
-          beforeListTable: [
-            ...(modifiedCollection.admin?.components?.beforeListTable || []),
-            "@payload-bites/soft-delete/client#BulkSoftDeleteButton",
-            {
-              path: "@payload-bites/soft-delete/client#BulkDeleteButton",
-              clientProps: {
-                enabled: enableHardDelete,
-              },
-            },
-            {
-              path: "@payload-bites/soft-delete/client#BulkRestoreButton",
-              clientProps: {
-                enabled: enableRestore,
-              },
-            },
-            {
-              path: "@payload-bites/soft-delete/client#VisibilityChecker",
-              clientProps: {
-                enabledCollections,
-              },
-            },
-          ],
-        },
-      };
+			modifiedCollection.admin = {
+				...modifiedCollection?.admin,
+				baseListFilter: combinedBaseListFilter(
+					modifiedCollection?.admin?.baseListFilter,
+				),
+				components: {
+					...(modifiedCollection.admin?.components || {}),
+					beforeList: [
+						...(modifiedCollection.admin?.components?.beforeList || []),
+						"@payload-bites/soft-delete/client#ToggleButton",
+					],
+					beforeListTable: [
+						...(modifiedCollection.admin?.components?.beforeListTable || []),
+						"@payload-bites/soft-delete/client#BulkSoftDeleteButton",
+						{
+							path: "@payload-bites/soft-delete/client#BulkDeleteButton",
+							clientProps: {
+								enabled: enableHardDelete,
+							},
+						},
+						{
+							path: "@payload-bites/soft-delete/client#BulkRestoreButton",
+							clientProps: {
+								enabled: enableRestore,
+							},
+						},
+						{
+							path: "@payload-bites/soft-delete/client#VisibilityChecker",
+							clientProps: {
+								enabledCollections,
+							},
+						},
+					],
+				},
+			};
 
-      modifiedCollection.fields = [
-        ...modifiedCollection.fields,
-        {
-          name: "deletedAt",
-          type: "date",
-          admin: {
-            disableBulkEdit: true,
-            disableListColumn: true,
-            hidden: true,
-          },
-        },
-        {
-          name: "restoreButton",
-          type: "ui",
-          admin: {
-            disableBulkEdit: true,
-            disableListColumn: true,
-            components: {
-              Field: "@payload-bites/soft-delete/client#RestoreButton",
-            },
-            custom: {
-              enabled: enableRestore,
-            },
-          },
-        },
-        {
-          name: "softDeleteButton",
-          type: "ui",
-          admin: {
-            disableBulkEdit: true,
-            disableListColumn: true,
-            components: {
-              Field: "@payload-bites/soft-delete/client#SoftDeleteButton",
-            },
-          },
-        },
-        {
-          name: "deleteButton",
-          type: "ui",
-          admin: {
-            disableBulkEdit: true,
-            disableListColumn: true,
-            components: {
-              Field: "@payload-bites/soft-delete/client#DeleteButton",
-            },
-            custom: {
-              enabled: enableHardDelete,
-            },
-          },
-        },
-        {
-          name: "visibilityChecker",
-          type: "ui",
-          admin: {
-            disableBulkEdit: true,
-            disableListColumn: true,
-            components: {
-              Field: "@payload-bites/soft-delete/client#VisibilityChecker",
-            },
-            custom: {
-              collectionSlug: collection.slug,
-              enabledCollections,
-            },
-          },
-        },
-      ];
+			modifiedCollection.fields = [
+				...modifiedCollection.fields,
+				{
+					name: "deletedAt",
+					type: "date",
+					admin: {
+						disableBulkEdit: true,
+						disableListColumn: true,
+						hidden: true,
+					},
+				},
+				{
+					name: "restoreButton",
+					type: "ui",
+					admin: {
+						disableBulkEdit: true,
+						disableListColumn: true,
+						components: {
+							Field: "@payload-bites/soft-delete/client#RestoreButton",
+						},
+						custom: {
+							enabled: enableRestore,
+						},
+					},
+				},
+				{
+					name: "softDeleteButton",
+					type: "ui",
+					admin: {
+						disableBulkEdit: true,
+						disableListColumn: true,
+						components: {
+							Field: "@payload-bites/soft-delete/client#SoftDeleteButton",
+						},
+					},
+				},
+				{
+					name: "deleteButton",
+					type: "ui",
+					admin: {
+						disableBulkEdit: true,
+						disableListColumn: true,
+						components: {
+							Field: "@payload-bites/soft-delete/client#DeleteButton",
+						},
+						custom: {
+							enabled: enableHardDelete,
+						},
+					},
+				},
+				{
+					name: "visibilityChecker",
+					type: "ui",
+					admin: {
+						disableBulkEdit: true,
+						disableListColumn: true,
+						components: {
+							Field: "@payload-bites/soft-delete/client#VisibilityChecker",
+						},
+						custom: {
+							collectionSlug: collection.slug,
+							enabledCollections,
+						},
+					},
+				},
+			];
 
-      modifiedCollection.access = {
-        ...modifiedCollection.access,
-        delete: () => false,
-        update: async (args) => {
-          const deletedAtQuery = {
-            deletedAt: {
-              exists: false,
-            },
-          };
+			modifiedCollection.access = {
+				...modifiedCollection.access,
+				delete: () => false,
+				update: async (args) => {
+					const deletedAtQuery = {
+						deletedAt: {
+							exists: false,
+						},
+					};
 
-          const access = await collection.access?.update?.(args);
+					const access = await collection.access?.update?.(args);
 
-          return combineQueries(deletedAtQuery, access ?? Boolean(args.req.user));
-        },
-      };
+					return combineQueries(
+						deletedAtQuery,
+						access ?? Boolean(args.req.user),
+					);
+				},
+			};
 
-      modifiedCollection.custom = {
-        ...modifiedCollection.custom,
-        softDelete: {
-          enableHardDelete,
-          enableRestore,
-          softDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
-            if (args?.data?.deletedAt) {
-              return false;
-            }
+			modifiedCollection.custom = {
+				...modifiedCollection.custom,
+				softDelete: {
+					enableHardDelete,
+					enableRestore,
+					softDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
+						if (args?.data?.deletedAt) {
+							return false;
+						}
 
-            const access = await mergedOptions.collections?.[collection.slug]?.softDeleteAccess?.(args);
+						const access =
+							await mergedOptions.collections?.[
+								collection.slug
+							]?.softDeleteAccess?.(args);
 
-            return access ?? Boolean(args.req.user);
-          },
-          hardDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
-            if (enableHardDelete === false) {
-              return false;
-            }
+						return access ?? Boolean(args.req.user);
+					},
+					hardDeleteAccess: async (args: SoftDeletePluginAccessArgs) => {
+						if (enableHardDelete === false) {
+							return false;
+						}
 
-            if (args?.data?.deletedAt === null) {
-              return false;
-            }
+						if (args?.data?.deletedAt === null) {
+							return false;
+						}
 
-            const access = await mergedOptions.collections?.[collection.slug]?.hardDeleteAccess?.(args);
+						const access =
+							await mergedOptions.collections?.[
+								collection.slug
+							]?.hardDeleteAccess?.(args);
 
-            return access ?? Boolean(args.req.user);
-          },
-          restoreAccess: async (args: SoftDeletePluginAccessArgs) => {
-            if (enableRestore === false) {
-              return false;
-            }
+						return access ?? Boolean(args.req.user);
+					},
+					restoreAccess: async (args: SoftDeletePluginAccessArgs) => {
+						if (enableRestore === false) {
+							return false;
+						}
 
-            if (args?.data?.deletedAt === null) {
-              return false;
-            }
+						if (args?.data?.deletedAt === null) {
+							return false;
+						}
 
-            const access = await mergedOptions.collections?.[collection.slug]?.restoreAccess?.(args);
+						const access =
+							await mergedOptions.collections?.[
+								collection.slug
+							]?.restoreAccess?.(args);
 
-            return access ?? Boolean(args.req.user);
-          },
-        },
-      };
+						return access ?? Boolean(args.req.user);
+					},
+				},
+			};
 
-      return modifiedCollection;
-    });
+			return modifiedCollection;
+		});
 
-    config.endpoints = [...(config.endpoints || []), ...endpoints];
+		config.endpoints = [...(config.endpoints || []), ...endpoints];
 
-    return config;
-  };
+		return config;
+	};

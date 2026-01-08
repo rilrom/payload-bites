@@ -1,12 +1,12 @@
 import { test } from "@playwright/test";
 
 import {
-  navigateToAdminPage,
-  setupFieldsVerification,
-  performTextAction,
-  verifySuccessMessage,
   checkCreatedByField,
   checkLastModifiedByField,
+  navigateToAdminPage,
+  performTextAction,
+  setupFieldsVerification,
+  verifySuccessMessage,
 } from "./helpers";
 
 test("collections", async ({ page }) => {

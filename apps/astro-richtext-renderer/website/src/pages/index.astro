@@ -1,21 +1,15 @@
 ---
-import {
-  RichText,
-  type AstroConvertersFunction,
-} from "@payload-bites/astro-richtext-renderer";
+import { type AstroConvertersFunction, RichText } from "@payload-bites/astro-richtext-renderer";
 import { PayloadSDK } from "@payloadcms/sdk";
-
-import Layout from "@/layouts/Layout.astro";
-
-import CodeBlock from "@/components/blocks/CodeBlock.astro";
-import Callout from "@/components/blocks/Callout.astro";
 import Banner from "@/components/blocks/Banner.astro";
+import Callout from "@/components/blocks/Callout.astro";
+import CodeBlock from "@/components/blocks/CodeBlock.astro";
 import RelationshipCard from "@/components/blocks/RelationshipCard.astro";
-import Mention from "@/components/inlineBlocks/Mention.astro";
 import Label from "@/components/inlineBlocks/Label.astro";
 import Math from "@/components/inlineBlocks/Math.astro";
-
+import Mention from "@/components/inlineBlocks/Mention.astro";
 import { data } from "@/config/data";
+import Layout from "@/layouts/Layout.astro";
 
 const sdk = new PayloadSDK({
   baseURL: "http://localhost:3000/api",

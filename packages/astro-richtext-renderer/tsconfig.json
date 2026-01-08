@@ -1,5 +1,5 @@
 {
-  "extends": "@payload-bites/typescript-config/astro-library.json",
-  "include": [".astro/types.d.ts", "src/**/*"],
-  "exclude": ["node_modules", "dist"]
+	"extends": "@payload-bites/typescript-config/astro-library.json",
+	"include": [".astro/types.d.ts", "src/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

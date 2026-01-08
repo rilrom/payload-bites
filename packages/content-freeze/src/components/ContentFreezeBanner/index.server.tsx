@@ -1,27 +1,37 @@
-import { type ServerComponentProps } from "payload";
+import type { ServerComponentProps } from "payload";
 
 import { ContentFreezeBannerClient } from "./index.client.js";
 
 interface ContentFreezeBannerRscProps extends ServerComponentProps {
-  slug: string;
+	slug: string;
 }
 
-export const ContentFreezeBannerRsc = async (props: ContentFreezeBannerRscProps) => {
-  const { payload, slug } = props;
+export const ContentFreezeBannerRsc = async (
+	props: ContentFreezeBannerRscProps,
+) => {
+	const { payload, slug } = props;
 
-  let enableContentFreeze = false;
-  let message: string | undefined;
+	let enableContentFreeze = false;
+	let message: string | undefined;
 
-  try {
-    const freezeSettings = await payload.findGlobal({
-      slug,
-    });
+	try {
+		const freezeSettings = await payload.findGlobal({
+			slug,
+		});
 
-    enableContentFreeze = freezeSettings?.enableContentFreeze === true;
-    message = freezeSettings?.message || undefined;
-  } catch (error) {
-    console.error("[content-freeze]: error fetching content freeze settings", error);
-  }
+		enableContentFreeze = freezeSettings?.enableContentFreeze === true;
+		message = freezeSettings?.message || undefined;
+	} catch (error) {
+		console.error(
+			"[content-freeze]: error fetching content freeze settings",
+			error,
+		);
+	}
 
-  return <ContentFreezeBannerClient enableContentFreeze={enableContentFreeze} message={message} />;
+	return (
+		<ContentFreezeBannerClient
+			enableContentFreeze={enableContentFreeze}
+			message={message}
+		/>
+	);
 };

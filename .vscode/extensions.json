@@ -1,6 +1,3 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode", // Prettier formatter
-    "dbaeumer.vscode-eslint", // ESLint integration
-  ]
+  "recommendations": ["biomejs.biome", "stylelint.vscode-stylelint"]
 }
