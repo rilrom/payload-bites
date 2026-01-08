@@ -1,5 +1,12 @@
 # @payload-bites/soft-delete
 
+## 3.3.0
+
+### Minor Changes
+
+- feat: replace eslint and prettier with biome and stylelint ([95e34e2](https://github.com/rilrom/payload-bites/commit/95e34e2))
+- feat: add missing translations ([def0854](https://github.com/rilrom/payload-bites/commit/def0854))
+
 ## 3.2.0
 
 ### Minor Changes
