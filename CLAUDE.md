@@ -14,6 +14,7 @@ Payload bites is a monorepo containing bite-sized Payload v3 plugins and tools. 
 - `activity-log` - Track CMS activity
 - `broken-link-checker` - Detect and prevent broken links
 - `content-freeze` - Freeze content during critical moments
+- `astro-richtext-renderer` - Render Payload CMS Lexical richtext content in Astro
 
 ## Monorepo Structure
 
@@ -24,13 +25,16 @@ payload-bites/
 ├── packages/           # Published plugins (source code)
 │   ├── image-search/
 │   ├── soft-delete/
+│   ├── astro-richtext-renderer/
 │   └── ...
 ├── apps/              # Demo/test apps for each plugin
 │   ├── image-search/
 │   ├── soft-delete/
+│   ├── astro-richtext-renderer/
+│   │   ├── payload/   # Payload CMS app
+│   │   └── website/   # Astro website
 │   └── ...
 └── packages/
-    ├── eslint-config/      # Shared ESLint configuration
     └── typescript-config/  # Shared TypeScript configuration
 ```
 
@@ -39,10 +43,9 @@ payload-bites/
 ### Root-level commands (uses Turbo)
 - `pnpm dev` - Run dev mode across all packages
 - `pnpm build` - Build all packages
-- `pnpm lint` - Lint all packages
+- `pnpm lint` - Lint all packages (Biome + Stylelint)
 - `pnpm tsc` - Type check all packages
-- `pnpm format` - Format code with Prettier
-- `pnpm clean` - Clean build artifacts (node_modules, .next, .turbo, dist)
+- `pnpm clean` - Clean build artifacts (node_modules, .next, .astro, .turbo, dist)
 
 ### Package-specific development
 Use Turbo filters to work on specific packages:
@@ -59,15 +62,20 @@ pnpm dev --filter image-search --filter @payload-bites/image-search
 Within `packages/*/`:
 - `pnpm dev` - Build in watch mode (TypeScript + SWC)
 - `pnpm build` - Production build
-- `pnpm lint` - Run ESLint
+- `pnpm lint` - Run Biome linter (and Stylelint for packages with SCSS)
 - `pnpm tsc` - Type check without emit
 
-Within `apps/*/`:
+Within `apps/*/` (Next.js apps):
 - `pnpm dev` - Start Next.js dev server with Turbopack
 - `pnpm devsafe` - Clean .next and start dev server
 - `pnpm build` - Build Next.js app
 - `pnpm generate:types` - Generate Payload types
 - `pnpm generate:importmap` - Generate Payload import map
+
+Within Astro apps (e.g., `apps/astro-richtext-renderer/website/`):
+- `pnpm dev` - Start Astro dev server
+- `pnpm build` - Build Astro site
+- `pnpm preview` - Preview production build
 
 ## Plugin Architecture
 
@@ -193,12 +201,13 @@ All commits in a PR are squashed using the PR title as the commit message.
 
 ## Code Quality
 
-- **Linting**: ESLint must pass with zero errors (warnings acceptable when appropriate)
-- **Formatting**: Prettier automatically formats on save (VSCode settings provided)
+- **Linting**: Biome handles JS/TS linting, Stylelint handles SCSS. Both must pass with zero errors (warnings acceptable when appropriate)
+- **Formatting**: Biome automatically formats on save (VSCode settings provided)
 - **VSCode settings**: Pre-configured in `.vscode/settings.json`
   - Auto-save on focus change
-  - Format on save/paste/type
-  - ESLint auto-fix on save
+  - Format on save (modifications only)
+  - Biome organize imports and auto-fix on save
+  - Astro files use astro-build.astro-vscode formatter
 
 ## Key Technical Details
 
