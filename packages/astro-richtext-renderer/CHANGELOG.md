@@ -1,5 +1,11 @@
 # @payload-bites/astro-richtext-renderer
 
+## 2.1.1
+
+### Patch Changes
+
+- fix: UploadAstroConverter ([9984e2f](https://github.com/rilrom/payload-bites/commit/9984e2f))
+
 ## 2.1.0
 
 ### Minor Changes
