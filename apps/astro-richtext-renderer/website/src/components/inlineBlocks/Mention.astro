@@ -1,14 +1,14 @@
 ---
 interface Props {
-  node: {
-    fields: {
-      id: string;
-      blockType: "mention";
-      userId: string;
-      username: string;
-      displayName?: string;
-    };
-  };
+	node: {
+		fields: {
+			id: string;
+			blockType: "mention";
+			userId: string;
+			username: string;
+			displayName?: string;
+		};
+	};
 }
 
 const { node } = Astro.props;

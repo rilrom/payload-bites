@@ -39,17 +39,21 @@ export default buildConfig({
 			collection: "users",
 			where: {
 				email: {
-					equals: process.env.TEST_USER!,
+					equals: process.env.TEST_USER,
 				},
 			},
 		});
 
-		if (response?.docs?.length === 0) {
+		if (
+			process.env.TEST_USER &&
+			process.env.TEST_PASS &&
+			response?.docs?.length === 0
+		) {
 			await payload.create({
 				collection: "users",
 				data: {
-					email: process.env.TEST_USER!,
-					password: process.env.TEST_PASS!,
+					email: process.env.TEST_USER,
+					password: process.env.TEST_PASS,
 				},
 			});
 		}

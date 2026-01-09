@@ -565,6 +565,7 @@ export const defaultContent = {
 					id: "code-block-1",
 					blockType: "code",
 					language: "typescript",
+					// biome-ignore lint/suspicious/noTemplateCurlyInString: this is a code block
 					code: 'const greeting = (name: string): string => {\n  return `Hello, ${name}!`;\n};\n\nconsole.log(greeting("World"));',
 				},
 			},

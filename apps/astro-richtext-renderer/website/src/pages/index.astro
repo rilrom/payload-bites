@@ -1,18 +1,21 @@
 ---
-import { type AstroConvertersFunction, RichText } from "@payload-bites/astro-richtext-renderer";
+import {
+	type AstroConvertersFunction,
+	RichText,
+} from "@payload-bites/astro-richtext-renderer";
 import { PayloadSDK } from "@payloadcms/sdk";
 import Banner from "@/components/blocks/Banner.astro";
 import Callout from "@/components/blocks/Callout.astro";
 import CodeBlock from "@/components/blocks/CodeBlock.astro";
 import RelationshipCard from "@/components/blocks/RelationshipCard.astro";
 import Label from "@/components/inlineBlocks/Label.astro";
-import Math from "@/components/inlineBlocks/Math.astro";
+import AstroMath from "@/components/inlineBlocks/Math.astro";
 import Mention from "@/components/inlineBlocks/Mention.astro";
 import { data } from "@/config/data";
 import Layout from "@/layouts/Layout.astro";
 
 const sdk = new PayloadSDK({
-  baseURL: "http://localhost:3000/api",
+	baseURL: "http://localhost:3000/api",
 });
 
 const pages = await sdk.find({ collection: "pages" }).catch(() => null);
@@ -22,18 +25,18 @@ const hasContent = !!pages?.docs?.[0]?.content;
 const content = pages?.docs?.[0]?.content ?? data;
 
 const astroConverters: AstroConvertersFunction = ({ defaultConverters }) => ({
-  ...defaultConverters,
-  blocks: {
-    code: CodeBlock,
-    callout: Callout,
-    banner: Banner,
-    relationshipCard: RelationshipCard,
-  },
-  inlineBlocks: {
-    mention: Mention,
-    label: Label,
-    math: Math,
-  },
+	...defaultConverters,
+	blocks: {
+		code: CodeBlock,
+		callout: Callout,
+		banner: Banner,
+		relationshipCard: RelationshipCard,
+	},
+	inlineBlocks: {
+		mention: Mention,
+		label: Label,
+		math: AstroMath,
+	},
 });
 ---
 

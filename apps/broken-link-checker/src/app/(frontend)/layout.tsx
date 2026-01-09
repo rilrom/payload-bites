@@ -1,15 +1,15 @@
-import React, { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface LayoutProps {
-  children: ReactNode;
+	children: ReactNode;
 }
 
 export default async function Layout(props: LayoutProps) {
-  const { children } = props;
+	const { children } = props;
 
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body>{children}</body>
+		</html>
+	);
 }

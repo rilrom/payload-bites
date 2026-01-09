@@ -1,21 +1,27 @@
 ---
 interface Props {
-  node: {
-    fields: {
-      id: string;
-      blockType: "banner";
-      style?: "gradient" | "solid" | "outline";
-      heading: string;
-      description?: string;
-      buttonText?: string;
-      buttonUrl?: string;
-    };
-  };
+	node: {
+		fields: {
+			id: string;
+			blockType: "banner";
+			style?: "gradient" | "solid" | "outline";
+			heading: string;
+			description?: string;
+			buttonText?: string;
+			buttonUrl?: string;
+		};
+	};
 }
 
 const { node } = Astro.props;
 
-const { style = "solid", heading, description, buttonText, buttonUrl } = node.fields;
+const {
+	style = "solid",
+	heading,
+	description,
+	buttonText,
+	buttonUrl,
+} = node.fields;
 ---
 
 <div class={`banner banner-${style}`}>

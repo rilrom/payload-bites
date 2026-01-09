@@ -1,38 +1,38 @@
 {
-  "name": "content-freeze",
-  "version": "0.1.0",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
-    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
-    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
-    "tsc": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
-    "lint": "pnpm lint:biome && pnpm lint:styles",
-    "lint:biome": "biome check --write .",
-    "lint:styles": "stylelint --fix=strict \"**/*.scss\"",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
-  },
-  "dependencies": {
-    "@payload-bites/content-freeze": "workspace:*",
-    "@payloadcms/db-postgres": "3.68.5",
-    "@payloadcms/next": "3.68.5",
-    "@payloadcms/translations": "3.68.5",
-    "@payloadcms/ui": "3.68.5",
-    "cross-env": "^10.1.0",
-    "next": "15.4.10",
-    "payload": "3.68.5",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
-  },
-  "devDependencies": {
-    "@payload-bites/typescript-config": "workspace:*",
-    "@types/node": "^24.10.4",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "typescript": "5.9.3"
-  }
+	"name": "content-freeze",
+	"version": "0.1.0",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
+		"devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev --turbopack",
+		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+		"start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+		"generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+		"generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+		"tsc": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
+		"lint": "pnpm lint:biome && pnpm lint:styles",
+		"lint:biome": "biome check --write .",
+		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
+		"payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
+	},
+	"dependencies": {
+		"@payload-bites/content-freeze": "workspace:*",
+		"@payloadcms/db-postgres": "3.68.5",
+		"@payloadcms/next": "3.68.5",
+		"@payloadcms/translations": "3.68.5",
+		"@payloadcms/ui": "3.68.5",
+		"cross-env": "^10.1.0",
+		"next": "15.4.10",
+		"payload": "3.68.5",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3"
+	},
+	"devDependencies": {
+		"@payload-bites/typescript-config": "workspace:*",
+		"@types/node": "^24.10.4",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"typescript": "5.9.3"
+	}
 }
