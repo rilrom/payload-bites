@@ -9,29 +9,85 @@ const { node, style } = Astro.props;
 // Get the upload value - can be a document object or just an ID
 const upload = node.value;
 
-// If it's just an ID, we can't render anything meaningful
-if (typeof upload === "string" || typeof upload === "number") {
+// Return a warning if it's just as ID, since we can't render anything meaningful
+if (typeof upload !== "object") {
 	console.warn(
-		"[astro-richtext-renderer] Upload node value is not populated. Make sure to use depth >= 1 when fetching content.",
+		"[astro-richtext-renderer] Upload node value is not populated. Use depth >= 1 when fetching content.",
 	);
 }
 
-// Handle populated upload document
 const doc = typeof upload === "object" ? upload : null;
+
+const alt = doc
+	? (node.fields?.alt as string) || (doc as { alt?: string })?.alt || ""
+	: "";
+
 const url = doc?.url;
-const alt = doc?.alt || doc?.filename || "";
-const mimeType = doc?.mimeType || "";
-const isImage = mimeType.startsWith("image/");
+
+const isImage = doc?.mimeType?.startsWith("image/");
+
+const hasResponsiveSizes = doc?.sizes && Object.keys(doc.sizes).length > 0;
+
+const sources = [];
+if (doc && hasResponsiveSizes) {
+	for (const size in doc.sizes) {
+		const imageSize = doc.sizes[size];
+
+		if (
+			!imageSize ||
+			!imageSize.width ||
+			!imageSize.height ||
+			!imageSize.mimeType ||
+			!imageSize.filesize ||
+			!imageSize.filename ||
+			!imageSize.url
+		) {
+			continue;
+		}
+
+		sources.push({
+			media: `(max-width: ${imageSize.width}px)`,
+			srcSet: imageSize.url,
+			type: imageSize.mimeType,
+		});
+	}
+}
 ---
 
 {
-  doc &&
-    url &&
-    (isImage ? (
-      <img src={url} alt={alt} style={style} />
-    ) : (
-      <a href={url} style={style}>
-        {doc.filename}
-      </a>
-    ))
+  /* If the upload is not an image, we instead return a link to the upload */
+  doc && url && !isImage && (
+    <a href={url} rel="noopener noreferrer" style={style}>
+      {doc.filename}
+    </a>
+  )
+}
+
+{
+  /* If the upload is a simple image with no different sizes, we return a simple img tag */
+  doc && url && isImage && !hasResponsiveSizes && (
+    <img
+      src={url}
+      alt={alt}
+      width={doc.width}
+      height={doc.height}
+      style={style}
+    />
+  )
+}
+
+{
+  /* If the upload is an image with different sizes, we return a picture element */
+  doc && url && isImage && hasResponsiveSizes && (
+    <picture style={style}>
+      {sources.map((source) => (
+        <source
+          media={source.media}
+          srcset={source.srcSet}
+          type={source.type}
+        />
+      ))}
+      <img src={url} alt={alt} width={doc.width} height={doc.height} />
+    </picture>
+  )
 }

@@ -1,9 +1,10 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import path from "path";
 import { buildConfig } from "payload";
-import { fileURLToPath } from "url";
-
+import sharp from "sharp";
+import { Media } from "@/payload/collections/Media";
 import { Pages } from "./collections/Pages";
 import { Users } from "./collections/Users";
 
@@ -20,9 +21,10 @@ export default buildConfig({
 			email: process.env.TEST_USER,
 		},
 	},
-	collections: [Pages, Users],
+	collections: [Pages, Media, Users],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || "",
+	serverURL: process.env.PAYLOAD_SERVER_URL,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},
@@ -31,6 +33,7 @@ export default buildConfig({
 			connectionString: process.env.DATABASE_URI || "",
 		},
 	}),
+	sharp,
 	onInit: async (payload) => {
 		const response = await payload.find({
 			collection: "users",

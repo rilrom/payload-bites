@@ -208,6 +208,10 @@ const astroConverters: AstroConvertersFunction = ({ defaultConverters }) => ({
 <RichText data={data} converters={astroConverters} />
 ```
 
+### Media Uploads
+
+When using Payload local media storage, make sure you have set `serverURL` in your `payload.config.ts` to ensure the media collection returns absolute URLs for your Astro website to use.
+
 ### Rendering Child Nodes
 
 For converters that need to render nested content (like links, lists, or custom blocks with rich text fields), use the `RenderNode` component passed as a prop:

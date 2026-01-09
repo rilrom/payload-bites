@@ -6,11 +6,6 @@ import type {
 } from "@payloadcms/richtext-lexical";
 import type { SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
-import type {
-	JsonObject,
-	TypedUploadCollection,
-	UploadCollectionSlug,
-} from "payload";
 
 export interface RichTextConfig {
 	// Render without a container div
@@ -107,29 +102,3 @@ export type AstroConvertersFunction<
 > = (args: {
 	defaultConverters: AstroConverters<DefaultNodeTypes>;
 }) => AstroConverters<T>;
-
-/**
- * @see https://github.com/payloadcms/payload/blob/main/packages/richtext-lexical/src/features/upload/server/nodes/UploadNode.tsx
- *
- * UploadDataImproved is a more precise type, and will replace UploadData in Payload v4.
- * This type is for internal use only as it will be deprecated in the future.
- * @internal
- *
- * @todo Replace UploadData with UploadDataImproved in 4.0
- */
-export type UploadDataImproved<
-	TUploadExtraFieldsData extends JsonObject = JsonObject,
-> = {
-	[TCollectionSlug in UploadCollectionSlug]: {
-		fields: TUploadExtraFieldsData;
-		/**
-		 * Every lexical node that has sub-fields needs to have a unique ID. This is the ID of this upload node, not the ID of the linked upload document
-		 */
-		id: string;
-		relationTo: TCollectionSlug;
-		/**
-		 * Value can be just the document ID, or the full, populated document
-		 */
-		value: number | string | TypedUploadCollection[TCollectionSlug];
-	};
-}[UploadCollectionSlug];

@@ -130,6 +130,9 @@ importers:
       react-dom:
         specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
     devDependencies:
       '@payload-bites/typescript-config':
         specifier: workspace:*
@@ -527,9 +530,6 @@ importers:
       astro:
         specifier: ^5
         version: 5.16.6(@types/node@24.10.4)(rollup@4.55.1)(sass@1.77.4)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.2)
-      payload:
-        specifier: 3.68.5
-        version: 3.68.5(graphql@16.11.0)(typescript@5.9.3)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
