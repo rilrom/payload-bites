@@ -22,7 +22,7 @@ export class CacheManager {
 
 		const item = JSON.parse(itemStr);
 
-		if (item.expiry && new Date().getTime() > item.expiry) {
+		if (item.expiry && Date.now() > item.expiry) {
 			localStorage.removeItem(versionedKey);
 
 			return null;
@@ -36,7 +36,7 @@ export class CacheManager {
 
 		const item = {
 			value: data,
-			expiry: ttl ? new Date().getTime() + ttl : null,
+			expiry: ttl ? Date.now() + ttl : null,
 		};
 
 		localStorage.setItem(versionedKey, JSON.stringify(item));

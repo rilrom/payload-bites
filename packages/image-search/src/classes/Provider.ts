@@ -59,18 +59,15 @@ export class Provider {
 		return {};
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async getSearch(query: string, page: number) {
+	async getSearch(_query: string, _page: number) {
 		return {};
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	async trackDownload(url: string) {
+	async trackDownload(_url: string) {
 		return null;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	formatResults(data: object): ProviderResult[] {
+	formatResults(_data: object): ProviderResult[] {
 		return [];
 	}
 }

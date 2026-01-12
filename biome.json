@@ -19,6 +19,9 @@
 			},
 			"style": {
 				"noNonNullAssertion": "warn"
+			},
+			"performance": {
+				"noImgElement": "off"
 			}
 		}
 	},

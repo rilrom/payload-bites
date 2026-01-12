@@ -1,4 +1,5 @@
 import type { NestedKeysStripped } from "@payloadcms/translations";
+import type { enTranslations } from "@payloadcms/translations/languages/en";
 
 export const translations = {
 	ar: {
@@ -477,5 +478,5 @@ export const translations = {
 	},
 };
 
-export type TranslationsObject = typeof translations.en;
+export type TranslationsObject = typeof translations.en & typeof enTranslations;
 export type TranslationsKeys = NestedKeysStripped<TranslationsObject>;

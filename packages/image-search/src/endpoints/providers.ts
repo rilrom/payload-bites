@@ -1,6 +1,8 @@
+import type { TFunction } from "@payloadcms/translations";
 import type { Endpoint } from "payload";
-
-import { ProviderManager } from "../classes/ProviderManager.js";
+import type { TranslationsKeys } from "../translations.js";
+import { getProvider } from "../utils/getProvider.js";
+import { getProviders } from "../utils/getProviders.js";
 
 export const providers: Endpoint[] = [
 	{
@@ -18,7 +20,7 @@ export const providers: Endpoint[] = [
 				);
 			}
 
-			const providers = ProviderManager.getProviders();
+			const providers = getProviders();
 
 			return Response.json({ data: providers, error: null });
 		},
@@ -38,15 +40,17 @@ export const providers: Endpoint[] = [
 				);
 			}
 
-			const provider = ProviderManager.getProvider(
+			const provider = getProvider(
 				req.routeParams?.provider as string | undefined,
 			);
+
+			const t = req.t as TFunction<TranslationsKeys>;
 
 			if (!provider) {
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotSupported" as any),
+						error: t("imageSearch:providerNotSupported"),
 					},
 					{ status: 404 },
 				);
@@ -56,7 +60,7 @@ export const providers: Endpoint[] = [
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotConfigured" as any),
+						error: t("imageSearch:providerNotConfigured"),
 					},
 					{ status: 500 },
 				);
@@ -82,15 +86,17 @@ export const providers: Endpoint[] = [
 				);
 			}
 
-			const provider = ProviderManager.getProvider(
+			const provider = getProvider(
 				req.routeParams?.provider as string | undefined,
 			);
+
+			const t = req.t as TFunction<TranslationsKeys>;
 
 			if (!provider) {
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotSupported" as any),
+						error: t("imageSearch:providerNotSupported"),
 					},
 					{ status: 404 },
 				);
@@ -100,7 +106,7 @@ export const providers: Endpoint[] = [
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotConfigured" as any),
+						error: t("imageSearch:providerNotConfigured"),
 					},
 					{ status: 500 },
 				);
@@ -129,15 +135,17 @@ export const providers: Endpoint[] = [
 				);
 			}
 
-			const provider = ProviderManager.getProvider(
+			const provider = getProvider(
 				req.routeParams?.provider as string | undefined,
 			);
+
+			const t = req.t as TFunction<TranslationsKeys>;
 
 			if (!provider) {
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotSupported" as any),
+						error: t("imageSearch:providerNotSupported"),
 					},
 					{ status: 404 },
 				);
@@ -147,7 +155,7 @@ export const providers: Endpoint[] = [
 				return Response.json(
 					{
 						data: null,
-						error: req.t("imageSearch:providerNotConfigured" as any),
+						error: t("imageSearch:providerNotConfigured"),
 					},
 					{ status: 500 },
 				);

@@ -11,6 +11,12 @@ const nextConfig = {
 			},
 		];
 	},
+	experimental: {
+		serverActions: {
+			// Temporary until https://github.com/payloadcms/payload/pull/15078 is resolved
+			bodySizeLimit: "10mb",
+		},
+	},
 };
 
 export default withPayload(nextConfig);

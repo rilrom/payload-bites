@@ -227,6 +227,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 							render={(data) => (
 								<div className={`${baseClass}__card`}>
 									<button
+										type="button"
 										className={`${baseClass}__button`}
 										onClick={() =>
 											handleSelect(
@@ -245,6 +246,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 									</button>
 									<div className={`${baseClass}__topOverlay`}>
 										<button
+											type="button"
 											className={`${baseClass}__button`}
 											onClick={() => {
 												setSelectedImage(data);

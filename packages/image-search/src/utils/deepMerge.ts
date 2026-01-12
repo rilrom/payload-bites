@@ -1,4 +1,5 @@
 // @ts-nocheck - this was copied from the payload codebase which also used ts-nocheck
+// biome-ignore-all lint: this was copied from the payload codebase
 
 /**
  * Simple object check.
