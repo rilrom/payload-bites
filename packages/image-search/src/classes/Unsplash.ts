@@ -3,7 +3,7 @@ import { Provider } from "./Provider.js";
 const REFERRAL_PARAMS =
 	"utm_source=payload-bites-image-search&utm_medium=referral";
 
-interface UnsplashResult {
+export interface UnsplashResult {
 	id: string;
 	alt_description: string;
 	width: number;

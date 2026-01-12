@@ -1,6 +1,6 @@
 import { Provider } from "./Provider.js";
 
-interface PexelsResult {
+export interface PexelsResult {
 	id: string;
 	alt: string;
 	width: number;

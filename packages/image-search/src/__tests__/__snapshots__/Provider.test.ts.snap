@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Provider.formatResults > Pexels > transforms API response correctly 1`] = `
+[
+  {
+    "alt": "Colorful sunset over the ocean",
+    "attribution": {
+      "link": "https://www.pexels.com/@alicecameraman",
+      "name": "Alice Cameraman",
+    },
+    "color": "#f39c12",
+    "height": 2160,
+    "id": "12345",
+    "urls": {
+      "download": "https://www.pexels.com/photo/colorful-sunset-12345/",
+      "original": "https://images.pexels.com/photos/12345/pexels-photo-12345.jpeg",
+      "view": "https://images.pexels.com/photos/12345/pexels-photo-12345.jpeg?w=350",
+    },
+    "width": 3840,
+  },
+  {
+    "alt": "",
+    "attribution": {
+      "link": "https://www.pexels.com/@bobsnapper",
+      "name": "Bob Snapper",
+    },
+    "color": "#27ae60",
+    "height": 1440,
+    "id": "67890",
+    "urls": {
+      "download": "https://www.pexels.com/photo/green-forest-67890/",
+      "original": "https://images.pexels.com/photos/67890/pexels-photo-67890.jpeg",
+      "view": "https://images.pexels.com/photos/67890/pexels-photo-67890.jpeg?w=350",
+    },
+    "width": 2560,
+  },
+]
+`;
+
+exports[`Provider.formatResults > Pixabay > transforms API response correctly 1`] = `
+[
+  {
+    "alt": "",
+    "attribution": {
+      "link": "https://pixabay.com/users/PhotoMaster-9999/",
+      "name": "PhotoMaster",
+    },
+    "color": "#ccc",
+    "height": 3333,
+    "id": "111222",
+    "urls": {
+      "download": "https://pixabay.com/get/abc123_full.jpg",
+      "original": "https://pixabay.com/get/abc123_full.jpg",
+      "view": "https://pixabay.com/get/abc123_640.jpg",
+    },
+    "width": 5000,
+  },
+  {
+    "alt": "",
+    "attribution": {
+      "link": "https://pixabay.com/users/ImagePro-8888/",
+      "name": "ImagePro",
+    },
+    "color": "#ccc",
+    "height": 1280,
+    "id": "333444",
+    "urls": {
+      "download": "https://pixabay.com/get/def456_1280.jpg",
+      "original": "https://pixabay.com/get/def456_1280.jpg",
+      "view": "https://pixabay.com/get/def456_640.jpg",
+    },
+    "width": 1920,
+  },
+]
+`;
+
+exports[`Provider.formatResults > Unsplash > transforms API response correctly 1`] = `
+[
+  {
+    "alt": "A beautiful mountain landscape",
+    "attribution": {
+      "link": "https://unsplash.com/@johnphotographer?utm_source=payload-bites-image-search&utm_medium=referral",
+      "name": "John Photographer",
+    },
+    "color": "#2c3e50",
+    "height": 3000,
+    "id": "abc123",
+    "urls": {
+      "download": "https://unsplash.com/photos/abc123/download?utm_source=payload-bites-image-search&utm_medium=referral",
+      "downloadLocation": "https://api.unsplash.com/photos/abc123/download?ixid=123&utm_source=payload-bites-image-search&utm_medium=referral",
+      "original": "https://images.unsplash.com/photo-abc123?w=4000",
+      "view": "https://images.unsplash.com/photo-abc123?w=200",
+    },
+    "width": 4000,
+  },
+  {
+    "alt": "",
+    "attribution": {
+      "link": "https://unsplash.com/@janeartist?utm_source=payload-bites-image-search&utm_medium=referral",
+      "name": "Jane Artist",
+    },
+    "color": "#e74c3c",
+    "height": 1080,
+    "id": "def456",
+    "urls": {
+      "download": "https://unsplash.com/photos/def456/download?utm_source=payload-bites-image-search&utm_medium=referral",
+      "downloadLocation": "https://api.unsplash.com/photos/def456/download?ixid=456&utm_source=payload-bites-image-search&utm_medium=referral",
+      "original": "https://images.unsplash.com/photo-def456?w=1920",
+      "view": "https://images.unsplash.com/photo-def456?w=200",
+    },
+    "width": 1920,
+  },
+]
+`;

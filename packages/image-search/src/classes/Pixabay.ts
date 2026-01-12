@@ -1,6 +1,6 @@
 import { Provider } from "./Provider.js";
 
-interface PixabayResult {
+export interface PixabayResult {
 	id: string;
 	imageWidth: number;
 	imageHeight: number;
