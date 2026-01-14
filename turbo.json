@@ -24,6 +24,11 @@
         "API_KEY_PIXABAY"
       ]
     },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["build"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
