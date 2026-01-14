@@ -12,14 +12,15 @@
   ],
   "private": true,
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "lint": "turbo lint",
-    "tsc": "turbo tsc",
-    "generate:types": "turbo generate:types",
-    "generate:importmap": "turbo generate:importmap",
-    "clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -name \".astro\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
-  },
+			"dev": "turbo dev",
+			"build": "turbo build",
+			"test": "turbo test",
+			"lint": "turbo lint",
+			"tsc": "turbo tsc",
+			"generate:types": "turbo generate:types",
+			"generate:importmap": "turbo generate:importmap",
+			"clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -name \".astro\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
+		},
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
     "@swc/cli": "^0.7.9",

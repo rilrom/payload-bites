@@ -1,13 +1,10 @@
 import { test } from "@playwright/test";
-
-import {
-	checkCreatedByField,
-	checkLastModifiedByField,
-	navigateToAdminPage,
-	performTextAction,
-	setupFieldsVerification,
-	verifySuccessMessage,
-} from "./helpers";
+import { checkCreatedByField } from "./helpers/checkCreatedByField";
+import { checkLastModifiedByField } from "./helpers/checkLastModifiedByField";
+import { navigateToAdminPage } from "./helpers/navigateToAdminPage";
+import { performTextAction } from "./helpers/performTextAction";
+import { setupFieldsVerification } from "./helpers/setupFieldsVerification";
+import { verifySuccessMessage } from "./helpers/verifySuccessMessage";
 
 test("collections", async ({ page }) => {
 	await navigateToAdminPage(page, "/admin/collections/collections/create");

@@ -35,6 +35,10 @@
     },
     "generate:importmap": {
       "dependsOn": ["^generate:importmap"]
+    },
+    "test": {
+      "cache": false,
+      "dependsOn": ["^build"]
     }
   }
 }

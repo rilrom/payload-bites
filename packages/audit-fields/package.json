@@ -37,12 +37,17 @@
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
 		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
-		"tsc": "tsc --noEmit"
+		"tsc": "tsc --noEmit",
+		"test": "pnpm test:e2e",
+		"test:e2e": "playwright test"
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
+		"@playwright/test": "^1.57.0",
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
+		"dotenv": "^17.2.3",
+		"payload": "^3",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
 		"typescript": "5.9.3"
