@@ -1,4 +1,4 @@
-import type { PixabayResult } from "../../classes/Pixabay.js";
+import type { PixabayResult } from "../../../src/classes/Pixabay.js";
 
 export const pixabayFixture: PixabayResult[] = [
 	{

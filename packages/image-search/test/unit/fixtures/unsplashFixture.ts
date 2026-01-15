@@ -1,4 +1,4 @@
-import type { UnsplashResult } from "../../classes/Unsplash.js";
+import type { UnsplashResult } from "../../../src/classes/Unsplash.js";
 
 export const unsplashFixture: UnsplashResult[] = [
 	{

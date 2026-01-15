@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { Pexels } from "../classes/Pexels.js";
-import { Pixabay } from "../classes/Pixabay.js";
-import { Unsplash } from "../classes/Unsplash.js";
-import { getProvider } from "../utils/getProvider.js";
+import { Pexels } from "../../src/classes/Pexels.js";
+import { Pixabay } from "../../src/classes/Pixabay.js";
+import { Unsplash } from "../../src/classes/Unsplash.js";
+import { getProvider } from "../../src/utils/getProvider.js";
 
 describe("getProvider", () => {
 	const originalEnv = process.env;

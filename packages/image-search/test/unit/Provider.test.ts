@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { Pexels } from "../classes/Pexels.js";
-import { Pixabay } from "../classes/Pixabay.js";
-import { Unsplash } from "../classes/Unsplash.js";
+import { Pexels } from "../../src/classes/Pexels.js";
+import { Pixabay } from "../../src/classes/Pixabay.js";
+import { Unsplash } from "../../src/classes/Unsplash.js";
 import { pexelsFixture } from "./fixtures/pexelsFixture.js";
 import { pixabayFixture } from "./fixtures/pixabayFixture.js";
 import { unsplashFixture } from "./fixtures/unsplashFixture.js";

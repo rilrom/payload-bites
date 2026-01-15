@@ -1,4 +1,4 @@
-import type { PexelsResult } from "../../classes/Pexels.js";
+import type { PexelsResult } from "../../../src/classes/Pexels.js";
 
 export const pexelsFixture: PexelsResult[] = [
 	{
