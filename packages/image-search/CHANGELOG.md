@@ -1,5 +1,12 @@
 # @payload-bites/image-search
 
+## 3.3.1
+
+### Patch Changes
+
+- fix: ensure modal is closed on selection ([0d933cb](https://github.com/rilrom/payload-bites/commit/0d933cb))
+- fix: resolve biome lint issues ([efd0b80](https://github.com/rilrom/payload-bites/commit/efd0b80))
+
 ## 3.3.0
 
 ### Minor Changes
