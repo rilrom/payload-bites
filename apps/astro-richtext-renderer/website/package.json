@@ -14,7 +14,7 @@
 		"@payload-bites/astro-richtext-renderer": "workspace:*",
 		"@payloadcms/richtext-lexical": "3.68.5",
 		"@payloadcms/sdk": "^3.70.0",
-		"astro": "^5.10.3"
+		"astro": "^5.16.9"
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",

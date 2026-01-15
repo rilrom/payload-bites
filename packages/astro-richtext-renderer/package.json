@@ -30,7 +30,7 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.6",
 		"@payload-bites/typescript-config": "workspace:*",
-		"astro": "^5",
+		"astro": "^5.16.9",
 		"typescript": "5.9.3"
 	},
 	"peerDependencies": {

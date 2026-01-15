@@ -65,11 +65,15 @@
 			"@payloadcms/richtext-lexical": "3.68.5",
 			"@payloadcms/translations": "3.68.5",
 			"@payloadcms/ui": "3.68.5",
+			"devalue": "^5.6.2",
+			"diff": "^8.0.3",
 			"esbuild": "^0.25.0",
+			"h3": "^1.15.5",
 			"next": "15.4.10",
 			"payload": "3.68.5",
 			"react": "^19.2.3",
-			"react-dom": "^19.2.3"
+			"react-dom": "^19.2.3",
+			"undici": "^7.18.2"
 		}
 	},
 	"engines": {
