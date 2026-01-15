@@ -1,39 +1,46 @@
 {
-  "files.autoSave": "onFocusChange",
+	"files.autoSave": "onFocusChange",
 
-  "typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
 
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "modifications",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
-    "source.fixAll.biome": "explicit"
-  },
-  "editor.defaultFormatter": "biomejs.biome",
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "modifications",
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
 
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
 
-  "search.exclude": {
-    "**/dist": true,
-    "**/.next": true,
-    "**/.astro": true,
-    "**/node_modules": true
-  },
+	"search.exclude": {
+		"**/dist": true,
+		"**/.next": true,
+		"**/.astro": true,
+		"**/node_modules": true
+	},
+
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }

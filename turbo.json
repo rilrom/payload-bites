@@ -1,49 +1,49 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "tasks": {
-    "clean": {
-      "cache": false,
-      "dependsOn": ["^clean"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "env": [
-        "PAYLOAD_SECRET",
-        "DATABASE_URI",
-        "TEST_USER",
-        "TEST_PASS",
-        "API_KEY_UNSPLASH",
-        "API_KEY_PEXELS",
-        "API_KEY_PIXABAY"
-      ]
-    },
-    "start": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["build"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "tsc": {
-      "dependsOn": ["^tsc"]
-    },
-    "generate:types": {
-      "dependsOn": ["^generate:types"]
-    },
-    "generate:importmap": {
-      "dependsOn": ["^generate:importmap"]
-    },
-    "test": {
-      "cache": false,
-      "dependsOn": ["^build"]
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"tasks": {
+		"clean": {
+			"cache": false,
+			"dependsOn": ["^clean"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": [".next/**", "!.next/cache/**", "dist/**"],
+			"env": [
+				"PAYLOAD_SECRET",
+				"DATABASE_URI",
+				"TEST_USER",
+				"TEST_PASS",
+				"API_KEY_UNSPLASH",
+				"API_KEY_PEXELS",
+				"API_KEY_PIXABAY"
+			]
+		},
+		"start": {
+			"cache": false,
+			"persistent": true,
+			"dependsOn": ["build"]
+		},
+		"lint": {
+			"dependsOn": ["^lint"]
+		},
+		"tsc": {
+			"dependsOn": ["^tsc"]
+		},
+		"generate:types": {
+			"dependsOn": ["^generate:types"]
+		},
+		"generate:importmap": {
+			"dependsOn": ["^generate:importmap"]
+		},
+		"test": {
+			"cache": false,
+			"dependsOn": ["^build"]
+		}
+	}
 }

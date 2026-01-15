@@ -35,7 +35,7 @@ payload-bites/
 │   │   └── website/   # Astro website
 │   └── ...
 └── packages/
-    └── typescript-config/  # Shared TypeScript configuration
+		└── typescript-config/  # Shared TypeScript configuration
 ```
 
 ## Development Commands
@@ -105,28 +105,28 @@ All plugins follow this functional pattern:
 
 ```typescript
 export const pluginNamePlugin =
-  (pluginOptions?: PluginOptions) =>
-  (incomingConfig: Config): Config => {
-    // Merge options with defaults
-    const mergedOptions = Object.assign(defaultOptions, pluginOptions);
+	(pluginOptions?: PluginOptions) =>
+	(incomingConfig: Config): Config => {
+		// Merge options with defaults
+		const mergedOptions = Object.assign(defaultOptions, pluginOptions);
 
-    const config = { ...incomingConfig };
+		const config = { ...incomingConfig };
 
-    // Check if plugin is enabled
-    if (mergedOptions.enabled === false) {
-      return config;
-    }
+		// Check if plugin is enabled
+		if (mergedOptions.enabled === false) {
+			return config;
+		}
 
-    // Add translations
-    config.i18n = {
-      translations: deepMerge(translations, config.i18n?.translations),
-    };
+		// Add translations
+		config.i18n = {
+			translations: deepMerge(translations, config.i18n?.translations),
+		};
 
-    // Modify collections/globals/endpoints as needed
-    // ...
+		// Modify collections/globals/endpoints as needed
+		// ...
 
-    return config;
-  };
+		return config;
+	};
 ```
 
 ### Component exports
@@ -134,11 +134,11 @@ Plugins export components via separate entry points defined in `package.json`:
 
 ```json
 {
-  "exports": {
-    ".": "./dist/index.js",
-    "./client": "./dist/exports/client.js",
-    "./rsc": "./dist/exports/rsc.js"
-  }
+	"exports": {
+		".": "./dist/index.js",
+		"./client": "./dist/exports/client.js",
+		"./rsc": "./dist/exports/rsc.js"
+	}
 }
 ```
 
@@ -187,8 +187,8 @@ t('yourStringKey')
 - **Node**: >= 22
 - **pnpm**: ^10.19.0 (enable via `corepack enable`)
 - **Database**: Postgres (default)
-  - Set `DATABASE_URI` in app `.env` files
-  - Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`, `PAYLOAD_DROP_DATABASE=true`
+	- Set `DATABASE_URI` in app `.env` files
+	- Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`, `PAYLOAD_DROP_DATABASE=true`
 
 ## Version Control
 
@@ -204,10 +204,10 @@ All commits in a PR are squashed using the PR title as the commit message.
 - **Linting**: Biome handles JS/TS linting, Stylelint handles SCSS. Both must pass with zero errors (warnings acceptable when appropriate)
 - **Formatting**: Biome automatically formats on save (VSCode settings provided)
 - **VSCode settings**: Pre-configured in `.vscode/settings.json`
-  - Auto-save on focus change
-  - Format on save (modifications only)
-  - Biome organize imports and auto-fix on save
-  - Astro files use astro-build.astro-vscode formatter
+	- Auto-save on focus change
+	- Format on save (modifications only)
+	- Biome organize imports and auto-fix on save
+	- Astro files use astro-build.astro-vscode formatter
 
 ## Key Technical Details
 
@@ -215,13 +215,13 @@ All commits in a PR are squashed using the PR title as the commit message.
 The project pins Payload to a specific version via pnpm overrides in root `package.json`:
 ```json
 {
-  "pnpm": {
-    "overrides": {
-      "payload": "3.68.5",
-      "@payloadcms/db-postgres": "3.68.5",
-      // ... other Payload packages
-    }
-  }
+	"pnpm": {
+		"overrides": {
+			"payload": "3.68.5",
+			"@payloadcms/db-postgres": "3.68.5",
+			// ... other Payload packages
+		}
+	}
 }
 ```
 
