@@ -46,12 +46,13 @@ export const PreviewImage = (props: PreviewImageProps) => {
 						aria-label={t("imageSearch:selectImage")}
 						buttonStyle="primary"
 						className={`${baseClass}__select`}
-						onClick={() =>
+						onClick={() => {
 							onSelect(
 								selectedImage.urls.original,
 								selectedImage.urls?.downloadLocation,
-							)
-						}
+							);
+							closeModal(slug);
+						}}
 					>
 						{t("imageSearch:selectImage")}
 					</Button>
