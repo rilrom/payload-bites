@@ -90,9 +90,11 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'es') | ('en' | 'es')[];
   globals: {
+    'site-settings': SiteSetting;
     'content-freeze-settings': ContentFreezeSetting;
   };
   globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'content-freeze-settings': ContentFreezeSettingsSelect<false> | ContentFreezeSettingsSelect<true>;
   };
   locale: 'en' | 'es';
@@ -356,16 +358,36 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteTitle?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "content-freeze-settings".
  */
 export interface ContentFreezeSetting {
   id: number;
   enableContentFreeze?: boolean | null;
   collections?: ('pages' | 'posts' | 'users')[] | null;
-  globals?: string[] | null;
+  globals?: 'site-settings'[] | null;
   message?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

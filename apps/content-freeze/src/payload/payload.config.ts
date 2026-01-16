@@ -9,6 +9,7 @@ import { buildConfig } from "payload";
 import { Pages } from "./collections/Pages";
 import { Posts } from "./collections/Posts";
 import { Users } from "./collections/Users";
+import { SiteSettings } from "./globals/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -32,6 +33,7 @@ export default buildConfig({
 		locales: ["en", "es"],
 	},
 	collections: [Pages, Posts, Users],
+	globals: [SiteSettings],
 	secret: process.env.PAYLOAD_SECRET || "",
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
