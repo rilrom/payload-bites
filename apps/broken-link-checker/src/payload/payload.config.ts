@@ -48,6 +48,7 @@ export default buildConfig({
 		pool: {
 			connectionString: process.env.DATABASE_URI || "",
 		},
+		migrationDir: path.resolve(dirname, "migrations"),
 	}),
 	editor: lexicalEditor({
 		features: ({ defaultFeatures }) => [
@@ -81,6 +82,10 @@ export default buildConfig({
 		}),
 	],
 	onInit: async (payload) => {
+		if (!process.env.TEST_USER || !process.env.TEST_PASS) {
+			return;
+		}
+
 		const response = await payload.find({
 			collection: "users",
 			where: {
@@ -90,11 +95,7 @@ export default buildConfig({
 			},
 		});
 
-		if (
-			process.env.TEST_USER &&
-			process.env.TEST_PASS &&
-			response?.docs?.length === 0
-		) {
+		if (response?.docs?.length === 0) {
 			await payload.create({
 				collection: "users",
 				data: {

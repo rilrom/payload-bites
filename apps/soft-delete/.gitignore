@@ -42,3 +42,6 @@ next-env.d.ts
 .env
 
 /media
+
+# payload
+/src/payload/migrations
