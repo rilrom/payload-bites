@@ -3,11 +3,7 @@ import type { CollectionConfig } from "payload";
 export const CollectionWithDrafts: CollectionConfig = {
 	slug: "collection-with-drafts",
 	versions: {
-		drafts: {
-			autosave: {
-				interval: 100,
-			},
-		},
+		drafts: true,
 	},
 	fields: [
 		{
