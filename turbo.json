@@ -43,7 +43,7 @@
 		},
 		"test": {
 			"cache": false,
-			"dependsOn": ["^build"]
+			"dependsOn": ["^test"]
 		}
 	}
 }

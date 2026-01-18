@@ -29,8 +29,8 @@ export default buildConfig({
 	},
 	collections: [Collections, Users],
 	globals: [Globals],
-	serverURL: process.env.SERVER_URL,
 	secret: process.env.PAYLOAD_SECRET || "",
+	serverURL: process.env.SERVER_URL,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},

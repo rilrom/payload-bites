@@ -24,7 +24,7 @@ export default buildConfig({
 	collections: [Pages, Media, Users],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || "",
-	serverURL: process.env.PAYLOAD_SERVER_URL,
+	serverURL: process.env.SERVER_URL,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},

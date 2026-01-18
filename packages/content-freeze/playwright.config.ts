@@ -9,15 +9,22 @@ dotenv.config({
 	path: path.resolve(__dirname, "../../apps/content-freeze/.env"),
 });
 
+const testPort = 3005;
+const testUrl = `http://localhost:${testPort}`;
+
 export default defineConfig({
 	testDir: "./test/e2e",
 	use: {
-		baseURL: `${process.env.SERVER_URL}/admin`,
+		baseURL: `${testUrl}/admin`,
 	},
 	webServer: {
-		command: "pnpm dev",
-		url: process.env.SERVER_URL,
+		command: `pnpm dev --port ${testPort}`,
+		url: testUrl,
 		reuseExistingServer: false,
 		cwd: path.resolve(__dirname, "../../apps/content-freeze"),
+		env: {
+			...process.env,
+			SERVER_URL: testUrl,
+		},
 	},
 });

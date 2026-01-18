@@ -38,9 +38,9 @@ export default buildConfig({
 		defaultLocale: "en",
 		locales: ["en", "es"],
 	},
-	serverURL: "http://localhost:3000",
 	collections: [Pages, Users],
 	secret: process.env.PAYLOAD_SECRET || "",
+	serverURL: process.env.SERVER_URL,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},

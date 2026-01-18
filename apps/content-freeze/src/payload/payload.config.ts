@@ -35,6 +35,7 @@ export default buildConfig({
 	collections: [Pages, Posts, Users],
 	globals: [SiteSettings],
 	secret: process.env.PAYLOAD_SECRET || "",
+	serverURL: process.env.SERVER_URL,
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),
 	},

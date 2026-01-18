@@ -46,7 +46,7 @@
 		"test": "pnpm test:unit && pnpm test:e2e",
 		"test:unit": "vitest run",
 		"test:unit:update": "pnpm test:unit -- -u",
-		"test:e2e": "playwright test"
+		"test:e2e": "lsof -ti :3007 | xargs kill -9 2>/dev/null || true; playwright test"
 	},
 	"dependencies": {
 		"react-plock": "^3.6.1"
@@ -57,6 +57,7 @@
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
 		"dotenv": "^17.2.3",
+		"get-port": "^7.1.0",
 		"react": "^19.2.3",
 		"react-dom": "^19.2.3",
 		"typescript": "5.9.3",
