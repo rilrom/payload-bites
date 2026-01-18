@@ -26,11 +26,17 @@ To help me work on new features, you can create a new feature request post in [G
 
 Payload bites is structured as a monorepo. To install all required dependencies, you have to run `pnpm install` once in the root directory. Please note that pnpm is required, yarn or npm will not work. In most systems, the easiest way to install pnpm is to run `corepack enable` in your terminal.
 
-It is also recommended to use at least Node v18 or higher. You can check your current node version by typing `node --version` in your terminal. The easiest way to switch between different node versions is to use [nvm](https://github.com/nvm-sh/nvm#intro).
+Node v22 or higher is required. You can check your current node version by typing `node --version` in your terminal. The easiest way to switch between different node versions is to use [nvm](https://github.com/nvm-sh/nvm#intro).
 
-### Code
+### Development
 
-Depending on the package you are working on, usually you would run the following command in the root of the project to get started:
+There are convenience scripts available for developing each package. Run from the root of the project:
+
+```bash
+pnpm dev:PACKAGE_NAME
+```
+
+Alternatively, you can use Turbo filters directly:
 
 ```bash
 pnpm dev --filter PACKAGE_NAME --filter @payload-bites/PACKAGE_NAME
@@ -38,9 +44,36 @@ pnpm dev --filter PACKAGE_NAME --filter @payload-bites/PACKAGE_NAME
 
 I recommend using vscode to take advantage of the pre-configured settings provided for this project in the `.vscode` folder. This will handle any linting and formatting for you automatically as you work.
 
-You must ensure that formatting and linting has been addressed prior to submitting a PR. I will accept eslint warnings when appropriate but will not accept eslint errors or any incorrect prettier formatting.
+You must ensure that formatting and linting has been addressed prior to submitting a PR. I will accept Biome warnings when appropriate but will not accept new Biome errors or new Stylelint errors.
 
-By default, most of my example apps should automatically log you in with a fresh database assuming you have set `TEST_USER`, `TEST_PASSWORD` and `PAYLOAD_DROP_DATABASE=true` in the apps `.env` file.
+By default, my example apps should automatically log you in with a fresh database assuming you have set `TEST_USER` and `TEST_PASSWORD` in the apps `.env` file.
+
+### Testing
+
+This project uses Vitest for unit tests and Playwright for E2E tests. Tests must pass before creating a PR, and you should add tests when making changes that can be reasonably tested.
+
+**Running tests:**
+
+```bash
+# Run all tests for a specific package
+pnpm test --filter @payload-bites/PACKAGE_NAME
+
+# Run only unit tests
+pnpm test:unit --filter @payload-bites/PACKAGE_NAME
+
+# Run only E2E tests
+pnpm test:e2e --filter @payload-bites/PACKAGE_NAME
+
+# Run all tests across all packages
+pnpm test
+```
+
+**When to add tests:**
+
+- Bug fixes should include a test that reproduces the bug
+- New features should include tests for the core functionality
+- E2E tests are located in `packages/*/src/__tests__/e2e/`
+- Unit tests are located in `packages/*/src/__tests__/unit/`
 
 ### Using Postgres
 
