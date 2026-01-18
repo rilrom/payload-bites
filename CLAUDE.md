@@ -45,17 +45,28 @@ payload-bites/
 - `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages (Biome + Stylelint)
 - `pnpm tsc` - Type check all packages
+- `pnpm test` - Run all tests (unit + E2E)
 - `pnpm clean` - Clean build artifacts (node_modules, .next, .astro, .turbo, dist)
 
 ### Package-specific development
-Use Turbo filters to work on specific packages:
+Use convenience scripts to develop specific packages:
 
 ```bash
-# Develop a plugin and its demo app together
-pnpm dev --filter PACKAGE_NAME --filter @payload-bites/PACKAGE_NAME
+# Develop a specific package (runs both the plugin and its demo app)
+pnpm dev:image-search
+pnpm dev:soft-delete
+pnpm dev:activity-log
+pnpm dev:audit-fields
+pnpm dev:broken-link-checker
+pnpm dev:content-freeze
+pnpm dev:fullscreen-editor
+pnpm dev:astro-richtext-renderer
+```
 
-# Example: work on image-search plugin + app
-pnpm dev --filter image-search --filter @payload-bites/image-search
+Alternatively, use Turbo filters directly:
+
+```bash
+pnpm dev --filter PACKAGE_NAME --filter @payload-bites/PACKAGE_NAME
 ```
 
 ### Individual package scripts
@@ -64,6 +75,9 @@ Within `packages/*/`:
 - `pnpm build` - Production build
 - `pnpm lint` - Run Biome linter (and Stylelint for packages with SCSS)
 - `pnpm tsc` - Type check without emit
+- `pnpm test` - Run all tests (unit + E2E)
+- `pnpm test:unit` - Run unit tests only (Vitest)
+- `pnpm test:e2e` - Run E2E tests only (Playwright)
 
 Within `apps/*/` (Next.js apps):
 - `pnpm dev` - Start Next.js dev server with Turbopack
@@ -165,10 +179,32 @@ All packages extend `@payload-bites/typescript-config/base.json`:
 
 ## Testing
 
-Tests use Playwright for end-to-end testing. Example test structure in `apps/*/test/`:
-- Main spec file (e.g., `index.spec.ts`)
-- Helper functions in separate files
-- Tests verify UI interactions and field behavior
+This project uses Vitest for unit tests and Playwright for E2E tests. Tests must pass before creating a PR, and tests should be added when making changes that can be reasonably tested.
+
+### Running tests
+```bash
+# Run all tests for a specific package
+pnpm test --filter @payload-bites/PACKAGE_NAME
+
+# Run only unit tests
+pnpm test:unit --filter @payload-bites/PACKAGE_NAME
+
+# Run only E2E tests
+pnpm test:e2e --filter @payload-bites/PACKAGE_NAME
+
+# Run all tests across all packages
+pnpm test
+```
+
+### Test structure
+- E2E tests: `packages/*/src/__tests__/e2e/`
+- Unit tests: `packages/*/src/__tests__/` or alongside source files
+- Playwright config: `packages/*/playwright.config.ts`
+- Vitest config: `packages/*/vitest.config.ts`
+
+### When to add tests
+- Bug fixes should include a test that reproduces the bug
+- New features should include tests for the core functionality
 
 ## Internationalization
 
@@ -198,6 +234,12 @@ Uses Conventional Commits for PR titles:
 - `chore: description` - Maintenance (unscoped)
 
 All commits in a PR are squashed using the PR title as the commit message.
+
+### Before creating a PR
+- All tests must pass (`pnpm test`)
+- Linting must pass (`pnpm lint`)
+- Type checking must pass (`pnpm tsc`)
+- Add tests for new functionality or bug fixes when reasonable
 
 ## Code Quality
 
