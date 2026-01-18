@@ -18,7 +18,7 @@ export default defineConfig({
 		baseURL: `${testUrl}/admin`,
 	},
 	webServer: {
-		command: `pnpm dev --port ${testPort}`,
+		command: `lsof -ti :${testPort} | xargs kill -9 2>/dev/null || true; pnpm dev --port ${testPort}`,
 		url: testUrl,
 		reuseExistingServer: false,
 		cwd: path.resolve(__dirname, "../../apps/audit-fields"),

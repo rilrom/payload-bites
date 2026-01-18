@@ -46,7 +46,7 @@
 		"test": "pnpm test:unit && pnpm test:e2e",
 		"test:unit": "vitest run",
 		"test:unit:update": "pnpm test:unit -- -u",
-		"test:e2e": "lsof -ti :3007 | xargs kill -9 2>/dev/null || true; playwright test"
+		"test:e2e": "playwright test"
 	},
 	"dependencies": {
 		"react-plock": "^3.6.1"

@@ -44,7 +44,7 @@
 		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
 		"check-types": "tsc --noEmit",
 		"test": "pnpm test:e2e",
-		"test:e2e": "lsof -ti :3005 | xargs kill -9 2>/dev/null || true; playwright test"
+		"test:e2e": "playwright test"
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
