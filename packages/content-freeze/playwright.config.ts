@@ -13,7 +13,7 @@ const testPort = 3005;
 const testUrl = `http://localhost:${testPort}`;
 
 export default defineConfig({
-	testDir: "./test/e2e",
+	testDir: "./src/__tests__/e2e",
 	use: {
 		baseURL: `${testUrl}/admin`,
 	},
