@@ -1,6 +1,5 @@
+import { navigateToGlobal } from "@payload-bites/playwright-utilities";
 import type { Page } from "@playwright/test";
-
-import { navigateToGlobal } from "./navigateToGlobal.js";
 
 /**
  * Updates a global with a timestamped value.

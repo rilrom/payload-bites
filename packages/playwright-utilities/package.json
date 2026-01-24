@@ -1,0 +1,20 @@
+{
+	"name": "@payload-bites/playwright-utilities",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"lint": "pnpm lint:biome",
+		"lint:biome": "biome check --write .",
+		"tsc": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@payload-bites/typescript-config": "workspace:*",
+		"@playwright/test": "^1.57.0",
+		"@types/node": "^24.10.4",
+		"typescript": "5.9.3"
+	}
+}

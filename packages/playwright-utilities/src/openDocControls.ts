@@ -18,7 +18,7 @@ export const openDocControls = async (page: Page) => {
 		await docControlsButton.click();
 
 		const docControlsContent = page.locator(
-			".doc-controls__popup .popup__content",
+			".popup__content .popup-button-list",
 		);
 
 		await expect(docControlsContent).toBeVisible();

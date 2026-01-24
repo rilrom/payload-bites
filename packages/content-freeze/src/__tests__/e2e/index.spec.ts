@@ -1,8 +1,8 @@
+import { ensureTestDocument } from "@payload-bites/playwright-utilities";
 import { expect, test } from "@playwright/test";
 
 import { createDocument } from "./helpers/createDocument.js";
 import { enableFreeze } from "./helpers/enableFreeze.js";
-import { ensureTestDocument } from "./helpers/ensureTestDocument.js";
 import { getBanner } from "./helpers/getBanner.js";
 import { navigateToSettings } from "./helpers/navigateToSettings.js";
 import { resetFreezeSettings } from "./helpers/resetFreezeSettings.js";

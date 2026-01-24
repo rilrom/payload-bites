@@ -1,6 +1,5 @@
+import { navigateToGlobal } from "@payload-bites/playwright-utilities";
 import { expect, type Page } from "@playwright/test";
-
-import { navigateToGlobal } from "./navigateToGlobal.js";
 
 /**
  * Navigates to a global where update access is blocked and asserts

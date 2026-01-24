@@ -1,7 +1,8 @@
+import {
+	goToFirstCell,
+	navigateToCollection,
+} from "@payload-bites/playwright-utilities";
 import type { Page } from "@playwright/test";
-
-import { goToFirstCell } from "./goToFirstCell.js";
-import { navigateToCollection } from "./navigateToCollection.js";
 
 /**
  * Updates the first document in a collection with a timestamped value.

@@ -1,6 +1,8 @@
+import {
+	goToFirstCell,
+	navigateToCollection,
+} from "@payload-bites/playwright-utilities";
 import { expect, type Page } from "@playwright/test";
-import { goToFirstCell } from "./goToFirstCell.js";
-import { navigateToCollection } from "./navigateToCollection.js";
 
 /**
  * Opens a document in a collection where update access is blocked and asserts

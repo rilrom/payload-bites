@@ -1,7 +1,9 @@
+import {
+	goToFirstCell,
+	navigateToCollection,
+	openDocControls,
+} from "@payload-bites/playwright-utilities";
 import { expect, type Page } from "@playwright/test";
-import { goToFirstCell } from "./goToFirstCell.js";
-import { navigateToCollection } from "./navigateToCollection.js";
-import { openDocControls } from "./openDocControls.js";
 
 /**
  * Opens a document in a collection where delete access is blocked and asserts

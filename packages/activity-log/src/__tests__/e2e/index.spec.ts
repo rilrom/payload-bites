@@ -1,11 +1,13 @@
+import {
+	createDocument,
+	deleteDocument,
+	ensureTestDocument,
+	goToFirstCell,
+	openDocControls,
+} from "@payload-bites/playwright-utilities";
 import { expect, test } from "@playwright/test";
 
-import { createDocument } from "./helpers/createDocument.js";
-import { deleteDocument } from "./helpers/deleteDocument.js";
-import { ensureTestDocument } from "./helpers/ensureTestDocument.js";
-import { goToFirstCell } from "./helpers/goToFirstCell.js";
 import { navigateToActivityLog } from "./helpers/navigateToActivityLog.js";
-import { openDocControls } from "./helpers/openDocControls.js";
 import { updateDocument } from "./helpers/updateDocument.js";
 import { updateGlobal } from "./helpers/updateGlobal.js";
 import { verifyLogEntry } from "./helpers/verifyLogEntry.js";

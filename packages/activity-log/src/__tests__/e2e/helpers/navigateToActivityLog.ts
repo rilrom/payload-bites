@@ -1,6 +1,5 @@
+import { navigateToCollection } from "@payload-bites/playwright-utilities";
 import type { Page } from "@playwright/test";
-
-import { navigateToCollection } from "./navigateToCollection.js";
 
 /**
  * Navigates to the activity log collection list view.

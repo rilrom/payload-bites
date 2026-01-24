@@ -1,6 +1,5 @@
+import { navigateToCollection } from "@payload-bites/playwright-utilities";
 import { expect, type Page } from "@playwright/test";
-
-import { navigateToCollection } from "./navigateToCollection.js";
 
 /**
  * Navigates to a collection where create access is blocked and asserts
