@@ -48,6 +48,7 @@ export default buildConfig({
 			collections: {
 				collections: {},
 				"collection-with-drafts": {},
+				users: {},
 			},
 			globals: {
 				globals: {},
