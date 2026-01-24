@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "cross-env PAYLOAD_DROP_DATABASE=true NODE_OPTIONS=--no-deprecation next dev --turbopack",
 		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-		"prestart": "rm -rf src/payload/migrations && pnpm payload migrate:create && pnpm payload migrate",
+		"prestart": "rm -rf src/payload/migrations && pnpm payload migrate:create && printf \"y\n\" | pnpm payload migrate:fresh",
 		"start": "cross-env NODE_OPTIONS=--no-deprecation next start",
 		"generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
 		"generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
