@@ -259,8 +259,8 @@ The project pins Payload to a specific version via pnpm overrides in root `packa
 {
 	"pnpm": {
 		"overrides": {
-			"payload": "3.68.5",
-			"@payloadcms/db-postgres": "3.68.5",
+			"payload": "3.73.0",
+			"@payloadcms/db-postgres": "3.73.0",
 			// ... other Payload packages
 		}
 	}

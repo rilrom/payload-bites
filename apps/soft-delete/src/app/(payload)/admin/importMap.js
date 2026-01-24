@@ -7,6 +7,7 @@ import { BulkSoftDeleteButton as BulkSoftDeleteButton_dbef22401404dda2caddfae892
 import { BulkDeleteButton as BulkDeleteButton_dbef22401404dda2caddfae892201948 } from '@payload-bites/soft-delete/client'
 import { BulkRestoreButton as BulkRestoreButton_dbef22401404dda2caddfae892201948 } from '@payload-bites/soft-delete/client'
 import { SoftDeleteProviderRsc as SoftDeleteProviderRsc_c45c4f8d9ba288d17e180b40027d3024 } from '@payload-bites/soft-delete/rsc'
+import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 
 export const importMap = {
   "@payload-bites/soft-delete/client#RestoreButton": RestoreButton_dbef22401404dda2caddfae892201948,
@@ -17,5 +18,6 @@ export const importMap = {
   "@payload-bites/soft-delete/client#BulkSoftDeleteButton": BulkSoftDeleteButton_dbef22401404dda2caddfae892201948,
   "@payload-bites/soft-delete/client#BulkDeleteButton": BulkDeleteButton_dbef22401404dda2caddfae892201948,
   "@payload-bites/soft-delete/client#BulkRestoreButton": BulkRestoreButton_dbef22401404dda2caddfae892201948,
-  "@payload-bites/soft-delete/rsc#SoftDeleteProviderRsc": SoftDeleteProviderRsc_c45c4f8d9ba288d17e180b40027d3024
+  "@payload-bites/soft-delete/rsc#SoftDeleteProviderRsc": SoftDeleteProviderRsc_c45c4f8d9ba288d17e180b40027d3024,
+  "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a
 }
