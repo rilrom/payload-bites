@@ -23,10 +23,12 @@ export const afterDeleteCollectionActivityLog = (
 				collection: options.activityLogSlug,
 				data: {
 					operation: "delete",
-					user: {
-						value: args.req.user?.id,
-						relationTo: args.req.user?.collection,
-					},
+					...(args.req.user && {
+						user: {
+							value: args.req.user.id,
+							relationTo: args.req.user.collection,
+						},
+					}),
 					ipAddress: options.enableIpAddressLogging
 						? args.req.headers.get("x-forwarded-for")
 						: undefined,

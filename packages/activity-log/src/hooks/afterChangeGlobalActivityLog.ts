@@ -27,10 +27,12 @@ export const afterChangeGlobalActivityLog = (
 				collection: options.activityLogSlug,
 				data: {
 					operation: "update",
-					user: {
-						value: args.req.user?.id,
-						relationTo: args.req.user?.collection,
-					},
+					...(args.req.user && {
+						user: {
+							value: args.req.user.id,
+							relationTo: args.req.user.collection,
+						},
+					}),
 					ipAddress: options.enableIpAddressLogging
 						? args.req.headers.get("x-forwarded-for")
 						: undefined,

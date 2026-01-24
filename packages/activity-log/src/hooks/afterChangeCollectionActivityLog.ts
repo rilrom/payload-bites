@@ -35,10 +35,12 @@ export const afterChangeCollectionActivityLog = (
 				collection: options.activityLogSlug,
 				data: {
 					operation: args.operation,
-					user: {
-						value: args.req.user?.id,
-						relationTo: args.req.user?.collection,
-					},
+					...(args.req.user && {
+						user: {
+							value: args.req.user.id,
+							relationTo: args.req.user.collection,
+						},
+					}),
 					ipAddress: options.enableIpAddressLogging
 						? args.req.headers.get("x-forwarded-for")
 						: undefined,
