@@ -17,6 +17,7 @@
 			"env": [
 				"PAYLOAD_SECRET",
 				"DATABASE_URI",
+				"SERVER_URL",
 				"TEST_USER",
 				"TEST_PASS",
 				"API_KEY_UNSPLASH",
