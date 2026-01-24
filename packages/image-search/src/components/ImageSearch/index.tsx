@@ -13,7 +13,13 @@ import { SearchImages } from "../SearchImages/index.js";
 
 export const searchImagesDrawerSlug = "search-images";
 
-export const ImageSearch = () => {
+interface ImageSearchProps {
+	enablePreview: boolean;
+}
+
+export const ImageSearch = (props: ImageSearchProps) => {
+	const { enablePreview } = props;
+
 	const { setUploadControlFileUrl } = useUploadControls();
 
 	const { config } = useConfig();
@@ -48,6 +54,7 @@ export const ImageSearch = () => {
 					serverURL={config.serverURL}
 					api={config.routes.api}
 					onSelect={handleSearchSubmit}
+					enablePreview={enablePreview}
 				/>
 			</Drawer>
 		</>

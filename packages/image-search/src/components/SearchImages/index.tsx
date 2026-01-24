@@ -26,7 +26,7 @@ import { ZoomIcon } from "../ZoomIcon/index.js";
 
 const baseClass = "search-images";
 
-export const previewImageDrawerSlug = "preview-image";
+const previewImageDrawerSlug = "preview-image";
 
 type ProviderOption = {
 	label: string;
@@ -37,10 +37,11 @@ type SearchImagesProps = {
 	serverURL: string;
 	api: string;
 	onSelect: (value: string) => void;
+	enablePreview: boolean;
 };
 
 export const SearchImages = (props: SearchImagesProps) => {
-	const { serverURL, api, onSelect } = props;
+	const { serverURL, api, onSelect, enablePreview } = props;
 
 	const { openModal } = useModal();
 
@@ -244,18 +245,20 @@ export const SearchImages = (props: SearchImagesProps) => {
 											height={data.height}
 										/>
 									</button>
-									<div className={`${baseClass}__topOverlay`}>
-										<button
-											type="button"
-											className={`${baseClass}__button`}
-											onClick={() => {
-												setSelectedImage(data);
-												openModal(previewImageDrawerSlug);
-											}}
-										>
-											<ZoomIcon />
-										</button>
-									</div>
+									{enablePreview && (
+										<div className={`${baseClass}__topOverlay`}>
+											<button
+												type="button"
+												className={`${baseClass}__button`}
+												onClick={() => {
+													setSelectedImage(data);
+													openModal(previewImageDrawerSlug);
+												}}
+											>
+												<ZoomIcon />
+											</button>
+										</div>
+									)}
 									<div className={`${baseClass}__bottomOverlay`}>
 										<a
 											className={`${baseClass}__download`}
@@ -304,13 +307,15 @@ export const SearchImages = (props: SearchImagesProps) => {
 				</>
 			)}
 
-			<Drawer Header={null} slug={previewImageDrawerSlug}>
-				<PreviewImage
-					slug={previewImageDrawerSlug}
-					selectedImage={selectedImage}
-					onSelect={handleSelect}
-				/>
-			</Drawer>
+			{enablePreview && (
+				<Drawer Header={null} slug={previewImageDrawerSlug}>
+					<PreviewImage
+						slug={previewImageDrawerSlug}
+						selectedImage={selectedImage}
+						onSelect={handleSelect}
+					/>
+				</Drawer>
+			)}
 		</div>
 	);
 };

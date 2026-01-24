@@ -11,4 +11,11 @@ export type ImageSearchPluginOptions = {
 	 * providerAccess: ({ req: { user } }) => user.role === "admin"
 	 */
 	providerAccess?: Access;
+
+	/**
+	 * Enables or disables the preview button for each image result.
+	 *
+	 * @default true
+	 */
+	enablePreview?: boolean;
 };

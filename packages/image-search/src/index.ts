@@ -52,7 +52,12 @@ export const imageSearchPlugin =
 							...(uploadObj?.admin?.components || {}),
 							controls: [
 								...(uploadObj?.admin?.components?.controls || []),
-								"@payload-bites/image-search/client#ImageSearch",
+								{
+									path: "@payload-bites/image-search/client#ImageSearch",
+									clientProps: {
+										enablePreview: mergedOptions.enablePreview,
+									},
+								},
 							],
 						},
 					},
