@@ -35,7 +35,8 @@ payload-bites/
 │   │   └── website/   # Astro website
 │   └── ...
 └── packages/
-		└── typescript-config/  # Shared TypeScript configuration
+		├── typescript-config/    # Shared TypeScript configuration
+    └── playwright-utilities/ # Shared Playwright helper functions
 ```
 
 ## Development Commands
@@ -81,7 +82,6 @@ Within `packages/*/`:
 
 Within `apps/*/` (Next.js apps):
 - `pnpm dev` - Start Next.js dev server with Turbopack
-- `pnpm devsafe` - Clean .next and start dev server
 - `pnpm build` - Build Next.js app
 - `pnpm generate:types` - Generate Payload types
 - `pnpm generate:importmap` - Generate Payload import map
@@ -223,8 +223,8 @@ t('yourStringKey')
 - **Node**: >= 22
 - **pnpm**: ^10.19.0 (enable via `corepack enable`)
 - **Database**: Postgres (default)
-	- Set `DATABASE_URI` in app `.env` files
-	- Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`, `PAYLOAD_DROP_DATABASE=true`
+	- Set `DATABASE_URI` and `SERVER_URL` in app `.env` files
+	- Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`
 
 ## Version Control
 
