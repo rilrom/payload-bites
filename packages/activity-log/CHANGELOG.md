@@ -1,5 +1,11 @@
 # @payload-bites/activity-log
 
+## 1.6.1
+
+### Patch Changes
+
+- fix: allow create first user logging ([e051a9b](https://github.com/rilrom/payload-bites/commit/e051a9b))
+
 ## 1.6.0
 
 ### Minor Changes
