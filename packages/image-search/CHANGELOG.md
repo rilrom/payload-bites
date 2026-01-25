@@ -1,5 +1,15 @@
 # @payload-bites/image-search
 
+## 3.4.0
+
+### Minor Changes
+
+- feat: enablePreview toggle ([9402122](https://github.com/rilrom/payload-bites/commit/9402122))
+
+### Patch Changes
+
+- fix: scss imports for windows dev ([6d073d6](https://github.com/rilrom/payload-bites/commit/6d073d6))
+
 ## 3.3.1
 
 ### Patch Changes
