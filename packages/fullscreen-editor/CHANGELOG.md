@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.7.1
+
+### Patch Changes
+
+- fix: scss imports for windows dev ([f4fef19](https://github.com/rilrom/payload-bites/commit/f4fef19))
+
 ## 1.7.0
 
 ### Minor Changes
