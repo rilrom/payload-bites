@@ -25,13 +25,16 @@
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
 		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
-		"check-types": "astro check"
+		"check-types": "astro check",
+		"test": "pnpm test:unit",
+		"test:unit": "vitest run"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.6",
 		"@payload-bites/typescript-config": "workspace:*",
 		"astro": "^5.16.9",
-		"typescript": "5.9.3"
+		"typescript": "5.9.3",
+		"vitest": "^2.1.8"
 	},
 	"peerDependencies": {
 		"@payloadcms/richtext-lexical": "^3",

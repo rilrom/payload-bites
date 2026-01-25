@@ -21,6 +21,7 @@ import type {
 	AstroConvertersFunction,
 	RichTextConfig,
 } from "../types";
+import { mergeConfig, resolveConverters } from "../utils/configMerging";
 import RenderNode from "./RenderNode.astro";
 
 const defaultAstroConverters: AstroConverters<DefaultNodeTypes> = {
@@ -51,24 +52,13 @@ type Props = {
 const {
 	data,
 	converters,
-	config = {
-		disableContainer: false,
-		disableIndent: false,
-		disableTextAlign: false,
-	},
+	config: userConfig,
 	class: className = "payload-richtext",
 } = Astro.props;
 
-let finalConverters: AstroConverters = {};
-if (converters) {
-	if (typeof converters === "function") {
-		finalConverters = converters({ defaultConverters: defaultAstroConverters });
-	} else {
-		finalConverters = converters;
-	}
-} else {
-	finalConverters = defaultAstroConverters;
-}
+const config = mergeConfig(userConfig);
+
+const finalConverters = resolveConverters(converters, defaultAstroConverters);
 
 const nodes = data?.root?.children || [];
 

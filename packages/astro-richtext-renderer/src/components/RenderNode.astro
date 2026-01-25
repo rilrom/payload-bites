@@ -1,7 +1,9 @@
 ---
 import type { SerializedLexicalNode } from "@payloadcms/richtext-lexical/lexical";
 
-import type { AstroConverter, AstroConverters, RichTextConfig } from "../types";
+import type { AstroConverters, RichTextConfig } from "../types";
+import { getConverterForNode } from "../utils/converterSelection";
+import { computeNodeStyles } from "../utils/styleComputation";
 
 interface Props {
 	node: SerializedLexicalNode;
@@ -11,24 +13,7 @@ interface Props {
 
 const { node, converters, config } = Astro.props;
 
-let Converter: AstroConverter<any> | undefined;
-
-if (node.type === "block") {
-	const blockNode = node as SerializedLexicalNode & {
-		fields?: { blockType?: string };
-	};
-
-	Converter = converters.blocks?.[blockNode.fields?.blockType ?? ""];
-} else if (node.type === "inlineBlock") {
-	const inlineBlockNode = node as SerializedLexicalNode & {
-		fields?: { blockType?: string };
-	};
-
-	Converter =
-		converters.inlineBlocks?.[inlineBlockNode.fields?.blockType ?? ""];
-} else {
-	Converter = converters[node.type] as AstroConverter<any>;
-}
+const Converter = getConverterForNode(node, converters);
 
 if (!Converter) {
 	console.warn(
@@ -36,43 +21,7 @@ if (!Converter) {
 	);
 }
 
-// Compute styles (textAlign, indent)
-const style: Record<string, string> = {};
-
-const disableTextAlign = config.disableTextAlign;
-const disableIndent = config.disableIndent;
-
-const shouldDisableTextAlign =
-	disableTextAlign === true ||
-	(Array.isArray(disableTextAlign) && disableTextAlign.includes(node.type));
-
-const shouldDisableIndent =
-	disableIndent === true ||
-	(Array.isArray(disableIndent) && disableIndent.includes(node.type));
-
-// Handle text alignment
-const nodeWithFormat = node as SerializedLexicalNode & { format?: string };
-
-if (!shouldDisableTextAlign && nodeWithFormat.format) {
-	const alignMap: Record<string, string> = {
-		center: "center",
-		end: "right",
-		justify: "justify",
-		right: "right",
-		start: "left",
-	};
-
-	if (alignMap[nodeWithFormat.format]) {
-		style.textAlign = alignMap[nodeWithFormat.format];
-	}
-}
-
-// Handle indentation
-const nodeWithIndent = node as SerializedLexicalNode & { indent?: number };
-
-if (!shouldDisableIndent && nodeWithIndent.indent && node.type !== "listitem") {
-	style.paddingInlineStart = `${Number(nodeWithIndent.indent) * 40}px`;
-}
+const style = computeNodeStyles(node, config);
 
 // Use Astro.self to allow recursive rendering
 const BoundRenderNode = Astro.self;
@@ -84,7 +33,7 @@ const BoundRenderNode = Astro.self;
       node={node}
       converters={converters}
       config={config}
-      style={Object.keys(style).length ? style : undefined}
+      style={style}
       RenderNode={BoundRenderNode}
     />
   )
