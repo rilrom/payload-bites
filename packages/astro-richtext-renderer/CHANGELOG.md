@@ -1,5 +1,11 @@
 # @payload-bites/astro-richtext-renderer
 
+## 2.2.0
+
+### Minor Changes
+
+- feat: implement unit tests ([95fa0ef](https://github.com/rilrom/payload-bites/commit/95fa0ef))
+
 ## 2.1.1
 
 ### Patch Changes
