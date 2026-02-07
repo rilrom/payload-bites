@@ -1,7 +1,7 @@
 {
 	"name": "@payload-bites/image-search",
 	"description": "search for images in Payload using various online image providers",
-	"version": "3.4.1",
+	"version": "3.4.2",
 	"author": "Riley Langbein <rilrom-dev@protonmail.com>",
 	"repository": {
 		"type": "git",

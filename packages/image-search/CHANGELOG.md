@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 3.4.2
+
+### Patch Changes
+
+- fix: resolve lint errors ([1d4bbcd](https://github.com/rilrom/payload-bites/commit/1d4bbcd))
+
 ## 3.4.1
 
 ### Patch Changes
