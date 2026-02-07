@@ -1,13 +1,15 @@
 @import "../../../node_modules/@payloadcms/ui/dist/scss/vars";
 
 @layer payload-default {
-  .icon--zoom {
-    height: $baseline;
-    width: $baseline;
+  .icon {
+    &--zoom {
+      height: $baseline;
+      width: $baseline;
 
-    .stroke {
-      stroke: currentcolor;
-      stroke-width: $style-stroke-width-s;
+      .stroke {
+        stroke: currentcolor;
+        stroke-width: $style-stroke-width-s;
+      }
     }
   }
 }

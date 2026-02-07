@@ -24,11 +24,6 @@ $header-height: base(5);
     }
   }
 
-  [dir="rtl"] &__actions {
-    margin-right: auto;
-    margin-left: unset;
-  }
-
   &__actions {
     min-width: 350px;
     margin-left: auto;
@@ -37,6 +32,11 @@ $header-height: base(5);
     display: flex;
     gap: base(1);
     text-wrap: nowrap;
+
+    [dir="rtl"] & {
+      margin-right: auto;
+      margin-left: unset;
+    }
   }
 
   &__content {
