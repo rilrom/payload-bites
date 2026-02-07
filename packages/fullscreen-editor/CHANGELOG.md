@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.7.2
+
+### Patch Changes
+
+- fix: resolve lint errors ([dc2650d](https://github.com/rilrom/payload-bites/commit/dc2650d))
+
 ## 1.7.1
 
 ### Patch Changes
