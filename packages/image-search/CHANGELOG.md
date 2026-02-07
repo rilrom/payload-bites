@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 3.4.1
+
+### Patch Changes
+
+- fix: card icon colours and focus styles ([cb75cc4](https://github.com/rilrom/payload-bites/commit/cb75cc4))
+
 ## 3.4.0
 
 ### Minor Changes
