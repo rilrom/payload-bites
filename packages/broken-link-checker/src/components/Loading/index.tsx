@@ -9,7 +9,7 @@ export const Loading = (props: LoadingProps) => {
 
 	return (
 		<div className={`${styles.wrapper} ${className}`}>
-			<div className={styles.loading} role="status" aria-label="Loading"></div>
+			<output className={styles.loading} aria-label="Loading"></output>
 		</div>
 	);
 };
