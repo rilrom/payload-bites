@@ -23,7 +23,7 @@ export const toggleFullscreen = ({
 			? drawerContentChildren.scrollTop
 			: window.scrollY;
 
-		if (!isNaN(scrollPosition)) {
+		if (!Number.isNaN(scrollPosition)) {
 			body.setAttribute("data-position", scrollPosition.toString());
 		}
 
@@ -50,8 +50,8 @@ export const toggleFullscreen = ({
 
 		richTextLexical?.classList.remove("focused-editor");
 
-		// This ensures focus mode remains enabled for parent editors if removing from child editors
 		if (!body.querySelector(".focused-editor")) {
+			// This ensures focus mode remains enabled for parent editors if removing from child editors
 			body.classList.remove("focus-mode");
 		}
 
@@ -70,7 +70,7 @@ export const toggleFullscreen = ({
 
 		const scrollPosition = body.getAttribute("data-position");
 
-		if (scrollPosition && !isNaN(Number(scrollPosition))) {
+		if (scrollPosition && !Number.isNaN(Number(scrollPosition))) {
 			(drawerContentChildren ?? window).scrollTo(0, Number(scrollPosition));
 		}
 	};

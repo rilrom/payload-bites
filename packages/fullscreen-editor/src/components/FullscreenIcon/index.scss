@@ -1,8 +1,10 @@
 @import "../../../node_modules/@payloadcms/ui/dist/scss/vars";
 
-.icon--fullscreen {
-  min-width: auto;
-  height: calc($baseline - 4px);
-  width: calc($baseline - 4px);
-  fill: currentColor;
+.icon {
+  &--fullscreen {
+    min-width: auto;
+    height: calc($baseline - 4px);
+    width: calc($baseline - 4px);
+    fill: currentcolor;
+  }
 }
