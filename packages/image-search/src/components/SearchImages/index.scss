@@ -1,3 +1,5 @@
+@import "../../../node_modules/@payloadcms/ui/dist/scss/vars";
+
 .drawer {
   &__content {
     &-children {
@@ -107,9 +109,14 @@
     line-height: 1;
     margin-right: 1rem;
 
+    &:focus-visible {
+      outline: 2px solid var(--theme-text);
+    }
+
     svg {
       pointer-events: none;
       transform: scale(1.25);
+      color: #fff;
     }
   }
 
@@ -124,6 +131,10 @@
 
     &:hover {
       text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--theme-text);
     }
   }
 
