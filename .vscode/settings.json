@@ -4,7 +4,7 @@
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 
 	"editor.formatOnSave": true,
-	"editor.formatOnSaveMode": "modifications",
+	"editor.formatOnSaveMode": "file",
 	"editor.codeActionsOnSave": {
 		"source.organizeImports.biome": "explicit",
 		"source.fixAll.biome": "explicit"
