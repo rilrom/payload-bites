@@ -56,13 +56,13 @@
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
-		"@playwright/test": "^1.57.0",
-		"@types/react": "^19.2.7",
+		"@playwright/test": "^1.58.2",
+		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
-		"dotenv": "^17.2.3",
+		"dotenv": "^17.3.1",
 		"get-port": "^7.1.0",
-		"react": "^19.2.3",
-		"react-dom": "^19.2.3",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
 		"typescript": "5.9.3",
 		"vitest": "^3.0.5"
 	},

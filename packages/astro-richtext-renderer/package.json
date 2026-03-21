@@ -33,9 +33,9 @@
 		"test:unit": "vitest run"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.6",
+		"@astrojs/check": "^0.9.8",
 		"@payload-bites/typescript-config": "workspace:*",
-		"astro": "^5.16.9",
+		"astro": "^5.18.1",
 		"typescript": "5.9.3",
 		"vitest": "^2.1.8"
 	},

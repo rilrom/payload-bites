@@ -12,13 +12,13 @@
 	},
 	"dependencies": {
 		"@payload-bites/astro-richtext-renderer": "workspace:*",
-		"@payloadcms/richtext-lexical": "3.75.0",
-		"@payloadcms/sdk": "^3.70.0",
-		"astro": "^5.16.9"
+		"@payloadcms/richtext-lexical": "3.80.0",
+		"@payloadcms/sdk": "^3.80.0",
+		"astro": "^5.18.1"
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
-		"@types/node": "^24.10.4",
+		"@types/node": "^24.12.0",
 		"typescript": "5.9.3"
 	}
 }
