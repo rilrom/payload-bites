@@ -29,6 +29,7 @@ export const auditField = ({
 		admin: {
 			allowCreate: false,
 			allowEdit: false,
+			disableBulkEdit: true,
 			readOnly: true,
 			position: showInSidebar ? "sidebar" : undefined,
 			condition: (data, _, { user }) => {
