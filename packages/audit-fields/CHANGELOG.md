@@ -1,5 +1,11 @@
 # @payload-bites/audit-fields
 
+## 1.6.0
+
+### Minor Changes
+
+- feat: add disableBulkEdit as a default ([1b3987f](https://github.com/rilrom/payload-bites/commit/1b3987f))
+
 ## 1.5.0
 
 ### Minor Changes
