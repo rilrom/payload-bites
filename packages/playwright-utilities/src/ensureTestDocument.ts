@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
 
+import { createDocument } from "./createDocument.js";
 import { navigateToCollection } from "./navigateToCollection.js";
 
 /**
@@ -10,7 +11,7 @@ import { navigateToCollection } from "./navigateToCollection.js";
  *
  * @remarks
  * Uses {@link navigateToCollection} to view the collection list.
- * If no documents exist, creates a seed document for tests.
+ * If no documents exist, uses {@link createDocument} to seed a document for tests.
  * Useful for setting up test preconditions.
  */
 export const ensureTestDocument = async (page: Page, collection: string) => {
@@ -21,18 +22,8 @@ export const ensureTestDocument = async (page: Page, collection: string) => {
 	const count = await rows.count();
 
 	if (count === 0) {
-		const createButton = page.locator("a[href*='/create']").first();
-
-		await createButton.click();
-
-		const textField = page.locator("#field-text");
-
-		await textField.fill("Seed document for tests");
-
-		const saveButton = page.locator("#action-save");
-
-		await saveButton.click();
-
-		await page.waitForURL(/\/collections\/.*\/\d+/);
+		await createDocument(page, collection, {
+			fieldValue: "Seed document for tests",
+		});
 	}
 };

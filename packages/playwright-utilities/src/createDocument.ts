@@ -1,6 +1,6 @@
-import type { Page } from "@playwright/test";
+import { expect, type Page } from "@playwright/test";
 
-import { navigateToCollection } from "./navigateToCollection.js";
+import { navigateToCollectionCreate } from "./navigateToCollectionCreate.js";
 import type { CreateDocumentOptions } from "./types.js";
 
 /**
@@ -12,8 +12,8 @@ import type { CreateDocumentOptions } from "./types.js";
  * @returns The ID of the created document (empty string if waitForSave is false)
  *
  * @remarks
- * Uses {@link navigateToCollection} to navigate to the collection list,
- * clicks create, fills the specified field with a value, and saves.
+ * Uses {@link navigateToCollectionCreate} to navigate to the collection create view,
+ * fills the specified field with a value, and saves.
  * If waitForSave is true, waits for the URL to update and extracts the document ID.
  */
 export const createDocument = async (
@@ -27,17 +27,17 @@ export const createDocument = async (
 		waitForSave = true,
 	} = options ?? {};
 
-	await navigateToCollection(page, collection);
-
-	const createButton = page.locator("a[href*='/create']").first();
-
-	await createButton.click();
+	await navigateToCollectionCreate(page, collection);
 
 	const textField = page.locator(`#field-${fieldName}`);
+
+	await expect(textField).toBeVisible();
 
 	await textField.fill(fieldValue);
 
 	const saveButton = page.locator("#action-save");
+
+	await expect(saveButton).toBeVisible();
 
 	await saveButton.click();
 
