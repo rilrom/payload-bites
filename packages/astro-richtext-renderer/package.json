@@ -33,11 +33,11 @@
 		"test:unit": "vitest run"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.8",
+		"@astrojs/check": "^0.9.9",
 		"@payload-bites/typescript-config": "workspace:*",
-		"astro": "^5.18.1",
+		"astro": "^5.18.2",
 		"typescript": "5.9.3",
-		"vitest": "^2.1.8"
+		"vitest": "^2.1.9"
 	},
 	"peerDependencies": {
 		"@payloadcms/richtext-lexical": "^3",

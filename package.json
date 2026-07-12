@@ -47,14 +47,14 @@
 		"clean": "find . -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \".turbo\" -name \".astro\" -o -name \"dist\" \\) -prune -exec rm -rf {} +"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.8",
+		"@biomejs/biome": "^2.5.3",
 		"@swc/cli": "^0.7.10",
-		"@swc/core": "^1.15.18",
+		"@swc/core": "^1.15.43",
 		"chokidar": "^4.0.3",
 		"copyfiles": "^2.4.1",
 		"stylelint": "^16.26.1",
 		"stylelint-config-standard-scss": "^16.0.0",
-		"turbo": "^2.8.20",
+		"turbo": "^2.10.4",
 		"typescript": "5.9.3"
 	},
 	"engines": {

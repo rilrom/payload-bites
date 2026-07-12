@@ -17,22 +17,22 @@
 		"payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
 	},
 	"dependencies": {
-		"@payloadcms/db-postgres": "3.80.0",
-		"@payloadcms/next": "3.80.0",
-		"@payloadcms/richtext-lexical": "3.80.0",
-		"@payloadcms/translations": "3.80.0",
-		"@payloadcms/ui": "3.80.0",
+		"@payloadcms/db-postgres": "3.86.0",
+		"@payloadcms/next": "3.86.0",
+		"@payloadcms/richtext-lexical": "3.86.0",
+		"@payloadcms/translations": "3.86.0",
+		"@payloadcms/ui": "3.86.0",
 		"cross-env": "^10.1.0",
-		"next": "16.2.0",
-		"payload": "3.80.0",
+		"next": "16.2.10",
+		"payload": "3.86.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"sharp": "^0.34.5"
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
-		"@types/node": "^24.12.0",
-		"@types/react": "^19.2.14",
+		"@types/node": "^24.13.3",
+		"@types/react": "^19.2.17",
 		"@types/react-dom": "^19.2.3",
 		"typescript": "5.9.3"
 	}

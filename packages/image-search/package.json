@@ -56,15 +56,15 @@
 	},
 	"devDependencies": {
 		"@payload-bites/typescript-config": "workspace:*",
-		"@playwright/test": "^1.58.2",
-		"@types/react": "^19.2.14",
+		"@playwright/test": "^1.61.1",
+		"@types/react": "^19.2.17",
 		"@types/react-dom": "^19.2.3",
-		"dotenv": "^17.3.1",
-		"get-port": "^7.1.0",
-		"react": "^19.2.4",
-		"react-dom": "^19.2.4",
+		"dotenv": "^17.4.2",
+		"get-port": "^7.2.0",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
 		"typescript": "5.9.3",
-		"vitest": "^3.0.5"
+		"vitest": "^3.2.7"
 	},
 	"peerDependencies": {
 		"@payloadcms/translations": "^3.43.0",
