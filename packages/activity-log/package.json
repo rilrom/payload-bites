@@ -1,7 +1,7 @@
 {
 	"name": "@payload-bites/activity-log",
 	"description": "keep an eye on everything happening in your cms",
-	"version": "1.6.1",
+	"version": "1.7.0",
 	"author": "Riley Langbein <rilrom-dev@protonmail.com>",
 	"repository": {
 		"type": "git",
