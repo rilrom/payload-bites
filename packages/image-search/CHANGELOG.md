@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 3.5.0
+
+### Minor Changes
+
+- feat: update peer deps to include next@^16.2.6 ([d15c148](https://github.com/rilrom/payload-bites/commit/d15c148))
+
 ## 3.4.2
 
 ### Patch Changes
