@@ -1,5 +1,11 @@
 # @payload-bites/broken-link-checker
 
+## 1.0.0-beta.9
+
+### Minor Changes
+
+- feat: update peer deps to include next@^16.2.6 ([d15c148](https://github.com/rilrom/payload-bites/commit/d15c148))
+
 ## 1.0.0-beta.8
 
 ### Minor Changes
