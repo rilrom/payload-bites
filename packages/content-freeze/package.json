@@ -1,7 +1,7 @@
 {
 	"name": "@payload-bites/content-freeze",
 	"description": "make sure your team are putting the tools down during critical moments",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"author": "Riley Langbein <rilrom-dev@protonmail.com>",
 	"repository": {
 		"type": "git",

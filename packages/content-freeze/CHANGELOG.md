@@ -1,5 +1,11 @@
 # @payload-bites/content-freeze
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: update peer deps to include next@^16.2.6 ([d15c148](https://github.com/rilrom/payload-bites/commit/d15c148))
+
 ## 1.2.0
 
 ### Minor Changes
