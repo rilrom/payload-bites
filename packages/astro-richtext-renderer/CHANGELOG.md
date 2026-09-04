@@ -1,5 +1,11 @@
 # @payload-bites/astro-richtext-renderer
 
+## 2.2.1
+
+### Patch Changes
+
+- fix: resolve type issues ([1b221a7](https://github.com/rilrom/payload-bites/commit/1b221a7))
+
 ## 2.2.0
 
 ### Minor Changes
