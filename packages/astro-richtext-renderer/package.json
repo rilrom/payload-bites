@@ -19,7 +19,7 @@
 	"type": "module",
 	"private": false,
 	"exports": {
-		".": "./src/index.js"
+		".": "./src/index.ts"
 	},
 	"files": [
 		"src"

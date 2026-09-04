@@ -154,7 +154,7 @@ const astroConverters: AstroConvertersFunction = ({ defaultConverters }) => ({
 
 You can override any of the default converters by passing your custom Astro component, keyed to the node type.
 
-Each converter component receives these props via `ConverterProps<T>`:
+Each converter component receives these props via `AstroConverterProps<T>`:
 
 | Prop         | Description                                              |
 | ------------ | -------------------------------------------------------- |
