@@ -65,6 +65,30 @@ A provider is an online image library that allows you to view and download image
 - [Pixels](https://www.pexels.com/api/)
 - [Pixabay](https://pixabay.com/api/docs/)
 
+## Reacting to a selected image
+
+When an editor picks an image, the plugin dispatches a `payload-bites:image-search:select` event on `window` before the upload starts. Its `detail` has the provider key and the full result: URLs, `attribution`, and, where the provider offers them, `tags` (Pixabay) and `pageUrl`. Use it to prefill other fields, for example from a small client component:
+
+```tsx
+"use client";
+
+import { imageSelectEventName, type ImageSelectEventDetail } from "@payload-bites/image-search/client";
+import { useEffect } from "react";
+
+export const OnImageSelect = () => {
+	useEffect(() => {
+		const listener = (event: Event) => {
+			const { provider, image } = (event as CustomEvent<ImageSelectEventDetail>).detail;
+			// e.g. set the alt text from image.tags, store image.attribution
+		};
+		window.addEventListener(imageSelectEventName, listener);
+		return () => window.removeEventListener(imageSelectEventName, listener);
+	}, []);
+
+	return null;
+};
+```
+
 ## Liability
 
 Before using any provider, ensure you have reviewed and agreed to their terms and usage policies. Contributors to this plugin are not responsible for how these images are used.

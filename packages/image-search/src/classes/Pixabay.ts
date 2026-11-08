@@ -9,6 +9,8 @@ export interface PixabayResult {
 	imageURL: string;
 	user: string;
 	user_id: number;
+	tags?: string;
+	pageURL?: string;
 }
 
 export class Pixabay extends Provider {
@@ -66,6 +68,11 @@ export class Pixabay extends Provider {
 				name: image.user,
 				link: `https://pixabay.com/users/${image.user}-${image.user_id}/`,
 			},
+			tags: (image.tags ?? "")
+				.split(",")
+				.map((tag) => tag.trim())
+				.filter(Boolean),
+			...(image.pageURL && { pageUrl: image.pageURL }),
 		}));
 	}
 }

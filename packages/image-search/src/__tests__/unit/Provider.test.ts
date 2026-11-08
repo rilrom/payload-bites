@@ -54,6 +54,19 @@ describe("Provider.formatResults", () => {
 			expect(result).toMatchSnapshot();
 		});
 
+		it("keeps tags and the page URL", () => {
+			const provider = new Pixabay();
+
+			const result = provider.formatResults(pixabayFixture);
+
+			expect(result[0]?.tags).toEqual(["beach", "sea", "sunset"]);
+			expect(result[0]?.pageUrl).toBe(
+				"https://pixabay.com/photos/beach-111222/",
+			);
+			expect(result[1]?.tags).toEqual([]);
+			expect(result[1]?.pageUrl).toBeUndefined();
+		});
+
 		it("falls back to largeImageURL when imageURL is empty", () => {
 			const provider = new Pixabay();
 

@@ -14,6 +14,10 @@ export interface ProviderResult {
 		name: string;
 		link: string;
 	};
+	/** Keywords the provider attached to the image, when it has any. */
+	tags?: string[];
+	/** The image's page at the provider, when the provider has one. */
+	pageUrl?: string;
 }
 
 export class Provider {
