@@ -15,7 +15,7 @@ const baseClass = "preview-image";
 type PreviewImageProps = {
 	slug: string;
 	selectedImage: ProviderResult | null;
-	onSelect: (url: string, download?: string) => void;
+	onSelect: (image: ProviderResult) => void;
 };
 
 export const PreviewImage = (props: PreviewImageProps) => {
@@ -47,10 +47,7 @@ export const PreviewImage = (props: PreviewImageProps) => {
 						buttonStyle="primary"
 						className={`${baseClass}__select`}
 						onClick={() => {
-							onSelect(
-								selectedImage.urls.original,
-								selectedImage.urls?.downloadLocation,
-							);
+							onSelect(selectedImage);
 							closeModal(slug);
 						}}
 					>

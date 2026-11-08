@@ -48,6 +48,12 @@ exports[`Provider.formatResults > Pixabay > transforms API response correctly 1`
     "color": "#ccc",
     "height": 3333,
     "id": "111222",
+    "pageUrl": "https://pixabay.com/photos/beach-111222/",
+    "tags": [
+      "beach",
+      "sea",
+      "sunset",
+    ],
     "urls": {
       "download": "https://pixabay.com/get/abc123_full.jpg",
       "original": "https://pixabay.com/get/abc123_full.jpg",
@@ -64,6 +70,7 @@ exports[`Provider.formatResults > Pixabay > transforms API response correctly 1`
     "color": "#ccc",
     "height": 1280,
     "id": "333444",
+    "tags": [],
     "urls": {
       "download": "https://pixabay.com/get/def456_1280.jpg",
       "original": "https://pixabay.com/get/def456_1280.jpg",

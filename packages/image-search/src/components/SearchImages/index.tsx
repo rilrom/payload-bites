@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Masonry } from "react-plock";
 
 import type { ProviderResult } from "../../classes/Provider.js";
+import { imageSelectEventName } from "../../events.js";
 import type {
 	TranslationsKeys,
 	TranslationsObject,
@@ -161,8 +162,18 @@ export const SearchImages = (props: SearchImagesProps) => {
 		}
 	}, [getFeaturedPhotos, getPhotos, value]);
 
-	const handleSelect = async (url: string, download?: string) => {
-		onSelect(url);
+	const handleSelect = async (image: ProviderResult) => {
+		const download = image.urls.downloadLocation;
+
+		// Dispatched before the upload starts, so listeners can prepare
+		// the form with data the provider returned (tags, author, page URL).
+		window.dispatchEvent(
+			new CustomEvent(imageSelectEventName, {
+				detail: { provider: selectedProvider?.value, image },
+			}),
+		);
+
+		onSelect(image.urls.original);
 
 		if (!download) {
 			return;
@@ -230,12 +241,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 									<button
 										type="button"
 										className={`${baseClass}__button`}
-										onClick={() =>
-											handleSelect(
-												data.urls.original,
-												data.urls?.downloadLocation,
-											)
-										}
+										onClick={() => handleSelect(data)}
 										style={{ backgroundColor: data.color }}
 									>
 										<img

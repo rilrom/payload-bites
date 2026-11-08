@@ -10,6 +10,8 @@ export const pixabayFixture: PixabayResult[] = [
 		imageURL: "https://pixabay.com/get/abc123_full.jpg",
 		user: "PhotoMaster",
 		user_id: 9999,
+		tags: "beach, sea,  sunset",
+		pageURL: "https://pixabay.com/photos/beach-111222/",
 	},
 	{
 		id: "333444",
@@ -20,5 +22,6 @@ export const pixabayFixture: PixabayResult[] = [
 		imageURL: "",
 		user: "ImagePro",
 		user_id: 8888,
+		tags: "",
 	},
 ];
