@@ -1,5 +1,20 @@
 # @payload-bites/soft-delete
 
+## 3.4.0
+
+### Minor Changes
+
+- feat!: raise minimum payload version for security advisories and align peer dependencies ([b9cd3c5](https://github.com/rilrom/payload-bites/commit/b9cd3c5))
+
+#### BREAKING CHANGES
+
+- Bumped the minimum payload version to 3.90.0 to address [multiple security advisories](https://github.com/payloadcms/payload/security/advisories).
+- Aligned the @payloadcms/translations, @payloadcms/ui, next and qs-esm peer dependencies with the versions payload 3.90.0 requires.
+
+### Patch Changes
+
+- chore: fix lint errors ([145a887](https://github.com/rilrom/payload-bites/commit/145a887))
+
 ## 3.3.0
 
 ### Minor Changes
