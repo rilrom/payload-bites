@@ -54,7 +54,7 @@ export class Unsplash extends Provider {
 	async getSearch(query: string, page: number) {
 		const data = await this.fetch(
 			"GET",
-			`/search/photos?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`,
+			`/search/photos?per_page=${this.getFetchLimit()}&page=${page}&query=${encodeURIComponent(query)}`,
 		);
 
 		return {

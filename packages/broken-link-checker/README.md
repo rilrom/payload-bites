@@ -7,6 +7,15 @@ Broken links are a thing of the past. Protect your SEO by staying on top of your
 
 https://github.com/user-attachments/assets/f4d33101-c7c5-445a-9aaa-b05e10254102
 
+## Compatibility table
+
+| Payload version | Broken link checker version |
+| --------------- | --------------------------- |
+| v3              | v1.0.0-beta.x               |
+| v4              | v2.0.0-beta.x               |
+
+Payload 4 versions are prereleases. Install them with `pnpm add @payload-bites/broken-link-checker@beta`.
+
 ## Quick start
 
 1. Install the plugin:

@@ -1,6 +1,7 @@
 ---
 import type { SerializedUploadNode } from "@payloadcms/richtext-lexical";
 import type { AstroConverterProps } from "../types";
+import { getResponsiveImageSources } from "../utils/uploadSources";
 
 type Props = AstroConverterProps<SerializedUploadNode>;
 
@@ -26,32 +27,9 @@ const url = doc?.url;
 
 const isImage = doc?.mimeType?.startsWith("image/");
 
-const hasResponsiveSizes = doc?.sizes && Object.keys(doc.sizes).length > 0;
+const sources = getResponsiveImageSources(doc);
 
-const sources = [];
-if (doc && hasResponsiveSizes) {
-	for (const size in doc.sizes) {
-		const imageSize = doc.sizes[size];
-
-		if (
-			!imageSize ||
-			!imageSize.width ||
-			!imageSize.height ||
-			!imageSize.mimeType ||
-			!imageSize.filesize ||
-			!imageSize.filename ||
-			!imageSize.url
-		) {
-			continue;
-		}
-
-		sources.push({
-			media: `(max-width: ${imageSize.width}px)`,
-			srcSet: imageSize.url,
-			type: imageSize.mimeType,
-		});
-	}
-}
+const hasResponsiveSizes = sources.length > 0;
 ---
 
 {

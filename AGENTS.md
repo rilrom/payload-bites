@@ -4,7 +4,9 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project Overview
 
-Payload bites is a monorepo containing bite-sized Payload v3 plugins and tools. Each plugin is published as an independent npm package under `@payload-bites/*`.
+Payload bites is a monorepo containing bite-sized Payload v4 plugins and tools. Each plugin is published as an independent npm package under `@payload-bites/*`.
+
+`main` targets Payload 4 (currently `4.0.0-beta.10`) and publishes prereleases. The Payload 3 line is maintained on the `v3` branch. `soft-delete` was removed from `main` and only lives on `v3`.
 
 **Current plugins:**
 - `image-search` - Search for images using providers (Unsplash, Pexels, Pixabay)
@@ -42,7 +44,8 @@ payload-bites/
 - `pnpm dev` - Run dev mode across all packages
 - `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages (Biome + Stylelint)
-- `pnpm tsc` - Type check all packages
+- `pnpm tsc` - Type check packages that have a `tsc` script
+- `pnpm -r --if-present check-types` - Type check packages that name the script `check-types` (broken-link-checker, content-freeze and astro-richtext-renderer). `pnpm tsc` skips these, so run both
 - `pnpm test` - Run all tests (unit + E2E)
 - `pnpm clean` - Clean build artifacts (node_modules, .next, .astro, .turbo, dist)
 
@@ -70,8 +73,8 @@ pnpm dev --filter PACKAGE_NAME --filter @payload-bites/PACKAGE_NAME
 Within `packages/*/`:
 - `pnpm dev` - Build in watch mode (TypeScript + SWC)
 - `pnpm build` - Production build
-- `pnpm lint` - Run Biome linter (and Stylelint for packages with SCSS)
-- `pnpm tsc` - Type check without emit
+- `pnpm lint` - Run Biome linter and Stylelint (Stylelint checks `.css` files)
+- `pnpm tsc` or `pnpm check-types` - Type check without emit (the script name varies by package, see above)
 - `pnpm test` - Run all tests (unit + E2E)
 - `pnpm test:unit` - Run unit tests only (Vitest)
 - `pnpm test:e2e` - Run E2E tests only (Playwright)
@@ -82,7 +85,7 @@ Within `apps/*/` (Next.js apps):
 - `pnpm generate:types` - Generate Payload types
 - `pnpm generate:importmap` - Generate Payload import map
 
-Within Astro apps (e.g., `apps/astro-richtext-renderer/website/`):
+Within Astro apps (e.g., `apps/astro-richtext-renderer/website/`, which uses Astro 7):
 - `pnpm dev` - Start Astro dev server
 - `pnpm build` - Build Astro site
 - `pnpm preview` - Preview production build
@@ -173,6 +176,8 @@ All packages extend `@payload-bites/typescript-config/base.json`:
 - Strict mode enabled
 - `noUncheckedIndexedAccess: true`
 
+TypeScript is pinned to exactly `6.0.3`. Do not use a range, because `latest` is a newer major.
+
 ## Testing
 
 This project uses Vitest for unit tests and Playwright for E2E tests. Tests must pass before creating a PR, and tests should be added when making changes that can be reasonably tested.
@@ -216,8 +221,10 @@ t('yourStringKey')
 
 ## Environment & Requirements
 
-- **Node**: >= 22
-- **pnpm**: ^10.19.0 (enable via `corepack enable`)
+- **Node**: `^24.22.3 || >=26.13.1`
+- **pnpm**: 11 (`packageManager` pins `pnpm@11.12.0`, enable via `corepack enable`)
+- **TypeScript**: `6.0.3`
+- **Astro**: 7 (astro-richtext-renderer peer `^7.4.7`)
 - **Database**: Postgres (default)
 	- Set `DATABASE_URI` and `SERVER_URL` in app `.env` files
 	- Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`
@@ -234,12 +241,20 @@ All commits in a PR are squashed using the PR title as the commit message.
 ### Before creating a PR
 - All tests must pass (`pnpm test`)
 - Linting must pass (`pnpm lint`)
-- Type checking must pass (`pnpm tsc`)
+- Type checking must pass (`pnpm tsc` and `pnpm -r --if-present check-types`)
 - Add tests for new functionality or bug fixes when reasonable
+
+### Release flow
+- `main` publishes Payload 4 prereleases with `pnpm publish --tag beta`
+- `v3` publishes Payload 3 releases with `pnpm publish --tag latest`
+- Always pass `--tag` explicitly. pnpm 11 ignores `publishConfig.tag` and defaults to `latest`
+- Fixes that apply to both lines get a separate PR per line
+- When a cherry-pick between lines applies cleanly, use `git cherry-pick -x`
+- Never cherry-pick `pnpm-lock.yaml`. Keep the target branch's lockfile and regenerate it
 
 ## Code Quality
 
-- **Linting**: Biome handles JS/TS linting, Stylelint handles SCSS. Both must pass with zero errors (warnings acceptable when appropriate)
+- **Linting**: Biome handles JS/TS linting, Stylelint handles CSS. Both must pass with zero errors (warnings acceptable when appropriate)
 - **Formatting**: Biome automatically formats on save (VSCode settings provided)
 - **VSCode settings**: Pre-configured in `.vscode/settings.json`
 	- Auto-save on focus change
@@ -250,18 +265,16 @@ All commits in a PR are squashed using the PR title as the commit message.
 ## Key Technical Details
 
 ### Payload version pinning
-The project pins Payload to a specific version via pnpm overrides in root `package.json`:
-```json
-{
-	"pnpm": {
-		"overrides": {
-			"payload": "3.86.0",
-			"@payloadcms/db-postgres": "3.86.0",
-			// ... other Payload packages
-		}
-	}
-}
+The project pins Payload to a specific version via `overrides` in `pnpm-workspace.yaml`:
+```yaml
+overrides:
+  "@payloadcms/db-postgres": "4.0.0-beta.10"
+  "@payloadcms/ui": "4.0.0-beta.10"
+  "payload": "4.0.0-beta.10"
+  # ... other Payload packages
 ```
+
+Plugin peer ranges follow Payload's own floors: `payload` and `@payloadcms/*` use `>=4.0.0-beta.10 <5.0.0`, `next` uses `>=16.4.5 <17.0.0`, and `react` and `react-dom` use `^19.3.1`.
 
 ### deepMerge utility
 Most plugins use a `deepMerge` utility to merge configurations without overwriting nested objects.

@@ -25,6 +25,7 @@ export const afterChangeGlobalActivityLog = (
 		try {
 			await args.req.payload.create({
 				collection: options.activityLogSlug,
+				overrideAccess: true,
 				data: {
 					operation: "update",
 					...(args.req.user && {

@@ -2,6 +2,15 @@
 
 Render Payload CMS Lexical richtext content in Astro using native Astro components.
 
+## Compatibility table
+
+| Payload version | Astro version | Astro richtext renderer version |
+| --------------- | ------------- | ------------------------------- |
+| v3              | v5            | v1.x, v2.x                      |
+| v4              | v7            | v3.x                            |
+
+Payload 4 versions are prereleases. Install them with `pnpm add @payload-bites/astro-richtext-renderer@beta`.
+
 ## Installation
 
 ```bash

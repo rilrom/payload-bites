@@ -1,6 +1,6 @@
 "use client";
 
-import "./index.scss";
+import "./index.css";
 
 import type { PluginComponent } from "@payloadcms/richtext-lexical";
 

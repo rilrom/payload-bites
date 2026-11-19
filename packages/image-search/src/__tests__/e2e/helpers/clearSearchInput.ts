@@ -10,7 +10,7 @@ import type { Locator } from "@playwright/test";
  * Call {@link waitForImages} after this to wait for featured images to load.
  */
 export const clearSearchInput = async (element: Locator) => {
-	const searchInput = element.locator(".search-filter__input");
+	const searchInput = element.locator(".search-input__input");
 
 	await searchInput.clear();
 };

@@ -17,13 +17,16 @@ export const endpoints: Endpoint[] = [
 
 			const jobResult = await req.payload.find({
 				collection: "payload-jobs",
+				overrideAccess: true,
 				where: {
 					and: [
 						{ taskSlug: { equals: "scanLinks" } },
-						{ processing: { equals: true } },
+						{ processingUntil: { greater_than: new Date().toISOString() } },
 					],
 				},
 				limit: 1,
+				depth: 0,
+				select: { createdAt: true },
 			});
 
 			const job = jobResult.docs?.[0] ?? null;
@@ -50,12 +53,21 @@ export const endpoints: Endpoint[] = [
 				task: "scanLinks",
 				queue: "brokenLinkChecker",
 				input: undefined,
+				overrideAccess: true,
 			});
 
-			req.payload.jobs.runByID({
-				id: job.id,
-				req,
-			});
+			void req.payload.jobs
+				.runByID({
+					id: job.id,
+					req,
+					overrideAccess: true,
+				})
+				.catch((err) =>
+					req.payload.logger.error({
+						err,
+						msg: "[broken-link-checker]: Scan failed.",
+					}),
+				);
 
 			return Response.json({ success: true });
 		},

@@ -1,11 +1,10 @@
 import type {
+	SerializedBlockNode,
 	SerializedHeadingNode,
+	SerializedInlineBlockNode,
 	SerializedTextNode,
 } from "@payloadcms/richtext-lexical";
-import type {
-	SerializedLexicalNode,
-	SerializedParagraphNode,
-} from "@payloadcms/richtext-lexical/lexical";
+import type { SerializedParagraphNode } from "@payloadcms/richtext-lexical/lexical";
 import type { SerializedListItemNode } from "@payloadcms/richtext-lexical/lexical/list";
 
 export const mockParagraphNode = {
@@ -39,26 +38,60 @@ export const mockTextNode = {
 	style: "",
 } as SerializedTextNode;
 
-export const mockBlockNode = {
+export const mockBlockNode: SerializedBlockNode<{ blockType: "imageBlock" }> = {
 	type: "block",
 	version: 1,
+	format: "",
 	fields: {
+		id: "65f0c0ffee0000000000b10c",
+		blockName: null,
 		blockType: "imageBlock",
 	},
-	children: [],
-} as SerializedLexicalNode & {
-	fields?: { blockType?: string };
 };
 
-export const mockInlineBlockNode = {
+export const mockInlineBlockNode: SerializedInlineBlockNode<{
+	blockType: "mentionBlock";
+}> = {
 	type: "inlineBlock",
 	version: 1,
 	fields: {
+		id: "65f0c0ffee0000000000b10d",
 		blockType: "mentionBlock",
 	},
-	children: [],
-} as SerializedLexicalNode & {
-	fields?: { blockType?: string };
+};
+
+const mockImageDoc = {
+	id: 1,
+	filename: "hero.jpg",
+	filesize: 204800,
+	height: 1200,
+	mimeType: "image/jpeg",
+	url: "/media/hero.jpg",
+	width: 1600,
+};
+
+const mockImageSizes = {
+	thumbnail: {
+		filename: "hero-400x300.jpg",
+		filesize: 12000,
+		height: 300,
+		mimeType: "image/jpeg",
+		url: "/media/hero-400x300.jpg",
+		width: 400,
+	},
+	tablet: {
+		filename: "hero-1024x768.webp",
+		filesize: 64000,
+		height: 768,
+		mimeType: "image/webp",
+		url: "/media/hero-1024x768.webp",
+		width: 1024,
+	},
+};
+
+export const mockUploadDocWithVariants = {
+	...mockImageDoc,
+	variants: mockImageSizes,
 };
 
 export const mockNodeWithFormat = {

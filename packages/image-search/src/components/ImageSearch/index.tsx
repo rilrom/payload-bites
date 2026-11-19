@@ -1,17 +1,26 @@
 "use client";
 
+import "./index.css";
+
 import {
 	Button,
 	Drawer,
 	useConfig,
 	useModal,
+	useTranslation,
 	useUploadControls,
 } from "@payloadcms/ui";
 import { useCallback } from "react";
 
+import type {
+	TranslationsKeys,
+	TranslationsObject,
+} from "../../translations.js";
 import { SearchImages } from "../SearchImages/index.js";
 
 export const searchImagesDrawerSlug = "search-images";
+
+const baseClass = "image-search";
 
 interface ImageSearchProps {
 	enablePreview: boolean;
@@ -25,6 +34,8 @@ export const ImageSearch = (props: ImageSearchProps) => {
 	const { config } = useConfig();
 
 	const { openModal, closeModal } = useModal();
+
+	const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
 
 	const handleSearchSubmit = useCallback(
 		(url: string) => {
@@ -41,15 +52,18 @@ export const ImageSearch = (props: ImageSearchProps) => {
 
 	return (
 		<>
-			|
+			<span className={`${baseClass}__or-text`}>{t("general:or")}</span>
 			<Button
-				buttonStyle="pill"
-				size="small"
+				buttonStyle="secondary"
+				size="medium"
 				onClick={() => openModal(searchImagesDrawerSlug)}
 			>
-				Search images
+				{t("imageSearch:searchImages")}
 			</Button>
-			<Drawer slug={searchImagesDrawerSlug}>
+			<Drawer
+				slug={searchImagesDrawerSlug}
+				title={t("imageSearch:searchImages")}
+			>
 				<SearchImages
 					serverURL={config.serverURL}
 					api={config.routes.api}

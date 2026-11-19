@@ -1,13 +1,18 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
-/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
+/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. MODIFY AT YOUR OWN RISK. */
 import "@payloadcms/next/css";
 
 import config from "@payload-config";
-import { handleServerFunctions, RootLayout } from "@payloadcms/next/layouts";
+import {
+	generatePayloadViewport,
+	handleServerFunctions,
+	RootLayout,
+} from "@payloadcms/next/layouts";
 import type { ServerFunctionClient } from "payload";
 import type React from "react";
 
 import { importMap } from "./admin/importMap.js";
+
+export const generateViewport = generatePayloadViewport;
 
 type Args = {
 	children: React.ReactNode;

@@ -36,7 +36,7 @@ test("should show providers in dropdown", async ({ page }) => {
 
 	await verifyDropdownOpen(drawer);
 
-	const selectOptions = drawer.locator(".search-images .rs__menu");
+	const selectOptions = drawer.locator(".rs__menu");
 
 	await expect(selectOptions.locator(".rs__option")).toHaveText(PROVIDERS);
 });
@@ -96,7 +96,7 @@ test("should preview the full-sized image", async ({ page }) => {
 
 	const previewDrawer = await openPreviewDrawer(page, drawer, 0);
 
-	const previewImage = previewDrawer.locator(".preview-image__image img");
+	const previewImage = previewDrawer.locator("img.preview-image__image");
 
 	await expect(previewImage).toBeVisible();
 });

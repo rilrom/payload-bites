@@ -1,12 +1,15 @@
 import { expect, type Page } from "@playwright/test";
 
-export const checkLastModifiedByField = async (page: Page) => {
+export const checkLastModifiedByField = async (
+	page: Page,
+	email = process.env.TEST_USER,
+) => {
 	const lastModifiedByField = page.locator(
 		"#field-lastModifiedBy .relationship--single-value__text",
 	);
 
-	if (process.env.TEST_USER) {
-		await expect(lastModifiedByField).toHaveText(process.env.TEST_USER);
+	if (email) {
+		await expect(lastModifiedByField).toHaveText(email);
 	} else {
 		throw new Error("Unable to find test user");
 	}

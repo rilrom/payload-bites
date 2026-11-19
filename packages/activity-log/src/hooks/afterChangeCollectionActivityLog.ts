@@ -33,6 +33,7 @@ export const afterChangeCollectionActivityLog = (
 		try {
 			await args.req.payload.create({
 				collection: options.activityLogSlug,
+				overrideAccess: true,
 				data: {
 					operation: args.operation,
 					...(args.req.user && {

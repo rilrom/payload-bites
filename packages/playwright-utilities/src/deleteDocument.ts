@@ -1,5 +1,6 @@
 import { expect, type Page } from "@playwright/test";
 
+import { getDeleteMenuItem } from "./deleteControl.js";
 import { openDocControls } from "./openDocControls.js";
 
 /**
@@ -10,7 +11,7 @@ import { openDocControls } from "./openDocControls.js";
  * @remarks
  * Assumes the page is already viewing a document.
  * Uses {@link openDocControls} to access the delete button,
- * confirms the deletion dialog, and waits for success toast.
+ * confirms the deletion dialog, and waits for the deleted or trashed toast.
  *
  * @throws Error if doc controls are not found
  */
@@ -21,11 +22,7 @@ export const deleteDocument = async (page: Page) => {
 		throw new Error("Doc controls not found");
 	}
 
-	const deleteButton = docControlsContent.getByRole("button", {
-		name: "Delete",
-	});
-
-	await deleteButton.click();
+	await getDeleteMenuItem(docControlsContent).click();
 
 	const dialog = page.locator("dialog[open]");
 
@@ -35,5 +32,9 @@ export const deleteDocument = async (page: Page) => {
 
 	await confirmButton.click();
 
-	await page.waitForSelector(".payload-toast-container .toast-success");
+	await expect(
+		page.locator(".payload-toast-container .toast-success", {
+			hasText: /successfully deleted|moved to trash/,
+		}),
+	).toBeVisible();
 };

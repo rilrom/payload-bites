@@ -1,8 +1,8 @@
 "use client";
 
-import "./index.scss";
+import "./index.css";
 
-import { Button, useModal, useTranslation } from "@payloadcms/ui";
+import { Drawer, useModal, useTranslation } from "@payloadcms/ui";
 
 import type { ProviderResult } from "../../classes/Provider.js";
 import type {
@@ -25,44 +25,43 @@ export const PreviewImage = (props: PreviewImageProps) => {
 
 	const { t } = useTranslation<TranslationsObject, TranslationsKeys>();
 
-	if (!selectedImage) {
-		return null;
-	}
-
 	return (
-		<div className={baseClass}>
-			<div className={`${baseClass}__header`}>
-				<h2>{t("imageSearch:previewImage")}</h2>
-				<div className={`${baseClass}__actions`}>
-					<Button
-						aria-label={t("general:cancel")}
-						buttonStyle="secondary"
-						className={`${baseClass}__cancel`}
-						onClick={() => closeModal(slug)}
-					>
-						{t("general:cancel")}
-					</Button>
-					<Button
-						aria-label={t("imageSearch:selectImage")}
-						buttonStyle="primary"
-						className={`${baseClass}__select`}
-						onClick={() => {
-							onSelect(
-								selectedImage.urls.original,
-								selectedImage.urls?.downloadLocation,
-							);
-							closeModal(slug);
-						}}
-					>
-						{t("imageSearch:selectImage")}
-					</Button>
+		<Drawer
+			slug={slug}
+			title={t("imageSearch:previewImage")}
+			headerActions={[
+				{
+					label: t("general:cancel"),
+					onClick: () => closeModal(slug),
+					style: "secondary",
+				},
+				{
+					disabled: !selectedImage,
+					label: t("imageSearch:selectImage"),
+					onClick: () => {
+						if (!selectedImage) {
+							return;
+						}
+
+						onSelect(
+							selectedImage.urls.original,
+							selectedImage.urls?.downloadLocation,
+						);
+						closeModal(slug);
+					},
+					style: "primary",
+				},
+			]}
+		>
+			{selectedImage && (
+				<div className={baseClass}>
+					<img
+						className={`${baseClass}__image`}
+						src={selectedImage.urls.original}
+						alt={selectedImage.alt}
+					/>
 				</div>
-			</div>
-			<div className={`${baseClass}__content`}>
-				<div className={`${baseClass}__image`}>
-					<img src={selectedImage.urls.original} alt={selectedImage.alt} />
-				</div>
-			</div>
-		</div>
+			)}
+		</Drawer>
 	);
 };

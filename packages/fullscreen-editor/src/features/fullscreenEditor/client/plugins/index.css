@@ -1,0 +1,48 @@
+.focus-mode {
+	overflow: hidden;
+}
+
+.focus-mode .nav,
+.focus-mode .live-preview-window {
+	visibility: hidden;
+}
+
+.focus-mode .document-fields--force-sidebar-wrap {
+	isolation: auto;
+}
+
+/* Edit form containment and the drawer transform would otherwise become the containing block of the fixed editor (ui/dist/views/Edit/index.css, ui/dist/elements/Drawer/index.css). */
+.focus-mode .collection-edit__form:has(.focused-editor) {
+	container-type: normal;
+}
+
+.focus-mode .drawer__content:has(.focused-editor) {
+	width: 100%;
+	max-width: none;
+	transform: none;
+	transition: none;
+	container-type: normal;
+}
+
+.focused-editor {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	margin: 0;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	overflow-y: auto;
+}
+
+.focused-editor > .rich-text-lexical__label-row > .field-label {
+	display: none;
+}
+
+.focused-editor .rich-text-lexical__wrap {
+	padding: var(--spacer-3);
+}
+
+.focused-editor .fixed-toolbar {
+	top: 0;
+	transform: none;
+}

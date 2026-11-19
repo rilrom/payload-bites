@@ -1,0 +1,30 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "@playwright/test";
+import dotenv from "dotenv";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+dotenv.config({
+	path: path.resolve(__dirname, "../../apps/fullscreen-editor/.env"),
+});
+
+const testPort = 3006;
+const testUrl = `http://localhost:${testPort}`;
+
+export default defineConfig({
+	testDir: "./src/__tests__/e2e",
+	use: {
+		baseURL: `${testUrl}/admin`,
+	},
+	webServer: {
+		command: `lsof -ti :${testPort} | xargs kill -9 2>/dev/null || true; pnpm dev --port ${testPort}`,
+		url: testUrl,
+		reuseExistingServer: false,
+		cwd: path.resolve(__dirname, "../../apps/fullscreen-editor"),
+		env: {
+			...process.env,
+			SERVER_URL: testUrl,
+		},
+	},
+});

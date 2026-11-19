@@ -11,7 +11,7 @@ import type { Locator } from "@playwright/test";
  * Call {@link waitForImages} after this to wait for results.
  */
 export const searchForTerm = async (element: Locator, term: string) => {
-	const searchInput = element.locator(".search-filter__input");
+	const searchInput = element.locator(".search-input__input");
 
 	await searchInput.fill(term);
 

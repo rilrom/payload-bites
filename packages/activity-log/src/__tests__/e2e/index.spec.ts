@@ -2,8 +2,8 @@ import {
 	createDocument,
 	deleteDocument,
 	ensureTestDocument,
+	expectDeleteUnavailable,
 	goToFirstCell,
-	openDocControls,
 } from "@payload-bites/playwright-utilities";
 import { expect, test } from "@playwright/test";
 
@@ -131,13 +131,5 @@ test("should block deleting activity log entries", async ({ page }) => {
 
 	await goToFirstCell(page);
 
-	const docControlsContent = await openDocControls(page);
-
-	if (docControlsContent) {
-		const deleteButton = docControlsContent.getByRole("button", {
-			name: "Delete",
-		});
-
-		await expect(deleteButton).toHaveCount(0);
-	}
+	await expectDeleteUnavailable(page);
 });

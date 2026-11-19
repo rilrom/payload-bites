@@ -1,14 +1,14 @@
 "use client";
 
-import "./index.scss";
+import "./index.css";
 
 import {
-	Drawer,
 	LinkIcon,
 	Pagination,
-	SearchFilter,
+	SearchInput,
 	Select,
 	toast,
+	useDebounce,
 	useModal,
 	useTranslation,
 } from "@payloadcms/ui";
@@ -51,7 +51,8 @@ export const SearchImages = (props: SearchImagesProps) => {
 	const [selectedProvider, setSelectedProvider] =
 		useState<ProviderOption | null>(null);
 	const [loading, setLoading] = useState(true);
-	const [value, setValue] = useState("");
+	const [inputValue, setInputValue] = useState("");
+	const value = useDebounce(inputValue, 300);
 	const [images, setImages] = useState<ProviderResult[] | null>(null);
 	const [totalPages, setTotalPages] = useState<number | null>(null);
 	const [currentPage, setCurrentPage] = useState<number | null>(null);
@@ -125,7 +126,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 				resetImages();
 
 				const json = await fetchWithCache(
-					`${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${query}&page=${page}`,
+					`${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${encodeURIComponent(query)}&page=${page}`,
 				);
 
 				if (json.error) {
@@ -144,10 +145,6 @@ export const SearchImages = (props: SearchImagesProps) => {
 		},
 		[resetImages, serverURL, api, selectedProvider?.value, addDefaultError],
 	);
-
-	const handleSearchFilterChange = useCallback((search: string) => {
-		setValue(search);
-	}, []);
 
 	const handleSelectChange = useCallback((select: ProviderOption) => {
 		setSelectedProvider(select);
@@ -171,7 +168,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 		// We don't want this to prevent users from continuing if this request fails
 		try {
 			await fetch(
-				`${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${download}`,
+				`${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${encodeURIComponent(download)}`,
 			);
 		} catch {
 			return null;
@@ -190,10 +187,14 @@ export const SearchImages = (props: SearchImagesProps) => {
 
 	return (
 		<div className={baseClass}>
-			<h2>{t("imageSearch:searchImages")}</h2>
-
 			<div className={`${baseClass}__fields`}>
-				<SearchFilter label="" handleChange={handleSearchFilterChange} />
+				<SearchInput
+					aria-label={t("imageSearch:searchImages")}
+					className={`${baseClass}__search`}
+					value={inputValue}
+					onChange={setInputValue}
+					onClear={() => setInputValue("")}
+				/>
 				<Select
 					options={providerOptions}
 					value={selectedProvider as ProviderOption}
@@ -308,13 +309,11 @@ export const SearchImages = (props: SearchImagesProps) => {
 			)}
 
 			{enablePreview && (
-				<Drawer Header={null} slug={previewImageDrawerSlug}>
-					<PreviewImage
-						slug={previewImageDrawerSlug}
-						selectedImage={selectedImage}
-						onSelect={handleSelect}
-					/>
-				</Drawer>
+				<PreviewImage
+					slug={previewImageDrawerSlug}
+					selectedImage={selectedImage}
+					onSelect={handleSelect}
+				/>
 			)}
 		</div>
 	);

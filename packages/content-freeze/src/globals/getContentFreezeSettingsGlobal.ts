@@ -3,6 +3,7 @@ import type { GlobalConfig } from "payload";
 
 import { type TranslationsKeys, translations } from "../translations.js";
 import type { ContentFreezePluginOptions } from "../types.js";
+import { getFreezeSettingsCacheKey } from "../utils/wrapAccessControl.js";
 
 export const getContentFreezeSettingsGlobal = ({
 	pluginOptions,
@@ -15,6 +16,8 @@ export const getContentFreezeSettingsGlobal = ({
 }): GlobalConfig => {
 	let global: GlobalConfig = {
 		slug: "content-freeze-settings",
+		authorship: false,
+		versions: false,
 		admin: {
 			group: {
 				en: translations.en.contentFreeze.settingsLabel,
@@ -92,6 +95,13 @@ export const getContentFreezeSettingsGlobal = ({
 				},
 			},
 		],
+		hooks: {
+			afterChange: [
+				({ global, req }) => {
+					delete req.context[getFreezeSettingsCacheKey(global.slug)];
+				},
+			],
+		},
 	};
 
 	if (

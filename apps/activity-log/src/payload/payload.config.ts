@@ -63,6 +63,7 @@ export default buildConfig({
 
 		const response = await payload.find({
 			collection: "users",
+			overrideAccess: true,
 			where: {
 				email: {
 					equals: process.env.TEST_USER,
@@ -73,6 +74,7 @@ export default buildConfig({
 		if (response?.docs?.length === 0) {
 			await payload.create({
 				collection: "users",
+				overrideAccess: true,
 				data: {
 					email: process.env.TEST_USER,
 					password: process.env.TEST_PASS,

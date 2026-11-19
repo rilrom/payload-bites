@@ -40,7 +40,7 @@ export class Pixabay extends Provider {
 	async getSearch(query: string, page: number) {
 		const data = await this.fetch(
 			"GET",
-			`/api?key=${this.getApiKey()}&per_page=${this.getFetchLimit()}&page=${page}&q=${query}`,
+			`/api?key=${this.getApiKey()}&per_page=${this.getFetchLimit()}&page=${page}&q=${encodeURIComponent(query)}`,
 		);
 
 		return {

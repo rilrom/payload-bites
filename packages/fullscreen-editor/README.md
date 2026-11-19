@@ -4,6 +4,15 @@ Provides a fullscreen mode for the lexical rich text editor.
 
 https://github.com/user-attachments/assets/22ba5cf7-6cb2-4695-8dbf-f06b37c77b66
 
+## Compatibility table
+
+| Payload version | Fullscreen editor version |
+| --------------- | ------------------------- |
+| v3              | v1.x                      |
+| v4              | v2.x                      |
+
+Payload 4 versions are prereleases. Install them with `pnpm add @payload-bites/fullscreen-editor@beta`.
+
 ## Quick start
 
 1. Install the plugin:

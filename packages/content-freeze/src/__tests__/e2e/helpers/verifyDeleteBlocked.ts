@@ -1,9 +1,9 @@
 import {
+	expectDeleteUnavailable,
 	goToFirstCell,
 	navigateToCollection,
-	openDocControls,
 } from "@payload-bites/playwright-utilities";
-import { expect, type Page } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 /**
  * Opens a document in a collection where delete access is blocked and asserts
@@ -23,13 +23,5 @@ export const verifyDeleteBlocked = async (page: Page, collection: string) => {
 
 	await goToFirstCell(page);
 
-	const docControlsContent = await openDocControls(page);
-
-	if (docControlsContent) {
-		const deleteButton = docControlsContent.getByRole("button", {
-			name: "Delete",
-		});
-
-		await expect(deleteButton).toHaveCount(0);
-	}
+	await expectDeleteUnavailable(page);
 };

@@ -24,9 +24,13 @@ To help me work on new features, you can create a new feature request post in [G
 
 ### Installation & requirements
 
-Payload bites is structured as a monorepo. To install all required dependencies, you have to run `pnpm install` once in the root directory. Please note that pnpm is required, yarn or npm will not work. In most systems, the easiest way to install pnpm is to run `corepack enable` in your terminal.
+Payload bites is structured as a monorepo. To install all required dependencies, you have to run `pnpm install` once in the root directory. Please note that pnpm is required, yarn or npm will not work. pnpm 11 is required. In most systems, the easiest way to install pnpm is to run `corepack enable` in your terminal.
 
 Node ^24.22.3 or >=26.13.1 is required. You can check your current node version by typing `node --version` in your terminal. The easiest way to switch between different node versions is to use [nvm](https://github.com/nvm-sh/nvm#intro).
+
+### Branches and Payload versions
+
+`main` targets Payload 4 and `v3` targets Payload 3 (soft delete only lives on `v3`). Open your PR against the branch for the Payload version you are fixing.
 
 ### Development
 
@@ -68,6 +72,13 @@ pnpm test:e2e --filter @payload-bites/PACKAGE_NAME
 pnpm test
 ```
 
+Type checking must also pass. Most packages use a `tsc` script, but broken-link-checker, content-freeze and astro-richtext-renderer name it `check-types`, so run both:
+
+```bash
+pnpm tsc
+pnpm -r --if-present check-types
+```
+
 **When to add tests:**
 
 - Bug fixes should include a test that reproduces the bug
@@ -102,6 +113,14 @@ Here are some examples:
 - `feat(image-search): add new feature`
 - `fix(content-freeze): fix bug`
 - `chore: upgrade dependencies`
+
+### Fixes for both Payload versions
+
+Open a separate PR for each branch. If a cherry-pick applies cleanly, use `git cherry-pick -x`. Never cherry-pick `pnpm-lock.yaml`; regenerate it on the target branch instead.
+
+### Releases
+
+`main` publishes with `pnpm publish --tag beta` and `v3` with `pnpm publish --tag latest`. Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`.
 
 ## Internationalization (i18n)
 

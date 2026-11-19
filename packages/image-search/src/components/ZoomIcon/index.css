@@ -1,0 +1,11 @@
+@layer payload-default {
+	.icon--zoom {
+		height: 20px;
+		width: 20px;
+
+		& .stroke {
+			stroke: currentcolor;
+			stroke-width: var(--stroke-width-small);
+		}
+	}
+}

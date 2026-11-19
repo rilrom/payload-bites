@@ -17,7 +17,7 @@ import type {
 } from "../../translations.js";
 import { Card } from "../Card/index.js";
 import { Loading } from "../Loading/index.js";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 export const ScanActions = () => {
 	const { config } = useConfig();

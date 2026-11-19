@@ -44,7 +44,7 @@ export class Pexels extends Provider {
 	async getSearch(query: string, page: number) {
 		const data = await this.fetch(
 			"GET",
-			`/v1/search?per_page=${this.getFetchLimit()}&page=${page}&query=${query}`,
+			`/v1/search?per_page=${this.getFetchLimit()}&page=${page}&query=${encodeURIComponent(query)}`,
 		);
 
 		return {

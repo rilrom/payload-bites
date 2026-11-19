@@ -45,11 +45,11 @@
 		"dev": "pnpm clean && pnpm copyfiles && pnpm dev:types && pnpm dev:swc",
 		"dev:swc": "swc ./src -d ./dist --config-file .swcrc --strip-leading-paths --watch",
 		"dev:types": "tsc --outDir dist --rootDir ./src --watch",
-		"copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
+		"copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
 		"clean": "rm -rf dist && rm -rf tsconfig.tsbuildinfo",
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
-		"lint:styles": "stylelint --fix=strict --allow-empty-input \"**/*.scss\"",
+		"lint:styles": "stylelint --fix=strict \"**/*.css\"",
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -66,13 +66,11 @@
 		"typescript": "6.0.3"
 	},
 	"peerDependencies": {
-		"@payloadcms/next": "^3.43.0",
-		"@payloadcms/translations": "^3.43.0",
-		"@payloadcms/ui": "^3.43.0",
-		"next": "^15.2.8 || ^15.3.8 || ^15.4.10 || ^15.5.9 || ^16.2.6",
-		"payload": "^3.43.0",
-		"qs-esm": "^7",
-		"react": "^19.0.1 || ^19.1.2 || ^19.2.1",
-		"react-dom": "^19.0.1 || ^19.1.2 || ^19.2.1"
+		"@payloadcms/translations": ">=4.0.0-beta.10 <5.0.0",
+		"@payloadcms/ui": ">=4.0.0-beta.10 <5.0.0",
+		"next": ">=16.4.5 <17.0.0",
+		"payload": ">=4.0.0-beta.10 <5.0.0",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1"
 	}
 }

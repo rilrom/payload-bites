@@ -33,6 +33,7 @@ export const auditFieldsPlugin =
 
 			const modifiedCollection = {
 				...collection,
+				authorship: collection.authorship ?? false,
 			};
 
 			modifiedCollection.hooks = {
@@ -77,6 +78,7 @@ export const auditFieldsPlugin =
 
 			const modifiedGlobal = {
 				...global,
+				authorship: global.authorship ?? false,
 			};
 
 			modifiedGlobal.hooks = {

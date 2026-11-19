@@ -1,0 +1,4 @@
+.image-search__or-text {
+	color: var(--color-text-tertiary);
+	text-transform: lowercase;
+}

@@ -17,5 +17,12 @@ export const clickImageCard = async (element: Locator, index = 0) => {
 
 	const imageButton = card.locator("> .search-images__button");
 
-	await imageButton.click();
+	const box = await imageButton.boundingBox();
+
+	if (!box) {
+		throw new Error("Image card button has no bounding box");
+	}
+
+	// The attribution overlay covers the centre of short, wide images, and the zoom button sits top left.
+	await imageButton.click({ position: { x: box.width - 8, y: 8 } });
 };

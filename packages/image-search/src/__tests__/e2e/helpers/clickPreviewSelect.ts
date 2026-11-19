@@ -10,7 +10,10 @@ import type { Locator } from "@playwright/test";
  * and populate the upload field with the image URL.
  */
 export const clickPreviewSelect = async (element: Locator) => {
-	const selectButton = element.locator(".preview-image__select");
+	const selectButton = element.getByRole("button", {
+		name: "Select image",
+		exact: true,
+	});
 
 	await selectButton.click();
 };

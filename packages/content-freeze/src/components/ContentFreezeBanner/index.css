@@ -1,0 +1,47 @@
+.content-freeze-banner {
+	background: var(--color-bg-warning-tertiary);
+	color: var(--color-text-warning);
+	margin-bottom: var(--spacer-3);
+}
+
+.content-freeze-banner__container {
+	display: flex;
+	align-items: center;
+	gap: var(--spacer-2);
+	padding: var(--spacer-2-5) 0;
+}
+
+.content-freeze-banner__icon {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: -5px;
+
+	& svg {
+		width: 30px;
+		height: 30px;
+	}
+
+	& svg path {
+		fill: var(--color-icon-warning);
+	}
+}
+
+.content-freeze-banner__content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.content-freeze-banner__title {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.content-freeze-banner__message {
+	font-size: 0.875rem;
+	line-height: 1.4;
+	opacity: 0.9;
+}

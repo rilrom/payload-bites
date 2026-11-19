@@ -10,7 +10,10 @@ import type { Locator } from "@playwright/test";
  * The search drawer remains open.
  */
 export const clickPreviewCancel = async (element: Locator) => {
-	const cancelButton = element.locator(".preview-image__cancel");
+	const cancelButton = element.getByRole("button", {
+		name: "Cancel",
+		exact: true,
+	});
 
 	await cancelButton.click();
 };

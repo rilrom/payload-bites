@@ -12,7 +12,7 @@ import { expect, type Page } from "@playwright/test";
  * Returns the popup content element for further interaction.
  */
 export const openDocControls = async (page: Page) => {
-	const docControlsButton = page.locator(".doc-controls__popup .popup-button");
+	const docControlsButton = page.locator(".doc-controls__popup-button");
 
 	if ((await docControlsButton.count()) > 0) {
 		await docControlsButton.click();

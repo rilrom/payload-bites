@@ -27,7 +27,7 @@
 	"scripts": {
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
-		"lint:styles": "stylelint --fix=strict --allow-empty-input \"**/*.scss\"",
+		"lint:styles": "stylelint --fix=strict \"**/*.css\"",
 		"check-types": "astro check",
 		"test": "pnpm test:unit",
 		"test:unit": "vitest run"
@@ -40,7 +40,7 @@
 		"vitest": "2.1.9"
 	},
 	"peerDependencies": {
-		"@payloadcms/richtext-lexical": "^3",
+		"@payloadcms/richtext-lexical": ">=4.0.0-beta.10 <5.0.0",
 		"astro": "^7.4.7"
 	}
 }

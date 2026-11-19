@@ -1,0 +1,6 @@
+.icon--fullscreen {
+	min-width: auto;
+	height: var(--spacer-3);
+	width: var(--spacer-3);
+	fill: currentcolor;
+}

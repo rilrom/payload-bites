@@ -17,6 +17,7 @@ export const ContentFreezeBannerRsc = async (
 	try {
 		const freezeSettings = await payload.findGlobal({
 			slug,
+			overrideAccess: true,
 		});
 
 		enableContentFreeze = freezeSettings?.enableContentFreeze === true;

@@ -2,10 +2,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { imageSearchPlugin } from "@payload-bites/image-search";
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { sharpTransformer } from "@payloadcms/transformer-sharp";
 import { en } from "@payloadcms/translations/languages/en";
 import { es } from "@payloadcms/translations/languages/es";
 import { buildConfig } from "payload";
-import sharp from "sharp";
 
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
@@ -39,7 +39,9 @@ export default buildConfig({
 		},
 		migrationDir: path.resolve(dirname, "migrations"),
 	}),
-	sharp,
+	upload: {
+		transformers: [sharpTransformer()],
+	},
 	plugins: [imageSearchPlugin()],
 	onInit: async (payload) => {
 		if (!process.env.TEST_USER || !process.env.TEST_PASS) {
@@ -48,6 +50,7 @@ export default buildConfig({
 
 		const response = await payload.find({
 			collection: "users",
+			overrideAccess: true,
 			where: {
 				email: {
 					equals: process.env.TEST_USER,
@@ -58,6 +61,7 @@ export default buildConfig({
 		if (response?.docs?.length === 0) {
 			await payload.create({
 				collection: "users",
+				overrideAccess: true,
 				data: {
 					email: process.env.TEST_USER,
 					password: process.env.TEST_PASS,

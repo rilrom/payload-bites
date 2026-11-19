@@ -1,6 +1,6 @@
 {
 	"name": "payload-bites",
-	"description": "collection of various bited-sized Payload v3 plugins and tools",
+	"description": "collection of various bited-sized Payload v4 plugins and tools",
 	"author": "Riley Langbein <rilrom-dev@protonmail.com>",
 	"repository": "https://github.com/rilrom/payload-bites",
 	"bugs": "https://github.com/rilrom/payload-bites/issues",
@@ -50,7 +50,7 @@
 		"chokidar": "4.0.3",
 		"copyfiles": "2.4.1",
 		"stylelint": "16.26.1",
-		"stylelint-config-standard-scss": "16.0.0",
+		"stylelint-config-standard": "39.0.1",
 		"turbo": "2.10.4",
 		"typescript": "6.0.3"
 	},

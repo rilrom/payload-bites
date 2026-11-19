@@ -4,6 +4,15 @@ Make sure your team puts the tools down during critical moments. This plugin dis
 
 https://github.com/user-attachments/assets/0170fa47-4017-45bb-85bd-40c25040a8d8
 
+## Compatibility table
+
+| Payload version | Content freeze version |
+| --------------- | ---------------------- |
+| v3              | v1.x                   |
+| v4              | v2.x                   |
+
+Payload 4 versions are prereleases. Install them with `pnpm add @payload-bites/content-freeze@beta`.
+
 ## Use cases
 
 - **Deployment freezes**: Prevent content changes during critical deployments.

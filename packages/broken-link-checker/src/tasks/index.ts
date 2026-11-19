@@ -105,6 +105,7 @@ export const tasks: TaskConfig[] = [
 
 			await req.payload.create({
 				collection: req.payload?.config?.custom?.brokenLinkChecker?.slug,
+				overrideAccess: true,
 				data,
 			});
 

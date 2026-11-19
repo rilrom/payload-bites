@@ -2,6 +2,15 @@
 
 Keep an eye on everything happening in your cms.
 
+## Compatibility table
+
+| Payload version | Activity log version |
+| --------------- | -------------------- |
+| v3              | v1.x                 |
+| v4              | v2.x                 |
+
+Payload 4 versions are prereleases. Install them with `pnpm add @payload-bites/activity-log@beta`.
+
 ## Quick start
 
 1. Install the plugin:

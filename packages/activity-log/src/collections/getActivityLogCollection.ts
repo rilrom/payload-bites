@@ -12,6 +12,8 @@ export const getActivityLogCollection = ({
 }): CollectionConfig => {
 	let collection: CollectionConfig = {
 		slug: "activity-log",
+		authorship: false,
+		versions: false,
 		admin: {
 			defaultColumns: [
 				"timestamp",

@@ -1,0 +1,12 @@
+.card {
+	padding-block: var(--spacer-3);
+	padding-inline: var(--gutter-h);
+	background-color: var(--color-bg-secondary);
+	border-bottom: var(--stroke-width-small) solid var(--color-border);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--spacer-3);
+	min-height: 60px;
+}

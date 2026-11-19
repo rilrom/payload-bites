@@ -10,7 +10,7 @@ import { expect, type Page } from "@playwright/test";
  * indicating an image URL was successfully set.
  */
 export const verifyUploadFieldUrl = async (page: Page) => {
-	const fileInput = page.locator(".file-field .file-field__filename");
+	const fileInput = page.getByRole("textbox", { name: "File Name" });
 
 	await expect(fileInput).toHaveValue(/.+/);
 };

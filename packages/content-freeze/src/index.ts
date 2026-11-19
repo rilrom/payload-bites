@@ -1,4 +1,4 @@
-import type { CollectionConfig, Config, GlobalConfig } from "payload";
+import type { Access, CollectionConfig, Config, GlobalConfig } from "payload";
 
 import { defaultPluginOptions } from "./defaults.js";
 import { getContentFreezeSettingsGlobal } from "./globals/getContentFreezeSettingsGlobal.js";
@@ -55,26 +55,22 @@ export const contentFreezePlugin =
 				...collection,
 			};
 
+			const wrap = (access: Access | undefined) =>
+				wrapAccessControl(
+					access,
+					contentFreezeSettingsGlobal.slug,
+					collection.slug,
+					"collection",
+				);
+
 			modifiedCollection.access = {
 				...modifiedCollection.access,
-				create: wrapAccessControl(
-					modifiedCollection.access?.create,
-					contentFreezeSettingsGlobal.slug,
-					collection.slug,
-					"collection",
-				),
-				update: wrapAccessControl(
-					modifiedCollection.access?.update,
-					contentFreezeSettingsGlobal.slug,
-					collection.slug,
-					"collection",
-				),
-				delete: wrapAccessControl(
-					modifiedCollection.access?.delete,
-					contentFreezeSettingsGlobal.slug,
-					collection.slug,
-					"collection",
-				),
+				create: wrap(modifiedCollection.access?.create),
+				update: wrap(modifiedCollection.access?.update),
+				delete: wrap(modifiedCollection.access?.delete),
+				...(modifiedCollection.access?.validate && {
+					validate: wrap(modifiedCollection.access.validate),
+				}),
 			};
 
 			return modifiedCollection;
@@ -85,14 +81,20 @@ export const contentFreezePlugin =
 				...global,
 			};
 
-			modifiedGlobal.access = {
-				...modifiedGlobal.access,
-				update: wrapAccessControl(
-					modifiedGlobal.access?.update,
+			const wrap = (access: Access | undefined) =>
+				wrapAccessControl(
+					access,
 					contentFreezeSettingsGlobal.slug,
 					global.slug,
 					"global",
-				),
+				);
+
+			modifiedGlobal.access = {
+				...modifiedGlobal.access,
+				update: wrap(modifiedGlobal.access?.update),
+				...(modifiedGlobal.access?.validate && {
+					validate: wrap(modifiedGlobal.access.validate),
+				}),
 			};
 
 			return modifiedGlobal;

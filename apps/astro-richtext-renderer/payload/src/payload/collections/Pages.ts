@@ -1,8 +1,8 @@
 import {
 	BlocksFeature,
-	EXPERIMENTAL_TableFeature,
 	FixedToolbarFeature,
 	lexicalEditor,
+	TableFeature,
 } from "@payloadcms/richtext-lexical";
 import type { CollectionConfig } from "payload";
 
@@ -31,7 +31,7 @@ export const Pages: CollectionConfig = {
 				features: ({ defaultFeatures }) => [
 					...defaultFeatures,
 					FixedToolbarFeature(),
-					EXPERIMENTAL_TableFeature(),
+					TableFeature(),
 					BlocksFeature({
 						blocks: [
 							CodeBlock,

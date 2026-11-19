@@ -15,7 +15,7 @@ export const verifyDropdownOpen = async (element: Locator) => {
 
 	selectControl.click();
 
-	const selectOptions = element.locator(".search-images .rs__menu");
+	const selectOptions = element.locator(".rs__menu");
 
 	await expect(selectOptions).toBeVisible();
 };

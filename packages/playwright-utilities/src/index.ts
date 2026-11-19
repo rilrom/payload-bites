@@ -1,4 +1,5 @@
 export { createDocument } from "./createDocument.js";
+export { expectDeleteUnavailable, getDeleteMenuItem } from "./deleteControl.js";
 export { deleteDocument } from "./deleteDocument.js";
 export { ensureTestDocument } from "./ensureTestDocument.js";
 export { goToFirstCell } from "./goToFirstCell.js";

@@ -1,0 +1,144 @@
+.search-images {
+	display: flex;
+	flex: 1 0 auto;
+	flex-flow: column nowrap;
+	gap: var(--spacer-4);
+	padding: var(--gutter-v) var(--gutter-h);
+}
+
+.search-images__fields {
+	display: flex;
+	gap: var(--spacer-2);
+	align-items: center;
+}
+
+.search-images__search {
+	--control-height: var(--field-min-height-large);
+
+	flex: 1;
+}
+
+.search-images__results {
+	display: flex;
+
+	& > div {
+		width: 100%;
+	}
+
+	& img {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.search-images__pagination {
+	display: flex;
+	justify-content: center;
+}
+
+.search-images__loading,
+.search-images__noResults {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	color: var(--color-text-secondary);
+}
+
+.search-images__card {
+	position: relative;
+	display: flex;
+	transition: 0.1s transform ease-in-out;
+
+	&:hover {
+		transform: scale(1.025);
+	}
+}
+
+.search-images__button {
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+	width: 100%;
+	border-radius: var(--radius-small);
+	overflow: hidden;
+
+	& svg {
+		color: #fff;
+	}
+}
+
+.search-images__topOverlay,
+.search-images__bottomOverlay {
+	position: absolute;
+	left: var(--spacer-2-5);
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: var(--spacer-2);
+	max-width: calc(100% - 2 * var(--spacer-2-5));
+}
+
+.search-images__topOverlay {
+	top: var(--spacer-2-5);
+
+	& .search-images__button {
+		display: flex;
+		width: auto;
+		overflow: visible;
+	}
+}
+
+.search-images__bottomOverlay {
+	bottom: var(--spacer-2-5);
+}
+
+.search-images__download,
+.search-images__attribution {
+	display: inline-flex;
+	align-items: center;
+	color: #fff;
+	text-decoration: none;
+	border-radius: var(--radius-small);
+}
+
+.search-images__download {
+	flex-shrink: 0;
+
+	& svg {
+		pointer-events: none;
+		color: #fff;
+	}
+}
+
+.search-images__attribution {
+	display: block;
+	min-width: 0;
+	font-size: var(--text-body-large-bold-font-size);
+	font-weight: var(--text-body-large-bold-font-weight);
+	line-height: var(--text-body-large-bold-line-height);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-shadow: 0 1px 2px rgb(0 0 0 / 50%);
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.search-images__image {
+	border-radius: var(--radius-small);
+	object-fit: cover;
+	width: 100%;
+}
+
+.search-images__provider {
+	display: flex;
+	justify-content: center;
+	margin: auto 0 0;
+	color: var(--color-text-tertiary);
+}

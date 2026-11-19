@@ -21,6 +21,7 @@ export const afterDeleteCollectionActivityLog = (
 		try {
 			await args.req.payload.create({
 				collection: options.activityLogSlug,
+				overrideAccess: true,
 				data: {
 					operation: "delete",
 					...(args.req.user && {

@@ -9,6 +9,8 @@ export const getBrokenLinksCollection = ({
 }): CollectionConfig => {
 	let collection: CollectionConfig = {
 		slug: "broken-links",
+		authorship: false,
+		versions: false,
 		admin: {
 			components: {
 				beforeListTable: [

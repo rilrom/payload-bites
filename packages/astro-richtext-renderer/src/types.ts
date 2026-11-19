@@ -38,14 +38,28 @@ export type AstroConverter<
 	| ((args: BaseConverterProps<T>) => AstroComponentFactory)
 	| AstroComponentFactory;
 
+/** Payload 4 declares SerializedBlockNode as a distributive conditional type, so `infer` through it no longer recovers the fields (richtext-lexical features/blocks/server/schema.d.ts). */
+type BlockTypeOf<T, TNodeType extends "block" | "inlineBlock"> = T extends {
+	type: TNodeType;
+	fields: { blockType: infer K };
+}
+	? K
+	: never;
+
+/** The block node members keep `blocks` and `inlineBlocks` typed when no generic is provided. */
+type DefaultConverterNodeTypes =
+	| DefaultNodeTypes
+	| SerializedBlockNode<{ blockName?: null | string; blockType: string }>
+	| SerializedInlineBlockNode<{ blockName?: null | string; blockType: string }>;
+
+type BlockConverters<T, TNodeType extends "block" | "inlineBlock"> = {
+	[K in Extract<BlockTypeOf<T, TNodeType>, string>]?: AstroConverter<
+		Extract<T, { type: TNodeType; fields: { blockType: K } }>
+	>;
+};
+
 export type AstroConverters<
-	T extends { [key: string]: any; type?: string } =
-		| DefaultNodeTypes
-		| SerializedBlockNode<{ blockName?: null | string; blockType: string }> // need these to ensure types for blocks and inlineBlocks work if no generics are provided
-		| SerializedInlineBlockNode<{
-				blockName?: null | string;
-				blockType: string;
-		  }>, // need these to ensure types for blocks and inlineBlocks work if no generics are provided
+	T extends { [key: string]: any; type?: string } = DefaultConverterNodeTypes,
 > = {
 	[key: string]:
 		| {
@@ -59,46 +73,13 @@ export type AstroConverters<
 		"block" | "inlineBlock"
 	>]?: AstroConverter<Extract<T, { type: nodeType }>>;
 } & {
-	blocks?: {
-		[K in Extract<
-			Extract<T, { type: "block" }> extends SerializedBlockNode<infer B>
-				? B extends { blockType: string }
-					? B["blockType"]
-					: never
-				: never,
-			string
-		>]?: AstroConverter<
-			Extract<T, { type: "block" }> extends SerializedBlockNode<infer B>
-				? SerializedBlockNode<Extract<B, { blockType: K }>>
-				: SerializedBlockNode
-		>;
-	};
-	inlineBlocks?: {
-		[K in Extract<
-			Extract<T, { type: "inlineBlock" }> extends SerializedInlineBlockNode<
-				infer B
-			>
-				? B extends { blockType: string }
-					? B["blockType"]
-					: never
-				: never,
-			string
-		>]?: AstroConverter<
-			Extract<T, { type: "inlineBlock" }> extends SerializedInlineBlockNode<
-				infer B
-			>
-				? SerializedInlineBlockNode<Extract<B, { blockType: K }>>
-				: SerializedInlineBlockNode
-		>;
-	};
+	blocks?: BlockConverters<T, "block">;
+	inlineBlocks?: BlockConverters<T, "inlineBlock">;
 	unknown?: AstroConverter<SerializedLexicalNode>;
 };
 
 export type AstroConvertersFunction<
-	T extends { [key: string]: any; type?: string } =
-		| DefaultNodeTypes
-		| SerializedBlockNode<{ blockName?: null | string }>
-		| SerializedInlineBlockNode<{ blockName?: null | string }>,
+	T extends { [key: string]: any; type?: string } = DefaultConverterNodeTypes,
 > = (args: {
 	defaultConverters: AstroConverters<DefaultNodeTypes>;
 }) => AstroConverters<T>;
