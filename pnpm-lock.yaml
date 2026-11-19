@@ -449,55 +449,6 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  apps/soft-delete:
-    dependencies:
-      '@payload-bites/soft-delete':
-        specifier: workspace:*
-        version: link:../../packages/soft-delete
-      '@payloadcms/db-postgres':
-        specifier: 3.86.0
-        version: 3.86.0(payload@3.86.0(graphql@16.11.0)(typescript@5.9.3))
-      '@payloadcms/next':
-        specifier: 3.86.0
-        version: 3.86.0(@types/react@19.2.17)(graphql@16.11.0)(monaco-editor@0.53.0)(next@16.2.10(@playwright/test@1.61.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.77.4))(payload@3.86.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
-      '@payloadcms/translations':
-        specifier: 3.86.0
-        version: 3.86.0
-      '@payloadcms/ui':
-        specifier: 3.86.0
-        version: 3.86.0(@types/react@19.2.17)(monaco-editor@0.53.0)(next@16.2.10(@playwright/test@1.61.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.77.4))(payload@3.86.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
-      cross-env:
-        specifier: ^10.1.0
-        version: 10.1.0
-      next:
-        specifier: 16.2.10
-        version: 16.2.10(@playwright/test@1.61.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.77.4)
-      payload:
-        specifier: 3.86.0
-        version: 3.86.0(graphql@16.11.0)(typescript@5.9.3)
-      react:
-        specifier: ^19.2.3
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.4(react@19.2.4)
-    devDependencies:
-      '@payload-bites/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@types/node':
-        specifier: ^24.13.3
-        version: 24.13.3
-      '@types/react':
-        specifier: ^19.2.17
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-
   packages/activity-log:
     dependencies:
       next:
@@ -783,43 +734,6 @@ importers:
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-
-  packages/soft-delete:
-    dependencies:
-      '@payloadcms/translations':
-        specifier: 3.86.0
-        version: 3.86.0
-      '@payloadcms/ui':
-        specifier: 3.86.0
-        version: 3.86.0(@types/react@19.2.17)(monaco-editor@0.53.0)(next@16.2.10(@playwright/test@1.61.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.77.4))(payload@3.86.0(graphql@16.11.0)(typescript@5.9.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@5.9.3)
-      next:
-        specifier: 16.2.10
-        version: 16.2.10(@playwright/test@1.61.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.77.4)
-      payload:
-        specifier: 3.86.0
-        version: 3.86.0(graphql@16.11.0)(typescript@5.9.3)
-      qs-esm:
-        specifier: ^7
-        version: 7.0.3
-    devDependencies:
-      '@payload-bites/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/react':
-        specifier: ^19.2.17
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
-      react:
-        specifier: ^19.2.3
-        version: 19.2.7
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.7(react@19.2.7)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -3643,6 +3557,7 @@ packages:
   image-size@2.0.2:
     resolution: {integrity: sha512-IRqXKlaXwgSMAMtpNzZa1ZAe8m+Sa1770Dhk8VkSsP9LS+iHD62Zd8FQKs8fbPiagBE7BzoFX23cxFnwshpV6w==}
     engines: {node: '>=16.x'}
+    deprecated: Use latest 2.x please
     hasBin: true
 
   immutable@4.3.8:

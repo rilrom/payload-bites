@@ -100,7 +100,7 @@ If applicable, you must indicate the affected packages in parentheses to "scope"
 Here are some examples:
 
 - `feat(image-search): add new feature`
-- `fix(soft-delete): fix bug`
+- `fix(content-freeze): fix bug`
 - `chore: upgrade dependencies`
 
 ## Internationalization (i18n)

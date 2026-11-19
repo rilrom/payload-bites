@@ -10,7 +10,6 @@ Payload bites is a monorepo containing bite-sized Payload v3 plugins and tools. 
 - `image-search` - Search for images using providers (Unsplash, Pexels, Pixabay)
 - `fullscreen-editor` - Fullscreen mode for Lexical rich text editor
 - `audit-fields` - Add createdBy/lastModifiedBy audit fields
-- `soft-delete` - Soft delete functionality for documents
 - `activity-log` - Track CMS activity
 - `broken-link-checker` - Detect and prevent broken links
 - `content-freeze` - Freeze content during critical moments
@@ -24,12 +23,10 @@ This is a pnpm workspace managed by Turbo:
 payload-bites/
 ├── packages/           # Published plugins (source code)
 │   ├── image-search/
-│   ├── soft-delete/
 │   ├── astro-richtext-renderer/
 │   └── ...
 ├── apps/              # Demo/test apps for each plugin
 │   ├── image-search/
-│   ├── soft-delete/
 │   ├── astro-richtext-renderer/
 │   │   ├── payload/   # Payload CMS app
 │   │   └── website/   # Astro website
@@ -55,7 +52,6 @@ Use convenience scripts to develop specific packages:
 ```bash
 # Develop a specific package (runs both the plugin and its demo app)
 pnpm dev:image-search
-pnpm dev:soft-delete
 pnpm dev:activity-log
 pnpm dev:audit-fields
 pnpm dev:broken-link-checker
