@@ -1,5 +1,28 @@
 # @payload-bites/image-search
 
+## 4.0.0-beta.0
+
+### Major Changes
+
+- feat!: upgrade to payload 4.0.0-beta.10 ([c6b717e](https://github.com/rilrom/payload-bites/commit/c6b717e))
+
+#### BREAKING CHANGES
+
+- Requires Payload 4 (`>=4.0.0-beta.10 <5.0.0`), next `>=16.4.5 <17.0.0` and react `^19.3.1`. Stay on 3.x for Payload 3.
+- The drawer search field class is now `search-images__search` instead of `search-filter__input`.
+- Styles moved from SCSS to plain CSS. Overrides using Payload 3 `--theme-*` variables no longer apply.
+
+## 3.6.0
+
+### Minor Changes
+
+- feat!: raise minimum payload version for security advisories and align peer dependencies ([b9cd3c5](https://github.com/rilrom/payload-bites/commit/b9cd3c5))
+
+#### BREAKING CHANGES
+
+- Bumped the minimum payload version to 3.90.0 to address [multiple security advisories](https://github.com/payloadcms/payload/security/advisories).
+- Aligned the @payloadcms/translations, @payloadcms/ui and next peer dependencies with the versions payload 3.90.0 requires.
+
 ## 3.5.0
 
 ### Minor Changes
