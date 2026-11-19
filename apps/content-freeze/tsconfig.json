@@ -1,10 +1,9 @@
 {
 	"extends": "@payload-bites/typescript-config/nextjs.json",
 	"compilerOptions": {
-		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
-			"@payload-config": ["src/payload/payload.config.ts"]
+			"@payload-config": ["./src/payload/payload.config.ts"]
 		}
 	},
 	"include": [

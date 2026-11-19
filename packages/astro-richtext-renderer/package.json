@@ -27,20 +27,20 @@
 	"scripts": {
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
-		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
+		"lint:styles": "stylelint --fix=strict --allow-empty-input \"**/*.scss\"",
 		"check-types": "astro check",
 		"test": "pnpm test:unit",
 		"test:unit": "vitest run"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.9",
+		"@astrojs/check": "0.9.12",
 		"@payload-bites/typescript-config": "workspace:*",
-		"astro": "^5.18.2",
-		"typescript": "5.9.3",
-		"vitest": "^2.1.9"
+		"astro": "7.4.11",
+		"typescript": "6.0.3",
+		"vitest": "2.1.9"
 	},
 	"peerDependencies": {
 		"@payloadcms/richtext-lexical": "^3",
-		"astro": "^5"
+		"astro": "^7.4.7"
 	}
 }
