@@ -26,7 +26,7 @@ To help me work on new features, you can create a new feature request post in [G
 
 Payload bites is structured as a monorepo. To install all required dependencies, you have to run `pnpm install` once in the root directory. Please note that pnpm is required, yarn or npm will not work. In most systems, the easiest way to install pnpm is to run `corepack enable` in your terminal.
 
-Node v22 or higher is required. You can check your current node version by typing `node --version` in your terminal. The easiest way to switch between different node versions is to use [nvm](https://github.com/nvm-sh/nvm#intro).
+Node ^22.23.5, ^24.22.3 or >=26.13.1 is required. You can check your current node version by typing `node --version` in your terminal. The easiest way to switch between different node versions is to use [nvm](https://github.com/nvm-sh/nvm#intro).
 
 ### Development
 
