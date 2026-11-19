@@ -1,5 +1,16 @@
 # @payload-bites/activity-log
 
+## 1.8.0
+
+### Minor Changes
+
+- feat!: raise minimum payload version for security advisories and align peer dependencies ([b9cd3c5](https://github.com/rilrom/payload-bites/commit/b9cd3c5))
+
+#### BREAKING CHANGES
+
+- Bumped the minimum payload version to 3.90.0 to address [multiple security advisories](https://github.com/payloadcms/payload/security/advisories).
+- Aligned the next peer dependency with the version range payload 3.90.0 requires.
+
 ## 1.7.0
 
 ### Minor Changes
