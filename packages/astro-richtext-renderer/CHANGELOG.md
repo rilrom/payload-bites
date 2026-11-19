@@ -1,5 +1,17 @@
 # @payload-bites/astro-richtext-renderer
 
+## 3.0.0-beta.0
+
+### Major Changes
+
+- feat!: upgrade to payload 4.0.0-beta.10 ([c6b717e](https://github.com/rilrom/payload-bites/commit/c6b717e))
+
+#### BREAKING CHANGES
+
+- Requires Astro `^7.4.7` and `@payloadcms/richtext-lexical` `>=4.0.0-beta.10 <5.0.0`. Stay on 2.x for Payload 3 and Astro 5.
+- The default `AstroConvertersFunction` type adds `blockType: string` to block and inline block nodes.
+- The upload converter reads `variants` instead of `sizes`.
+
 ## 2.2.1
 
 ### Patch Changes
