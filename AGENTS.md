@@ -6,7 +6,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 Payload bites is a monorepo containing bite-sized Payload v3 plugins and tools. Each plugin is published as an independent npm package under `@payload-bites/*`.
 
-The `v3` branch maintains the Payload 3 line and is the only branch v3 releases publish from. Payload 4 work lives on `feat/payload-v4` until it merges into `main`.
+The `v3` branch maintains the Payload 3 line and is the only branch v3 releases publish from. Payload 4 work lives on `main`.
 
 **Current plugins:**
 - `image-search` - Search for images using providers (Unsplash, Pexels, Pixabay)
