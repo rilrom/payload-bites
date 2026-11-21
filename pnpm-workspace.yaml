@@ -44,6 +44,8 @@ minimumReleaseAgeExclude:
   - payload
   - "@payloadcms/*"
 
+publishBranch: main
+
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3

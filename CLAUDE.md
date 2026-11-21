@@ -244,9 +244,13 @@ All commits in a PR are squashed using the PR title as the commit message.
 - Add tests for new functionality or bug fixes when reasonable
 
 ### Release flow
-- `main` publishes Payload 4 prereleases with `pnpm publish --tag beta`
-- `v3` publishes Payload 3 releases with `pnpm publish --tag latest`. Once Payload 4 is stable on `main`, `v3` switches to `--tag v3` so it stops moving `latest`
+- Branch Payload 4 work off `main` and Payload 3 fixes off `v3`, and open each PR against the branch it came from
+- `pnpm-workspace.yaml` sets `publishBranch: main` here and `publishBranch: v3` on `v3`, so `pnpm publish` refuses to run from any other branch
+- Build before publishing (`pnpm build`), since packages have no `prepublishOnly` script
+- `main` publishes Payload 4 prereleases with `pnpm -r publish --tag beta`
+- `v3` publishes Payload 3 releases with `pnpm -r publish --tag latest`. Once Payload 4 is stable on `main`, `v3` switches to `--tag v3` so it stops moving `latest`
 - Always pass `--tag` explicitly. pnpm 11 ignores `publishConfig.tag` and defaults to `latest`
+- `pnpm -r publish` only publishes packages whose version is not already on npm, so bump `version` in each package you are releasing
 - Fixes that apply to both lines get a separate PR per line
 - When a cherry-pick between lines applies cleanly, use `git cherry-pick -x`
 - Never cherry-pick `pnpm-lock.yaml`. Keep the target branch's lockfile and regenerate it

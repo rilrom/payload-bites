@@ -119,7 +119,7 @@ Open a separate PR for each branch. If a cherry-pick applies cleanly, use `git c
 
 ### Releases
 
-`main` publishes with `pnpm publish --tag beta` and `v3` with `pnpm publish --tag latest` (switching to `--tag v3` once Payload 4 is stable). Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`.
+Run `pnpm build` first, since packages have no `prepublishOnly` script. `main` publishes with `pnpm -r publish --tag beta` and `v3` with `pnpm -r publish --tag latest` (switching to `--tag v3` once Payload 4 is stable). Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`. Each branch sets `publishBranch` in `pnpm-workspace.yaml`, so publishing from the wrong branch fails.
 
 ## Internationalization (i18n)
 
