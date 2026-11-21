@@ -80,7 +80,9 @@ export const RestoreButton = (props: RestoreButtonProps) => {
 			}
 
 			if (json.errors) {
-				json.errors.forEach((error: any) => toast.error(error.message));
+				json.errors.forEach((error: any) => {
+					toast.error(error.message);
+				});
 			} else {
 				addDefaultError();
 			}

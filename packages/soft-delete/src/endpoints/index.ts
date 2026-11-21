@@ -16,7 +16,7 @@ export const endpoints: Endpoint[] = [
 				throw new Forbidden();
 			}
 
-			let response;
+			let response: unknown;
 
 			if (data?.["id"]) {
 				response = await req.payload.update({
@@ -63,7 +63,7 @@ export const endpoints: Endpoint[] = [
 				throw new Forbidden();
 			}
 
-			let response;
+			let response: unknown;
 
 			if (data?.["id"]) {
 				response = await req.payload.delete({
@@ -104,7 +104,7 @@ export const endpoints: Endpoint[] = [
 				throw new Forbidden();
 			}
 
-			let response;
+			let response: unknown;
 
 			if (data?.["id"]) {
 				response = await req.payload.update({

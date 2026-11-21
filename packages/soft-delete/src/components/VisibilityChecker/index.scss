@@ -1,6 +1,7 @@
 @layer payload-default {
   [data-soft-delete-enabled="true"] {
     [data-soft-delete-collection="true"] {
+      /* stylelint-disable-next-line selector-class-pattern, selector-id-pattern */
       .list-create-new-doc__create-new-button, .collection-list__no-results a, #copy-locale-data__button, #action-create, #action-duplicate {
         display: none;
       }

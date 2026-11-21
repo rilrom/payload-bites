@@ -114,7 +114,9 @@ export const DeleteButton = (props: DeleteButtonProps) => {
 			}
 
 			if (json.errors) {
-				json.errors.forEach((error: any) => toast.error(error.message));
+				json.errors.forEach((error: any) => {
+					toast.error(error.message);
+				});
 			} else {
 				addDefaultError();
 			}
