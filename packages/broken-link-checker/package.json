@@ -50,7 +50,7 @@
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
 		"lint:styles": "stylelint --fix=strict \"**/*.scss\"",
-		"check-types": "tsc --noEmit"
+		"tsc": "tsc --noEmit"
 	},
 	"dependencies": {
 		"date-fns": "^4.1.0",

@@ -6,6 +6,8 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 Payload bites is a monorepo containing bite-sized Payload v3 plugins and tools. Each plugin is published as an independent npm package under `@payload-bites/*`.
 
+The `v3` branch maintains the Payload 3 line and is the only branch v3 releases publish from. Payload 4 work lives on `feat/payload-v4` until it merges into `main`.
+
 **Current plugins:**
 - `image-search` - Search for images using providers (Unsplash, Pexels, Pixabay)
 - `fullscreen-editor` - Fullscreen mode for Lexical rich text editor
@@ -220,8 +222,9 @@ t('yourStringKey')
 
 ## Environment & Requirements
 
-- **Node**: >= 22
-- **pnpm**: ^10.19.0 (enable via `corepack enable`)
+- **Node**: `^22.23.5 || ^24.22.3 || >=26.13.1`
+- **pnpm**: 11 (`packageManager` pins `pnpm@11.12.0`, enable via `corepack enable`)
+- **TypeScript**: `5.9.3`
 - **Database**: Postgres (default)
 	- Set `DATABASE_URI` and `SERVER_URL` in app `.env` files
 	- Auto-login during dev: set `TEST_USER`, `TEST_PASSWORD`
@@ -241,6 +244,17 @@ All commits in a PR are squashed using the PR title as the commit message.
 - Type checking must pass (`pnpm tsc`)
 - Add tests for new functionality or bug fixes when reasonable
 
+### Release flow
+- Branch v3 fixes off `v3` and open their PRs against `v3`
+- `pnpm-workspace.yaml` sets `publishBranch: v3`, so `pnpm publish` refuses to run from any other branch
+- Build before publishing (`pnpm build`), since packages have no `prepublishOnly` script
+- Publish with `pnpm -r publish --tag latest`. Once Payload 4 is stable on `main`, switch to `--tag v3` so v3 releases stop moving `latest`
+- Always pass `--tag` explicitly. pnpm 11 ignores `publishConfig.tag` and defaults to `latest`
+- Fixes that apply to both lines get a separate PR per line
+- When a cherry-pick between lines applies cleanly, use `git cherry-pick -x`
+- Never cherry-pick `pnpm-lock.yaml`. Keep the target branch's lockfile and regenerate it
+- Breaking changes in a minor release are only for security advisories, and should be the smallest change that addresses them
+
 ## Code Quality
 
 - **Linting**: Biome handles JS/TS linting, Stylelint handles SCSS. Both must pass with zero errors (warnings acceptable when appropriate)
@@ -254,18 +268,16 @@ All commits in a PR are squashed using the PR title as the commit message.
 ## Key Technical Details
 
 ### Payload version pinning
-The project pins Payload to a specific version via pnpm overrides in root `package.json`:
-```json
-{
-	"pnpm": {
-		"overrides": {
-			"payload": "3.86.0",
-			"@payloadcms/db-postgres": "3.86.0",
-			// ... other Payload packages
-		}
-	}
-}
+The project pins Payload to a specific version via `overrides` in `pnpm-workspace.yaml`. These pins only affect the demo apps and tests, not published peer ranges:
+```yaml
+overrides:
+  "@payloadcms/db-postgres": "3.94.0"
+  "@payloadcms/ui": "3.94.0"
+  "payload": "3.94.0"
+  # ... other Payload packages
 ```
+
+Plugin peer ranges follow the floors Payload 3.90.0 itself enforces: `payload` and `@payloadcms/*` use `^3.90.0`, `next` uses `>=15.2.9 <15.3.0 || >=15.3.9 <15.4.0 || >=15.4.11 <15.5.0 || >=16.3.3 <17.0.0`, `react` and `react-dom` use `^19.0.1 || ^19.1.2 || ^19.2.1`, and `qs-esm` uses `^8`.
 
 ### deepMerge utility
 Most plugins use a `deepMerge` utility to merge configurations without overwriting nested objects.

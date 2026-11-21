@@ -103,6 +103,14 @@ Here are some examples:
 - `fix(soft-delete): fix bug`
 - `chore: upgrade dependencies`
 
+### Fixes for both Payload versions
+
+Open a separate PR for each branch. If a cherry-pick applies cleanly, use `git cherry-pick -x`. Never cherry-pick `pnpm-lock.yaml`; regenerate it on the target branch instead.
+
+### Releases
+
+`v3` publishes Payload 3 releases with `pnpm -r publish --tag latest`, switching to `--tag v3` once Payload 4 is stable on `main`. Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`.
+
 ## Internationalization (i18n)
 
 If your PR adds a string to the UI, we need to make sure to translate it into all the languages ​​that Payload supports. To do that:
