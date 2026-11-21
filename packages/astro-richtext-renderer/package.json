@@ -28,7 +28,7 @@
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
 		"lint:styles": "stylelint --fix=strict \"**/*.css\"",
-		"check-types": "astro check",
+		"tsc": "astro check",
 		"test": "pnpm test:unit",
 		"test:unit": "vitest run"
 	},

@@ -45,7 +45,7 @@
 		"lint": "pnpm lint:biome && pnpm lint:styles",
 		"lint:biome": "biome check --write .",
 		"lint:styles": "stylelint --fix=strict \"**/*.css\"",
-		"check-types": "tsc --noEmit",
+		"tsc": "tsc --noEmit",
 		"test": "pnpm test:e2e",
 		"test:e2e": "playwright test"
 	},

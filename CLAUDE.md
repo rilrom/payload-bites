@@ -44,8 +44,7 @@ payload-bites/
 - `pnpm dev` - Run dev mode across all packages
 - `pnpm build` - Build all packages
 - `pnpm lint` - Lint all packages (Biome + Stylelint)
-- `pnpm tsc` - Type check packages that have a `tsc` script
-- `pnpm -r --if-present check-types` - Type check packages that name the script `check-types` (broken-link-checker, content-freeze and astro-richtext-renderer). `pnpm tsc` skips these, so run both
+- `pnpm tsc` - Type check all packages
 - `pnpm test` - Run all tests (unit + E2E)
 - `pnpm clean` - Clean build artifacts (node_modules, .next, .astro, .turbo, dist)
 
@@ -74,7 +73,7 @@ Within `packages/*/`:
 - `pnpm dev` - Build in watch mode (TypeScript + SWC)
 - `pnpm build` - Production build
 - `pnpm lint` - Run Biome linter and Stylelint (Stylelint checks `.css` files)
-- `pnpm tsc` or `pnpm check-types` - Type check without emit (the script name varies by package, see above)
+- `pnpm tsc` - Type check without emit
 - `pnpm test` - Run all tests (unit + E2E)
 - `pnpm test:unit` - Run unit tests only (Vitest)
 - `pnpm test:e2e` - Run E2E tests only (Playwright)
@@ -241,12 +240,12 @@ All commits in a PR are squashed using the PR title as the commit message.
 ### Before creating a PR
 - All tests must pass (`pnpm test`)
 - Linting must pass (`pnpm lint`)
-- Type checking must pass (`pnpm tsc` and `pnpm -r --if-present check-types`)
+- Type checking must pass (`pnpm tsc`)
 - Add tests for new functionality or bug fixes when reasonable
 
 ### Release flow
 - `main` publishes Payload 4 prereleases with `pnpm publish --tag beta`
-- `v3` publishes Payload 3 releases with `pnpm publish --tag latest`
+- `v3` publishes Payload 3 releases with `pnpm publish --tag latest`. Once Payload 4 is stable on `main`, `v3` switches to `--tag v3` so it stops moving `latest`
 - Always pass `--tag` explicitly. pnpm 11 ignores `publishConfig.tag` and defaults to `latest`
 - Fixes that apply to both lines get a separate PR per line
 - When a cherry-pick between lines applies cleanly, use `git cherry-pick -x`

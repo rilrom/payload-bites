@@ -72,11 +72,10 @@ pnpm test:e2e --filter @payload-bites/PACKAGE_NAME
 pnpm test
 ```
 
-Type checking must also pass. Most packages use a `tsc` script, but broken-link-checker, content-freeze and astro-richtext-renderer name it `check-types`, so run both:
+Type checking must also pass:
 
 ```bash
 pnpm tsc
-pnpm -r --if-present check-types
 ```
 
 **When to add tests:**
@@ -120,7 +119,7 @@ Open a separate PR for each branch. If a cherry-pick applies cleanly, use `git c
 
 ### Releases
 
-`main` publishes with `pnpm publish --tag beta` and `v3` with `pnpm publish --tag latest`. Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`.
+`main` publishes with `pnpm publish --tag beta` and `v3` with `pnpm publish --tag latest` (switching to `--tag v3` once Payload 4 is stable). Always pass `--tag`, because pnpm 11 ignores `publishConfig.tag`.
 
 ## Internationalization (i18n)
 
