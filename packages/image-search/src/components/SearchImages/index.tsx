@@ -125,7 +125,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 				resetImages();
 
 				const json = await fetchWithCache(
-					`${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${query}&page=${page}`,
+					`${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${encodeURIComponent(query)}&page=${page}`,
 				);
 
 				if (json.error) {
@@ -171,7 +171,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 		// We don't want this to prevent users from continuing if this request fails
 		try {
 			await fetch(
-				`${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${download}`,
+				`${serverURL}${api}/providers/${selectedProvider?.value}/track-download?url=${encodeURIComponent(download)}`,
 			);
 		} catch {
 			return null;
