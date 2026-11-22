@@ -2,8 +2,8 @@
 
 Never lose your Payload documents again, soft delete is here to save the day.
 
-> [!IMPORTANT]
-> This plugin has been moved to maintenance mode due the release of the [trash](https://payloadcms.com/docs/trash/overview) feature. From v3.49.0 onwards, I recommend using the implementation in the core product instead.
+> [!WARNING]
+> Deprecated. Payload has built-in [trash](https://payloadcms.com/docs/trash/overview) from v3.49.0, so use that instead. This plugin will not be updated for Payload 4. See [Migrating to core trash](#migrating-to-core-trash).
 
 https://github.com/user-attachments/assets/4d7334d1-d7f2-4ab7-9421-0c84dfcf38cb
 
@@ -15,6 +15,7 @@ https://github.com/user-attachments/assets/4d7334d1-d7f2-4ab7-9421-0c84dfcf38cb
 | v3.24.0 to 3.38.0  | v1.x                |
 | v3.39.0 to 3.50.0  | v2.x                |
 | v3.51.0 or later   | v3.x                |
+| v4                 | Not supported       |
 
 ## Quick start
 
@@ -48,6 +49,12 @@ export default buildConfig({
   ],
 });
 ```
+
+## Migrating to core trash
+
+Core trash stores soft deletes in the same `deletedAt` date field, so existing soft-deleted documents carry over. Remove the plugin, set `trash: true` on each collection you passed to it, then run `payload migrate:create` to confirm the schema is unchanged.
+
+Core trash is queried differently. Pass `trash: true` to include trashed documents, as described in the [trash docs](https://payloadcms.com/docs/trash/overview).
 
 ## Defaults
 
@@ -115,12 +122,3 @@ query {
 ## Caveats
 
 - It is currently not possible to soft delete a draft document that has invalid fields (e.g. required) unless the document has a previously valid published version or you resolve the invalid fields.
-
-## Roadmap
-
-- [x] Add modal to hard delete.
-- [x] Enable/disable restore functionality per collection.
-- [x] Enable/disable hard delete functionality per collection.
-- [ ] Schedule automatic deletion after certain number of days.
-- [x] Documentation (including API examples).
-- [x] Translations.
