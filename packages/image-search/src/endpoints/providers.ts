@@ -1,5 +1,6 @@
 import type { TFunction } from "@payloadcms/translations";
 import type { Endpoint } from "payload";
+import { InvalidProviderRequestError } from "../classes/Provider.js";
 import type { TranslationsKeys } from "../translations.js";
 import { getProvider } from "../utils/getProvider.js";
 import { getProviders } from "../utils/getProviders.js";
@@ -161,9 +162,29 @@ export const providers: Endpoint[] = [
 				);
 			}
 
-			const data = await provider.trackDownload(req.query.url as string);
+			const url = req.query.url;
 
-			return Response.json({ data, error: null });
+			if (typeof url !== "string") {
+				return Response.json(
+					{ data: null, error: req.t("error:unknown") },
+					{ status: 400 },
+				);
+			}
+
+			try {
+				const data = await provider.trackDownload(url);
+
+				return Response.json({ data, error: null });
+			} catch (error) {
+				if (error instanceof InvalidProviderRequestError) {
+					return Response.json(
+						{ data: null, error: req.t("error:unknown") },
+						{ status: 400 },
+					);
+				}
+
+				throw error;
+			}
 		},
 	},
 ];

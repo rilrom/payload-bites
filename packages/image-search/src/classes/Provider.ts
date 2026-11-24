@@ -16,6 +16,13 @@ export interface ProviderResult {
 	};
 }
 
+export class InvalidProviderRequestError extends Error {
+	constructor(message: string) {
+		super(message);
+		this.name = "InvalidProviderRequestError";
+	}
+}
+
 export class Provider {
 	key: string;
 	name: string;
@@ -30,7 +37,16 @@ export class Provider {
 	}
 
 	async fetch(method: string, urlPath: string, data?: object) {
-		const response = await fetch(new URL(urlPath, this.getFetchBaseUrl()), {
+		const baseUrl = new URL(this.getFetchBaseUrl());
+		const requestUrl = new URL(urlPath, baseUrl);
+
+		if (requestUrl.origin !== baseUrl.origin) {
+			throw new InvalidProviderRequestError(
+				`Refusing to send ${this.name} request to ${requestUrl.origin}`,
+			);
+		}
+
+		const response = await fetch(requestUrl, {
 			method,
 			headers: this.getFetchHeaders(),
 			...(data && { body: JSON.stringify(data) }),

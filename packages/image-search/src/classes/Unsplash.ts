@@ -1,7 +1,9 @@
-import { Provider } from "./Provider.js";
+import { InvalidProviderRequestError, Provider } from "./Provider.js";
 
 const REFERRAL_PARAMS =
 	"utm_source=payload-bites-image-search&utm_medium=referral";
+
+const DOWNLOAD_PATH_PATTERN = /^\/photos\/[A-Za-z0-9_-]+\/download$/;
 
 export interface UnsplashResult {
 	id: string;
@@ -65,7 +67,20 @@ export class Unsplash extends Provider {
 	}
 
 	async trackDownload(url: string) {
-		const downloadUrl = new URL(url);
+		let downloadUrl: URL;
+
+		try {
+			downloadUrl = new URL(url);
+		} catch {
+			throw new InvalidProviderRequestError("Invalid download URL");
+		}
+
+		if (
+			downloadUrl.origin !== this.getFetchBaseUrl() ||
+			!DOWNLOAD_PATH_PATTERN.test(downloadUrl.pathname)
+		) {
+			throw new InvalidProviderRequestError("Invalid download URL");
+		}
 
 		await this.fetch("GET", `${downloadUrl.pathname}${downloadUrl.search}`);
 
