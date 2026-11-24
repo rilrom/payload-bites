@@ -210,7 +210,7 @@ test("should trigger unsplash download tracking on selection", async ({
 
 	await verifySearchDrawerClosed(page);
 
-	expect(tracking.wasCalled()).toBe(true);
+	expect((await tracking).status()).toBe(200);
 });
 
 for (const provider of PROVIDERS) {
