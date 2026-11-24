@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 4.0.0-beta.1
+
+### Patch Changes
+
+- fix: restrict Unsplash download tracking to the Unsplash API ([7a95575](https://github.com/rilrom/payload-bites/commit/7a95575))
+
 ## 4.0.0-beta.0
 
 ### Major Changes
@@ -11,6 +17,10 @@
 - Requires Payload 4 (`>=4.0.0-beta.10 <5.0.0`), next `>=16.4.5 <17.0.0` and react `^19.3.1`. Stay on 3.x for Payload 3.
 - The drawer search field class is now `search-images__search` instead of `search-filter__input`.
 - Styles moved from SCSS to plain CSS. Overrides using Payload 3 `--theme-*` variables no longer apply.
+
+### Patch Changes
+
+- fix: encode search query and download url ([c6b717e](https://github.com/rilrom/payload-bites/commit/c6b717e))
 
 ## 3.6.0
 
