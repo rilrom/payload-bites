@@ -1,5 +1,12 @@
 # @payload-bites/image-search
 
+## 3.6.1
+
+### Patch Changes
+
+- fix: encode search query and download url ([48ed413](https://github.com/rilrom/payload-bites/commit/48ed413))
+- fix: restrict Unsplash download tracking to the Unsplash API ([aa45a5a](https://github.com/rilrom/payload-bites/commit/aa45a5a))
+
 ## 3.6.0
 
 ### Minor Changes
