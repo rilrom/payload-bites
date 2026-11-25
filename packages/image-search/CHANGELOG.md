@@ -1,5 +1,11 @@
 # @payload-bites/image-search
 
+## 4.0.0-beta.2
+
+### Patch Changes
+
+- fix: size drawer image columns to the drawer width ([99f9bb5](https://github.com/rilrom/payload-bites/commit/99f9bb5))
+
 ## 4.0.0-beta.1
 
 ### Patch Changes
