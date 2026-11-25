@@ -41,8 +41,7 @@ describe("CacheManager", () => {
 		it("stores data with version-prefixed key", () => {
 			cacheManager.set("my-query", { foo: "bar" });
 
-			// Version is "2" based on the source code
-			expect(mockStorage["2my-query"]).toBeDefined();
+			expect(mockStorage["3my-query"]).toBeDefined();
 		});
 
 		it("handles string data", () => {
@@ -119,7 +118,7 @@ describe("CacheManager", () => {
 
 			cacheManager.get("ttl-key");
 
-			expect(localStorage.removeItem).toHaveBeenCalledWith("2ttl-key");
+			expect(localStorage.removeItem).toHaveBeenCalledWith("3ttl-key");
 
 			vi.useRealTimers();
 		});
@@ -127,7 +126,7 @@ describe("CacheManager", () => {
 		it("stores without expiry when TTL not provided", () => {
 			cacheManager.set("no-ttl-key", { data: "value" });
 
-			const stored = JSON.parse(mockStorage["2no-ttl-key"] ?? "{}");
+			const stored = JSON.parse(mockStorage["3no-ttl-key"] ?? "{}");
 
 			expect(stored.expiry).toBeNull();
 		});

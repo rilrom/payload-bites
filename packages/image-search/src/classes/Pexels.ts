@@ -50,7 +50,11 @@ export class Pexels extends Provider {
 		return {
 			images: this.formatResults(data.photos),
 			totalImages: data.total_results,
-			totalPages: Math.min(data.total_results / this.getFetchLimit(), 100),
+			// Pexels returns no photos once page * per_page reaches 500, despite reporting a larger total_results. This is undocumented and was measured against the live API.
+			totalPages: Math.min(
+				Math.ceil(data.total_results / this.getFetchLimit()),
+				Math.floor(499 / this.getFetchLimit()),
+			),
 		};
 	}
 
