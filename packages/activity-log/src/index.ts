@@ -18,10 +18,10 @@ import type { ActivityLogPluginOptions } from "./types.js";
 export const activityLogPlugin =
 	(pluginOptions?: ActivityLogPluginOptions) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: ActivityLogPluginOptions = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: ActivityLogPluginOptions = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 

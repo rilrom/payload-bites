@@ -11,10 +11,10 @@ import { deepMerge } from "./utils/deepMerge.js";
 export const brokenLinkCheckerPlugin =
 	(pluginOptions?: BrokenLinkCheckerPluginOptions) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: BrokenLinkCheckerPluginOptions = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: BrokenLinkCheckerPluginOptions = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 

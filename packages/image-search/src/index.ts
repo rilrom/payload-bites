@@ -9,10 +9,10 @@ import { deepMerge } from "./utils/deepMerge.js";
 export const imageSearchPlugin =
 	(pluginOptions: ImageSearchPluginOptions = {}) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: Required<ImageSearchPluginOptions> = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: Required<ImageSearchPluginOptions> = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 
