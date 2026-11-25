@@ -100,8 +100,7 @@ export const activityLogPlugin =
 				...global,
 			};
 
-			const mergedGlobalOptions =
-				mergedOptions.collections[modifiedGlobal.slug];
+			const mergedGlobalOptions = mergedOptions.globals[modifiedGlobal.slug];
 
 			const enableIpAddressLogging =
 				mergedGlobalOptions?.enableIpAddressLogging ?? defaultIpAddressLogging;
