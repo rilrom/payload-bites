@@ -13,10 +13,10 @@ import { deepMerge } from "./utils/deepMerge.js";
 export const softDeletePlugin =
 	(pluginOptions?: SoftDeletePluginOptions) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: SoftDeletePluginOptions = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: SoftDeletePluginOptions = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 

@@ -124,7 +124,7 @@ export const pluginNamePlugin =
 	(pluginOptions?: PluginOptions) =>
 	(incomingConfig: Config): Config => {
 		// Merge options with defaults
-		const mergedOptions = Object.assign(defaultOptions, pluginOptions);
+		const mergedOptions = { ...defaultOptions, ...pluginOptions };
 
 		const config = { ...incomingConfig };
 

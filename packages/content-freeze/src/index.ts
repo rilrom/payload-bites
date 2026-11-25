@@ -10,10 +10,10 @@ import { wrapAccessControl } from "./utils/wrapAccessControl.js";
 export const contentFreezePlugin =
 	(pluginOptions?: ContentFreezePluginOptions) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: ContentFreezePluginOptions = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: ContentFreezePluginOptions = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 

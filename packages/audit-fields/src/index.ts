@@ -9,10 +9,10 @@ import type { AuditFieldsPluginOptions } from "./types.js";
 export const auditFieldsPlugin =
 	(pluginOptions?: AuditFieldsPluginOptions) =>
 	(incomingConfig: Config): Config => {
-		const mergedOptions: Required<AuditFieldsPluginOptions> = Object.assign(
-			defaultPluginOptions,
-			pluginOptions,
-		);
+		const mergedOptions: Required<AuditFieldsPluginOptions> = {
+			...defaultPluginOptions,
+			...pluginOptions,
+		};
 
 		const config = { ...incomingConfig };
 
