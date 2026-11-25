@@ -28,6 +28,18 @@ const baseClass = "search-images";
 
 const previewImageDrawerSlug = "preview-image";
 
+const MIN_COLUMN_WIDTH = 160;
+const MIN_COLUMNS = 2;
+const MAX_COLUMNS = 5;
+const GAP = 16;
+
+const getColumnCount = (width: number) => {
+	return Math.min(
+		MAX_COLUMNS,
+		Math.max(MIN_COLUMNS, Math.floor((width + GAP) / (MIN_COLUMN_WIDTH + GAP))),
+	);
+};
+
 type ProviderOption = {
 	label: string;
 	value: string;
@@ -59,6 +71,21 @@ export const SearchImages = (props: SearchImagesProps) => {
 	const [selectedImage, setSelectedImage] = useState<ProviderResult | null>(
 		null,
 	);
+	const [resultsWidth, setResultsWidth] = useState(0);
+
+	const resultsRef = useCallback((node: HTMLDivElement) => {
+		const observer = new ResizeObserver(([entry]) => {
+			if (entry) {
+				setResultsWidth(entry.contentRect.width);
+			}
+		});
+
+		setResultsWidth(node.getBoundingClientRect().width);
+
+		observer.observe(node);
+
+		return () => observer.disconnect();
+	}, []);
 
 	const addDefaultError = useCallback(() => {
 		toast.error(t("error:unknown"));
@@ -217,13 +244,12 @@ export const SearchImages = (props: SearchImagesProps) => {
 
 			{!loading && images && images?.length > 0 && (
 				<>
-					<div className={`${baseClass}__results`}>
+					<div className={`${baseClass}__results`} ref={resultsRef}>
 						<Masonry
 							items={images}
 							config={{
-								columns: [2, 3, 4, 5, 6],
-								gap: [16, 16, 16, 16, 16],
-								media: [768, 992, 1200, 1400, 1600],
+								columns: getColumnCount(resultsWidth),
+								gap: GAP,
 								useBalancedLayout: true,
 							}}
 							render={(data) => (
