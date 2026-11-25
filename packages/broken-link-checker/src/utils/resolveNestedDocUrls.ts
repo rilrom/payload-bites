@@ -32,40 +32,27 @@ export const resolveNestedDocUrls = async ({
 		);
 	}
 
-	const cursorFieldName = "createdAt";
-
 	const allDocs: NestedDoc[] = [];
 
-	let cursor: string | undefined;
+	let page = 1;
 
-	let hasMore = true;
+	let hasNextPage = true;
 
-	while (hasMore) {
+	while (hasNextPage) {
 		const response = await req.payload.find({
 			collection,
 			limit: batchSize,
+			page,
 			depth: 0,
-			sort: cursorFieldName,
-			where: cursor
-				? {
-						[cursorFieldName]: {
-							greater_than: cursor,
-						},
-					}
-				: {},
+			sort: ["createdAt", "id"],
 			overrideAccess: false,
 			user: req.user,
 		});
 
-		const docs = response.docs as NestedDoc[];
+		allDocs.push(...(response.docs as NestedDoc[]));
 
-		allDocs.push(...docs);
-
-		if (docs.length < batchSize) {
-			hasMore = false;
-		} else {
-			cursor = docs[docs.length - 1]?.[cursorFieldName];
-		}
+		hasNextPage = response.hasNextPage;
+		page += 1;
 	}
 
 	const base = (baseUrl || req.payload.config.serverURL).replace(/\/+$/, "");
