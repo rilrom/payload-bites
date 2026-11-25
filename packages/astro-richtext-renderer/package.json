@@ -37,7 +37,7 @@
 		"@payload-bites/typescript-config": "workspace:*",
 		"astro": "7.4.11",
 		"typescript": "6.0.3",
-		"vitest": "2.1.9"
+		"vitest": "4.1.12"
 	},
 	"peerDependencies": {
 		"@payloadcms/richtext-lexical": ">=4.0.0-beta.10 <5.0.0",
