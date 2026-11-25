@@ -34,9 +34,7 @@ const Self = Astro.self;
 ---
 
 {
-  isCode ? (
-    <code>{node.text}</code>
-  ) : isSuperscript ? (
+  isSuperscript ? (
     <sup>
       <Self node={{ ...node, format: format ^ IS_SUPERSCRIPT }} />
     </sup>
@@ -44,6 +42,10 @@ const Self = Astro.self;
     <sub>
       <Self node={{ ...node, format: format ^ IS_SUBSCRIPT }} />
     </sub>
+  ) : isCode ? (
+    <code>
+      <Self node={{ ...node, format: format ^ IS_CODE }} />
+    </code>
   ) : isUnderline ? (
     <span style="text-decoration: underline;">
       <Self node={{ ...node, format: format ^ IS_UNDERLINE }} />
