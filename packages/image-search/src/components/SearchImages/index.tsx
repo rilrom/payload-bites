@@ -12,7 +12,7 @@ import {
 	useModal,
 	useTranslation,
 } from "@payloadcms/ui";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Masonry } from "react-plock";
 
 import type { ProviderResult } from "../../classes/Provider.js";
@@ -58,6 +58,7 @@ export const SearchImages = (props: SearchImagesProps) => {
 	const [selectedImage, setSelectedImage] = useState<ProviderResult | null>(
 		null,
 	);
+	const latestRequestRef = useRef(0);
 
 	const addDefaultError = useCallback(() => {
 		toast.error(t("error:unknown"));
@@ -97,6 +98,8 @@ export const SearchImages = (props: SearchImagesProps) => {
 	}, [serverURL, api, addDefaultError]);
 
 	const getFeaturedPhotos = useCallback(async () => {
+		const requestId = ++latestRequestRef.current;
+
 		try {
 			setLoading(true);
 			resetImages();
@@ -105,21 +108,31 @@ export const SearchImages = (props: SearchImagesProps) => {
 				`${serverURL}${api}/providers/${selectedProvider?.value}/featured`,
 			);
 
+			if (requestId !== latestRequestRef.current) {
+				return;
+			}
+
 			if (json.error) {
 				return toast.error(json.error);
 			}
 
 			setImages(json.data.images);
 		} catch {
-			addDefaultError();
-			resetImages();
+			if (requestId === latestRequestRef.current) {
+				addDefaultError();
+				resetImages();
+			}
 		} finally {
-			setLoading(false);
+			if (requestId === latestRequestRef.current) {
+				setLoading(false);
+			}
 		}
 	}, [resetImages, serverURL, api, selectedProvider?.value, addDefaultError]);
 
 	const getPhotos = useCallback(
 		async (query: string, page = 1) => {
+			const requestId = ++latestRequestRef.current;
+
 			try {
 				setLoading(true);
 				resetImages();
@@ -127,6 +140,10 @@ export const SearchImages = (props: SearchImagesProps) => {
 				const json = await fetchWithCache(
 					`${serverURL}${api}/providers/${selectedProvider?.value}/search?query=${encodeURIComponent(query)}&page=${page}`,
 				);
+
+				if (requestId !== latestRequestRef.current) {
+					return;
+				}
 
 				if (json.error) {
 					return toast.error(json.error);
@@ -136,10 +153,14 @@ export const SearchImages = (props: SearchImagesProps) => {
 				setTotalPages(json.data.totalPages);
 				setCurrentPage(page);
 			} catch {
-				addDefaultError();
-				resetImages();
+				if (requestId === latestRequestRef.current) {
+					addDefaultError();
+					resetImages();
+				}
 			} finally {
-				setLoading(false);
+				if (requestId === latestRequestRef.current) {
+					setLoading(false);
+				}
 			}
 		},
 		[resetImages, serverURL, api, selectedProvider?.value, addDefaultError],
