@@ -46,7 +46,10 @@ export class Pixabay extends Provider {
 		return {
 			images: this.formatResults(data.hits),
 			totalImages: data.totalHits,
-			totalPages: Math.min(data.totalHits, 100),
+			totalPages: Math.min(
+				Math.ceil(data.totalHits / this.getFetchLimit()),
+				100,
+			),
 		};
 	}
 
