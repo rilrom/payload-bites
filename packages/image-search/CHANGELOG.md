@@ -1,5 +1,13 @@
 # @payload-bites/image-search
 
+## 3.6.2
+
+### Patch Changes
+
+- fix: compute Pexels and Pixabay page counts from the page size ([9cb70ea](https://github.com/rilrom/payload-bites/commit/9cb70ea))
+- fix: ignore responses from superseded searches ([7b9976c](https://github.com/rilrom/payload-bites/commit/7b9976c))
+- fix: stop plugins mutating their default options ([87342cb](https://github.com/rilrom/payload-bites/commit/87342cb))
+
 ## 3.6.1
 
 ### Patch Changes
