@@ -1,5 +1,11 @@
 # @payload-bites/content-freeze
 
+## 2.0.0-beta.1
+
+### Patch Changes
+
+- fix: stop plugins mutating their default options ([db32fcc](https://github.com/rilrom/payload-bites/commit/db32fcc))
+
 ## 2.0.0-beta.0
 
 ### Major Changes
