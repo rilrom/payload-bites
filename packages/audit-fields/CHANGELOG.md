@@ -1,5 +1,11 @@
 # @payload-bites/audit-fields
 
+## 1.8.1
+
+### Patch Changes
+
+- fix: stop plugins mutating their default options ([87342cb](https://github.com/rilrom/payload-bites/commit/87342cb))
+
 ## 1.8.0
 
 ### Minor Changes
