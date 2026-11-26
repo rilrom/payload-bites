@@ -1,5 +1,12 @@
 # @payload-bites/broken-link-checker
 
+## 2.0.0-beta.1
+
+### Patch Changes
+
+- fix: paginate nested docs with a stable sort ([d179f44](https://github.com/rilrom/payload-bites/commit/d179f44))
+- fix: stop plugins mutating their default options ([db32fcc](https://github.com/rilrom/payload-bites/commit/db32fcc))
+
 ## 2.0.0-beta.0
 
 ### Major Changes
