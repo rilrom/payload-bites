@@ -1,5 +1,11 @@
 # @payload-bites/astro-richtext-renderer
 
+## 3.0.0-beta.1
+
+### Patch Changes
+
+- fix: keep other text formats inside inline code ([64c84ab](https://github.com/rilrom/payload-bites/commit/64c84ab))
+
 ## 3.0.0-beta.0
 
 ### Major Changes
