@@ -1,5 +1,12 @@
 # @payload-bites/activity-log
 
+## 2.0.0-beta.1
+
+### Patch Changes
+
+- fix: read per-global logging options from globals ([6863c60](https://github.com/rilrom/payload-bites/commit/6863c60))
+- fix: stop plugins mutating their default options ([db32fcc](https://github.com/rilrom/payload-bites/commit/db32fcc))
+
 ## 2.0.0-beta.0
 
 ### Major Changes
