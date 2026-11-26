@@ -1,5 +1,11 @@
 # @payload-bites/soft-delete
 
+## 3.4.1
+
+### Patch Changes
+
+- fix: stop plugins mutating their default options ([87342cb](https://github.com/rilrom/payload-bites/commit/87342cb))
+
 ## 3.4.0
 
 ### Minor Changes
