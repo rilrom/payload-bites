@@ -1,5 +1,11 @@
 # @payload-bites/fullscreen-editor
 
+## 1.9.1
+
+### Patch Changes
+
+- fix: exit fullscreen when the editor unmounts ([5e6b714](https://github.com/rilrom/payload-bites/commit/5e6b714))
+
 ## 1.9.0
 
 ### Minor Changes
