@@ -1,5 +1,12 @@
 # @payload-bites/activity-log
 
+## 1.8.1
+
+### Patch Changes
+
+- fix: read per-global logging options from globals ([ff587e4](https://github.com/rilrom/payload-bites/commit/ff587e4))
+- fix: stop plugins mutating their default options ([87342cb](https://github.com/rilrom/payload-bites/commit/87342cb))
+
 ## 1.8.0
 
 ### Minor Changes
